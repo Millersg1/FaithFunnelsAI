@@ -1,4 +1,4 @@
-import { Funnel, Download, Palette, BookOpen } from "lucide-react";
+import { Filter, Download, Palette, BookOpen } from "lucide-react";
 import { StatCard } from "@/components/stat-card";
 import { VerseCard } from "@/components/verse-card";
 import { Button } from "@/components/ui/button";
@@ -30,7 +30,7 @@ export default function Dashboard() {
         </div>
         <Link href="/funnels">
           <Button data-testid="button-create-funnel">
-            <Funnel className="mr-2 h-4 w-4" />
+            <Filter className="mr-2 h-4 w-4" />
             Create New Funnel
           </Button>
         </Link>
@@ -40,7 +40,7 @@ export default function Dashboard() {
         <StatCard
           title="Total Funnels"
           value={funnels?.length || 0}
-          icon={Funnel}
+          icon={Filter}
           description="Active funnels"
         />
         <StatCard
