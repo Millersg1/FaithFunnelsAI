@@ -12,23 +12,52 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog";
 import { Label } from "@/components/ui/label";
+import { useQuery, useMutation } from "@tanstack/react-query";
+import { apiRequest, queryClient } from "@/lib/queryClient";
+import { useToast } from "@/hooks/use-toast";
+import type { Funnel } from "@shared/schema";
 
 export default function Funnels() {
   const [isCreateOpen, setIsCreateOpen] = useState(false);
   const [funnelName, setFunnelName] = useState("");
   const [searchQuery, setSearchQuery] = useState("");
+  const { toast } = useToast();
 
-  const mockFunnels = [
-    { id: "1", name: "Faith Journey Landing Page", type: "main" as const, hasVerse: true, color: "#6366f1" },
-    { id: "2", name: "Premium Bible Study OTO", type: "oto" as const, hasVerse: true, color: "#8b5cf6" },
-    { id: "3", name: "Daily Devotional Downsell", type: "ds" as const, hasVerse: false, color: "#ec4899" },
-  ];
+  const { data: funnels, isLoading } = useQuery<Funnel[]>({
+    queryKey: ["/api/funnels"],
+  });
+
+  const createMutation = useMutation({
+    mutationFn: async (name: string) => {
+      return apiRequest("/api/funnels", {
+        method: "POST",
+        body: JSON.stringify({ name, stages: [] }),
+        headers: { "Content-Type": "application/json" },
+      });
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["/api/funnels"] });
+      toast({
+        title: "Funnel created",
+        description: "Your new funnel has been created successfully.",
+      });
+      setIsCreateOpen(false);
+      setFunnelName("");
+    },
+  });
 
   const handleCreateFunnel = () => {
-    console.log("Creating funnel:", funnelName);
-    setIsCreateOpen(false);
-    setFunnelName("");
+    if (!funnelName.trim()) return;
+    createMutation.mutate(funnelName);
   };
+
+  const filteredFunnels = funnels?.filter(funnel =>
+    funnel.name.toLowerCase().includes(searchQuery.toLowerCase())
+  ) || [];
+
+  if (isLoading) {
+    return <div className="flex items-center justify-center h-64">Loading...</div>;
+  }
 
   return (
     <div className="space-y-6">
@@ -65,9 +94,10 @@ export default function Funnels() {
               <Button 
                 className="w-full" 
                 onClick={handleCreateFunnel}
+                disabled={createMutation.isPending || !funnelName.trim()}
                 data-testid="button-submit-create-funnel"
               >
-                Create Funnel
+                {createMutation.isPending ? "Creating..." : "Create Funnel"}
               </Button>
             </div>
           </DialogContent>
@@ -87,21 +117,31 @@ export default function Funnels() {
         </div>
       </div>
 
-      <div className="space-y-4">
-        <h2 className="text-lg font-semibold">Funnel Stages</h2>
-        <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-          {mockFunnels.map((funnel) => (
-            <FunnelStageCard
-              key={funnel.id}
-              id={funnel.id}
-              title={funnel.name}
-              type={funnel.type}
-              hasVerse={funnel.hasVerse}
-              primaryColor={funnel.color}
-            />
-          ))}
+      {filteredFunnels.length > 0 ? (
+        <div className="space-y-4">
+          <h2 className="text-lg font-semibold">Funnel Stages ({filteredFunnels.length})</h2>
+          <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+            {filteredFunnels.flatMap(funnel =>
+              funnel.stages.map(stage => (
+                <FunnelStageCard
+                  key={stage.id}
+                  id={stage.id}
+                  title={stage.title}
+                  type={stage.type}
+                  hasVerse={stage.hasVerse}
+                  primaryColor="#6366f1"
+                />
+              ))
+            )}
+          </div>
         </div>
-      </div>
+      ) : (
+        <div className="rounded-lg border bg-muted/50 p-12 text-center">
+          <p className="text-muted-foreground mb-4">
+            {searchQuery ? "No funnels match your search" : "No funnels yet. Create your first one to get started!"}
+          </p>
+        </div>
+      )}
 
       <div className="rounded-lg border bg-muted/50 p-8 text-center">
         <p className="text-muted-foreground mb-4">

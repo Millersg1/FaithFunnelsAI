@@ -2,31 +2,66 @@ import { useState } from "react";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Download, FileCode, CheckCircle2 } from "lucide-react";
-import { Checkbox } from "@/components/ui/checkbox";
 import { Label } from "@/components/ui/label";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { useQuery } from "@tanstack/react-query";
+import { useToast } from "@/hooks/use-toast";
+import { exportFunnelAsZip } from "@/lib/htmlExporter";
+import type { Funnel, Verse, Theme } from "@shared/schema";
 
 export default function Export() {
-  const [includeMainOffer, setIncludeMainOffer] = useState(true);
-  const [includeOTO1, setIncludeOTO1] = useState(true);
-  const [includeOTO2, setIncludeOTO2] = useState(false);
-  const [includeDS, setIncludeDS] = useState(true);
-  const [includeLegalPages, setIncludeLegalPages] = useState(true);
+  const [selectedFunnelId, setSelectedFunnelId] = useState<string>("");
   const [isExporting, setIsExporting] = useState(false);
+  const { toast } = useToast();
 
-  const handleExport = () => {
-    console.log("Exporting funnel with options:", {
-      includeMainOffer,
-      includeOTO1,
-      includeOTO2,
-      includeDS,
-      includeLegalPages
-    });
-    setIsExporting(true);
-    setTimeout(() => {
+  const { data: funnels } = useQuery<Funnel[]>({
+    queryKey: ["/api/funnels"],
+  });
+
+  const { data: verses } = useQuery<Verse[]>({
+    queryKey: ["/api/verses"],
+  });
+
+  const { data: themes } = useQuery<Theme[]>({
+    queryKey: ["/api/themes"],
+  });
+
+  const handleExport = async () => {
+    if (!selectedFunnelId) {
+      toast({
+        title: "No funnel selected",
+        description: "Please select a funnel to export",
+        variant: "destructive",
+      });
+      return;
+    }
+
+    const funnel = funnels?.find(f => f.id === selectedFunnelId);
+    if (!funnel) return;
+
+    try {
+      setIsExporting(true);
+      const funnelVerses = verses?.filter(v => v.funnelId === selectedFunnelId) || [];
+      const funnelThemes = themes?.filter(t => t.funnelId === selectedFunnelId) || [];
+      
+      await exportFunnelAsZip(funnel, funnelVerses, funnelThemes);
+      
+      toast({
+        title: "Export successful!",
+        description: "Your funnel has been downloaded as a ZIP file.",
+      });
+    } catch (error) {
+      toast({
+        title: "Export failed",
+        description: "There was an error exporting your funnel. Please try again.",
+        variant: "destructive",
+      });
+    } finally {
       setIsExporting(false);
-      console.log("Export complete!");
-    }, 2000);
+    }
   };
+
+  const selectedFunnel = funnels?.find(f => f.id === selectedFunnelId);
 
   return (
     <div className="space-y-6">
@@ -41,81 +76,62 @@ export default function Export() {
             <CardHeader>
               <CardTitle>Export Configuration</CardTitle>
               <CardDescription>
-                Select which pages to include in your export
+                Select a funnel to export
               </CardDescription>
             </CardHeader>
             <CardContent className="space-y-4">
-              <div className="flex items-center space-x-2">
-                <Checkbox 
-                  id="main-offer" 
-                  checked={includeMainOffer}
-                  onCheckedChange={(checked) => setIncludeMainOffer(checked as boolean)}
-                  data-testid="checkbox-include-main-offer"
-                />
-                <Label htmlFor="main-offer" className="flex-1">
-                  Main Offer Page
-                </Label>
-                <span className="text-sm text-muted-foreground">index.html</span>
+              <div className="space-y-2">
+                <Label htmlFor="funnel-select">Select Funnel</Label>
+                <Select value={selectedFunnelId} onValueChange={setSelectedFunnelId}>
+                  <SelectTrigger id="funnel-select" data-testid="select-funnel">
+                    <SelectValue placeholder="Choose a funnel to export" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    {funnels?.map((funnel) => (
+                      <SelectItem key={funnel.id} value={funnel.id}>
+                        {funnel.name}
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
               </div>
 
-              <div className="flex items-center space-x-2">
-                <Checkbox 
-                  id="oto1" 
-                  checked={includeOTO1}
-                  onCheckedChange={(checked) => setIncludeOTO1(checked as boolean)}
-                  data-testid="checkbox-include-oto1"
-                />
-                <Label htmlFor="oto1" className="flex-1">
-                  One-Time Offer 1
-                </Label>
-                <span className="text-sm text-muted-foreground">oto1.html</span>
-              </div>
-
-              <div className="flex items-center space-x-2">
-                <Checkbox 
-                  id="oto2" 
-                  checked={includeOTO2}
-                  onCheckedChange={(checked) => setIncludeOTO2(checked as boolean)}
-                  data-testid="checkbox-include-oto2"
-                />
-                <Label htmlFor="oto2" className="flex-1">
-                  One-Time Offer 2
-                </Label>
-                <span className="text-sm text-muted-foreground">oto2.html</span>
-              </div>
-
-              <div className="flex items-center space-x-2">
-                <Checkbox 
-                  id="downsell" 
-                  checked={includeDS}
-                  onCheckedChange={(checked) => setIncludeDS(checked as boolean)}
-                  data-testid="checkbox-include-downsell"
-                />
-                <Label htmlFor="downsell" className="flex-1">
-                  Downsell Page
-                </Label>
-                <span className="text-sm text-muted-foreground">downsell.html</span>
-              </div>
-
-              <div className="border-t pt-4">
-                <div className="flex items-center space-x-2">
-                  <Checkbox 
-                    id="legal" 
-                    checked={includeLegalPages}
-                    onCheckedChange={(checked) => setIncludeLegalPages(checked as boolean)}
-                    data-testid="checkbox-include-legal"
-                  />
-                  <Label htmlFor="legal" className="flex-1">
-                    Legal Pages (Terms, Privacy, Refund Policy)
-                  </Label>
+              {selectedFunnel && (
+                <div className="rounded-lg border bg-muted/50 p-4 space-y-2">
+                  <h4 className="font-medium">Funnel Preview:</h4>
+                  <p className="text-sm text-muted-foreground">
+                    <strong>{selectedFunnel.name}</strong>
+                  </p>
+                  <p className="text-sm text-muted-foreground">
+                    Stages: {selectedFunnel.stages.length}
+                  </p>
+                  <ul className="text-sm text-muted-foreground pl-4">
+                    {selectedFunnel.stages.map((stage, idx) => (
+                      <li key={stage.id}>
+                        {idx + 1}. {stage.title} ({stage.type.toUpperCase()})
+                      </li>
+                    ))}
+                  </ul>
                 </div>
+              )}
+
+              <div className="rounded-lg border bg-muted/50 p-4">
+                <h4 className="font-medium mb-2">What's included:</h4>
+                <ul className="text-sm text-muted-foreground space-y-1">
+                  <li>✓ All funnel stage pages (HTML)</li>
+                  <li>✓ Bible verses with custom styling</li>
+                  <li>✓ Custom theme colors applied</li>
+                  <li>✓ Legal pages (Terms, Privacy, Refund)</li>
+                  <li>✓ Mobile responsive design</li>
+                  <li>✓ Standalone files (no external dependencies)</li>
+                </ul>
               </div>
 
               <Button 
                 className="w-full" 
                 size="lg"
                 onClick={handleExport}
-                disabled={isExporting}
+                disabled={isExporting || !selectedFunnelId}
                 data-testid="button-export-funnel"
               >
                 {isExporting ? (

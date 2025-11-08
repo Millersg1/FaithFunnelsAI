@@ -1,10 +1,26 @@
-import { Filter, Download, Palette, BookOpen } from "lucide-react";
+import { Funnel, Download, Palette, BookOpen } from "lucide-react";
 import { StatCard } from "@/components/stat-card";
 import { VerseCard } from "@/components/verse-card";
 import { Button } from "@/components/ui/button";
 import { Link } from "wouter";
+import { useQuery } from "@tanstack/react-query";
+import type { Funnel as FunnelType, Verse, Theme } from "@shared/schema";
 
 export default function Dashboard() {
+  const { data: funnels } = useQuery<FunnelType[]>({
+    queryKey: ["/api/funnels"],
+  });
+
+  const { data: verses } = useQuery<Verse[]>({
+    queryKey: ["/api/verses"],
+  });
+
+  const { data: themes } = useQuery<Theme[]>({
+    queryKey: ["/api/themes"],
+  });
+
+  const totalStages = funnels?.reduce((sum, funnel) => sum + funnel.stages.length, 0) || 0;
+
   return (
     <div className="space-y-6">
       <div className="flex items-center justify-between">
@@ -14,8 +30,8 @@ export default function Dashboard() {
         </div>
         <Link href="/funnels">
           <Button data-testid="button-create-funnel">
-            <Filter className="mr-2 h-4 w-4" />
-            Create New Filter
+            <Funnel className="mr-2 h-4 w-4" />
+            Create New Funnel
           </Button>
         </Link>
       </div>
@@ -23,25 +39,25 @@ export default function Dashboard() {
       <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
         <StatCard
           title="Total Funnels"
-          value={12}
-          icon={Filter}
+          value={funnels?.length || 0}
+          icon={Funnel}
           description="Active funnels"
         />
         <StatCard
-          title="Exports"
-          value={34}
+          title="Funnel Stages"
+          value={totalStages}
           icon={Download}
-          description="This month"
+          description="Total stages"
         />
         <StatCard
           title="Verses Used"
-          value={28}
+          value={verses?.length || 0}
           icon={BookOpen}
           description="Unique verses"
         />
         <StatCard
           title="Custom Themes"
-          value={5}
+          value={themes?.length || 0}
           icon={Palette}
           description="Saved themes"
         />
@@ -68,9 +84,13 @@ export default function Dashboard() {
         <div className="rounded-lg border bg-card p-6">
           <h3 className="text-lg font-semibold mb-2">Recent Activity</h3>
           <ul className="space-y-2 text-sm text-muted-foreground">
-            <li>• Created "Faith Journey" funnel - 2 hours ago</li>
-            <li>• Exported "Blessed Life" funnel - Yesterday</li>
-            <li>• Updated theme colors - 3 days ago</li>
+            {funnels && funnels.length > 0 ? (
+              funnels.slice(0, 3).map((funnel) => (
+                <li key={funnel.id}>• Created "{funnel.name}" funnel</li>
+              ))
+            ) : (
+              <li>• No activity yet. Start by creating your first funnel!</li>
+            )}
           </ul>
         </div>
       </div>
