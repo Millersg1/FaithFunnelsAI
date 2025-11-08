@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Plus, Search } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { FunnelStageCard } from "@/components/funnel-stage-card";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import {
   Dialog,
   DialogContent,
@@ -16,6 +16,7 @@ import { useQuery, useMutation } from "@tanstack/react-query";
 import { apiRequest, queryClient } from "@/lib/queryClient";
 import { useToast } from "@/hooks/use-toast";
 import type { Funnel } from "@shared/schema";
+import { Link } from "wouter";
 
 export default function Funnels() {
   const [isCreateOpen, setIsCreateOpen] = useState(false);
@@ -119,20 +120,33 @@ export default function Funnels() {
 
       {filteredFunnels.length > 0 ? (
         <div className="space-y-4">
-          <h2 className="text-lg font-semibold">Funnel Stages ({filteredFunnels.length})</h2>
+          <h2 className="text-lg font-semibold">Your Funnels ({filteredFunnels.length})</h2>
           <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-            {filteredFunnels.flatMap(funnel =>
-              funnel.stages.map(stage => (
-                <FunnelStageCard
-                  key={stage.id}
-                  id={stage.id}
-                  title={stage.title}
-                  type={stage.type}
-                  hasVerse={stage.hasVerse}
-                  primaryColor="#6366f1"
-                />
-              ))
-            )}
+            {filteredFunnels.map(funnel => (
+              <Link key={funnel.id} href={`/funnels/${funnel.id}`}>
+                <Card className="hover-elevate active-elevate-2 cursor-pointer transition-all">
+                  <CardHeader>
+                    <CardTitle className="text-lg">{funnel.name}</CardTitle>
+                    <p className="text-sm text-muted-foreground">
+                      {funnel.stages.length} stage{funnel.stages.length !== 1 ? 's' : ''}
+                    </p>
+                  </CardHeader>
+                  <CardContent>
+                    <div className="space-y-2">
+                      {funnel.stages.map((stage, idx) => (
+                        <div key={stage.id} className="flex items-center gap-2 text-sm">
+                          <span className="text-muted-foreground">{idx + 1}.</span>
+                          <span>{stage.title}</span>
+                          <span className="ml-auto text-xs bg-muted px-2 py-1 rounded">
+                            {stage.type.toUpperCase()}
+                          </span>
+                        </div>
+                      ))}
+                    </div>
+                  </CardContent>
+                </Card>
+              </Link>
+            ))}
           </div>
         </div>
       ) : (

@@ -65,10 +65,17 @@ export default function Dashboard() {
 
       <div className="space-y-4">
         <h2 className="text-xl font-semibold">Today's Inspiration</h2>
-        <VerseCard
-          verse="Trust in the Lord with all your heart and lean not on your own understanding; in all your ways submit to him, and he will make your paths straight."
-          reference="Proverbs 3:5-6"
-        />
+        {verses && verses.length > 0 ? (
+          <VerseCard
+            verse={verses[0].verseText}
+            reference={verses[0].reference}
+          />
+        ) : (
+          <VerseCard
+            verse="Trust in the Lord with all your heart and lean not on your own understanding; in all your ways submit to him, and he will make your paths straight."
+            reference="Proverbs 3:5-6"
+          />
+        )}
       </div>
 
       <div className="grid gap-4 md:grid-cols-2">

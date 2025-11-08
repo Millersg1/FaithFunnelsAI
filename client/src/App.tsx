@@ -8,6 +8,7 @@ import { AppSidebar } from "@/components/app-sidebar";
 import NotFound from "@/pages/not-found";
 import Dashboard from "@/pages/dashboard";
 import Funnels from "@/pages/funnels";
+import FunnelEditor from "@/pages/funnel-editor";
 import VerseBuilder from "@/pages/verse-builder";
 import ThemeSettings from "@/pages/theme-settings";
 import Export from "@/pages/export";
@@ -20,6 +21,7 @@ function Router() {
     <Switch>
       <Route path="/" component={Dashboard} />
       <Route path="/funnels" component={Funnels} />
+      <Route path="/funnels/:id" component={FunnelEditor} />
       <Route path="/verse-builder" component={VerseBuilder} />
       <Route path="/theme-settings" component={ThemeSettings} />
       <Route path="/export" component={Export} />
