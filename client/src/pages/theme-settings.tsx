@@ -29,11 +29,8 @@ export default function ThemeSettings() {
 
   const createMutation = useMutation({
     mutationFn: async (themeData: { name: string; primaryColor: string; secondaryColor: string; accentColor: string; funnelId: string | null; isDefault: boolean }) => {
-      return apiRequest("/api/themes", {
-        method: "POST",
-        body: JSON.stringify(themeData),
-        headers: { "Content-Type": "application/json" },
-      });
+      const response = await apiRequest("POST", "/api/themes", themeData);
+      return response.json();
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["/api/themes"] });

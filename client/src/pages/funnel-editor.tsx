@@ -42,11 +42,8 @@ export default function FunnelEditor() {
 
   const updateMutation = useMutation({
     mutationFn: async (data: { name: string; stages: FunnelStage[] }) => {
-      return apiRequest(`/api/funnels/${funnelId}`, {
-        method: "PATCH",
-        body: JSON.stringify(data),
-        headers: { "Content-Type": "application/json" },
-      });
+      const response = await apiRequest("PATCH", `/api/funnels/${funnelId}`, data);
+      return response.json();
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["/api/funnels", funnelId] });

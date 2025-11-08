@@ -30,11 +30,8 @@ export default function Funnels() {
 
   const createMutation = useMutation({
     mutationFn: async (name: string) => {
-      return apiRequest("/api/funnels", {
-        method: "POST",
-        body: JSON.stringify({ name, stages: [] }),
-        headers: { "Content-Type": "application/json" },
-      });
+      const response = await apiRequest("POST", "/api/funnels", { name, stages: [] });
+      return response.json();
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["/api/funnels"] });

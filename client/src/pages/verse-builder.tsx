@@ -30,11 +30,8 @@ export default function VerseBuilder() {
 
   const createMutation = useMutation({
     mutationFn: async (verseData: { verseText: string; reference: string; ctaText: string; ctaUrl: string; funnelId: string | null }) => {
-      return apiRequest("/api/verses", {
-        method: "POST",
-        body: JSON.stringify(verseData),
-        headers: { "Content-Type": "application/json" },
-      });
+      const response = await apiRequest("POST", "/api/verses", verseData);
+      return response.json();
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["/api/verses"] });
