@@ -2,9 +2,30 @@
 
 ## Overview
 
-Faith Funnels AI is a SaaS application for creating faith-based sales funnels with integrated Bible verses. Users can build multi-stage funnels (main offers, one-time offers, downsells), customize themes with brand colors, select Bible verses with call-to-action buttons, and export complete HTML pages ready for deployment.
+Faith Funnels AI is a complete SaaS dashboard tool for creating faith-based sales funnels to be sold as PLR (Private Label Rights) software on Warrior Plus and JVZoo. The application enables users to build multi-stage funnels with main offers, one-time offers (OTOs), and downsells (DSs), integrate Bible verses with customizable CTAs, apply custom theme colors, and export standalone HTML/ZIP packages ready for deployment.
+
+**Domain:** faithfunnelsai.com  
+**Support:** support@faithfunnelsai.com
 
 The application follows a modern dashboard design inspired by Linear, Notion, and Stripe, with a collapsible sidebar navigation system and responsive layout that adapts from desktop to mobile devices.
+
+## Project Status
+
+**Completed Features:**
+- ✅ Full CRUD operations for funnels, verses, and themes
+- ✅ Dashboard with live statistics and Bible verse inspiration
+- ✅ Funnel builder with stage management (Main/OTO/DS)
+- ✅ Bible verse builder with funnel association
+- ✅ Theme customization with preset themes
+- ✅ HTML/ZIP export with legal pages (Terms, Privacy, 14-day Refund)
+- ✅ All API integrations using shared error handling
+- ✅ End-to-end testing validated all core workflows
+
+**Implementation Notes:**
+- Using in-memory storage (MemStorage) - can be upgraded to PostgreSQL if needed
+- All mutations use centralized apiRequest helper for consistent error handling
+- Export generates standalone HTML files with embedded CSS (no external dependencies)
+- Legal pages included in every export: Terms of Service, Privacy Policy, 14-Day Refund Policy
 
 ## User Preferences
 
