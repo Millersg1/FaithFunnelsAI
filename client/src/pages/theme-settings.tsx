@@ -2,15 +2,71 @@ import { useState } from "react";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { ColorPicker } from "@/components/color-picker";
-import { Palette, Save } from "lucide-react";
+import { Save } from "lucide-react";
+import { useQuery, useMutation } from "@tanstack/react-query";
+import { apiRequest, queryClient } from "@/lib/queryClient";
+import { useToast } from "@/hooks/use-toast";
+import type { Theme, Funnel } from "@shared/schema";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { Label } from "@/components/ui/label";
+import { Input } from "@/components/ui/input";
 
 export default function ThemeSettings() {
+  const [themeName, setThemeName] = useState("");
   const [primaryColor, setPrimaryColor] = useState("#6366f1");
   const [secondaryColor, setSecondaryColor] = useState("#8b5cf6");
   const [accentColor, setAccentColor] = useState("#ec4899");
+  const [selectedFunnelId, setSelectedFunnelId] = useState<string | null>(null);
+  const { toast } = useToast();
+
+  const { data: themes } = useQuery<Theme[]>({
+    queryKey: ["/api/themes"],
+  });
+
+  const { data: funnels } = useQuery<Funnel[]>({
+    queryKey: ["/api/funnels"],
+  });
+
+  const createMutation = useMutation({
+    mutationFn: async (themeData: { name: string; primaryColor: string; secondaryColor: string; accentColor: string; funnelId: string | null; isDefault: boolean }) => {
+      return apiRequest("/api/themes", {
+        method: "POST",
+        body: JSON.stringify(themeData),
+        headers: { "Content-Type": "application/json" },
+      });
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["/api/themes"] });
+      toast({
+        title: "Theme saved",
+        description: "Your theme has been saved successfully.",
+      });
+      setThemeName("");
+      setPrimaryColor("#6366f1");
+      setSecondaryColor("#8b5cf6");
+      setAccentColor("#ec4899");
+      setSelectedFunnelId(null);
+    },
+  });
 
   const handleSaveTheme = () => {
-    console.log("Saving theme:", { primaryColor, secondaryColor, accentColor });
+    if (!themeName.trim()) {
+      toast({
+        title: "Theme name required",
+        description: "Please enter a name for your theme.",
+        variant: "destructive",
+      });
+      return;
+    }
+
+    createMutation.mutate({
+      name: themeName,
+      primaryColor,
+      secondaryColor,
+      accentColor,
+      funnelId: selectedFunnelId,
+      isDefault: false,
+    });
   };
 
   const presetThemes = [
@@ -31,12 +87,40 @@ export default function ThemeSettings() {
         <div className="lg:col-span-2">
           <Card>
             <CardHeader>
-              <CardTitle>Custom Colors</CardTitle>
+              <CardTitle>Custom Theme</CardTitle>
               <CardDescription>
-                Choose colors that represent your ministry's brand
+                Create a new theme for your ministry's brand
               </CardDescription>
             </CardHeader>
             <CardContent className="space-y-6">
+              <div className="space-y-2">
+                <Label htmlFor="theme-name">Theme Name</Label>
+                <Input
+                  id="theme-name"
+                  placeholder="e.g., My Church Theme"
+                  value={themeName}
+                  onChange={(e) => setThemeName(e.target.value)}
+                  data-testid="input-theme-name"
+                />
+              </div>
+
+              <div className="space-y-2">
+                <Label htmlFor="funnel-select">Assign to Funnel (Optional)</Label>
+                <Select value={selectedFunnelId || "none"} onValueChange={(value) => setSelectedFunnelId(value === "none" ? null : value)}>
+                  <SelectTrigger id="funnel-select" data-testid="select-funnel">
+                    <SelectValue placeholder="Choose a funnel" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="none">No funnel (Global)</SelectItem>
+                    {funnels?.map((funnel) => (
+                      <SelectItem key={funnel.id} value={funnel.id}>
+                        {funnel.name}
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
+              </div>
+
               <ColorPicker
                 label="Primary Color"
                 color={primaryColor}
@@ -53,9 +137,14 @@ export default function ThemeSettings() {
                 onChange={setAccentColor}
               />
 
-              <Button className="w-full" onClick={handleSaveTheme} data-testid="button-save-theme">
+              <Button 
+                className="w-full" 
+                onClick={handleSaveTheme} 
+                disabled={createMutation.isPending}
+                data-testid="button-save-theme"
+              >
                 <Save className="mr-2 h-4 w-4" />
-                Save Theme
+                {createMutation.isPending ? "Saving..." : "Save Theme"}
               </Button>
             </CardContent>
           </Card>
@@ -102,10 +191,10 @@ export default function ThemeSettings() {
                   variant="outline"
                   className="w-full justify-start"
                   onClick={() => {
-                    console.log("Loading preset theme:", theme.name);
                     setPrimaryColor(theme.primary);
                     setSecondaryColor(theme.secondary);
                     setAccentColor(theme.accent);
+                    setThemeName(theme.name);
                   }}
                   data-testid={`button-preset-theme-${theme.name.toLowerCase().replace(/\s+/g, '-')}`}
                 >
@@ -121,6 +210,26 @@ export default function ThemeSettings() {
               ))}
             </CardContent>
           </Card>
+
+          {themes && themes.length > 0 && (
+            <Card>
+              <CardHeader>
+                <CardTitle>Saved Themes ({themes.length})</CardTitle>
+              </CardHeader>
+              <CardContent className="space-y-2 max-h-64 overflow-y-auto">
+                {themes.map((theme) => (
+                  <div key={theme.id} className="p-3 rounded-lg border bg-muted/50">
+                    <p className="font-medium text-sm">{theme.name}</p>
+                    <div className="flex gap-1 mt-2">
+                      <div className="h-6 w-6 rounded" style={{ backgroundColor: theme.primaryColor }} />
+                      <div className="h-6 w-6 rounded" style={{ backgroundColor: theme.secondaryColor }} />
+                      <div className="h-6 w-6 rounded" style={{ backgroundColor: theme.accentColor }} />
+                    </div>
+                  </div>
+                ))}
+              </CardContent>
+            </Card>
+          )}
         </div>
       </div>
     </div>
