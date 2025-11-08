@@ -56,7 +56,7 @@ export class MemStorage implements IStorage {
         {
           id: "stage-1",
           title: "Faith Journey Landing Page",
-          type: "main",
+          type: "main" as const,
           hasVerse: true,
           verseId: defaultVerse1Id,
           themeId: defaultTheme1Id,
@@ -64,7 +64,7 @@ export class MemStorage implements IStorage {
         {
           id: "stage-2",
           title: "Premium Bible Study Course",
-          type: "oto",
+          type: "oto" as const,
           hasVerse: true,
           verseId: defaultVerse2Id,
           themeId: defaultTheme2Id,
@@ -72,11 +72,11 @@ export class MemStorage implements IStorage {
         {
           id: "stage-3",
           title: "Daily Devotional Downsell",
-          type: "ds",
+          type: "ds" as const,
           hasVerse: false,
           themeId: defaultTheme1Id,
         },
-      ],
+      ] as FunnelStage[],
     };
 
     const defaultVerse1: Verse = {
@@ -135,9 +135,9 @@ export class MemStorage implements IStorage {
   async createFunnel(insertFunnel: InsertFunnel): Promise<Funnel> {
     const id = randomUUID();
     const funnel: Funnel = { 
-      ...insertFunnel, 
       id,
-      stages: insertFunnel.stages || [],
+      name: insertFunnel.name,
+      stages: (insertFunnel.stages as FunnelStage[]) || [],
     };
     this.funnels.set(id, funnel);
     return funnel;
@@ -180,7 +180,14 @@ export class MemStorage implements IStorage {
 
   async createVerse(insertVerse: InsertVerse): Promise<Verse> {
     const id = randomUUID();
-    const verse: Verse = { ...insertVerse, id };
+    const verse: Verse = { 
+      id,
+      funnelId: insertVerse.funnelId ?? null,
+      verseText: insertVerse.verseText,
+      reference: insertVerse.reference,
+      ctaText: insertVerse.ctaText ?? "Learn More",
+      ctaUrl: insertVerse.ctaUrl ?? "",
+    };
     this.verses.set(id, verse);
     return verse;
   }
@@ -212,7 +219,15 @@ export class MemStorage implements IStorage {
 
   async createTheme(insertTheme: InsertTheme): Promise<Theme> {
     const id = randomUUID();
-    const theme: Theme = { ...insertTheme, id };
+    const theme: Theme = { 
+      id,
+      funnelId: insertTheme.funnelId ?? null,
+      name: insertTheme.name,
+      primaryColor: insertTheme.primaryColor ?? "#6366f1",
+      secondaryColor: insertTheme.secondaryColor ?? "#8b5cf6",
+      accentColor: insertTheme.accentColor ?? "#ec4899",
+      isDefault: insertTheme.isDefault ?? false,
+    };
     this.themes.set(id, theme);
     return theme;
   }
