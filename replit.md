@@ -145,6 +145,16 @@ Preferred communication style: Simple, everyday language.
 
 ## Deployment Guide
 
+### Important: Development vs Production Security
+
+**Current Status (Development Mode):**
+- The development preview runs over HTTP and shows as "not secure" in the browser
+- This is normal Replit behavior for development mode
+
+**After Publishing:**
+- Replit automatically provides TLS/HTTPS with a secure padlock icon
+- Your site will be fully secure at `https://faithfunnelsai.replit.app`
+
 ### Publishing to Production
 
 Faith Funnels AI is ready for deployment on Replit. Follow these steps to publish:
@@ -156,8 +166,9 @@ Faith Funnels AI is ready for deployment on Replit. Follow these steps to publis
 
 2. **Publish on Replit**
    - Click the "Publish" button in the Replit interface
-   - The application will be deployed with automatic HTTPS
+   - The application will be deployed with automatic HTTPS and TLS security
    - Your site will be accessible at: `https://faithfunnelsai.replit.app`
+   - The browser will display a secure padlock icon
 
 3. **Custom Domain Setup (Optional)**
    - Configure `faithfunnelsai.com` to point to your Replit deployment
