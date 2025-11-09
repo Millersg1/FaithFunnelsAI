@@ -14,7 +14,8 @@ interface TenantContextValue {
 const DEFAULT_SETTINGS: Partial<TenantSettings> = {
   businessName: "Faith Funnels AI",
   tagline: "Build Professional Faith-Based Sales Funnels",
-  logoUrl: "",
+  logoUrl: "/assets/FaithFunnelsAI logo 125x125_1762695489231.png",
+  customDomain: "",
   supportEmail: "support@faithfunnelsai.com",
   primaryColor: "#6366f1",
   secondaryColor: "#8b5cf6",

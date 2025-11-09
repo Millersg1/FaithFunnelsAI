@@ -7,12 +7,14 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { useQuery } from "@tanstack/react-query";
 import { useToast } from "@/hooks/use-toast";
 import { exportFunnelAsZip } from "@/lib/htmlExporter";
+import { useTenant } from "@/contexts/TenantContext";
 import type { Funnel, Verse, Theme } from "@shared/schema";
 
 export default function Export() {
   const [selectedFunnelId, setSelectedFunnelId] = useState<string>("");
   const [isExporting, setIsExporting] = useState(false);
   const { toast } = useToast();
+  const { settings } = useTenant();
 
   const { data: funnels } = useQuery<Funnel[]>({
     queryKey: ["/api/funnels"],
@@ -44,7 +46,7 @@ export default function Export() {
       const funnelVerses = verses?.filter(v => v.funnelId === selectedFunnelId) || [];
       const funnelThemes = themes?.filter(t => t.funnelId === selectedFunnelId) || [];
       
-      await exportFunnelAsZip(funnel, funnelVerses, funnelThemes);
+      await exportFunnelAsZip(funnel, funnelVerses, funnelThemes, settings || undefined);
       
       toast({
         title: "Export successful!",

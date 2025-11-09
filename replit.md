@@ -20,12 +20,17 @@ The application follows a modern dashboard design inspired by Linear, Notion, an
 - ✅ HTML/ZIP export with legal pages (Terms, Privacy, 14-day Refund)
 - ✅ All API integrations using shared error handling
 - ✅ End-to-end testing validated all core workflows
+- ✅ **Multi-tenant white-label system with PostgreSQL database**
+- ✅ **Tenant-specific branding (business name, logo, colors, support email)**
+- ✅ **Custom domain support with DNS setup instructions**
+- ✅ **OTOs and DSs match tenant white-label branding in exports**
 
 **Implementation Notes:**
-- Using in-memory storage (MemStorage) - can be upgraded to PostgreSQL if needed
+- Using PostgreSQL database with Neon WebSocket support for production-ready multi-tenancy
 - All mutations use centralized apiRequest helper for consistent error handling
 - Export generates standalone HTML files with embedded CSS (no external dependencies)
 - Legal pages included in every export: Terms of Service, Privacy Policy, 14-Day Refund Policy
+- **All exported funnels (Main/OTO/DS) use tenant branding: colors, business name, support email, and custom domain**
 
 ## User Preferences
 
@@ -170,7 +175,34 @@ Faith Funnels AI is ready for deployment on Replit. Follow these steps to publis
    - Your site will be accessible at: `https://faithfunnelsai.replit.app`
    - The browser will display a secure padlock icon
 
-3. **Custom Domain Setup (Optional)**
+3. **Custom Domain Setup**
+
+**For White-Label Customers:**
+
+Each tenant can configure their own custom domain to replace the default `.replit.app` URL:
+
+*White-Label Admin Setup:*
+1. Tenant visits their `/t/:slug/admin` page
+2. Enters their custom domain in the "Custom Domain" field (e.g., `yourbusiness.com`)
+3. Saves the settings - this domain will appear in exported funnels
+
+*DNS Configuration (Customer's DNS Provider):*
+1. After publishing your Replit app, go to Deployments → Settings
+2. Click "Link a domain" or "Manually connect from another registrar"
+3. Enter the custom domain (e.g., `yourbusiness.com`)
+4. Add the provided `A` record to your DNS settings:
+   - Type: A
+   - Name: @ (or leave blank for root domain)
+   - Value: [IP address provided by Replit]
+5. Add the provided `TXT` record for verification
+6. Wait for DNS propagation (up to 48 hours)
+7. SSL certificates are automatically provisioned by Replit
+
+*For Subdomains:*
+- Create an additional `A` record with the subdomain as hostname
+- Point to the same IP address as your primary domain
+
+**Master Domain Setup (Main Platform):**
    - Configure `faithfunnelsai.com` to point to your Replit deployment
    - Update domain DNS settings as per Replit's instructions
    - SSL certificates are managed automatically by Replit

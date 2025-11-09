@@ -1,12 +1,13 @@
 import JSZip from "jszip";
 import { saveAs } from "file-saver";
-import type { Funnel, Verse, Theme } from "@shared/schema";
+import type { Funnel, Verse, Theme, TenantSettings } from "@shared/schema";
 
 export function generateHTML(
   funnel: Funnel,
   verses: Verse[],
   themes: Theme[],
   stageIndex: number,
+  tenantSettings?: Partial<TenantSettings>,
   exportImagePath?: string
 ): string {
   const stage = funnel.stages[stageIndex];
@@ -15,9 +16,12 @@ export function generateHTML(
   const verse = verses.find(v => v.id === stage.verseId);
   const theme = themes.find(t => t.id === stage.themeId) || themes[0];
 
-  const primaryColor = theme?.primaryColor || "#6366f1";
-  const secondaryColor = theme?.secondaryColor || "#8b5cf6";
-  const accentColor = theme?.accentColor || "#ec4899";
+  const primaryColor = tenantSettings?.primaryColor || theme?.primaryColor || "#6366f1";
+  const secondaryColor = tenantSettings?.secondaryColor || theme?.secondaryColor || "#8b5cf6";
+  const accentColor = tenantSettings?.accentColor || theme?.accentColor || "#ec4899";
+  
+  const businessName = tenantSettings?.businessName || "Faith Funnels AI";
+  const supportEmail = tenantSettings?.supportEmail || "support@faithfunnelsai.com";
 
   const html = `<!DOCTYPE html>
 <html lang="en">
@@ -346,7 +350,8 @@ function generateLegalPage(title: string, content: string): string {
 export async function exportFunnelAsZip(
   funnel: Funnel,
   verses: Verse[],
-  themes: Theme[]
+  themes: Theme[],
+  tenantSettings?: Partial<TenantSettings>
 ): Promise<void> {
   const zip = new JSZip();
   const imagesFolder = zip.folder("images");
@@ -369,32 +374,36 @@ export async function exportFunnelAsZip(
     }
   }
 
+  const businessName = tenantSettings?.businessName || "Faith Funnels AI";
+  const supportEmail = tenantSettings?.supportEmail || "support@faithfunnelsai.com";
+  const customDomain = tenantSettings?.customDomain || "faithfunnelsai.com";
+
   funnel.stages.forEach((stage, index) => {
     const filename = stage.type === "main" ? "index.html" : `${stage.type}${index}.html`;
     const imagePath = stage.imageUrl && imageMap.has(stage.imageUrl) 
       ? `images/${imageMap.get(stage.imageUrl)}`
       : undefined;
-    const html = generateHTML(funnel, verses, themes, index, imagePath);
+    const html = generateHTML(funnel, verses, themes, index, tenantSettings, imagePath);
     zip.file(filename, html);
   });
 
   const termsContent = `
     <h2>1. Acceptance of Terms</h2>
-    <p>By accessing and using Faith Funnels AI ("the Service"), you accept and agree to be bound by the terms and provision of this agreement.</p>
+    <p>By accessing and using ${businessName} ("the Service"), you accept and agree to be bound by the terms and provision of this agreement.</p>
     
     <h2>2. Use License</h2>
-    <p>Permission is granted to temporarily use Faith Funnels AI for personal or commercial purposes. This is the grant of a license, not a transfer of title.</p>
+    <p>Permission is granted to temporarily use ${businessName} for personal or commercial purposes. This is the grant of a license, not a transfer of title.</p>
     
     <h2>3. PLR (Private Label Rights) Usage</h2>
-    <p>As a PLR software product, Faith Funnels AI grants you the right to rebrand and resell the software under specific conditions.</p>
+    <p>As a PLR software product, ${businessName} grants you the right to rebrand and resell the software under specific conditions.</p>
     
     <h2>4. Contact Information</h2>
-    <p>For questions about these Terms of Service, please contact us at support@faithfunnelsai.com</p>
+    <p>For questions about these Terms of Service, please contact us at ${supportEmail}</p>
   `;
 
   const privacyContent = `
     <h2>1. Information We Collect</h2>
-    <p>Faith Funnels AI collects information that you provide directly to us when you create an account, use our services, or communicate with us.</p>
+    <p>${businessName} collects information that you provide directly to us when you create an account, use our services, or communicate with us.</p>
     
     <h2>2. How We Use Your Information</h2>
     <p>We use the information we collect to provide, maintain, and improve our services.</p>
@@ -403,21 +412,21 @@ export async function exportFunnelAsZip(
     <p>We do not share your personal information with third parties except with your consent, to comply with legal obligations, or to protect our rights.</p>
     
     <h2>4. Contact Us</h2>
-    <p>If you have any questions about this Privacy Policy, please contact us at support@faithfunnelsai.com</p>
+    <p>If you have any questions about this Privacy Policy, please contact us at ${supportEmail}</p>
   `;
 
   const refundContent = `
     <h2>14-Day Money-Back Guarantee</h2>
-    <p>We stand behind the quality of Faith Funnels AI. If you're not completely satisfied with your purchase, we offer a 14-day money-back guarantee from the date of purchase.</p>
+    <p>We stand behind the quality of ${businessName}. If you're not completely satisfied with your purchase, we offer a 14-day money-back guarantee from the date of purchase.</p>
     
     <h2>Refund Eligibility</h2>
     <p>To be eligible for a refund, you must request the refund within 14 days of your original purchase date and provide a valid reason for the refund request.</p>
     
     <h2>How to Request a Refund</h2>
-    <p>Email our support team at support@faithfunnelsai.com with your order number and purchase date.</p>
+    <p>Email our support team at ${supportEmail} with your order number and purchase date.</p>
     
     <h2>Contact Information</h2>
-    <p>For refund requests or questions about this policy, please contact us at support@faithfunnelsai.com</p>
+    <p>For refund requests or questions about this policy, please contact us at ${supportEmail}</p>
   `;
 
   zip.file("terms.html", generateLegalPage("Terms of Service", termsContent));
@@ -425,7 +434,7 @@ export async function exportFunnelAsZip(
   zip.file("refund.html", generateLegalPage("Refund Policy (14 Days)", refundContent));
 
   zip.file("README.txt", `
-Faith Funnels AI - Export Package
+${businessName} - Export Package
 ==================================
 
 This package contains your complete funnel ready for deployment.
@@ -444,10 +453,10 @@ Deployment Instructions:
 4. Test all pages to confirm they load correctly
 
 Support:
-Email: support@faithfunnelsai.com
-Website: faithfunnelsai.com
+Email: ${supportEmail}
+Website: ${customDomain}
 
-© ${new Date().getFullYear()} Faith Funnels AI. All rights reserved.
+© ${new Date().getFullYear()} ${businessName}. All rights reserved.
   `);
 
   const blob = await zip.generateAsync({ type: "blob" });

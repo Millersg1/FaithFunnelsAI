@@ -16,6 +16,7 @@ const settingsSchema = z.object({
   businessName: z.string().min(1, "Business name is required"),
   tagline: z.string().min(1, "Tagline is required"),
   logoUrl: z.string().url("Must be a valid URL").or(z.literal("")),
+  customDomain: z.string().min(0),
   supportEmail: z.string().email("Must be a valid email"),
   primaryColor: z.string().regex(/^#[0-9A-F]{6}$/i, "Must be a valid hex color"),
   secondaryColor: z.string().regex(/^#[0-9A-F]{6}$/i, "Must be a valid hex color"),
@@ -34,6 +35,7 @@ export default function WhiteLabelAdmin() {
       businessName: settings?.businessName || "",
       tagline: settings?.tagline || "",
       logoUrl: settings?.logoUrl || "",
+      customDomain: settings?.customDomain || "",
       supportEmail: settings?.supportEmail || "",
       primaryColor: settings?.primaryColor || "#6366f1",
       secondaryColor: settings?.secondaryColor || "#8b5cf6",
@@ -47,6 +49,7 @@ export default function WhiteLabelAdmin() {
         businessName: settings.businessName || "",
         tagline: settings.tagline || "",
         logoUrl: settings.logoUrl || "",
+        customDomain: settings.customDomain || "",
         supportEmail: settings.supportEmail || "",
         primaryColor: settings.primaryColor || "#6366f1",
         secondaryColor: settings.secondaryColor || "#8b5cf6",
@@ -57,10 +60,7 @@ export default function WhiteLabelAdmin() {
 
   const updateMutation = useMutation({
     mutationFn: async (data: SettingsForm) => {
-      return await apiRequest<any>(`/api/tenants/slug/${slug}/settings`, {
-        method: "PATCH",
-        body: JSON.stringify(data),
-      });
+      return await apiRequest("PATCH", `/api/tenants/slug/${slug}/settings`, data);
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["/api/tenants/slug", slug] });
@@ -164,6 +164,23 @@ export default function WhiteLabelAdmin() {
                     <FormControl>
                       <Input {...field} placeholder="https://example.com/logo.png" data-testid="input-logo-url" />
                     </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+
+              <FormField
+                control={form.control}
+                name="customDomain"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Custom Domain (optional)</FormLabel>
+                    <FormControl>
+                      <Input {...field} placeholder="yourdomain.com" data-testid="input-custom-domain" />
+                    </FormControl>
+                    <p className="text-xs text-muted-foreground">
+                      To use a custom domain, publish your app on Replit and add DNS records from the Deployments Settings tab.
+                    </p>
                     <FormMessage />
                   </FormItem>
                 )}

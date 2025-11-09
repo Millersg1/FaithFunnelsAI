@@ -41,6 +41,7 @@ export const tenantSettings = pgTable("tenant_settings", {
   businessName: text("business_name").notNull().default("Faith Funnels AI"),
   tagline: text("tagline").notNull().default("Build Professional Faith-Based Sales Funnels"),
   logoUrl: text("logo_url").notNull().default(""),
+  customDomain: text("custom_domain").notNull().default(""),
   supportEmail: text("support_email").notNull().default("support@faithfunnelsai.com"),
   primaryColor: text("primary_color").notNull().default("#6366f1"),
   secondaryColor: text("secondary_color").notNull().default("#8b5cf6"),
