@@ -1,7 +1,8 @@
 import { createContext, useContext } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { useRoute } from "wouter";
-import type { Tenant, TenantSettings } from "@shared/schema";
+import type { Tenant, TenantSettings, TierType } from "@shared/schema";
+import { TIERS, TIER_FEATURES } from "@shared/schema";
 import faithFunnelsLogo from "@assets/FaithFunnelsAI logo 125x125_1762695489231.png";
 
 interface TenantContextValue {
@@ -9,6 +10,9 @@ interface TenantContextValue {
   tenant: Tenant | null;
   settings: TenantSettings | null;
   isPaid: boolean;
+  tier: TierType;
+  features: typeof TIER_FEATURES[keyof typeof TIER_FEATURES];
+  hasFeature: (feature: keyof typeof TIER_FEATURES[keyof typeof TIER_FEATURES]) => boolean;
   isLoading: boolean;
   error: Error | null;
 }
@@ -29,11 +33,15 @@ const TenantContext = createContext<TenantContextValue | undefined>(undefined);
 export function useTenant() {
   const context = useContext(TenantContext);
   if (!context) {
+    const defaultFeatures = TIER_FEATURES[TIERS.BASIC];
     return {
       slug: null,
       tenant: null,
       settings: DEFAULT_SETTINGS as TenantSettings,
       isPaid: false,
+      tier: TIERS.BASIC as TierType,
+      features: defaultFeatures,
+      hasFeature: (feature: keyof typeof defaultFeatures) => !!defaultFeatures[feature],
       isLoading: false,
       error: null,
     };
@@ -61,11 +69,22 @@ export function TenantProvider({ children }: TenantProviderProps) {
     staleTime: Infinity,
   });
 
+  const tier = (data?.tenant?.tier as TierType) || TIERS.BASIC;
+  const features = TIER_FEATURES[tier];
+  
   const value: TenantContextValue = {
     slug: slug || null,
     tenant: data?.tenant || null,
     settings: data?.settings || (DEFAULT_SETTINGS as TenantSettings),
     isPaid: data?.tenant?.isPaid || false,
+    tier,
+    features,
+    hasFeature: (feature: keyof typeof features) => {
+      const value = features[feature];
+      if (typeof value === 'boolean') return value;
+      if (typeof value === 'number') return value === -1 || value > 0;
+      return !!value;
+    },
     isLoading,
     error: error as Error | null,
   };
