@@ -40,15 +40,26 @@ Faith Funnels AI - Create Faith-Based Sales Funnels with AI-Powered Bible Verse 
 
 **Access URL:**
 ```
-https://faithfunnelsai.com
+https://faithfunnelsai.com/demo
 ```
-(Your main landing page - for W+ review purposes)
+(Demo access page with full feature walkthrough)
 
 **Admin Access Info:**
 ```
+DEMO ACCESS FOR WARRIOR PLUS REVIEWERS:
+
+Visit: https://faithfunnelsai.com/demo
+Then click "Access Demo Dashboard" to explore:
+
+✓ Pre-loaded Warrior Plus demo funnel (Main + 3 OTOs + 2 Downsells)
+✓ Sample Bible verses with CTAs
+✓ Multiple theme options (Ocean Blue, Sunset Orange, etc.)
+✓ White-label customization (business name, logo, colors)
+✓ Working HTML/ZIP export system
+
+Demo URL: https://faithfunnelsai.com/t/demo
+
 This is a white-label SaaS product. Each buyer receives a unique tenant URL via email after purchase.
-Demo access: Contact support@faithfunnelsai.com
-(For Warrior Plus review team - you can provide a demo tenant URL if needed)
 ```
 
 **Important:** Leave the "Download File" field EMPTY. This is a web-based white-label platform, not a downloadable product.

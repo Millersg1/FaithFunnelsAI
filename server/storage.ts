@@ -315,4 +315,28 @@ export async function seedDemoData() {
   await db.insert(funnels).values(defaultFunnel);
   await db.insert(verses).values([verse1, verse2, verse3, verse4, verse5, verse6]);
   await db.insert(themes).values([theme1, theme2]);
+  
+  const existingDemoTenant = await storage.getTenantBySlug('demo');
+  if (!existingDemoTenant) {
+    const demoTenantId = randomUUID();
+    const demoTenant = {
+      id: demoTenantId,
+      slug: 'demo',
+      tier: 'WHITE_LABEL' as const,
+      isActive: true,
+    };
+    
+    const demoSettings = {
+      tenantId: demoTenantId,
+      businessName: 'Faith Funnels AI Demo',
+      tagline: 'Experience the Power of Faith-Based Marketing',
+      supportEmail: 'demo@faithfunnelsai.com',
+      primaryColor: '#6366f1',
+      secondaryColor: '#8b5cf6',
+      accentColor: '#ec4899',
+    };
+    
+    await db.insert(tenants).values(demoTenant);
+    await db.insert(tenantSettings).values(demoSettings);
+  }
 }

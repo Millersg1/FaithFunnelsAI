@@ -9,6 +9,7 @@ import { TenantProvider, useTenant } from "@/contexts/TenantContext";
 import NotFound from "@/pages/not-found";
 import Landing from "@/pages/landing";
 import DownloadPage from "@/pages/download";
+import DemoPage from "@/pages/demo";
 import Dashboard from "@/pages/dashboard";
 import Funnels from "@/pages/funnels";
 import FunnelEditor from "@/pages/funnel-editor";
@@ -81,6 +82,7 @@ function App() {
           <Switch>
             <Route path="/" component={Landing} />
             <Route path="/download" component={DownloadPage} />
+            <Route path="/demo" component={DemoPage} />
             <Route path="/terms">
               {() => (
                 <AppLayout>
