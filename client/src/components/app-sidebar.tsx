@@ -12,6 +12,7 @@ import {
   SidebarFooter,
 } from "@/components/ui/sidebar";
 import { Link, useLocation } from "wouter";
+import { useTenant } from "@/contexts/TenantContext";
 
 const menuItems = [
   {
@@ -61,17 +62,26 @@ const legalItems = [
 
 export function AppSidebar() {
   const [location] = useLocation();
+  const { settings } = useTenant();
 
   return (
     <Sidebar data-testid="sidebar-main">
       <SidebarHeader className="p-4">
         <div className="flex items-center gap-2">
-          <div className="flex h-8 w-8 items-center justify-center rounded-md bg-primary text-primary-foreground">
-            <BookOpen className="h-5 w-5" />
-          </div>
+          {settings?.logoUrl ? (
+            <img 
+              src={settings.logoUrl} 
+              alt={settings.businessName} 
+              className="h-8 w-8 object-contain rounded-md"
+            />
+          ) : (
+            <div className="flex h-8 w-8 items-center justify-center rounded-md bg-primary text-primary-foreground">
+              <BookOpen className="h-5 w-5" />
+            </div>
+          )}
           <div className="flex flex-col">
-            <span className="text-sm font-semibold">Faith Funnels AI</span>
-            <span className="text-xs text-muted-foreground">Build Your Ministry</span>
+            <span className="text-sm font-semibold">{settings?.businessName || "Faith Funnels AI"}</span>
+            <span className="text-xs text-muted-foreground">{settings?.tagline || "Build Your Ministry"}</span>
           </div>
         </div>
       </SidebarHeader>
@@ -114,7 +124,7 @@ export function AppSidebar() {
       </SidebarContent>
       <SidebarFooter className="p-4">
         <div className="text-xs text-muted-foreground">
-          <p>Support: support@faithfunnelsai.com</p>
+          <p>Support: {settings?.supportEmail || "support@faithfunnelsai.com"}</p>
         </div>
       </SidebarFooter>
     </Sidebar>
