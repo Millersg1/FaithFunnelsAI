@@ -393,45 +393,92 @@ export async function exportFunnelAsZip(
     <h2>1. Acceptance of Terms</h2>
     <p>By purchasing, accessing, or using ${businessName} ("the Software," "the Service," or "the Product"), you ("Licensee," "you," or "your") accept and agree to be bound by these Terms of Service ("Agreement"). If you do not agree to these terms, do not use the Software.</p>
     
-    <h2>2. License Grant</h2>
-    <p><strong>2.1 White Label License:</strong> Subject to your compliance with this Agreement and payment of applicable fees, ${businessName} grants you a non-exclusive, non-transferable license to use, modify, rebrand, and customize the Software for your personal or commercial purposes.</p>
+    <h2>2. Extended License with Full Reseller Rights</h2>
+    <p>${businessName} is provided with an Extended License that includes Full Reseller Rights and Private Label Rights (PLR). Depending on your purchased tier, you receive the following rights:</p>
     
-    <p><strong>2.2 Permitted Uses:</strong> You may:</p>
+    <p><strong>2.1 What You CAN Do:</strong></p>
     <ul>
-      <li>Use the Software to create unlimited sales funnels for your own business</li>
-      <li>Rebrand the Software with your own business name, logo, and custom branding</li>
-      <li>Export and deploy generated funnels to your own domains or hosting</li>
-      <li>Offer funnel creation services to clients using the Software (Premium and higher tiers)</li>
-      <li>Create funnels on behalf of clients as an agency or service provider</li>
+      <li>Resell this product to your own customers (Premium and Reseller tiers)</li>
+      <li>Use this product as part of client projects and agency services</li>
+      <li>Rebrand and customize with your own business name, logo, and colors</li>
+      <li>Modify exported funnels, themes, and design elements</li>
+      <li>Charge your customers any price you determine</li>
+      <li>Keep 100% of the profits from your resales</li>
       <li>Use your custom domain to access the white-labeled dashboard</li>
     </ul>
     
-    <p><strong>2.3 Restrictions:</strong> You may NOT:</p>
+    <p><strong>2.2 What You CANNOT Do:</strong></p>
     <ul>
-      <li>Resell, redistribute, or transfer the Software to any third party</li>
-      <li>Claim original authorship of the underlying Software code or platform</li>
-      <li>Provide direct access to the Software dashboard to clients (you create funnels FOR them, not WITH them)</li>
+      <li>Claim original authorship of the core ${businessName} software platform</li>
+      <li>Trademark the name "${businessName}" or confusingly similar names</li>
+      <li>Decompile, reverse engineer, or extract the source code</li>
+      <li>Use the software for illegal activities or fraudulent purposes</li>
+      <li>Sell as part of an MLM, pyramid scheme, or similar structure</li>
       <li>Share your login credentials with others</li>
-      <li>Use the Software for any illegal or unethical purposes</li>
-      <li>Reverse engineer, decompile, or disassemble the Software</li>
-      <li>Remove or modify copyright notices in the source code</li>
     </ul>
     
-    <h2>3. Ownership and Intellectual Property</h2>
-    <p><strong>3.1 Software Ownership:</strong> ${businessName} and its licensors retain all rights, title, and interest in and to the original Software, including all intellectual property rights. This Agreement does not transfer ownership of the Software to you.</p>
+    <h2>3. Tier-Specific Rights</h2>
+    <p>Your rights depend on which tier you purchased:</p>
+    <ul>
+      <li><strong>Basic ($17):</strong> Personal use license, 3 funnels, 10 exports, no resale rights</li>
+      <li><strong>White Label ($47):</strong> Client project use, 10 funnels, 100 exports, white label branding, no resale rights</li>
+      <li><strong>Premium Unlimited ($67):</strong> Unlimited funnels/exports, resale rights granted, premium templates included</li>
+      <li><strong>Reseller Package ($97):</strong> Full PLR/reseller rights, can sell to unlimited customers, all features included</li>
+    </ul>
     
-    <p><strong>3.2 Your Content:</strong> You retain all rights to content you create using the Software, including sales copy, images, Bible verses selections, and funnel configurations. You are solely responsible for ensuring your content complies with all applicable laws.</p>
+    <h2>4. Modification Rights</h2>
+    <p>You have the right to modify and customize ${businessName} for your business needs:</p>
+    <ul>
+      <li>Rebrand with your own business identity (name, logo, colors, custom domain)</li>
+      <li>Customize exported funnel templates and content</li>
+      <li>Modify theme colors and design elements</li>
+      <li>Add your own Bible verses and call-to-action content</li>
+      <li>However, you may not modify the core software platform code or redistribute modified versions of the dashboard software itself</li>
+    </ul>
     
-    <p><strong>3.3 White Label Branding:</strong> You own all rights to your custom branding, logos, business names, and marketing materials you create in connection with your white-labeled version of the Software.</p>
+    <h2>5. Support and Service Obligations</h2>
+    <p>Support responsibilities are structured as follows:</p>
+    <ul>
+      <li><strong>Direct Buyers:</strong> ${businessName} (${supportEmail}) provides support only to customers who purchased directly</li>
+      <li><strong>Resellers:</strong> If you resell this product, you are responsible for providing support to YOUR customers</li>
+      <li><strong>White Label Support:</strong> Your customers should contact YOUR support email (configured in your white label settings)</li>
+      <li><strong>No Transfer of Support:</strong> We do not provide support to your resale customers - you assume all support obligations</li>
+    </ul>
     
-    <h2>4. Account Tiers and Features</h2>
-    <p><strong>4.1 Tier Levels:</strong> The Software is offered in multiple tiers (Basic, White Label, Premium) with different feature sets and usage limits. Your access to features is determined by your purchased tier.</p>
+    <h2>6. Prohibited Uses</h2>
+    <p>You may not use ${businessName} for the following purposes:</p>
+    <ul>
+      <li>Any illegal activity or violation of local, state, national, or international law</li>
+      <li>Fraudulent, deceptive, or misleading marketing practices</li>
+      <li>Spam, unsolicited commercial email, or violations of anti-spam laws</li>
+      <li>Violating the terms of service of Warrior Plus, JVZoo, or other platforms</li>
+      <li>Creating content that infringes on copyrights, trademarks, or intellectual property</li>
+      <li>Harassment, hate speech, or content that promotes violence or discrimination</li>
+    </ul>
     
-    <p><strong>4.2 Feature Restrictions:</strong> Certain features (white-label customization, unlimited funnels, unlimited exports) require specific tier purchases. Attempting to bypass tier restrictions is prohibited and may result in account suspension.</p>
+    <h2>7. Ownership and Intellectual Property</h2>
+    <p><strong>7.1 Software Ownership:</strong> ${businessName} and its licensors retain all rights, title, and interest in and to the original Software, including all intellectual property rights. This Agreement does not transfer ownership of the Software to you.</p>
     
-    <p><strong>4.3 Upgrades:</strong> You may upgrade your tier at any time by purchasing the applicable upgrade. Downgrades are not offered, and all purchases are final (subject to our Refund Policy).</p>
+    <p><strong>7.2 Your Content:</strong> You retain all rights to content you create using the Software, including sales copy, images, Bible verses selections, and funnel configurations. You are solely responsible for ensuring your content complies with all applicable laws.</p>
     
-    <p><strong>4.4 White Label Access:</strong> White-label branding features (custom business name, logo, support email, custom domain) are only available to White Label and Premium tier subscribers. Basic tier users receive standard branding.</p>
+    <p><strong>7.3 White Label Branding:</strong> You own all rights to your custom branding, logos, business names, and marketing materials you create in connection with your white-labeled version of the Software.</p>
+    
+    <h2>8. Updates and Upgrades Policy</h2>
+    <p>Software updates and version management:</p>
+    <ul>
+      <li>Direct buyers receive free minor updates and bug fixes</li>
+      <li>Major version updates may require a separate purchase or upgrade fee</li>
+      <li>No guarantee of ongoing updates, new features, or maintenance</li>
+      <li>Updates are provided "as available" without specific timelines</li>
+      <li>Resellers do not automatically receive update rights to pass to their customers</li>
+    </ul>
+    
+    <h2>9. Account Tiers and Features</h2>
+    <p><strong>9.1 Tier Levels:</strong> The Software is offered in multiple tiers (Basic, White Label, Premium, Reseller Package) with different feature sets and usage limits. Your access to features is determined by your purchased tier.</p>
+    
+    <p><strong>9.2 Feature Restrictions:</strong> Certain features (white-label customization, unlimited funnels, unlimited exports, resale rights) require specific tier purchases. Attempting to bypass tier restrictions is prohibited and may result in account suspension.</p>
+    
+    <p><strong>9.3 Upgrades:</strong> You may upgrade your tier at any time by purchasing the applicable upgrade. Downgrades are not offered, and all purchases are final (subject to our Refund Policy).</p>
     
     <h2>5. Payment Terms</h2>
     <p><strong>5.1 Pricing:</strong> All prices are listed in USD and are subject to change. You will be charged the price displayed at the time of purchase.</p>
@@ -461,23 +508,32 @@ export async function exportFunnelAsZip(
       <li>Pyramid schemes or multi-level marketing that violates applicable laws</li>
     </ul>
     
-    <h2>7. Warranties and Disclaimers</h2>
-    <p><strong>7.1 AS-IS Basis:</strong> THE SOFTWARE IS PROVIDED "AS IS" AND "AS AVAILABLE" WITHOUT WARRANTIES OF ANY KIND, EITHER EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO IMPLIED WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, AND NON-INFRINGEMENT.</p>
+    <h2>10. Warranties and Disclaimers</h2>
+    <p><strong>10.1 AS-IS Basis:</strong> THE SOFTWARE IS PROVIDED "AS IS" AND "AS AVAILABLE" WITHOUT WARRANTIES OF ANY KIND, EITHER EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO IMPLIED WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, AND NON-INFRINGEMENT.</p>
     
-    <p><strong>7.2 No Guarantee of Results:</strong> ${businessName} makes no guarantees regarding your sales, revenue, or business results from using the Software. Your success depends on many factors including your effort, marketing skills, and market conditions.</p>
+    <p><strong>10.2 No Guarantee of Results:</strong> ${businessName} makes no guarantees regarding your sales, revenue, or business results from using the Software. Your success depends on many factors including your effort, marketing skills, and market conditions.</p>
     
-    <p><strong>7.3 Service Availability:</strong> While we strive for 99.9% uptime, we do not guarantee uninterrupted access to the Software. Scheduled maintenance and unexpected outages may occur.</p>
+    <p><strong>10.3 Service Availability:</strong> While we strive for 99.9% uptime, we do not guarantee uninterrupted access to the Software. Scheduled maintenance and unexpected outages may occur.</p>
     
-    <h2>8. Limitation of Liability</h2>
-    <p><strong>8.1 Maximum Liability:</strong> IN NO EVENT SHALL ${businessName.toUpperCase()}, ITS OFFICERS, DIRECTORS, EMPLOYEES, OR AGENTS BE LIABLE FOR ANY INDIRECT, INCIDENTAL, SPECIAL, CONSEQUENTIAL, OR PUNITIVE DAMAGES, INCLUDING BUT NOT LIMITED TO LOSS OF PROFITS, DATA, USE, GOODWILL, OR OTHER INTANGIBLE LOSSES, RESULTING FROM:</p>
+    <h2>11. Liability Disclaimer and Limitation</h2>
+    <p>${businessName} is provided on an 'as is' and 'as available' basis without warranties of any kind:</p>
+    <ul>
+      <li><strong>No Warranties:</strong> We make no warranties, expressed or implied, regarding merchantability, fitness for a particular purpose, or non-infringement</li>
+      <li><strong>Software Sold As-Is:</strong> The software is provided without guarantee of error-free operation or uninterrupted service</li>
+      <li><strong>Reseller Liability:</strong> If you resell this product, you assume all liability for your sales, customer disputes, refunds, and support obligations</li>
+      <li><strong>No Liability for Resales:</strong> ${businessName} is not responsible for any disputes between you and your customers</li>
+      <li><strong>Limitation of Damages:</strong> In no event shall ${businessName} be liable for any direct, indirect, incidental, consequential, or punitive damages arising from use of the software</li>
+      <li><strong>Maximum Liability:</strong> Our total liability shall not exceed the amount you paid for the software</li>
+    </ul>
+    
+    <p><strong>11.2 Additional Limitations:</strong> IN NO EVENT SHALL ${businessName.toUpperCase()}, ITS OFFICERS, DIRECTORS, EMPLOYEES, OR AGENTS BE LIABLE FOR ANY INDIRECT, INCIDENTAL, SPECIAL, CONSEQUENTIAL, OR PUNITIVE DAMAGES, INCLUDING BUT NOT LIMITED TO LOSS OF PROFITS, DATA, USE, GOODWILL, OR OTHER INTANGIBLE LOSSES, RESULTING FROM:</p>
     <ul>
       <li>Your use or inability to use the Software</li>
       <li>Any unauthorized access to or use of our servers and/or any personal information stored therein</li>
       <li>Any bugs, viruses, trojan horses, or similar that may be transmitted to or through the Software</li>
       <li>Any errors or omissions in any content or for any loss or damage incurred as a result of your use of any content posted or transmitted through the Software</li>
+      <li>Disputes between you and your resale customers</li>
     </ul>
-    
-    <p><strong>8.2 Cap on Liability:</strong> Our total liability to you for all claims arising from or related to the Software shall not exceed the amount you paid for the Software in the twelve (12) months preceding the claim.</p>
     
     <h2>9. Indemnification</h2>
     <p>You agree to indemnify, defend, and hold harmless ${businessName} and its officers, directors, employees, contractors, agents, licensors, and suppliers from and against any claims, liabilities, damages, judgments, awards, losses, costs, expenses, or fees (including reasonable attorneys' fees) arising out of or relating to your violation of these Terms or your use of the Software.</p>
