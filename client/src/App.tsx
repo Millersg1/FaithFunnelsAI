@@ -10,6 +10,7 @@ import NotFound from "@/pages/not-found";
 import Landing from "@/pages/landing";
 import DownloadPage from "@/pages/download";
 import DemoPage from "@/pages/demo";
+import SupportPage from "@/pages/support";
 import Dashboard from "@/pages/dashboard";
 import Funnels from "@/pages/funnels";
 import FunnelEditor from "@/pages/funnel-editor";
@@ -83,6 +84,7 @@ function App() {
             <Route path="/" component={Landing} />
             <Route path="/download" component={DownloadPage} />
             <Route path="/demo" component={DemoPage} />
+            <Route path="/support" component={SupportPage} />
             <Route path="/terms">
               {() => (
                 <AppLayout>
