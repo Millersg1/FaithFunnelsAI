@@ -70,14 +70,11 @@ export default function Landing() {
         </div>
       </header>
 
-      <section className="relative py-20 lg:py-32 overflow-hidden">
+      <section className="relative py-12 lg:py-20 overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-secondary/5 to-accent/5 -z-10" />
         <div className="container mx-auto px-4">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div className="space-y-6">
-              <div className="inline-block px-4 py-1.5 rounded-full bg-primary/10 text-primary text-sm font-medium">
-                PLR Software for Warrior Plus & JVZoo
-              </div>
               <h1 className="text-4xl lg:text-6xl font-bold leading-tight">
                 Build Faith-Based Sales Funnels in Minutes
               </h1>
