@@ -38,23 +38,20 @@ Faith Funnels AI - Create Faith-Based Sales Funnels with AI-Powered Bible Verse 
 
 ## PRODUCT ACCESS
 
-**Choose ONE option:**
-
-### Option 1: Upload ZIP File
-- Upload your exported Faith Funnels AI software ZIP file (max 100MB)
-
-### Option 2: Access URL (Recommended)
+**Access URL:**
 ```
-https://faithfunnelsai.replit.app/download
+https://faithfunnelsai.com
 ```
-(After publishing, update to: https://faithfunnelsai.com/download)
+(Your main landing page - for W+ review purposes)
 
 **Admin Access Info:**
 ```
-Demo Login: admin@faithfunnelsai.com
-Demo Password: DemoAccess2024
-(For Warrior Plus review team)
+This is a white-label SaaS product. Each buyer receives a unique tenant URL via email after purchase.
+Demo access: Contact support@faithfunnelsai.com
+(For Warrior Plus review team - you can provide a demo tenant URL if needed)
 ```
+
+**Important:** Leave the "Download File" field EMPTY. This is a web-based white-label platform, not a downloadable product.
 
 ---
 
@@ -255,6 +252,51 @@ Percentage (%) - 0%
 - Use vague product descriptions
 - Set refund period to 0 days (looks scammy)
 - Forget to check the certification box
+
+---
+
+## AFTER-PURCHASE WORKFLOW (Manual Process)
+
+Since this is white-label, you'll manually provision tenant accounts:
+
+**Step 1: Get Sale Notification**
+- Warrior Plus sends you an email for each sale
+- Note the buyer's name and email
+
+**Step 2: Create Tenant Account**
+- Go to your Faith Funnels AI admin panel
+- Create a new tenant with a unique slug (e.g., `johns-funnels`)
+- Their unique URL will be: `faithfunnelsai.com/t/johns-funnels`
+
+**Step 3: Send Welcome Email**
+```
+Subject: Your Faith Funnels AI White Label Access
+
+Hi [Buyer Name],
+
+Thank you for purchasing Faith Funnels AI!
+
+Your unique white-label URL is:
+https://faithfunnelsai.com/t/[their-slug]
+
+To customize your branding:
+1. Visit your URL above
+2. Click "Admin Settings"
+3. Add your business name, logo, colors, and support email
+4. Start creating funnels!
+
+All exports will include YOUR branding automatically.
+
+Questions? Reply to this email anytime.
+
+Best regards,
+Faith Funnels AI Support
+support@faithfunnelsai.com
+```
+
+**Step 4: Track Tenants**
+- Keep a spreadsheet: Buyer Name | Email | Tenant Slug | Purchase Date
+- This helps with support requests
 
 ---
 
