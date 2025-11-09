@@ -84,7 +84,7 @@ export default function Landing() {
                   </span>
                 </div>
               </div>
-              <h1 className="text-5xl lg:text-7xl font-bold leading-tight bg-gradient-to-br from-foreground via-foreground to-foreground/60 bg-clip-text text-transparent">
+              <h1 className="text-5xl lg:text-7xl font-bold leading-tight">
                 Build Faith-Based Sales Funnels in Minutes
               </h1>
               <p className="text-xl lg:text-2xl text-muted-foreground leading-relaxed">
@@ -140,7 +140,7 @@ export default function Landing() {
                 <span className="text-sm font-semibold text-primary">PROOF IT WORKS</span>
               </div>
             </div>
-            <h2 className="text-4xl lg:text-6xl font-bold bg-gradient-to-r from-primary via-secondary to-accent bg-clip-text text-transparent">
+            <h2 className="text-4xl lg:text-6xl font-bold text-primary">
               This Sales Page Was Built With Faith Funnels AI
             </h2>
             <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
@@ -260,7 +260,7 @@ export default function Landing() {
                   🙏 START YOUR JOURNEY TODAY
                 </span>
               </div>
-              <h2 className="text-4xl lg:text-6xl font-bold leading-tight bg-gradient-to-br from-foreground to-foreground/70 bg-clip-text">
+              <h2 className="text-4xl lg:text-6xl font-bold leading-tight">
                 Ready to Build Your Faith-Based Empire?
               </h2>
               <p className="text-xl lg:text-2xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
