@@ -33,6 +33,7 @@ export const tenants = pgTable("tenants", {
   slug: text("slug").notNull().unique(),
   adminPin: text("admin_pin"),
   isPaid: boolean("is_paid").notNull().default(false),
+  tier: text("tier").notNull().default("basic"),
   createdAt: text("created_at").notNull().default(sql`CURRENT_TIMESTAMP`),
 });
 
@@ -78,3 +79,51 @@ export type Verse = typeof verses.$inferSelect;
 export type Theme = typeof themes.$inferSelect;
 export type Tenant = typeof tenants.$inferSelect;
 export type TenantSettings = typeof tenantSettings.$inferSelect;
+
+export const TIERS = {
+  BASIC: "basic",
+  WHITE_LABEL: "white_label",
+  PREMIUM: "premium",
+  RESELLER: "reseller",
+} as const;
+
+export type TierType = typeof TIERS[keyof typeof TIERS];
+
+export const TIER_FEATURES = {
+  [TIERS.BASIC]: {
+    name: "Basic",
+    price: "Free",
+    whiteLabel: false,
+    maxFunnels: 3,
+    maxExports: 10,
+    premiumTemplates: false,
+    resellRights: false,
+  },
+  [TIERS.WHITE_LABEL]: {
+    name: "White Label (OTO1)",
+    price: "$47",
+    whiteLabel: true,
+    maxFunnels: 10,
+    maxExports: 100,
+    premiumTemplates: false,
+    resellRights: false,
+  },
+  [TIERS.PREMIUM]: {
+    name: "Premium Templates (OTO2)",
+    price: "$67",
+    whiteLabel: true,
+    maxFunnels: -1,
+    maxExports: -1,
+    premiumTemplates: true,
+    resellRights: false,
+  },
+  [TIERS.RESELLER]: {
+    name: "Reseller Rights (OTO3)",
+    price: "$97",
+    whiteLabel: true,
+    maxFunnels: -1,
+    maxExports: -1,
+    premiumTemplates: true,
+    resellRights: true,
+  },
+} as const;
