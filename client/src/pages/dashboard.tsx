@@ -1,12 +1,16 @@
-import { Filter, Download, Palette, BookOpen } from "lucide-react";
+import { Filter, Download, Palette, BookOpen, Crown } from "lucide-react";
 import { StatCard } from "@/components/stat-card";
 import { VerseCard } from "@/components/verse-card";
 import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
 import { Link } from "wouter";
 import { useQuery } from "@tanstack/react-query";
 import type { Funnel as FunnelType, Verse, Theme } from "@shared/schema";
+import { useTenant } from "@/contexts/TenantContext";
 
 export default function Dashboard() {
+  const { features, tier } = useTenant();
+  
   const { data: funnels } = useQuery<FunnelType[]>({
     queryKey: ["/api/funnels"],
   });
@@ -25,7 +29,13 @@ export default function Dashboard() {
     <div className="space-y-6">
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-3xl font-semibold">Dashboard</h1>
+          <div className="flex items-center gap-3">
+            <h1 className="text-3xl font-semibold">Dashboard</h1>
+            <Badge variant="secondary" className="gap-1" data-testid="badge-tier">
+              <Crown className="h-3 w-3" />
+              {features.name}
+            </Badge>
+          </div>
           <p className="text-muted-foreground">Welcome to Faith Funnels AI</p>
         </div>
         <Link href="/funnels">

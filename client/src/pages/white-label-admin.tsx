@@ -26,19 +26,35 @@ const settingsSchema = z.object({
 type SettingsForm = z.infer<typeof settingsSchema>;
 
 export default function WhiteLabelAdmin() {
-  const { slug, settings, isPaid, isLoading } = useTenant();
+  const { slug, settings, hasFeature, features, isLoading } = useTenant();
   const { toast } = useToast();
 
-  if (!isPaid && !isLoading) {
+  if (!hasFeature('whiteLabel') && !isLoading) {
     return (
       <div className="container mx-auto p-6">
         <Card>
           <CardHeader>
-            <CardTitle>Access Restricted</CardTitle>
+            <CardTitle>Upgrade to White Label (OTO1)</CardTitle>
             <CardDescription>
-              White Label Admin is only available to paid members. Please upgrade your account to access this feature.
+              White Label Admin is only available with the White Label upgrade. 
             </CardDescription>
           </CardHeader>
+          <CardContent className="space-y-4">
+            <div className="space-y-2">
+              <h3 className="font-semibold">Unlock These Features:</h3>
+              <ul className="list-disc list-inside space-y-1 text-sm text-muted-foreground">
+                <li>Customize business name and tagline</li>
+                <li>Upload your own logo</li>
+                <li>Set custom brand colors</li>
+                <li>Add your support email</li>
+                <li>Configure custom domain</li>
+                <li>Create up to {features.maxFunnels === -1 ? 'unlimited' : features.maxFunnels} funnels</li>
+              </ul>
+            </div>
+            <Button data-testid="button-upgrade">
+              Upgrade to White Label - $47
+            </Button>
+          </CardContent>
         </Card>
       </div>
     );
