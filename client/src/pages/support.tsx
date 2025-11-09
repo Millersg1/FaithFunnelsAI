@@ -2,6 +2,7 @@ import { Mail, FileText, MessageCircle, Clock } from "lucide-react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Link } from "wouter";
+import { ChatbotWidget } from "@/components/chatbot-widget";
 
 export default function SupportPage() {
   return (
@@ -154,6 +155,7 @@ export default function SupportPage() {
           </p>
         </div>
       </div>
+      <ChatbotWidget />
     </div>
   );
 }

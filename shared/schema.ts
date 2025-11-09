@@ -51,6 +51,14 @@ export const tenantSettings = pgTable("tenant_settings", {
   updatedAt: text("updated_at").notNull().default(sql`CURRENT_TIMESTAMP`),
 });
 
+export const leads = pgTable("leads", {
+  id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
+  name: text("name").notNull(),
+  email: text("email").notNull().unique(),
+  source: text("source").notNull().default("landing"),
+  createdAt: text("created_at").notNull().default(sql`CURRENT_TIMESTAMP`),
+});
+
 export type FunnelStage = {
   id: string;
   title: string;
@@ -67,18 +75,25 @@ export const insertVerseSchema = createInsertSchema(verses).omit({ id: true });
 export const insertThemeSchema = createInsertSchema(themes).omit({ id: true });
 export const insertTenantSchema = createInsertSchema(tenants).omit({ id: true, createdAt: true });
 export const insertTenantSettingsSchema = createInsertSchema(tenantSettings).omit({ id: true, updatedAt: true });
+export const insertLeadSchema = createInsertSchema(leads).omit({ id: true, createdAt: true }).extend({
+  name: z.string().min(1, "Name is required").max(100, "Name is too long"),
+  email: z.string().email("Invalid email address").toLowerCase(),
+  source: z.string().min(1, "Source is required"),
+});
 
 export type InsertFunnel = z.infer<typeof insertFunnelSchema>;
 export type InsertVerse = z.infer<typeof insertVerseSchema>;
 export type InsertTheme = z.infer<typeof insertThemeSchema>;
 export type InsertTenant = z.infer<typeof insertTenantSchema>;
 export type InsertTenantSettings = z.infer<typeof insertTenantSettingsSchema>;
+export type InsertLead = z.infer<typeof insertLeadSchema>;
 
 export type Funnel = typeof funnels.$inferSelect;
 export type Verse = typeof verses.$inferSelect;
 export type Theme = typeof themes.$inferSelect;
 export type Tenant = typeof tenants.$inferSelect;
 export type TenantSettings = typeof tenantSettings.$inferSelect;
+export type Lead = typeof leads.$inferSelect;
 
 export const TIERS = {
   BASIC: "basic",

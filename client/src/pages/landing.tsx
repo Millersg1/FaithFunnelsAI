@@ -3,6 +3,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { CheckCircle2, Sparkles, Download, Palette, BookOpen, Zap } from "lucide-react";
 import { Link } from "wouter";
 import { useEffect } from "react";
+import { ChatbotWidget } from "@/components/chatbot-widget";
 import heroImage from "@assets/stock_images/modern_faith-based_b_c2b925cb.jpg";
 import dashboardImage from "@assets/stock_images/digital_marketing_da_5b5dfa8d.jpg";
 import successImage from "@assets/stock_images/successful_online_bu_c7443eb8.jpg";
@@ -349,6 +350,7 @@ export default function Landing() {
           </div>
         </div>
       </footer>
+      <ChatbotWidget />
     </div>
   );
 }

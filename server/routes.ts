@@ -1,7 +1,8 @@
 import type { Express } from "express";
 import { createServer, type Server } from "http";
 import { storage, seedDemoData } from "./storage";
-import { insertFunnelSchema, insertVerseSchema, insertThemeSchema, insertTenantSchema, insertTenantSettingsSchema, TIER_FEATURES, TIERS } from "@shared/schema";
+import { insertFunnelSchema, insertVerseSchema, insertThemeSchema, insertTenantSchema, insertTenantSettingsSchema, insertLeadSchema, TIER_FEATURES, TIERS, type TierType } from "@shared/schema";
+import OpenAI from "openai";
 
 export async function registerRoutes(app: Express): Promise<Server> {
   app.get("/api/funnels", async (req, res) => {
@@ -208,7 +209,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
         return res.status(404).json({ error: "Tenant not found" });
       }
       
-      const tier = tenant.tier || TIERS.BASIC;
+      const tier = (tenant.tier || TIERS.BASIC) as TierType;
       const tierFeatures = TIER_FEATURES[tier];
       
       if (!tierFeatures.whiteLabel) {
@@ -221,6 +222,84 @@ export async function registerRoutes(app: Express): Promise<Server> {
       res.json(settings);
     } catch (error) {
       res.status(500).json({ error: "Failed to update tenant settings" });
+    }
+  });
+
+  app.post("/api/leads", async (req, res) => {
+    try {
+      const data = insertLeadSchema.parse(req.body);
+      
+      const existingLead = await storage.getLeadByEmail(data.email);
+      if (existingLead) {
+        return res.json(existingLead);
+      }
+      
+      const lead = await storage.createLead(data);
+      res.status(201).json(lead);
+    } catch (error) {
+      res.status(400).json({ error: "Invalid lead data" });
+    }
+  });
+
+  app.post("/api/chat", async (req, res) => {
+    try {
+      const { email, message } = req.body;
+      
+      if (!email || !message) {
+        return res.status(400).json({ error: "Email and message are required" });
+      }
+      
+      const lead = await storage.getLeadByEmail(email);
+      if (!lead) {
+        return res.status(403).json({ error: "Please provide your email first to access the chatbot" });
+      }
+      
+      const openai = new OpenAI({
+        baseURL: process.env.AI_INTEGRATIONS_OPENAI_BASE_URL,
+        apiKey: process.env.AI_INTEGRATIONS_OPENAI_API_KEY,
+      });
+      
+      const systemPrompt = `You are a helpful AI assistant for Faith Funnels AI, a White Label SaaS platform for creating faith-based sales funnels.
+
+IMPORTANT: This is WHITE LABEL ONLY software - users can rebrand it for their own use but CANNOT resell the software itself.
+
+Key Features:
+- Build multi-stage funnels with Main Offers, OTOs (One-Time Offers), and Downsells
+- Integrate Bible verses with customizable CTAs
+- Apply custom theme colors and branding
+- Export standalone HTML/ZIP packages ready for deployment
+- White label customization (business name, logo, colors, custom domain)
+
+Pricing Tiers:
+1. Basic ($17): 3 funnels, 10 exports, basic features
+2. White Label ($47 - OTO1): 10 funnels, 100 exports, white label branding
+3. Premium Unlimited ($67 - OTO2): Unlimited funnels/exports, premium templates
+4. Reseller Rights ($97 - OTO3): All features plus ability to sell access (NOT resell the software)
+
+Common Questions:
+- Platform is sold on Warrior Plus and JVZoo
+- Each buyer gets unique URL: faithfunnelsai.com/t/[unique-id]
+- Exports include legal pages (Terms, Privacy, Refund Policy)
+- Custom domain support available for white label users
+- Support: support@faithfunnelsai.com
+
+Be helpful, concise, and enthusiastic about Faith Funnels AI. Answer questions about features, pricing, and usage.`;
+
+      const completion = await openai.chat.completions.create({
+        model: "gpt-4o-mini",
+        messages: [
+          { role: "system", content: systemPrompt },
+          { role: "user", content: message }
+        ],
+        temperature: 0.7,
+        max_tokens: 500,
+      });
+      
+      const reply = completion.choices[0].message.content;
+      res.json({ reply });
+    } catch (error) {
+      console.error("Chat error:", error);
+      res.status(500).json({ error: "Failed to process chat message" });
     }
   });
 

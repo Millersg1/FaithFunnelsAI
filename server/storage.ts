@@ -9,12 +9,15 @@ import {
   type InsertTenant,
   type TenantSettings,
   type InsertTenantSettings,
+  type Lead,
+  type InsertLead,
   type FunnelStage,
   funnels,
   verses,
   themes,
   tenants,
-  tenantSettings
+  tenantSettings,
+  leads
 } from "@shared/schema";
 import { randomUUID } from "crypto";
 import { db } from "./db";
@@ -45,6 +48,11 @@ export interface IStorage {
   getTenantSettings(tenantId: string): Promise<TenantSettings | undefined>;
   createTenantSettings(settings: InsertTenantSettings): Promise<TenantSettings>;
   updateTenantSettings(tenantId: string, settings: Partial<InsertTenantSettings>): Promise<TenantSettings | undefined>;
+  
+  getLeads(): Promise<Lead[]>;
+  getLead(id: string): Promise<Lead | undefined>;
+  getLeadByEmail(email: string): Promise<Lead | undefined>;
+  createLead(lead: InsertLead): Promise<Lead>;
 }
 
 export class PgStorage implements IStorage {
@@ -155,6 +163,25 @@ export class PgStorage implements IStorage {
 
   async updateTenantSettings(tenantId: string, update: Partial<InsertTenantSettings>): Promise<TenantSettings | undefined> {
     const result = await db.update(tenantSettings).set(update).where(eq(tenantSettings.tenantId, tenantId)).returning();
+    return result[0];
+  }
+
+  async getLeads(): Promise<Lead[]> {
+    return await db.select().from(leads);
+  }
+
+  async getLead(id: string): Promise<Lead | undefined> {
+    const result = await db.select().from(leads).where(eq(leads.id, id));
+    return result[0];
+  }
+
+  async getLeadByEmail(email: string): Promise<Lead | undefined> {
+    const result = await db.select().from(leads).where(eq(leads.email, email));
+    return result[0];
+  }
+
+  async createLead(insertLead: InsertLead): Promise<Lead> {
+    const result = await db.insert(leads).values(insertLead).returning();
     return result[0];
   }
 }
