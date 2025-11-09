@@ -13,7 +13,7 @@ import { Plus, Save, Trash2 } from "lucide-react";
 import { Switch } from "@/components/ui/switch";
 
 export default function FunnelEditor() {
-  const [, params] = useRoute("/funnels/:id");
+  const [, params] = useRoute("/app/funnels/:id");
   const funnelId = params?.id;
   const { toast } = useToast();
 

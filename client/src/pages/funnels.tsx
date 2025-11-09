@@ -120,7 +120,7 @@ export default function Funnels() {
           <h2 className="text-lg font-semibold">Your Funnels ({filteredFunnels.length})</h2>
           <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
             {filteredFunnels.map(funnel => (
-              <Link key={funnel.id} href={`/funnels/${funnel.id}`}>
+              <Link key={funnel.id} href={`/app/funnels/${funnel.id}`}>
                 <Card className="hover-elevate active-elevate-2 cursor-pointer transition-all">
                   <CardHeader>
                     <CardTitle className="text-lg">{funnel.name}</CardTitle>

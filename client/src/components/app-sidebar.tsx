@@ -16,27 +16,27 @@ import { Link, useLocation } from "wouter";
 const menuItems = [
   {
     title: "Dashboard",
-    url: "/",
+    url: "/app",
     icon: Home,
   },
   {
     title: "My Funnels",
-    url: "/funnels",
+    url: "/app/funnels",
     icon: Filter,
   },
   {
     title: "Verse Builder",
-    url: "/verse-builder",
+    url: "/app/verse-builder",
     icon: BookOpen,
   },
   {
     title: "Theme Settings",
-    url: "/theme-settings",
+    url: "/app/theme-settings",
     icon: Palette,
   },
   {
     title: "Export",
-    url: "/export",
+    url: "/app/export",
     icon: Download,
   },
 ];
@@ -44,17 +44,17 @@ const menuItems = [
 const legalItems = [
   {
     title: "Terms of Service",
-    url: "/legal/terms",
+    url: "/terms",
     icon: FileText,
   },
   {
     title: "Privacy Policy",
-    url: "/legal/privacy",
+    url: "/privacy",
     icon: FileText,
   },
   {
     title: "Refund Policy",
-    url: "/legal/refund",
+    url: "/refund",
     icon: FileText,
   },
 ];
