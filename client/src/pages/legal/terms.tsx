@@ -28,16 +28,17 @@ export default function Terms() {
         </section>
 
         <section className="space-y-3">
-          <h2 className="text-xl font-semibold">3. PLR (Private Label Rights) Usage</h2>
+          <h2 className="text-xl font-semibold">3. White Label License Usage</h2>
           <p className="leading-relaxed text-muted-foreground">
-            As a PLR software product, Faith Funnels AI grants you the right to rebrand and resell the software under the following conditions:
+            As a white label software product, Faith Funnels AI grants you the right to rebrand and customize the software under the following conditions:
           </p>
           <ul className="list-disc pl-6 space-y-2 text-muted-foreground">
-            <li>You may rebrand the software with your own branding</li>
-            <li>You may modify the content and design elements</li>
-            <li>You may sell or distribute the rebranded version</li>
-            <li>You must not claim original authorship of the core software</li>
-            <li>You must provide your own customer support for rebranded versions</li>
+            <li>You may rebrand the software with your own business name, logo, and branding</li>
+            <li>You may modify exported funnels and design elements</li>
+            <li>You may create funnels for clients as an agency or service provider</li>
+            <li>You may NOT resell, redistribute, or transfer the software itself to others</li>
+            <li>You must not claim original authorship of the core software platform</li>
+            <li>You must provide your own customer support for funnels you create</li>
           </ul>
         </section>
 

@@ -36,8 +36,8 @@ export default function Landing() {
     },
     {
       icon: CheckCircle2,
-      title: "PLR Ready",
-      description: "Sell as your own Private Label Rights software on any platform."
+      title: "White Label Ready",
+      description: "Rebrand with your own business name, logo, and custom domain."
     }
   ];
 
@@ -100,7 +100,7 @@ export default function Landing() {
                 </div>
                 <div className="flex items-center gap-1">
                   <CheckCircle2 className="h-4 w-4 text-primary" />
-                  <span>PLR included</span>
+                  <span>White label ready</span>
                 </div>
                 <div className="flex items-center gap-1">
                   <CheckCircle2 className="h-4 w-4 text-primary" />
@@ -169,7 +169,7 @@ export default function Landing() {
               Everything You Need to Succeed
             </h2>
             <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-              Powerful features designed specifically for faith-based marketers and PLR sellers
+              Powerful features designed specifically for faith-based marketers and agencies
             </p>
           </div>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">

@@ -68,15 +68,15 @@ export default function Refund() {
         </section>
 
         <section className="space-y-3">
-          <h2 className="text-xl font-semibold">PLR License Refunds</h2>
+          <h2 className="text-xl font-semibold">White Label License Refunds</h2>
           <p className="leading-relaxed text-muted-foreground">
-            If you have purchased Faith Funnels AI with PLR (Private Label Rights) licensing:
+            If you have purchased Faith Funnels AI with white label licensing:
           </p>
           <ul className="list-disc pl-6 space-y-2 text-muted-foreground">
             <li>The same 14-day refund policy applies</li>
-            <li>You must cease all use and distribution of the software upon refund</li>
-            <li>Any rebranded versions must be removed from sale</li>
-            <li>You must not retain copies of the source files</li>
+            <li>You must cease all use of the software upon refund</li>
+            <li>Any white-labeled versions must be discontinued</li>
+            <li>You must not retain access to the dashboard or white-label features</li>
           </ul>
         </section>
 
