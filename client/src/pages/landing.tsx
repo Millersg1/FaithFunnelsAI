@@ -2,12 +2,36 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { CheckCircle2, Sparkles, Download, Palette, BookOpen, Zap } from "lucide-react";
 import { Link } from "wouter";
+import { useEffect } from "react";
 import heroImage from "@assets/stock_images/modern_faith-based_b_c2b925cb.jpg";
 import dashboardImage from "@assets/stock_images/digital_marketing_da_5b5dfa8d.jpg";
 import successImage from "@assets/stock_images/successful_online_bu_c7443eb8.jpg";
 import funnelImage from "@assets/stock_images/website_funnel_conve_bf6909f9.jpg";
 
 export default function Landing() {
+  useEffect(() => {
+    const preventCopy = (e: Event) => {
+      e.preventDefault();
+      return false;
+    };
+
+    const preventContextMenu = (e: Event) => {
+      e.preventDefault();
+      return false;
+    };
+
+    document.addEventListener('copy', preventCopy);
+    document.addEventListener('cut', preventCopy);
+    document.addEventListener('paste', preventCopy);
+    document.addEventListener('contextmenu', preventContextMenu);
+
+    return () => {
+      document.removeEventListener('copy', preventCopy);
+      document.removeEventListener('cut', preventCopy);
+      document.removeEventListener('paste', preventCopy);
+      document.removeEventListener('contextmenu', preventContextMenu);
+    };
+  }, []);
   const features = [
     {
       icon: Sparkles,
@@ -53,7 +77,7 @@ export default function Landing() {
   ];
 
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen select-none">
       <header className="border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 sticky top-0 z-50">
         <div className="container mx-auto px-4 py-4 flex items-center justify-between">
           <div className="flex items-center gap-2">
