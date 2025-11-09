@@ -23,6 +23,10 @@ export function ChatbotWidget() {
   const { toast } = useToast();
 
   useEffect(() => {
+    console.log("ChatbotWidget mounted!");
+  }, []);
+
+  useEffect(() => {
     const savedEmail = localStorage.getItem("chatbot_email");
     const savedName = localStorage.getItem("chatbot_name");
     if (savedEmail) {
@@ -118,8 +122,9 @@ export function ChatbotWidget() {
     <>
       {!isOpen && (
         <Button
+          variant="default"
           size="icon"
-          className="fixed bottom-6 right-6 h-14 w-14 rounded-full shadow-lg z-50 hover-elevate"
+          className="fixed bottom-6 right-6 h-14 w-14 rounded-full shadow-lg z-[9999] hover-elevate"
           onClick={() => setIsOpen(true)}
           data-testid="button-chatbot-open"
         >
