@@ -6,7 +6,8 @@ export function generateHTML(
   funnel: Funnel,
   verses: Verse[],
   themes: Theme[],
-  stageIndex: number
+  stageIndex: number,
+  exportImagePath?: string
 ): string {
   const stage = funnel.stages[stageIndex];
   if (!stage) return "";
@@ -123,6 +124,15 @@ export function generateHTML(
       margin: 60px 0;
     }
     
+    .hero-image {
+      width: 100%;
+      max-height: 400px;
+      object-fit: cover;
+      border-radius: 12px;
+      margin: 40px 0;
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+    }
+    
     .content {
       background: white;
       padding: 40px;
@@ -184,6 +194,12 @@ export function generateHTML(
       <h1>${stage.title}</h1>
       <p>${funnel.name}</p>
     </div>
+    
+    ${exportImagePath ? `
+    <img src="${exportImagePath}" alt="${stage.title}" class="hero-image" />
+    ` : stage.imageUrl ? `
+    <img src="${stage.imageUrl}" alt="${stage.title}" class="hero-image" />
+    ` : ''}
     
     ${verse ? `
     <div class="verse-card">
@@ -333,10 +349,32 @@ export async function exportFunnelAsZip(
   themes: Theme[]
 ): Promise<void> {
   const zip = new JSZip();
+  const imagesFolder = zip.folder("images");
+
+  const imageMap = new Map<string, string>();
+
+  for (const stage of funnel.stages) {
+    if (stage.imageUrl && !imageMap.has(stage.imageUrl)) {
+      try {
+        const response = await fetch(stage.imageUrl);
+        if (response.ok) {
+          const blob = await response.blob();
+          const filename = stage.imageUrl.split('/').pop() || `image-${Date.now()}.jpg`;
+          imagesFolder?.file(filename, blob);
+          imageMap.set(stage.imageUrl, filename);
+        }
+      } catch (error) {
+        console.warn(`Failed to fetch image ${stage.imageUrl}:`, error);
+      }
+    }
+  }
 
   funnel.stages.forEach((stage, index) => {
     const filename = stage.type === "main" ? "index.html" : `${stage.type}${index}.html`;
-    const html = generateHTML(funnel, verses, themes, index);
+    const imagePath = stage.imageUrl && imageMap.has(stage.imageUrl) 
+      ? `images/${imageMap.get(stage.imageUrl)}`
+      : undefined;
+    const html = generateHTML(funnel, verses, themes, index, imagePath);
     zip.file(filename, html);
   });
 

@@ -64,6 +64,7 @@ export class MemStorage implements IStorage {
           hasVerse: true,
           verseId: verse1Id,
           themeId: theme1Id,
+          imageUrl: "/assets/stock_images/professional_dashboa_f3c6d1ad.jpg",
         },
         {
           id: "stage-2",
@@ -72,6 +73,7 @@ export class MemStorage implements IStorage {
           hasVerse: true,
           verseId: verse2Id,
           themeId: theme1Id,
+          imageUrl: "/assets/stock_images/premium_templates_de_14a7226f.jpg",
         },
         {
           id: "stage-3",
@@ -80,6 +82,7 @@ export class MemStorage implements IStorage {
           hasVerse: true,
           verseId: verse3Id,
           themeId: theme2Id,
+          imageUrl: "/assets/stock_images/professional_service_875692b2.jpg",
         },
         {
           id: "stage-4",
@@ -88,6 +91,7 @@ export class MemStorage implements IStorage {
           hasVerse: true,
           verseId: verse4Id,
           themeId: theme1Id,
+          imageUrl: "/assets/stock_images/online_video_trainin_dc44bbe9.jpg",
         },
         {
           id: "stage-5",
@@ -96,6 +100,7 @@ export class MemStorage implements IStorage {
           hasVerse: true,
           verseId: verse5Id,
           themeId: theme1Id,
+          imageUrl: "/assets/stock_images/startup_beginners_gu_49bdb022.jpg",
         },
         {
           id: "stage-6",
@@ -104,6 +109,7 @@ export class MemStorage implements IStorage {
           hasVerse: true,
           verseId: verse6Id,
           themeId: theme2Id,
+          imageUrl: "/assets/stock_images/diy_guide_manual_ins_8cb09d46.jpg",
         },
       ] as FunnelStage[],
     };

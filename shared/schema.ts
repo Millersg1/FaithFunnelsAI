@@ -36,6 +36,7 @@ export type FunnelStage = {
   verseId?: string;
   themeId?: string;
   content?: string;
+  imageUrl?: string;
 };
 
 export const insertFunnelSchema = createInsertSchema(funnels).omit({ id: true });
