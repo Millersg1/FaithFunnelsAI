@@ -195,7 +195,7 @@ export default function Landing() {
                   alt="Build Your Funnel" 
                   className="rounded-lg mb-4 w-full shadow-md"
                 />
-                <h3 className="text-2xl font-bold mb-2">Visual Funnel Builder</h3>
+                <h3 className="text-2xl font-bold mb-2 text-primary">Visual Funnel Builder</h3>
                 <p className="text-muted-foreground leading-relaxed">
                   Drag and drop stages, add OTOs and downsells, customize everything.
                 </p>
