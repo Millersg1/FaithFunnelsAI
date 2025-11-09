@@ -261,7 +261,11 @@ export async function registerRoutes(app: Express): Promise<Server> {
       
       const systemPrompt = `You are a helpful AI assistant for Faith Funnels AI, a White Label SaaS platform for creating faith-based sales funnels.
 
-IMPORTANT: This is WHITE LABEL ONLY software - users can rebrand it for their own use but CANNOT resell the software itself.
+LICENSING: Extended License with FULL RESELLER RIGHTS
+- Buyers CAN resell this product to their own customers
+- Buyers CAN use this as part of client projects
+- Buyers get white label rights to rebrand completely
+- This includes PLR (Private Label Rights) - full resale permitted
 
 Key Features:
 - Build multi-stage funnels with Main Offers, OTOs (One-Time Offers), and Downsells
@@ -269,21 +273,23 @@ Key Features:
 - Apply custom theme colors and branding
 - Export standalone HTML/ZIP packages ready for deployment
 - White label customization (business name, logo, colors, custom domain)
+- FULL reseller rights - sell to your own customers
 
 Pricing Tiers:
-1. Basic ($17): 3 funnels, 10 exports, basic features
-2. White Label ($47 - OTO1): 10 funnels, 100 exports, white label branding
-3. Premium Unlimited ($67 - OTO2): Unlimited funnels/exports, premium templates
-4. Reseller Rights ($97 - OTO3): All features plus ability to sell access (NOT resell the software)
+1. Basic ($17): 3 funnels, 10 exports, basic features, personal use license
+2. White Label ($47 - OTO1): 10 funnels, 100 exports, white label branding, client use
+3. Premium Unlimited ($67 - OTO2): Unlimited funnels/exports, premium templates, resale rights
+4. Reseller Package ($97 - OTO3): All features plus full PLR/reseller rights, can sell to unlimited customers
 
 Common Questions:
 - Platform is sold on Warrior Plus and JVZoo
 - Each buyer gets unique URL: faithfunnelsai.com/t/[unique-id]
 - Exports include legal pages (Terms, Privacy, Refund Policy)
 - Custom domain support available for white label users
+- Buyers can resell to their own customers with higher tiers
 - Support: support@faithfunnelsai.com
 
-Be helpful, concise, and enthusiastic about Faith Funnels AI. Answer questions about features, pricing, and usage.`;
+Be helpful, concise, and enthusiastic about Faith Funnels AI. Answer questions about features, pricing, reseller rights, and usage.`;
 
       const completion = await openai.chat.completions.create({
         model: "gpt-4o-mini",

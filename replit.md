@@ -2,7 +2,13 @@
 
 ## Overview
 
-Faith Funnels AI is a complete SaaS dashboard tool for creating faith-based sales funnels to be sold as PLR (Private Label Rights) software on Warrior Plus and JVZoo. The application enables users to build multi-stage funnels with main offers, one-time offers (OTOs), and downsells (DSs), integrate Bible verses with customizable CTAs, apply custom theme colors, and export standalone HTML/ZIP packages ready for deployment.
+Faith Funnels AI is a complete SaaS dashboard tool for creating faith-based sales funnels with **Extended License and Full Reseller Rights**. The application enables users to build multi-stage funnels with main offers, one-time offers (OTOs), and downsells (DSs), integrate Bible verses with customizable CTAs, apply custom theme colors, and export standalone HTML/ZIP packages ready for deployment.
+
+**LICENSING MODEL:**
+- ✅ Buyers CAN resell this product to their own customers
+- ✅ Buyers CAN use this as part of client projects  
+- ✅ Full PLR (Private Label Rights) included in higher tiers
+- ✅ White label customization with complete rebranding rights
 
 **Domain:** faithfunnelsai.com  
 **Support:** support@faithfunnelsai.com
@@ -24,6 +30,8 @@ The application follows a modern dashboard design inspired by Linear, Notion, an
 - ✅ **Tenant-specific branding (business name, logo, colors, support email)**
 - ✅ **Custom domain support with DNS setup instructions**
 - ✅ **OTOs and DSs match tenant white-label branding in exports**
+- ✅ **Lead magnet chatbot with email capture (OpenAI-powered)**
+- ✅ **AI assistant for instant customer support and pre-sales questions**
 
 **Implementation Notes:**
 - Using PostgreSQL database with Neon WebSocket support for production-ready multi-tenancy
@@ -31,6 +39,8 @@ The application follows a modern dashboard design inspired by Linear, Notion, an
 - Export generates standalone HTML files with embedded CSS (no external dependencies)
 - Legal pages included in every export: Terms of Service, Privacy Policy, 14-Day Refund Policy
 - **All exported funnels (Main/OTO/DS) use tenant branding: colors, business name, support email, and custom domain**
+- **Chatbot captures leads before granting chat access - stores in PostgreSQL for follow-up**
+- **AI assistant trained on Faith Funnels AI features, pricing, and FULL RESELLER RIGHTS licensing**
 
 ## User Preferences
 
