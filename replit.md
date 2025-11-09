@@ -244,7 +244,7 @@ Each tenant can configure their own custom domain to replace the default `.repli
 
 **Current Setup:**
 - In-memory storage (MemStorage) for development/demo
-- Suitable for PLR sales and demonstrations
+- Suitable for white label demonstrations
 
 **Future Upgrades:**
 - Migrate to PostgreSQL for production data persistence

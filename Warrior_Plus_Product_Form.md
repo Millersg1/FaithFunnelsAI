@@ -29,7 +29,6 @@ Faith Funnels AI - Create Faith-Based Sales Funnels with AI-Powered Bible Verse 
 **Content Type:** (Select all that apply)
 - ✅ Software
 - ✅ Templates
-- ✅ Private Label Rights (PLR)
 
 **Webinar:**
 - ❌ OFF (This is not a webinar product)
@@ -70,7 +69,7 @@ This is a white-label SaaS product. Each buyer receives a unique tenant URL via 
 
 **Type:**
 ```
-Private Label Rights (PLR)
+White Label Rights (Extended License for Agency/Service Provider Use)
 ```
 
 ---
