@@ -78,8 +78,8 @@ export default function Landing() {
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div className="space-y-8">
               <div className="inline-block">
-                <div className="bg-gradient-to-r from-primary/10 to-accent/10 border border-primary/20 rounded-full px-4 py-2">
-                  <span className="text-sm font-medium bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
+                <div className="bg-primary/10 border border-primary/30 rounded-full px-6 py-2">
+                  <span className="text-sm font-semibold text-primary">
                     ✨ The #1 Faith-Based Funnel Builder
                   </span>
                 </div>
@@ -255,8 +255,8 @@ export default function Landing() {
           <Card className="max-w-5xl mx-auto border-4 border-primary/20 bg-gradient-to-br from-background via-background to-primary/5 shadow-2xl overflow-hidden">
             <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-accent/5" />
             <CardContent className="p-12 lg:p-16 text-center space-y-8 relative">
-              <div className="inline-block bg-gradient-to-r from-primary/20 to-accent/20 border-2 border-primary/30 rounded-full px-8 py-3">
-                <span className="text-sm font-bold bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
+              <div className="inline-block bg-primary/10 border-2 border-primary/30 rounded-full px-8 py-3">
+                <span className="text-sm font-bold text-primary">
                   🙏 START YOUR JOURNEY TODAY
                 </span>
               </div>
