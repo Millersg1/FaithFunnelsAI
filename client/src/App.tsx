@@ -21,6 +21,9 @@ import WhiteLabelAdmin from "@/pages/white-label-admin";
 import Terms from "@/pages/legal/terms";
 import Privacy from "@/pages/legal/privacy";
 import Refund from "@/pages/legal/refund";
+import OTO1WhiteLabel from "@/pages/oto1-white-label";
+import OTO2Premium from "@/pages/oto2-premium";
+import OTO3Agency from "@/pages/oto3-agency";
 
 function AppLayout({ children }: { children: React.ReactNode }) {
   const { settings } = useTenant();
@@ -85,6 +88,9 @@ function App() {
             <Route path="/download" component={DownloadPage} />
             <Route path="/demo" component={DemoPage} />
             <Route path="/support" component={SupportPage} />
+            <Route path="/oto1" component={OTO1WhiteLabel} />
+            <Route path="/oto2" component={OTO2Premium} />
+            <Route path="/oto3" component={OTO3Agency} />
             <Route path="/terms">
               {() => (
                 <AppLayout>
