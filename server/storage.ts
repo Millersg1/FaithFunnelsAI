@@ -44,61 +44,126 @@ export class MemStorage implements IStorage {
 
   private seedData() {
     const defaultFunnelId = randomUUID();
-    const defaultVerse1Id = randomUUID();
-    const defaultVerse2Id = randomUUID();
-    const defaultTheme1Id = randomUUID();
-    const defaultTheme2Id = randomUUID();
+    const verse1Id = randomUUID();
+    const verse2Id = randomUUID();
+    const verse3Id = randomUUID();
+    const verse4Id = randomUUID();
+    const verse5Id = randomUUID();
+    const verse6Id = randomUUID();
+    const theme1Id = randomUUID();
+    const theme2Id = randomUUID();
 
     const defaultFunnel: Funnel = {
       id: defaultFunnelId,
-      name: "Faith Journey Landing Page",
+      name: "Faith Funnels AI - Warrior Plus Complete Funnel",
       stages: [
         {
           id: "stage-1",
-          title: "Faith Journey Landing Page",
+          title: "Faith Funnels AI - Main Offer",
           type: "main" as const,
           hasVerse: true,
-          verseId: defaultVerse1Id,
-          themeId: defaultTheme1Id,
+          verseId: verse1Id,
+          themeId: theme1Id,
         },
         {
           id: "stage-2",
-          title: "Premium Bible Study Course",
+          title: "OTO 1: Premium Templates Pack",
           type: "oto" as const,
           hasVerse: true,
-          verseId: defaultVerse2Id,
-          themeId: defaultTheme2Id,
+          verseId: verse2Id,
+          themeId: theme1Id,
         },
         {
           id: "stage-3",
-          title: "Daily Devotional Downsell",
+          title: "OTO 2: Done-For-You Setup Service",
+          type: "oto" as const,
+          hasVerse: true,
+          verseId: verse3Id,
+          themeId: theme2Id,
+        },
+        {
+          id: "stage-4",
+          title: "OTO 3: Advanced Training & Coaching",
+          type: "oto" as const,
+          hasVerse: true,
+          verseId: verse4Id,
+          themeId: theme1Id,
+        },
+        {
+          id: "stage-5",
+          title: "Downsell 1: Starter Templates (Lite)",
           type: "ds" as const,
-          hasVerse: false,
-          themeId: defaultTheme1Id,
+          hasVerse: true,
+          verseId: verse5Id,
+          themeId: theme1Id,
+        },
+        {
+          id: "stage-6",
+          title: "Downsell 2: DIY Setup Guide",
+          type: "ds" as const,
+          hasVerse: true,
+          verseId: verse6Id,
+          themeId: theme2Id,
         },
       ] as FunnelStage[],
     };
 
-    const defaultVerse1: Verse = {
-      id: defaultVerse1Id,
+    const verse1: Verse = {
+      id: verse1Id,
       funnelId: defaultFunnelId,
       verseText: "For I know the plans I have for you, declares the Lord, plans to prosper you and not to harm you, plans to give you hope and a future.",
       reference: "Jeremiah 29:11",
-      ctaText: "Start Your Faith Journey",
-      ctaUrl: "https://example.com/offer",
+      ctaText: "Get Faith Funnels AI Now",
+      ctaUrl: "https://warriorplus.com/o2/buy/your-product-id",
     };
 
-    const defaultVerse2: Verse = {
-      id: defaultVerse2Id,
+    const verse2: Verse = {
+      id: verse2Id,
+      funnelId: defaultFunnelId,
+      verseText: "Whatever you do, work at it with all your heart, as working for the Lord, not for human masters.",
+      reference: "Colossians 3:23",
+      ctaText: "Yes! Add Premium Templates",
+      ctaUrl: "https://warriorplus.com/o2/buy/your-oto1-id",
+    };
+
+    const verse3: Verse = {
+      id: verse3Id,
+      funnelId: defaultFunnelId,
+      verseText: "Commit to the Lord whatever you do, and he will establish your plans.",
+      reference: "Proverbs 16:3",
+      ctaText: "Yes! I Want Done-For-You Setup",
+      ctaUrl: "https://warriorplus.com/o2/buy/your-oto2-id",
+    };
+
+    const verse4: Verse = {
+      id: verse4Id,
+      funnelId: defaultFunnelId,
+      verseText: "Iron sharpens iron, and one man sharpens another.",
+      reference: "Proverbs 27:17",
+      ctaText: "Add Training & Coaching",
+      ctaUrl: "https://warriorplus.com/o2/buy/your-oto3-id",
+    };
+
+    const verse5: Verse = {
+      id: verse5Id,
       funnelId: defaultFunnelId,
       verseText: "Trust in the Lord with all your heart and lean not on your own understanding.",
       reference: "Proverbs 3:5",
-      ctaText: "Enroll Now",
-      ctaUrl: "https://example.com/oto1",
+      ctaText: "Get Starter Templates Instead",
+      ctaUrl: "https://warriorplus.com/o2/buy/your-ds1-id",
     };
 
-    const defaultTheme1: Theme = {
-      id: defaultTheme1Id,
+    const verse6: Verse = {
+      id: verse6Id,
+      funnelId: defaultFunnelId,
+      verseText: "I can do all things through Christ who strengthens me.",
+      reference: "Philippians 4:13",
+      ctaText: "Get DIY Setup Guide",
+      ctaUrl: "https://warriorplus.com/o2/buy/your-ds2-id",
+    };
+
+    const theme1: Theme = {
+      id: theme1Id,
       funnelId: defaultFunnelId,
       name: "Faith Harbor",
       primaryColor: "#6366f1",
@@ -107,8 +172,8 @@ export class MemStorage implements IStorage {
       isDefault: true,
     };
 
-    const defaultTheme2: Theme = {
-      id: defaultTheme2Id,
+    const theme2: Theme = {
+      id: theme2Id,
       funnelId: defaultFunnelId,
       name: "Holy Spirit",
       primaryColor: "#3b82f6",
@@ -118,10 +183,14 @@ export class MemStorage implements IStorage {
     };
 
     this.funnels.set(defaultFunnelId, defaultFunnel);
-    this.verses.set(defaultVerse1Id, defaultVerse1);
-    this.verses.set(defaultVerse2Id, defaultVerse2);
-    this.themes.set(defaultTheme1Id, defaultTheme1);
-    this.themes.set(defaultTheme2Id, defaultTheme2);
+    this.verses.set(verse1Id, verse1);
+    this.verses.set(verse2Id, verse2);
+    this.verses.set(verse3Id, verse3);
+    this.verses.set(verse4Id, verse4);
+    this.verses.set(verse5Id, verse5);
+    this.verses.set(verse6Id, verse6);
+    this.themes.set(theme1Id, theme1);
+    this.themes.set(theme2Id, theme2);
   }
 
   async getFunnels(): Promise<Funnel[]> {
@@ -147,7 +216,11 @@ export class MemStorage implements IStorage {
     const funnel = this.funnels.get(id);
     if (!funnel) return undefined;
     
-    const updated = { ...funnel, ...update };
+    const updated: Funnel = { 
+      ...funnel, 
+      ...update,
+      stages: (update.stages as FunnelStage[]) ?? funnel.stages
+    };
     this.funnels.set(id, updated);
     return updated;
   }

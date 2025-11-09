@@ -217,11 +217,17 @@ export default function VerseBuilder() {
               <CardHeader>
                 <CardTitle>Saved Verses ({verses.length})</CardTitle>
               </CardHeader>
-              <CardContent className="space-y-2 max-h-64 overflow-y-auto">
+              <CardContent className="space-y-2 max-h-96 overflow-y-auto">
                 {verses.map((v) => (
-                  <div key={v.id} className="p-3 rounded-lg border bg-muted/50 text-sm">
-                    <p className="font-medium">{v.reference}</p>
-                    <p className="text-muted-foreground line-clamp-2 text-xs mt-1">{v.verseText}</p>
+                  <div key={v.id} className="p-3 rounded-lg border bg-muted/50 space-y-1" data-testid={`verse-${v.id}`}>
+                    <p className="font-medium text-sm">{v.reference}</p>
+                    <p className="text-muted-foreground line-clamp-2 text-xs">{v.verseText}</p>
+                    {v.ctaText && (
+                      <div className="pt-2 flex items-center gap-2 text-xs">
+                        <span className="text-muted-foreground">CTA:</span>
+                        <span className="font-medium" data-testid={`cta-text-${v.id}`}>{v.ctaText}</span>
+                      </div>
+                    )}
                   </div>
                 ))}
               </CardContent>
