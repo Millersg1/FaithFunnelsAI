@@ -9,7 +9,7 @@ import type { Funnel as FunnelType, Verse, Theme } from "@shared/schema";
 import { useTenant } from "@/contexts/TenantContext";
 
 export default function Dashboard() {
-  const { features, tier } = useTenant();
+  const { features, tier, slug } = useTenant();
   
   const { data: funnels } = useQuery<FunnelType[]>({
     queryKey: ["/api/funnels"],
@@ -38,7 +38,7 @@ export default function Dashboard() {
           </div>
           <p className="text-muted-foreground">Welcome to Faith Funnels AI</p>
         </div>
-        <Link href="/funnels">
+        <Link href={slug ? `/t/${slug}/funnels` : "/app/funnels"}>
           <Button data-testid="button-create-funnel">
             <Filter className="mr-2 h-4 w-4" />
             Create New Funnel

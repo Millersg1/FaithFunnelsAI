@@ -64,6 +64,11 @@ export function AppSidebar() {
   const [location] = useLocation();
   const { settings, hasFeature, slug } = useTenant();
 
+  const tenantAwareMenuItems = menuItems.map(item => ({
+    ...item,
+    url: slug ? item.url.replace('/app', `/t/${slug}`) : item.url
+  }));
+
   return (
     <Sidebar data-testid="sidebar-main">
       <SidebarHeader className="p-4">
@@ -90,7 +95,7 @@ export function AppSidebar() {
           <SidebarGroupLabel>Main Menu</SidebarGroupLabel>
           <SidebarGroupContent>
             <SidebarMenu>
-              {menuItems.map((item) => (
+              {tenantAwareMenuItems.map((item) => (
                 <SidebarMenuItem key={item.title}>
                   <SidebarMenuButton asChild isActive={location === item.url} data-testid={`nav-${item.title.toLowerCase().replace(/\s+/g, '-')}`}>
                     <Link href={item.url}>
