@@ -32,6 +32,7 @@ export const tenants = pgTable("tenants", {
   id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
   slug: text("slug").notNull().unique(),
   adminPin: text("admin_pin"),
+  isPaid: boolean("is_paid").notNull().default(false),
   createdAt: text("created_at").notNull().default(sql`CURRENT_TIMESTAMP`),
 });
 

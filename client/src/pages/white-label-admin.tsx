@@ -26,8 +26,23 @@ const settingsSchema = z.object({
 type SettingsForm = z.infer<typeof settingsSchema>;
 
 export default function WhiteLabelAdmin() {
-  const { slug, settings, isLoading } = useTenant();
+  const { slug, settings, isPaid, isLoading } = useTenant();
   const { toast } = useToast();
+
+  if (!isPaid && !isLoading) {
+    return (
+      <div className="container mx-auto p-6">
+        <Card>
+          <CardHeader>
+            <CardTitle>Access Restricted</CardTitle>
+            <CardDescription>
+              White Label Admin is only available to paid members. Please upgrade your account to access this feature.
+            </CardDescription>
+          </CardHeader>
+        </Card>
+      </div>
+    );
+  }
 
   const form = useForm<SettingsForm>({
     resolver: zodResolver(settingsSchema),

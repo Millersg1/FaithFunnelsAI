@@ -62,7 +62,7 @@ const legalItems = [
 
 export function AppSidebar() {
   const [location] = useLocation();
-  const { settings } = useTenant();
+  const { settings, isPaid, slug } = useTenant();
 
   return (
     <Sidebar data-testid="sidebar-main">
@@ -100,6 +100,16 @@ export function AppSidebar() {
                   </SidebarMenuButton>
                 </SidebarMenuItem>
               ))}
+              {isPaid && slug && (
+                <SidebarMenuItem>
+                  <SidebarMenuButton asChild isActive={location === `/t/${slug}/admin`} data-testid="nav-white-label-admin">
+                    <Link href={`/t/${slug}/admin`}>
+                      <Settings className="h-5 w-5" />
+                      <span>White Label Admin</span>
+                    </Link>
+                  </SidebarMenuButton>
+                </SidebarMenuItem>
+              )}
             </SidebarMenu>
           </SidebarGroupContent>
         </SidebarGroup>

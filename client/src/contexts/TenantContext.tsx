@@ -8,6 +8,7 @@ interface TenantContextValue {
   slug: string | null;
   tenant: Tenant | null;
   settings: TenantSettings | null;
+  isPaid: boolean;
   isLoading: boolean;
   error: Error | null;
 }
@@ -32,6 +33,7 @@ export function useTenant() {
       slug: null,
       tenant: null,
       settings: DEFAULT_SETTINGS as TenantSettings,
+      isPaid: false,
       isLoading: false,
       error: null,
     };
@@ -63,6 +65,7 @@ export function TenantProvider({ children }: TenantProviderProps) {
     slug: slug || null,
     tenant: data?.tenant || null,
     settings: data?.settings || (DEFAULT_SETTINGS as TenantSettings),
+    isPaid: data?.tenant?.isPaid || false,
     isLoading,
     error: error as Error | null,
   };
