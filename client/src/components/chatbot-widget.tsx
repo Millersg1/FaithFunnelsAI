@@ -124,7 +124,8 @@ export function ChatbotWidget() {
         <Button
           variant="default"
           size="icon"
-          className="fixed bottom-6 right-6 h-14 w-14 rounded-full shadow-lg z-[9999] hover-elevate"
+          className="h-14 w-14 rounded-full shadow-lg hover-elevate"
+          style={{ position: 'fixed', bottom: '24px', right: '24px', zIndex: 9999 }}
           onClick={() => setIsOpen(true)}
           data-testid="button-chatbot-open"
         >
@@ -133,7 +134,10 @@ export function ChatbotWidget() {
       )}
 
       {isOpen && (
-        <Card className="fixed bottom-6 right-6 w-[380px] h-[600px] flex flex-col shadow-2xl z-50">
+        <Card 
+          className="w-[380px] h-[600px] flex flex-col shadow-2xl"
+          style={{ position: 'fixed', bottom: '24px', right: '24px', zIndex: 9999 }}
+        >
           <div className="flex items-center justify-between p-4 border-b bg-primary text-primary-foreground rounded-t-md">
             <div className="flex items-center gap-2">
               <MessageCircle className="h-5 w-5" />
