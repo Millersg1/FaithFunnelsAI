@@ -15,9 +15,9 @@ export default function Terms() {
         </section>
 
         <section className="space-y-3">
-          <h2 className="text-xl font-semibold">2. Extended License for Agency/Service Provider Use</h2>
+          <h2 className="text-xl font-semibold">2. Extended License with White Label Rights</h2>
           <p className="leading-relaxed text-muted-foreground">
-            Faith Funnels AI is provided with an Extended License for agencies and service providers. Depending on your purchased tier, you receive the following rights:
+            Faith Funnels AI is provided with an Extended License that includes White Label Rights for agencies and service providers. Depending on your purchased tier, you receive the following rights:
           </p>
           <div className="space-y-4">
             <div>

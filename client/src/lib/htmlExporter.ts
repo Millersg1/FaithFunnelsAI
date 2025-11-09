@@ -393,8 +393,8 @@ export async function exportFunnelAsZip(
     <h2>1. Acceptance of Terms</h2>
     <p>By purchasing, accessing, or using ${businessName} ("the Software," "the Service," or "the Product"), you ("Licensee," "you," or "your") accept and agree to be bound by these Terms of Service ("Agreement"). If you do not agree to these terms, do not use the Software.</p>
     
-    <h2>2. Extended License for Agency/Service Provider Use</h2>
-    <p>${businessName} is provided with an Extended License for agencies and service providers. Depending on your purchased tier, you receive the following rights:</p>
+    <h2>2. Extended License with White Label Rights</h2>
+    <p>${businessName} is provided with an Extended License that includes White Label Rights for agencies and service providers. Depending on your purchased tier, you receive the following rights:</p>
     
     <p><strong>2.1 What You CAN Do:</strong></p>
     <ul>

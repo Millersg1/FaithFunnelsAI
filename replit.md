@@ -2,13 +2,13 @@
 
 ## Overview
 
-Faith Funnels AI is a complete SaaS dashboard tool for creating faith-based sales funnels with **Extended License for Agency/Service Provider Use**. The application enables users to build multi-stage funnels with main offers, one-time offers (OTOs), and downsells (DSs), integrate Bible verses with customizable CTAs, apply custom theme colors, and export standalone HTML/ZIP packages ready for deployment.
+Faith Funnels AI is a complete SaaS dashboard tool for creating faith-based sales funnels with **Extended License and White Label Rights**. The application enables users to build multi-stage funnels with main offers, one-time offers (OTOs), and downsells (DSs), integrate Bible verses with customizable CTAs, apply custom theme colors, and export standalone HTML/ZIP packages ready for deployment.
 
 **LICENSING MODEL:**
-- ✅ Buyers CAN create funnels for clients as an agency or service provider
-- ✅ Buyers CAN use this as part of client projects and charge for funnel creation services
-- ✅ White label customization with complete rebranding rights
-- ❌ Buyers CANNOT resell the software dashboard access itself
+- ✅ White Label Rights - rebrand with your own business name, logo, and colors
+- ✅ Agency/Service Provider Use - create funnels for clients and charge for services
+- ✅ Client Project Use - use as part of client projects
+- ❌ NO PLR (Private Label Rights) - buyers CANNOT resell the software dashboard itself
 
 **Domain:** faithfunnelsai.com  
 **Support:** support@faithfunnelsai.com
