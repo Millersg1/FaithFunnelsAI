@@ -70,90 +70,109 @@ export default function Landing() {
         </div>
       </header>
 
-      <section className="relative py-12 lg:py-20 overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-secondary/5 to-accent/5 -z-10" />
+      <section className="relative py-20 lg:py-32 overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-secondary/10 to-accent/10 -z-10" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_50%,rgba(120,119,198,0.1),transparent_50%)] -z-10" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_80%,rgba(255,184,77,0.1),transparent_50%)] -z-10" />
         <div className="container mx-auto px-4">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
-            <div className="space-y-6">
-              <h1 className="text-4xl lg:text-6xl font-bold leading-tight">
+            <div className="space-y-8">
+              <div className="inline-block">
+                <div className="bg-gradient-to-r from-primary/10 to-accent/10 border border-primary/20 rounded-full px-4 py-2">
+                  <span className="text-sm font-medium bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
+                    ✨ The #1 Faith-Based Funnel Builder
+                  </span>
+                </div>
+              </div>
+              <h1 className="text-5xl lg:text-7xl font-bold leading-tight bg-gradient-to-br from-foreground via-foreground to-foreground/60 bg-clip-text text-transparent">
                 Build Faith-Based Sales Funnels in Minutes
               </h1>
-              <p className="text-xl text-muted-foreground">
+              <p className="text-xl lg:text-2xl text-muted-foreground leading-relaxed">
                 The complete SaaS tool for creating professional sales funnels with Bible verses, custom themes, and instant HTML export. Built with faith, designed for profit.
               </p>
               <div className="flex flex-wrap gap-4">
                 <Link href="/app">
-                  <Button size="lg" className="text-lg px-8" data-testid="button-get-started">
+                  <Button size="lg" className="text-lg px-10 py-6 shadow-lg shadow-primary/25 hover:shadow-xl hover:shadow-primary/30" data-testid="button-get-started">
                     Get Started Now
                   </Button>
                 </Link>
                 <a href="#features">
-                  <Button size="lg" variant="outline" className="text-lg px-8" data-testid="button-see-features">
+                  <Button size="lg" variant="outline" className="text-lg px-10 py-6 border-2" data-testid="button-see-features">
                     See Features
                   </Button>
                 </a>
               </div>
-              <div className="flex items-center gap-4 text-sm text-muted-foreground">
-                <div className="flex items-center gap-1">
-                  <CheckCircle2 className="h-4 w-4 text-primary" />
-                  <span>No monthly fees</span>
+              <div className="flex flex-wrap items-center gap-6 text-sm">
+                <div className="flex items-center gap-2 bg-card/50 rounded-lg px-4 py-2 border">
+                  <CheckCircle2 className="h-5 w-5 text-primary" />
+                  <span className="font-medium">No monthly fees</span>
                 </div>
-                <div className="flex items-center gap-1">
-                  <CheckCircle2 className="h-4 w-4 text-primary" />
-                  <span>White label ready</span>
+                <div className="flex items-center gap-2 bg-card/50 rounded-lg px-4 py-2 border">
+                  <CheckCircle2 className="h-5 w-5 text-primary" />
+                  <span className="font-medium">White label ready</span>
                 </div>
-                <div className="flex items-center gap-1">
-                  <CheckCircle2 className="h-4 w-4 text-primary" />
-                  <span>Legal pages built-in</span>
+                <div className="flex items-center gap-2 bg-card/50 rounded-lg px-4 py-2 border">
+                  <CheckCircle2 className="h-5 w-5 text-primary" />
+                  <span className="font-medium">Legal pages built-in</span>
                 </div>
               </div>
             </div>
-            <div className="relative">
-              <div className="absolute inset-0 bg-gradient-to-br from-primary/20 to-accent/20 rounded-2xl blur-3xl -z-10" />
-              <img 
-                src={heroImage} 
-                alt="Faith-based entrepreneur building funnels" 
-                className="rounded-2xl shadow-2xl w-full"
-              />
+            <div className="relative lg:ml-8">
+              <div className="absolute -inset-4 bg-gradient-to-br from-primary/30 via-secondary/30 to-accent/30 rounded-3xl blur-3xl" />
+              <div className="relative">
+                <div className="absolute inset-0 bg-gradient-to-br from-primary/10 to-accent/10 rounded-2xl" />
+                <img 
+                  src={heroImage} 
+                  alt="Faith-based entrepreneur building funnels" 
+                  className="rounded-2xl shadow-2xl w-full relative border-4 border-white/20"
+                />
+              </div>
             </div>
           </div>
         </div>
       </section>
 
-      <section className="py-20 bg-muted/50" id="proof">
+      <section className="py-24 bg-gradient-to-b from-muted/50 to-background" id="proof">
         <div className="container mx-auto px-4">
-          <div className="text-center space-y-4 mb-16">
-            <h2 className="text-3xl lg:text-5xl font-bold">
+          <div className="text-center space-y-6 mb-16">
+            <div className="inline-block">
+              <div className="bg-primary/10 border border-primary/20 rounded-full px-6 py-2 mb-4">
+                <span className="text-sm font-semibold text-primary">PROOF IT WORKS</span>
+              </div>
+            </div>
+            <h2 className="text-4xl lg:text-6xl font-bold bg-gradient-to-r from-primary via-secondary to-accent bg-clip-text text-transparent">
               This Sales Page Was Built With Faith Funnels AI
             </h2>
-            <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+            <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
               That's right! The very funnel you're reading was created using our software. 
               See the power of what you'll be able to create for yourself and your customers.
             </p>
           </div>
           <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
-            <Card>
+            <Card className="border-2 hover:border-primary/50 transition-all duration-300 hover-elevate overflow-hidden">
+              <div className="h-2 bg-gradient-to-r from-primary to-secondary" />
               <CardContent className="p-6">
                 <img 
                   src={dashboardImage} 
                   alt="Faith Funnels AI Dashboard" 
-                  className="rounded-lg mb-4 w-full"
+                  className="rounded-lg mb-4 w-full shadow-md"
                 />
-                <h3 className="text-xl font-semibold mb-2">Intuitive Dashboard</h3>
-                <p className="text-muted-foreground">
+                <h3 className="text-2xl font-bold mb-2 text-primary">Intuitive Dashboard</h3>
+                <p className="text-muted-foreground leading-relaxed">
                   Manage all your funnels, verses, and themes from one beautiful interface.
                 </p>
               </CardContent>
             </Card>
-            <Card>
+            <Card className="border-2 hover:border-accent/50 transition-all duration-300 hover-elevate overflow-hidden">
+              <div className="h-2 bg-gradient-to-r from-secondary to-accent" />
               <CardContent className="p-6">
                 <img 
                   src={funnelImage} 
                   alt="Build Your Funnel" 
-                  className="rounded-lg mb-4 w-full"
+                  className="rounded-lg mb-4 w-full shadow-md"
                 />
-                <h3 className="text-xl font-semibold mb-2">Visual Funnel Builder</h3>
-                <p className="text-muted-foreground">
+                <h3 className="text-2xl font-bold mb-2 text-secondary">Visual Funnel Builder</h3>
+                <p className="text-muted-foreground leading-relaxed">
                   Drag and drop stages, add OTOs and downsells, customize everything.
                 </p>
               </CardContent>
@@ -162,23 +181,26 @@ export default function Landing() {
         </div>
       </section>
 
-      <section className="py-20" id="features">
-        <div className="container mx-auto px-4">
-          <div className="text-center space-y-4 mb-16">
-            <h2 className="text-3xl lg:text-5xl font-bold">
+      <section className="py-24 relative" id="features">
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(120,119,198,0.05),transparent_70%)]" />
+        <div className="container mx-auto px-4 relative">
+          <div className="text-center space-y-6 mb-20">
+            <h2 className="text-4xl lg:text-6xl font-bold">
               Everything You Need to Succeed
             </h2>
-            <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+            <p className="text-xl lg:text-2xl text-muted-foreground max-w-3xl mx-auto">
               Powerful features designed specifically for faith-based marketers and agencies
             </p>
           </div>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {features.map((feature, idx) => (
-              <Card key={idx} className="hover-elevate">
-                <CardContent className="p-6">
-                  <feature.icon className="h-12 w-12 text-primary mb-4" />
-                  <h3 className="text-xl font-semibold mb-2">{feature.title}</h3>
-                  <p className="text-muted-foreground">{feature.description}</p>
+              <Card key={idx} className="hover-elevate border-2 hover:border-primary/30 transition-all duration-300 group">
+                <CardContent className="p-8">
+                  <div className="bg-gradient-to-br from-primary/10 to-accent/10 rounded-2xl w-20 h-20 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
+                    <feature.icon className="h-10 w-10 text-primary" />
+                  </div>
+                  <h3 className="text-2xl font-bold mb-3">{feature.title}</h3>
+                  <p className="text-muted-foreground leading-relaxed">{feature.description}</p>
                 </CardContent>
               </Card>
             ))}
@@ -186,57 +208,76 @@ export default function Landing() {
         </div>
       </section>
 
-      <section className="py-20 bg-muted/50">
-        <div className="container mx-auto px-4">
-          <div className="grid lg:grid-cols-2 gap-12 items-center max-w-6xl mx-auto">
-            <div>
-              <img 
-                src={successImage} 
-                alt="Successful faith-based entrepreneur" 
-                className="rounded-2xl shadow-2xl w-full"
-              />
+      <section className="py-24 bg-gradient-to-br from-primary/5 via-secondary/5 to-accent/5 relative overflow-hidden">
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_80%_20%,rgba(255,184,77,0.15),transparent_50%)]" />
+        <div className="container mx-auto px-4 relative">
+          <div className="grid lg:grid-cols-2 gap-16 items-center max-w-6xl mx-auto">
+            <div className="relative">
+              <div className="absolute -inset-4 bg-gradient-to-br from-accent/30 to-primary/30 rounded-3xl blur-2xl" />
+              <div className="relative">
+                <img 
+                  src={successImage} 
+                  alt="Successful faith-based entrepreneur" 
+                  className="rounded-2xl shadow-2xl w-full border-4 border-white/20"
+                />
+              </div>
             </div>
-            <div className="space-y-6">
-              <h2 className="text-3xl lg:text-4xl font-bold">
+            <div className="space-y-8">
+              <div className="inline-block bg-accent/10 border border-accent/20 rounded-full px-6 py-2">
+                <span className="text-sm font-semibold text-accent">MARKETPLACE READY</span>
+              </div>
+              <h2 className="text-4xl lg:text-5xl font-bold leading-tight">
                 Perfect for Warrior Plus & JVZoo Sellers
               </h2>
-              <p className="text-lg text-muted-foreground">
+              <p className="text-xl text-muted-foreground leading-relaxed">
                 Faith Funnels AI generates complete, standalone HTML funnels that you can upload directly to your hosting. 
                 No dependencies, no hassle.
               </p>
-              <ul className="space-y-3">
+              <div className="space-y-4 bg-card/50 backdrop-blur-sm rounded-2xl p-6 border-2">
                 {benefits.map((benefit, idx) => (
-                  <li key={idx} className="flex items-start gap-3">
-                    <CheckCircle2 className="h-5 w-5 text-primary mt-0.5 flex-shrink-0" />
-                    <span>{benefit}</span>
-                  </li>
+                  <div key={idx} className="flex items-start gap-4 group">
+                    <div className="bg-primary/10 rounded-full p-1 group-hover:bg-primary/20 transition-colors">
+                      <CheckCircle2 className="h-5 w-5 text-primary" />
+                    </div>
+                    <span className="text-lg">{benefit}</span>
+                  </div>
                 ))}
-              </ul>
+              </div>
             </div>
           </div>
         </div>
       </section>
 
-      <section className="py-20">
-        <div className="container mx-auto px-4">
-          <Card className="max-w-4xl mx-auto border-primary/20 bg-gradient-to-br from-primary/5 to-accent/5">
-            <CardContent className="p-12 text-center space-y-6">
-              <h2 className="text-3xl lg:text-5xl font-bold">
+      <section className="py-24 relative overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-secondary/10 to-accent/10" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(120,119,198,0.1),transparent_70%)]" />
+        <div className="container mx-auto px-4 relative">
+          <Card className="max-w-5xl mx-auto border-4 border-primary/20 bg-gradient-to-br from-background via-background to-primary/5 shadow-2xl overflow-hidden">
+            <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-accent/5" />
+            <CardContent className="p-12 lg:p-16 text-center space-y-8 relative">
+              <div className="inline-block bg-gradient-to-r from-primary/20 to-accent/20 border-2 border-primary/30 rounded-full px-8 py-3">
+                <span className="text-sm font-bold bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
+                  🙏 START YOUR JOURNEY TODAY
+                </span>
+              </div>
+              <h2 className="text-4xl lg:text-6xl font-bold leading-tight bg-gradient-to-br from-foreground to-foreground/70 bg-clip-text">
                 Ready to Build Your Faith-Based Empire?
               </h2>
-              <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-                Join successful faith-based marketers who are using Faith Funnels AI to create profitable sales funnels.
+              <p className="text-xl lg:text-2xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
+                Join successful faith-based marketers who are using Faith Funnels AI to create profitable sales funnels that honor God and grow their business.
               </p>
-              <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <div className="flex flex-col sm:flex-row gap-6 justify-center pt-4">
                 <Link href="/app">
-                  <Button size="lg" className="text-lg px-8 w-full sm:w-auto" data-testid="button-start-building">
+                  <Button size="lg" className="text-xl px-12 py-7 shadow-2xl shadow-primary/30 hover:shadow-primary/50 w-full sm:w-auto" data-testid="button-start-building">
                     Start Building Now
                   </Button>
                 </Link>
               </div>
-              <p className="text-sm text-muted-foreground">
-                "For I know the plans I have for you," declares the Lord - Jeremiah 29:11
-              </p>
+              <div className="pt-6 border-t border-primary/10">
+                <p className="text-lg italic text-muted-foreground bg-gradient-to-r from-primary/10 to-accent/10 rounded-lg px-6 py-4 inline-block border border-primary/20">
+                  "For I know the plans I have for you," declares the Lord - Jeremiah 29:11
+                </p>
+              </div>
             </CardContent>
           </Card>
         </div>
