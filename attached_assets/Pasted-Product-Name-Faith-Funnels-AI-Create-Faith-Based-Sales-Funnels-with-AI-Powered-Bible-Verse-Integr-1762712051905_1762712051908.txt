@@ -1,0 +1,133 @@
+Product Name
+Faith Funnels AI - Create Faith-Based Sales Funnels with AI-Powered Bible Verse Integration
+The name of your product/service. Buyer sees this on their receipt.
+Product Image
+
+Choose FileFaithFunnelsAI logo 125x125.png
+Remove Reset to Default
+(optional) Upload an image for your product. This will be shown on various pages around the site and in the marketplace. If you do not upload one, then the default one shown will be used. The image should be 125px x 125px.
+Category
+Category
+The category for this Product (select up to 3).
+Keywords
+Keywords
+(optional) Enter up to 3 keywords/phrases that help describe your Product, containing only numbers, letters, and spaces. [ie. if you were selling a Wordpress plugin for SEO, you might enter "wordpress","plugin", and "seo" (without the quotes)]
+Content Type
+Content Type
+The type of content this Product contains (select all that apply).
+Webinar
+Turn this ON if this Product is being sold via a Webinar (Live or Automated)
+Product Access
+ To give access to this product to the buyer, you can either upload a file -or- enter a URL where the product can be accessed. Choose one only.
+Download File
+Choose FileNo file chosen
+The file the buyer will receive when they purchase this product. (ONE file only - add multiple files to ZIP before uploading) Max Size = 100MB
+Access URL
+ Show available tokens (advanced)
+The URL where a buyer can access this product (if download is not being used above). This should NOT link to any upsells/salespages, but directly to the file or membership area for this product.
+Admin Access Info
+In order for us to make sure your product meets marketplace standards, we need to be able to access and review it. If any login info, passwords, etc.. are required, enter it here.
+Licensing
+ Choose the type of license the buyer will receive when they purchase this product. Licensing FAQ
+Type
+
+--Select--
+The type of license for this product.
+Refund Policy, Terms and Conditions
+Refund Period
+14
+The length of time (in days) from purchase that you offer refunds. Enter "0" for no refunds (60 days or less recommended). Having a zero refund policy requires terms and conditions acknowledgement.
+Terms and Conditions
+CURRENT TERMS OF SERVICE (in the software)
+1. Acceptance of Terms
+By accessing and using [Business Name] ("the Service"), you accept and agree to be bound by the terms and provision of this agreement.
+
+2. Use License
+Permission is granted to temporarily use [Business Name] for personal or commercial purposes. This is the grant of a license, not a transfer of title.
+
+3. PLR (Private Label Rights) Usage
+As a PLR software product, [Business Name] grants you the right to rebrand and resell the software under specific conditions.
+
+4. Contact Information
+For questions about these Terms of Service, please contact us at [support email]
+(99365 characters remaining)
+Enter custom Refund Policy and/or Terms and Conditions. Leave it blank if you want to allow unconditional refunds and don't have custom terms and conditions. Max 100000 characters, text only (no HTML).
+Require Acknowledgement
+Turn this ON if you want to display a checkbox on the checkout page and require a buyer to accept the custom terms and conditions.
+Support Details
+Support Email
+support@faithfunnelsai.com
+The email address given to buyers to contact you for support.
+Support URL
+(optional) The link given to buyers to contact you for support
+Sale Notification
+ON 
+Sale notifications for this product type can be setup on the notification settings page.
+Disclosures
+Product Status
+
+Open / Available for Sale
+The status of this product.
+Ownership
+
+I am the Original Creator and/or Exclusive Owner of this product
+For an original product, bonus/extra content can be PLR, as long as the main product being sold meets the Original Creator / Exclusive Owner requirements
+AI Disclosure
+
+No, this product does not contain any AI-generated content
+Does this product contain AI-generated content?
+Certification
+I certify that I have the legal right to sell and/or distribute this product, and am doing so according to any terms and conditions associated with it and/or WarriorPlus. I understand that if it is found that I do not have such rights, any earnings associated with the sale of this product and/or related products may be forfeited and/or reclaimed, my account will be closed, and WarriorPlus reserves the right to take legal action against me and/or my company, as deemed necessary.
+
+
+Pricing
+Sale Type
+
+Buy Now / Single Payment
+Regular Price
+47
+(optional) The regular price of this Product, used to show discount amounts in some places.
+Sale Price
+17
+The selling price of this Product (or the start price if this is a dimesale/timesale).
+Limit Sales
+(optional) If you want to limit the total number of sales of this Product, enter the max quantity you want to sell.
+Variable Pricing (Dimesale/Timesale)
+
+Payment
+Merchant Accounts
+Select the merchant account(s) you want to use below. 
+Paypal
+
+shawn@fhws.co
+Paypal account for this product
+Stripe
+Turn this ON if you want to use Stripe
+Customer Fields (optional)
+Collect additional customer data on the checkout page.
+Phone
+Turn this ON if you want to collect customer's phone number.
+Full Address
+Turn this ON if you want to collect customer's full address.
+Country
+Turn this ON if you want to collect customer's country.
+Cancel Recurring on Purchase (optional)
+If the purchase of this product is an "upgrade" of another recurring product, or should cancel future payments of another product, select the product(s) that should be cancelled below.
+Cancel Payments
+Cancel Payments
+The recurring product(s) to cancel future payments for when purchase of this product is made, if applicable
+
+Affiliate
+IMPORTANT: The commission rates here are the defaults used when adding a Product to an Offer. Commission rates set within an Offer ALWAYS override these values. Changing values here WILL NOT update the rates within an Offer or of any existing affiliates.
+Commission Rate
+
+Percentage (%)
+
+50%
+Select the commission rate you want to give to affiliates who are approved to promote your Product. (Select "No Affiliate Program" if you don't want to participate.)
+WarriorPlus Commission
+
+Percentage (%)
+
+0%
+Commission amount you want to pay to WarriorPlus, if higher
