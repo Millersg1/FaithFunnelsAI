@@ -1,7 +1,7 @@
 import type { Express } from "express";
 import { createServer, type Server } from "http";
-import { storage } from "./storage";
-import { insertFunnelSchema, insertVerseSchema, insertThemeSchema } from "@shared/schema";
+import { storage, seedDemoData } from "./storage";
+import { insertFunnelSchema, insertVerseSchema, insertThemeSchema, insertTenantSchema, insertTenantSettingsSchema } from "@shared/schema";
 
 export async function registerRoutes(app: Express): Promise<Server> {
   app.get("/api/funnels", async (req, res) => {
@@ -171,6 +171,59 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
+  app.get("/api/tenants/slug/:slug", async (req, res) => {
+    try {
+      const tenant = await storage.getTenantBySlug(req.params.slug);
+      if (!tenant) {
+        return res.status(404).json({ error: "Tenant not found" });
+      }
+      const settings = await storage.getTenantSettings(tenant.id);
+      res.json({ tenant, settings });
+    } catch (error) {
+      res.status(500).json({ error: "Failed to fetch tenant" });
+    }
+  });
+
+  app.post("/api/tenants", async (req, res) => {
+    try {
+      const tenantData = insertTenantSchema.parse(req.body);
+      const tenant = await storage.createTenant(tenantData);
+      
+      const settingsData = req.body.settings || {};
+      const settings = await storage.createTenantSettings({
+        tenantId: tenant.id,
+        ...settingsData
+      });
+      
+      res.status(201).json({ tenant, settings });
+    } catch (error) {
+      res.status(400).json({ error: "Invalid tenant data" });
+    }
+  });
+
+  app.patch("/api/tenants/slug/:slug/settings", async (req, res) => {
+    try {
+      const tenant = await storage.getTenantBySlug(req.params.slug);
+      if (!tenant) {
+        return res.status(404).json({ error: "Tenant not found" });
+      }
+      
+      const settings = await storage.updateTenantSettings(tenant.id, req.body);
+      res.json(settings);
+    } catch (error) {
+      res.status(500).json({ error: "Failed to update tenant settings" });
+    }
+  });
+
+  app.post("/api/init/seed", async (req, res) => {
+    try {
+      await seedDemoData();
+      res.json({ message: "Demo data seeded successfully" });
+    } catch (error) {
+      res.status(500).json({ error: "Failed to seed demo data" });
+    }
+  });
+
   app.post("/api/export/html", async (req, res) => {
     try {
       const { funnelId } = req.body;
@@ -194,5 +247,8 @@ export async function registerRoutes(app: Express): Promise<Server> {
   });
 
   const httpServer = createServer(app);
+  
+  seedDemoData().catch(console.error);
+  
   return httpServer;
 }
