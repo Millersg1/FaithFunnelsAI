@@ -2,13 +2,13 @@
 
 ## Overview
 
-Faith Funnels AI is a complete SaaS dashboard tool for creating faith-based sales funnels with **Extended License and Full Reseller Rights**. The application enables users to build multi-stage funnels with main offers, one-time offers (OTOs), and downsells (DSs), integrate Bible verses with customizable CTAs, apply custom theme colors, and export standalone HTML/ZIP packages ready for deployment.
+Faith Funnels AI is a complete SaaS dashboard tool for creating faith-based sales funnels with **Extended License for Agency/Service Provider Use**. The application enables users to build multi-stage funnels with main offers, one-time offers (OTOs), and downsells (DSs), integrate Bible verses with customizable CTAs, apply custom theme colors, and export standalone HTML/ZIP packages ready for deployment.
 
 **LICENSING MODEL:**
-- ✅ Buyers CAN resell this product to their own customers
-- ✅ Buyers CAN use this as part of client projects  
-- ✅ Full PLR (Private Label Rights) included in higher tiers
+- ✅ Buyers CAN create funnels for clients as an agency or service provider
+- ✅ Buyers CAN use this as part of client projects and charge for funnel creation services
 - ✅ White label customization with complete rebranding rights
+- ❌ Buyers CANNOT resell the software dashboard access itself
 
 **Domain:** faithfunnelsai.com  
 **Support:** support@faithfunnelsai.com
@@ -40,7 +40,7 @@ The application follows a modern dashboard design inspired by Linear, Notion, an
 - Legal pages included in every export: Terms of Service, Privacy Policy, 14-Day Refund Policy
 - **All exported funnels (Main/OTO/DS) use tenant branding: colors, business name, support email, and custom domain**
 - **Chatbot captures leads before granting chat access - stores in PostgreSQL for follow-up**
-- **AI assistant trained on Faith Funnels AI features, pricing, and FULL RESELLER RIGHTS licensing**
+- **AI assistant trained on Faith Funnels AI features, pricing, and agency/service provider licensing model**
 
 ## User Preferences
 

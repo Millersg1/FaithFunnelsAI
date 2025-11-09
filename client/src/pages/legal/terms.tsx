@@ -15,25 +15,28 @@ export default function Terms() {
         </section>
 
         <section className="space-y-3">
-          <h2 className="text-xl font-semibold">2. Extended License with Full Reseller Rights</h2>
+          <h2 className="text-xl font-semibold">2. Extended License for Agency/Service Provider Use</h2>
           <p className="leading-relaxed text-muted-foreground">
-            Faith Funnels AI is provided with an Extended License that includes Full Reseller Rights and Private Label Rights (PLR). Depending on your purchased tier, you receive the following rights:
+            Faith Funnels AI is provided with an Extended License for agencies and service providers. Depending on your purchased tier, you receive the following rights:
           </p>
           <div className="space-y-4">
             <div>
               <h3 className="font-semibold text-foreground mb-2">✅ What You CAN Do:</h3>
               <ul className="list-disc pl-6 space-y-2 text-muted-foreground">
-                <li>Resell this product to your own customers (Premium and Reseller tiers)</li>
-                <li>Use this product as part of client projects and agency services</li>
+                <li>Create funnels for clients as an agency or service provider</li>
+                <li>Use this product as part of client projects and charge for your funnel creation services</li>
                 <li>Rebrand and customize with your own business name, logo, and colors</li>
                 <li>Modify exported funnels, themes, and design elements</li>
-                <li>Charge your customers any price you determine</li>
-                <li>Keep 100% of the profits from your resales</li>
+                <li>Charge clients for your funnel creation services (not software licenses)</li>
+                <li>Keep 100% of the profits from your client services</li>
+                <li>Create unlimited funnels for unlimited clients (Premium and Agency tiers)</li>
               </ul>
             </div>
             <div>
               <h3 className="font-semibold text-foreground mb-2">❌ What You CANNOT Do:</h3>
               <ul className="list-disc pl-6 space-y-2 text-muted-foreground">
+                <li>Resell the software dashboard access itself to customers</li>
+                <li>Give clients direct access to your Faith Funnels AI dashboard</li>
                 <li>Claim original authorship of the core Faith Funnels AI software platform</li>
                 <li>Trademark the name "Faith Funnels AI" or confusingly similar names</li>
                 <li>Decompile, reverse engineer, or extract the source code</li>
@@ -42,6 +45,9 @@ export default function Terms() {
               </ul>
             </div>
           </div>
+          <p className="leading-relaxed text-muted-foreground mt-4">
+            <strong>Important:</strong> You create funnels FOR your clients (as a service), not WITH them. You do not transfer software access or licenses to clients. You charge for your funnel creation services, not for software licenses.
+          </p>
         </section>
 
         <section className="space-y-3">
@@ -65,9 +71,9 @@ export default function Terms() {
           </p>
           <ul className="list-disc pl-6 space-y-2 text-muted-foreground">
             <li><strong>Direct Buyers:</strong> Faith Funnels AI (support@faithfunnelsai.com) provides support only to customers who purchased directly from us</li>
-            <li><strong>Resellers:</strong> If you resell this product, you are responsible for providing support to YOUR customers</li>
-            <li><strong>White Label Support:</strong> Your customers should contact YOUR support email (configured in your white label settings)</li>
-            <li><strong>No Transfer of Support:</strong> We do not provide support to your resale customers - you assume all support obligations</li>
+            <li><strong>Agencies/Service Providers:</strong> If you create funnels for clients, you are responsible for providing support to YOUR clients</li>
+            <li><strong>White Label Support:</strong> Your clients should contact YOUR support email (configured in your white label settings)</li>
+            <li><strong>No Transfer of Support:</strong> We do not provide support to your clients - you assume all support obligations for funnels you create</li>
           </ul>
         </section>
 
@@ -96,7 +102,7 @@ export default function Terms() {
             <li>Major version updates may require a separate purchase or upgrade fee</li>
             <li>No guarantee of ongoing updates, new features, or maintenance</li>
             <li>Updates are provided "as available" without specific timelines</li>
-            <li>Resellers do not automatically receive update rights to pass to their customers</li>
+            <li>You can re-export funnels after updates to benefit from improvements</li>
           </ul>
         </section>
 
@@ -106,10 +112,10 @@ export default function Terms() {
             Your rights depend on which tier you purchased:
           </p>
           <ul className="list-disc pl-6 space-y-2 text-muted-foreground">
-            <li><strong>Basic ($17):</strong> Personal use license, 3 funnels, 10 exports, no resale rights</li>
-            <li><strong>White Label ($47):</strong> Client project use, 10 funnels, 100 exports, white label branding, no resale rights</li>
-            <li><strong>Premium Unlimited ($67):</strong> Unlimited funnels/exports, resale rights granted, premium templates included</li>
-            <li><strong>Reseller Package ($97):</strong> Full PLR/reseller rights, can sell to unlimited customers, all features included</li>
+            <li><strong>Basic ($17):</strong> Personal use only, 3 funnels, 10 exports, no client services</li>
+            <li><strong>White Label ($47):</strong> Create funnels for clients, 10 funnels, 100 exports, white label branding</li>
+            <li><strong>Premium Unlimited ($67):</strong> Unlimited funnels/exports for unlimited clients, premium templates included</li>
+            <li><strong>Agency Package ($97):</strong> All features, unlimited clients, full white label rights, perfect for agencies and service providers</li>
           </ul>
         </section>
 
@@ -121,8 +127,8 @@ export default function Terms() {
           <ul className="list-disc pl-6 space-y-2 text-muted-foreground">
             <li><strong>No Warranties:</strong> We make no warranties, expressed or implied, regarding merchantability, fitness for a particular purpose, or non-infringement</li>
             <li><strong>Software Sold As-Is:</strong> The software is provided without guarantee of error-free operation or uninterrupted service</li>
-            <li><strong>Reseller Liability:</strong> If you resell this product, you assume all liability for your sales, customer disputes, refunds, and support obligations</li>
-            <li><strong>No Liability for Resales:</strong> Faith Funnels AI is not responsible for any disputes between you and your customers</li>
+            <li><strong>Agency/Service Provider Liability:</strong> If you create funnels for clients, you assume all liability for your services, client disputes, refunds, and support obligations</li>
+            <li><strong>No Liability for Client Services:</strong> Faith Funnels AI is not responsible for any disputes between you and your clients</li>
             <li><strong>Limitation of Damages:</strong> In no event shall Faith Funnels AI be liable for any direct, indirect, incidental, consequential, or punitive damages arising from use of the software</li>
             <li><strong>Maximum Liability:</strong> Our total liability shall not exceed the amount you paid for the software</li>
           </ul>

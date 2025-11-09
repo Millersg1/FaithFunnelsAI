@@ -393,37 +393,40 @@ export async function exportFunnelAsZip(
     <h2>1. Acceptance of Terms</h2>
     <p>By purchasing, accessing, or using ${businessName} ("the Software," "the Service," or "the Product"), you ("Licensee," "you," or "your") accept and agree to be bound by these Terms of Service ("Agreement"). If you do not agree to these terms, do not use the Software.</p>
     
-    <h2>2. Extended License with Full Reseller Rights</h2>
-    <p>${businessName} is provided with an Extended License that includes Full Reseller Rights and Private Label Rights (PLR). Depending on your purchased tier, you receive the following rights:</p>
+    <h2>2. Extended License for Agency/Service Provider Use</h2>
+    <p>${businessName} is provided with an Extended License for agencies and service providers. Depending on your purchased tier, you receive the following rights:</p>
     
     <p><strong>2.1 What You CAN Do:</strong></p>
     <ul>
-      <li>Resell this product to your own customers (Premium and Reseller tiers)</li>
-      <li>Use this product as part of client projects and agency services</li>
+      <li>Create funnels for clients as an agency or service provider</li>
+      <li>Use this product as part of client projects and charge for your funnel creation services</li>
       <li>Rebrand and customize with your own business name, logo, and colors</li>
       <li>Modify exported funnels, themes, and design elements</li>
-      <li>Charge your customers any price you determine</li>
-      <li>Keep 100% of the profits from your resales</li>
+      <li>Charge clients for your funnel creation services (not software licenses)</li>
+      <li>Keep 100% of the profits from your client services</li>
       <li>Use your custom domain to access the white-labeled dashboard</li>
     </ul>
     
     <p><strong>2.2 What You CANNOT Do:</strong></p>
     <ul>
+      <li>Resell the software dashboard access itself to customers</li>
+      <li>Give clients direct access to your ${businessName} dashboard</li>
       <li>Claim original authorship of the core ${businessName} software platform</li>
       <li>Trademark the name "${businessName}" or confusingly similar names</li>
       <li>Decompile, reverse engineer, or extract the source code</li>
       <li>Use the software for illegal activities or fraudulent purposes</li>
       <li>Sell as part of an MLM, pyramid scheme, or similar structure</li>
-      <li>Share your login credentials with others</li>
     </ul>
+    
+    <p><strong>Important:</strong> You create funnels FOR your clients (as a service), not WITH them. You do not transfer software access or licenses to clients. You charge for your funnel creation services, not for software licenses.</p>
     
     <h2>3. Tier-Specific Rights</h2>
     <p>Your rights depend on which tier you purchased:</p>
     <ul>
-      <li><strong>Basic ($17):</strong> Personal use license, 3 funnels, 10 exports, no resale rights</li>
-      <li><strong>White Label ($47):</strong> Client project use, 10 funnels, 100 exports, white label branding, no resale rights</li>
-      <li><strong>Premium Unlimited ($67):</strong> Unlimited funnels/exports, resale rights granted, premium templates included</li>
-      <li><strong>Reseller Package ($97):</strong> Full PLR/reseller rights, can sell to unlimited customers, all features included</li>
+      <li><strong>Basic ($17):</strong> Personal use only, 3 funnels, 10 exports, no client services</li>
+      <li><strong>White Label ($47):</strong> Create funnels for clients, 10 funnels, 100 exports, white label branding</li>
+      <li><strong>Premium Unlimited ($67):</strong> Unlimited funnels/exports for unlimited clients, premium templates included</li>
+      <li><strong>Agency Package ($97):</strong> All features, unlimited clients, full white label rights, perfect for agencies and service providers</li>
     </ul>
     
     <h2>4. Modification Rights</h2>
@@ -440,9 +443,9 @@ export async function exportFunnelAsZip(
     <p>Support responsibilities are structured as follows:</p>
     <ul>
       <li><strong>Direct Buyers:</strong> ${businessName} (${supportEmail}) provides support only to customers who purchased directly</li>
-      <li><strong>Resellers:</strong> If you resell this product, you are responsible for providing support to YOUR customers</li>
-      <li><strong>White Label Support:</strong> Your customers should contact YOUR support email (configured in your white label settings)</li>
-      <li><strong>No Transfer of Support:</strong> We do not provide support to your resale customers - you assume all support obligations</li>
+      <li><strong>Agencies/Service Providers:</strong> If you create funnels for clients, you are responsible for providing support to YOUR clients</li>
+      <li><strong>White Label Support:</strong> Your clients should contact YOUR support email (configured in your white label settings)</li>
+      <li><strong>No Transfer of Support:</strong> We do not provide support to your clients - you assume all support obligations for funnels you create</li>
     </ul>
     
     <h2>6. Prohibited Uses</h2>
@@ -470,13 +473,13 @@ export async function exportFunnelAsZip(
       <li>Major version updates may require a separate purchase or upgrade fee</li>
       <li>No guarantee of ongoing updates, new features, or maintenance</li>
       <li>Updates are provided "as available" without specific timelines</li>
-      <li>Resellers do not automatically receive update rights to pass to their customers</li>
+      <li>You can re-export funnels after updates to benefit from improvements</li>
     </ul>
     
     <h2>9. Account Tiers and Features</h2>
-    <p><strong>9.1 Tier Levels:</strong> The Software is offered in multiple tiers (Basic, White Label, Premium, Reseller Package) with different feature sets and usage limits. Your access to features is determined by your purchased tier.</p>
+    <p><strong>9.1 Tier Levels:</strong> The Software is offered in multiple tiers (Basic, White Label, Premium, Agency Package) with different feature sets and usage limits. Your access to features is determined by your purchased tier.</p>
     
-    <p><strong>9.2 Feature Restrictions:</strong> Certain features (white-label customization, unlimited funnels, unlimited exports, resale rights) require specific tier purchases. Attempting to bypass tier restrictions is prohibited and may result in account suspension.</p>
+    <p><strong>9.2 Feature Restrictions:</strong> Certain features (white-label customization, unlimited funnels, unlimited exports, client services) require specific tier purchases. Attempting to bypass tier restrictions is prohibited and may result in account suspension.</p>
     
     <p><strong>9.3 Upgrades:</strong> You may upgrade your tier at any time by purchasing the applicable upgrade. Downgrades are not offered, and all purchases are final (subject to our Refund Policy).</p>
     
@@ -520,8 +523,8 @@ export async function exportFunnelAsZip(
     <ul>
       <li><strong>No Warranties:</strong> We make no warranties, expressed or implied, regarding merchantability, fitness for a particular purpose, or non-infringement</li>
       <li><strong>Software Sold As-Is:</strong> The software is provided without guarantee of error-free operation or uninterrupted service</li>
-      <li><strong>Reseller Liability:</strong> If you resell this product, you assume all liability for your sales, customer disputes, refunds, and support obligations</li>
-      <li><strong>No Liability for Resales:</strong> ${businessName} is not responsible for any disputes between you and your customers</li>
+      <li><strong>Agency/Service Provider Liability:</strong> If you create funnels for clients, you assume all liability for your services, client disputes, refunds, and support obligations</li>
+      <li><strong>No Liability for Client Services:</strong> ${businessName} is not responsible for any disputes between you and your clients</li>
       <li><strong>Limitation of Damages:</strong> In no event shall ${businessName} be liable for any direct, indirect, incidental, consequential, or punitive damages arising from use of the software</li>
       <li><strong>Maximum Liability:</strong> Our total liability shall not exceed the amount you paid for the software</li>
     </ul>
@@ -532,7 +535,7 @@ export async function exportFunnelAsZip(
       <li>Any unauthorized access to or use of our servers and/or any personal information stored therein</li>
       <li>Any bugs, viruses, trojan horses, or similar that may be transmitted to or through the Software</li>
       <li>Any errors or omissions in any content or for any loss or damage incurred as a result of your use of any content posted or transmitted through the Software</li>
-      <li>Disputes between you and your resale customers</li>
+      <li>Disputes between you and your clients</li>
     </ul>
     
     <h2>9. Indemnification</h2>
