@@ -8,6 +8,7 @@ import { AppSidebar } from "@/components/app-sidebar";
 import { TenantProvider, useTenant } from "@/contexts/TenantContext";
 import NotFound from "@/pages/not-found";
 import Landing from "@/pages/landing";
+import DownloadPage from "@/pages/download";
 import Dashboard from "@/pages/dashboard";
 import Funnels from "@/pages/funnels";
 import FunnelEditor from "@/pages/funnel-editor";
@@ -79,6 +80,7 @@ function App() {
         <TenantProvider>
           <Switch>
             <Route path="/" component={Landing} />
+            <Route path="/download" component={DownloadPage} />
             <Route path="/terms">
               {() => (
                 <AppLayout>

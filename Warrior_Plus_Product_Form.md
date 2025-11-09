@@ -45,8 +45,9 @@ Faith Funnels AI - Create Faith-Based Sales Funnels with AI-Powered Bible Verse 
 
 ### Option 2: Access URL (Recommended)
 ```
-https://faithfunnelsai.com/download
+https://faithfunnelsai.replit.app/download
 ```
+(After publishing, update to: https://faithfunnelsai.com/download)
 
 **Admin Access Info:**
 ```
