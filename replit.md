@@ -142,3 +142,71 @@ Preferred communication style: Simple, everyday language.
 - `@/` → `client/src/`
 - `@shared/` → `shared/`
 - `@assets/` → `attached_assets/`
+
+## Deployment Guide
+
+### Publishing to Production
+
+Faith Funnels AI is ready for deployment on Replit. Follow these steps to publish:
+
+1. **Verify Application is Running**
+   - Ensure the "Start application" workflow is running without errors
+   - Test all features: Dashboard, Funnels, Verse Builder, Themes, Export
+   - Verify the Warrior Plus demo funnel exports correctly with images
+
+2. **Publish on Replit**
+   - Click the "Publish" button in the Replit interface
+   - The application will be deployed with automatic HTTPS
+   - Your site will be accessible at: `https://faithfunnelsai.replit.app`
+
+3. **Custom Domain Setup (Optional)**
+   - Configure `faithfunnelsai.com` to point to your Replit deployment
+   - Update domain DNS settings as per Replit's instructions
+   - SSL certificates are managed automatically by Replit
+
+4. **Post-Deployment Verification**
+   - Visit the landing page and verify it loads correctly
+   - Test the complete user flow from landing → dashboard → export
+   - Verify HTTPS padlock icon shows site as secure
+   - Test export functionality downloads ZIP with images
+
+### Environment Configuration
+
+**Production Checklist:**
+- ✅ SESSION_SECRET is set (handled automatically by Replit)
+- ✅ HTTPS enabled (automatic on Replit)
+- ✅ All assets properly served from `/assets/` path
+- ✅ Legal pages (Terms, Privacy, Refund) accessible
+- ✅ Export includes images, legal pages, and README
+
+### Monitoring
+
+**Key Metrics to Monitor:**
+- Application uptime and response times
+- Export download success rate
+- Browser console for any errors
+- User feedback on support@faithfunnelsai.com
+
+### Scaling Considerations
+
+**Current Setup:**
+- In-memory storage (MemStorage) for development/demo
+- Suitable for PLR sales and demonstrations
+
+**Future Upgrades:**
+- Migrate to PostgreSQL for production data persistence
+- Add user authentication for multi-tenant support
+- Implement analytics tracking for funnel performance
+- Add payment integration for direct sales
+
+### Support & Maintenance
+
+**Contact Information:**
+- Support Email: support@faithfunnelsai.com
+- Domain: faithfunnelsai.com
+
+**Maintenance Notes:**
+- Regular testing of export functionality
+- Monitoring for security updates
+- Backup of funnel templates and themes
+- Testing across major browsers (Chrome, Firefox, Safari, Edge)
