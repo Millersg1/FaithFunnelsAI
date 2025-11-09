@@ -232,7 +232,7 @@ export function generateHTML(
         <a href="privacy.html">Privacy Policy</a>
         <a href="refund.html">Refund Policy</a>
       </div>
-      <p style="margin-top: 20px;">Support: <a href="mailto:support@faithfunnelsai.com">support@faithfunnelsai.com</a></p>
+      <p style="margin-top: 20px;">Support: <a href="mailto:${supportEmail}">${supportEmail}</a></p>
     </div>
   </div>
 </body>
@@ -241,13 +241,13 @@ export function generateHTML(
   return html;
 }
 
-function generateLegalPage(title: string, content: string): string {
+function generateLegalPage(title: string, content: string, businessName: string = "Faith Funnels AI"): string {
   return `<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>${title} - Faith Funnels AI</title>
+  <title>${title} - ${businessName}</title>
   <style>
     * {
       margin: 0;
@@ -429,9 +429,9 @@ export async function exportFunnelAsZip(
     <p>For refund requests or questions about this policy, please contact us at ${supportEmail}</p>
   `;
 
-  zip.file("terms.html", generateLegalPage("Terms of Service", termsContent));
-  zip.file("privacy.html", generateLegalPage("Privacy Policy", privacyContent));
-  zip.file("refund.html", generateLegalPage("Refund Policy (14 Days)", refundContent));
+  zip.file("terms.html", generateLegalPage("Terms of Service", termsContent, businessName));
+  zip.file("privacy.html", generateLegalPage("Privacy Policy", privacyContent, businessName));
+  zip.file("refund.html", generateLegalPage("Refund Policy (14 Days)", refundContent, businessName));
 
   zip.file("README.txt", `
 ${businessName} - Export Package

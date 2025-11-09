@@ -1,7 +1,7 @@
 import type { Express } from "express";
 import { createServer, type Server } from "http";
 import { storage, seedDemoData } from "./storage";
-import { insertFunnelSchema, insertVerseSchema, insertThemeSchema, insertTenantSchema, insertTenantSettingsSchema } from "@shared/schema";
+import { insertFunnelSchema, insertVerseSchema, insertThemeSchema, insertTenantSchema, insertTenantSettingsSchema, TIER_FEATURES, TIERS } from "@shared/schema";
 
 export async function registerRoutes(app: Express): Promise<Server> {
   app.get("/api/funnels", async (req, res) => {
@@ -206,6 +206,15 @@ export async function registerRoutes(app: Express): Promise<Server> {
       const tenant = await storage.getTenantBySlug(req.params.slug);
       if (!tenant) {
         return res.status(404).json({ error: "Tenant not found" });
+      }
+      
+      const tier = tenant.tier || TIERS.BASIC;
+      const tierFeatures = TIER_FEATURES[tier];
+      
+      if (!tierFeatures.whiteLabel) {
+        return res.status(403).json({ 
+          error: "White Label features are not available on your current plan. Please upgrade to access this feature." 
+        });
       }
       
       const settings = await storage.updateTenantSettings(tenant.id, req.body);
