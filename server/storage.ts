@@ -5,9 +5,20 @@ import {
   type InsertVerse,
   type Theme,
   type InsertTheme,
-  type FunnelStage
+  type Tenant,
+  type InsertTenant,
+  type TenantSettings,
+  type InsertTenantSettings,
+  type FunnelStage,
+  funnels,
+  verses,
+  themes,
+  tenants,
+  tenantSettings
 } from "@shared/schema";
 import { randomUUID } from "crypto";
+import { db } from "./db";
+import { eq } from "drizzle-orm";
 
 export interface IStorage {
   getFunnels(): Promise<Funnel[]>;
@@ -27,31 +38,144 @@ export interface IStorage {
   createTheme(theme: InsertTheme): Promise<Theme>;
   updateTheme(id: string, theme: Partial<InsertTheme>): Promise<Theme | undefined>;
   deleteTheme(id: string): Promise<boolean>;
+  
+  getTenantBySlug(slug: string): Promise<Tenant | undefined>;
+  createTenant(tenant: InsertTenant): Promise<Tenant>;
+  
+  getTenantSettings(tenantId: string): Promise<TenantSettings | undefined>;
+  createTenantSettings(settings: InsertTenantSettings): Promise<TenantSettings>;
+  updateTenantSettings(tenantId: string, settings: Partial<InsertTenantSettings>): Promise<TenantSettings | undefined>;
 }
 
-export class MemStorage implements IStorage {
-  private funnels: Map<string, Funnel>;
-  private verses: Map<string, Verse>;
-  private themes: Map<string, Theme>;
-
-  constructor() {
-    this.funnels = new Map();
-    this.verses = new Map();
-    this.themes = new Map();
-    
-    this.seedData();
+export class PgStorage implements IStorage {
+  async getFunnels(): Promise<Funnel[]> {
+    return await db.select().from(funnels);
   }
 
-  private seedData() {
-    const defaultFunnelId = randomUUID();
-    const verse1Id = randomUUID();
-    const verse2Id = randomUUID();
-    const verse3Id = randomUUID();
-    const verse4Id = randomUUID();
-    const verse5Id = randomUUID();
-    const verse6Id = randomUUID();
-    const theme1Id = randomUUID();
-    const theme2Id = randomUUID();
+  async getFunnel(id: string): Promise<Funnel | undefined> {
+    const result = await db.select().from(funnels).where(eq(funnels.id, id));
+    return result[0];
+  }
+
+  async createFunnel(insertFunnel: InsertFunnel): Promise<Funnel> {
+    const result = await db.insert(funnels).values({
+      ...insertFunnel,
+      stages: (insertFunnel.stages as FunnelStage[]) || []
+    }).returning();
+    return result[0];
+  }
+
+  async updateFunnel(id: string, update: Partial<InsertFunnel>): Promise<Funnel | undefined> {
+    const updateData: any = { ...update };
+    if (update.stages) {
+      updateData.stages = update.stages as FunnelStage[];
+    }
+    const result = await db.update(funnels).set(updateData).where(eq(funnels.id, id)).returning();
+    return result[0];
+  }
+
+  async deleteFunnel(id: string): Promise<boolean> {
+    const result = await db.delete(funnels).where(eq(funnels.id, id));
+    return result.rowCount ? result.rowCount > 0 : false;
+  }
+
+  async getVerses(funnelId?: string): Promise<Verse[]> {
+    if (funnelId) {
+      return await db.select().from(verses).where(eq(verses.funnelId, funnelId));
+    }
+    return await db.select().from(verses);
+  }
+
+  async getVerse(id: string): Promise<Verse | undefined> {
+    const result = await db.select().from(verses).where(eq(verses.id, id));
+    return result[0];
+  }
+
+  async createVerse(insertVerse: InsertVerse): Promise<Verse> {
+    const result = await db.insert(verses).values(insertVerse).returning();
+    return result[0];
+  }
+
+  async updateVerse(id: string, update: Partial<InsertVerse>): Promise<Verse | undefined> {
+    const result = await db.update(verses).set(update).where(eq(verses.id, id)).returning();
+    return result[0];
+  }
+
+  async deleteVerse(id: string): Promise<boolean> {
+    const result = await db.delete(verses).where(eq(verses.id, id));
+    return result.rowCount ? result.rowCount > 0 : false;
+  }
+
+  async getThemes(funnelId?: string): Promise<Theme[]> {
+    if (funnelId) {
+      return await db.select().from(themes).where(eq(themes.funnelId, funnelId));
+    }
+    return await db.select().from(themes);
+  }
+
+  async getTheme(id: string): Promise<Theme | undefined> {
+    const result = await db.select().from(themes).where(eq(themes.id, id));
+    return result[0];
+  }
+
+  async createTheme(insertTheme: InsertTheme): Promise<Theme> {
+    const result = await db.insert(themes).values(insertTheme).returning();
+    return result[0];
+  }
+
+  async updateTheme(id: string, update: Partial<InsertTheme>): Promise<Theme | undefined> {
+    const result = await db.update(themes).set(update).where(eq(themes.id, id)).returning();
+    return result[0];
+  }
+
+  async deleteTheme(id: string): Promise<boolean> {
+    const result = await db.delete(themes).where(eq(themes.id, id));
+    return result.rowCount ? result.rowCount > 0 : false;
+  }
+
+  async getTenantBySlug(slug: string): Promise<Tenant | undefined> {
+    const result = await db.select().from(tenants).where(eq(tenants.slug, slug));
+    return result[0];
+  }
+
+  async createTenant(insertTenant: InsertTenant): Promise<Tenant> {
+    const result = await db.insert(tenants).values(insertTenant).returning();
+    return result[0];
+  }
+
+  async getTenantSettings(tenantId: string): Promise<TenantSettings | undefined> {
+    const result = await db.select().from(tenantSettings).where(eq(tenantSettings.tenantId, tenantId));
+    return result[0];
+  }
+
+  async createTenantSettings(insertSettings: InsertTenantSettings): Promise<TenantSettings> {
+    const result = await db.insert(tenantSettings).values(insertSettings).returning();
+    return result[0];
+  }
+
+  async updateTenantSettings(tenantId: string, update: Partial<InsertTenantSettings>): Promise<TenantSettings | undefined> {
+    const result = await db.update(tenantSettings).set(update).where(eq(tenantSettings.tenantId, tenantId)).returning();
+    return result[0];
+  }
+}
+
+export const storage = new PgStorage();
+
+export async function seedDemoData() {
+  const existingFunnels = await storage.getFunnels();
+  if (existingFunnels.length > 0) {
+    return;
+  }
+
+  const defaultFunnelId = randomUUID();
+  const verse1Id = randomUUID();
+  const verse2Id = randomUUID();
+  const verse3Id = randomUUID();
+  const verse4Id = randomUUID();
+  const verse5Id = randomUUID();
+  const verse6Id = randomUUID();
+  const theme1Id = randomUUID();
+  const theme2Id = randomUUID();
 
     const defaultFunnel: Funnel = {
       id: defaultFunnelId,
@@ -188,141 +312,7 @@ export class MemStorage implements IStorage {
       isDefault: false,
     };
 
-    this.funnels.set(defaultFunnelId, defaultFunnel);
-    this.verses.set(verse1Id, verse1);
-    this.verses.set(verse2Id, verse2);
-    this.verses.set(verse3Id, verse3);
-    this.verses.set(verse4Id, verse4);
-    this.verses.set(verse5Id, verse5);
-    this.verses.set(verse6Id, verse6);
-    this.themes.set(theme1Id, theme1);
-    this.themes.set(theme2Id, theme2);
-  }
-
-  async getFunnels(): Promise<Funnel[]> {
-    return Array.from(this.funnels.values());
-  }
-
-  async getFunnel(id: string): Promise<Funnel | undefined> {
-    return this.funnels.get(id);
-  }
-
-  async createFunnel(insertFunnel: InsertFunnel): Promise<Funnel> {
-    const id = randomUUID();
-    const funnel: Funnel = { 
-      id,
-      name: insertFunnel.name,
-      stages: (insertFunnel.stages as FunnelStage[]) || [],
-    };
-    this.funnels.set(id, funnel);
-    return funnel;
-  }
-
-  async updateFunnel(id: string, update: Partial<InsertFunnel>): Promise<Funnel | undefined> {
-    const funnel = this.funnels.get(id);
-    if (!funnel) return undefined;
-    
-    const updated: Funnel = { 
-      ...funnel, 
-      ...update,
-      stages: (update.stages as FunnelStage[]) ?? funnel.stages
-    };
-    this.funnels.set(id, updated);
-    return updated;
-  }
-
-  async deleteFunnel(id: string): Promise<boolean> {
-    const deleted = this.funnels.delete(id);
-    if (deleted) {
-      Array.from(this.verses.entries())
-        .filter(([, verse]) => verse.funnelId === id)
-        .forEach(([verseId]) => this.verses.delete(verseId));
-      
-      Array.from(this.themes.entries())
-        .filter(([, theme]) => theme.funnelId === id)
-        .forEach(([themeId]) => this.themes.delete(themeId));
-    }
-    return deleted;
-  }
-
-  async getVerses(funnelId?: string): Promise<Verse[]> {
-    const verses = Array.from(this.verses.values());
-    if (funnelId) {
-      return verses.filter(v => v.funnelId === funnelId);
-    }
-    return verses;
-  }
-
-  async getVerse(id: string): Promise<Verse | undefined> {
-    return this.verses.get(id);
-  }
-
-  async createVerse(insertVerse: InsertVerse): Promise<Verse> {
-    const id = randomUUID();
-    const verse: Verse = { 
-      id,
-      funnelId: insertVerse.funnelId ?? null,
-      verseText: insertVerse.verseText,
-      reference: insertVerse.reference,
-      ctaText: insertVerse.ctaText ?? "Learn More",
-      ctaUrl: insertVerse.ctaUrl ?? "",
-    };
-    this.verses.set(id, verse);
-    return verse;
-  }
-
-  async updateVerse(id: string, update: Partial<InsertVerse>): Promise<Verse | undefined> {
-    const verse = this.verses.get(id);
-    if (!verse) return undefined;
-    
-    const updated = { ...verse, ...update };
-    this.verses.set(id, updated);
-    return updated;
-  }
-
-  async deleteVerse(id: string): Promise<boolean> {
-    return this.verses.delete(id);
-  }
-
-  async getThemes(funnelId?: string): Promise<Theme[]> {
-    const themes = Array.from(this.themes.values());
-    if (funnelId) {
-      return themes.filter(t => t.funnelId === funnelId);
-    }
-    return themes;
-  }
-
-  async getTheme(id: string): Promise<Theme | undefined> {
-    return this.themes.get(id);
-  }
-
-  async createTheme(insertTheme: InsertTheme): Promise<Theme> {
-    const id = randomUUID();
-    const theme: Theme = { 
-      id,
-      funnelId: insertTheme.funnelId ?? null,
-      name: insertTheme.name,
-      primaryColor: insertTheme.primaryColor ?? "#6366f1",
-      secondaryColor: insertTheme.secondaryColor ?? "#8b5cf6",
-      accentColor: insertTheme.accentColor ?? "#ec4899",
-      isDefault: insertTheme.isDefault ?? false,
-    };
-    this.themes.set(id, theme);
-    return theme;
-  }
-
-  async updateTheme(id: string, update: Partial<InsertTheme>): Promise<Theme | undefined> {
-    const theme = this.themes.get(id);
-    if (!theme) return undefined;
-    
-    const updated = { ...theme, ...update };
-    this.themes.set(id, updated);
-    return updated;
-  }
-
-  async deleteTheme(id: string): Promise<boolean> {
-    return this.themes.delete(id);
-  }
+  await db.insert(funnels).values(defaultFunnel);
+  await db.insert(verses).values([verse1, verse2, verse3, verse4, verse5, verse6]);
+  await db.insert(themes).values([theme1, theme2]);
 }
-
-export const storage = new MemStorage();
