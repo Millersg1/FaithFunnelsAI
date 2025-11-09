@@ -247,8 +247,8 @@ export default function Landing() {
               </div>
             </div>
             <div className="space-y-8">
-              <div className="inline-block bg-accent/10 border border-accent/20 rounded-full px-6 py-2">
-                <span className="text-sm font-semibold text-accent">MARKETPLACE READY</span>
+              <div className="inline-block bg-primary/10 border border-primary/30 rounded-full px-6 py-2">
+                <span className="text-sm font-semibold text-primary">MARKETPLACE READY</span>
               </div>
               <h2 className="text-4xl lg:text-5xl font-bold leading-tight">
                 Perfect for Warrior Plus & JVZoo Sellers
