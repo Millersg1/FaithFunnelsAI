@@ -24,6 +24,9 @@ import Refund from "@/pages/legal/refund";
 import OTO1WhiteLabel from "@/pages/oto1-white-label";
 import OTO2Premium from "@/pages/oto2-premium";
 import OTO3Agency from "@/pages/oto3-agency";
+import DS1WhiteLabelLite from "@/pages/ds1-white-label-lite";
+import DS2PremiumLite from "@/pages/ds2-premium-lite";
+import DS3AgencyLite from "@/pages/ds3-agency-lite";
 
 function AppLayout({ children }: { children: React.ReactNode }) {
   const { settings } = useTenant();
@@ -91,6 +94,9 @@ function App() {
             <Route path="/oto1" component={OTO1WhiteLabel} />
             <Route path="/oto2" component={OTO2Premium} />
             <Route path="/oto3" component={OTO3Agency} />
+            <Route path="/ds1" component={DS1WhiteLabelLite} />
+            <Route path="/ds2" component={DS2PremiumLite} />
+            <Route path="/ds3" component={DS3AgencyLite} />
             <Route path="/terms">
               {() => (
                 <AppLayout>
