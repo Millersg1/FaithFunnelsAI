@@ -1,5 +1,19 @@
 # Faith Funnels AI - Product Descriptions for Warrior Plus
 
+## PRODUCT NAME OPTIONS (Under 64 Characters for Warrior Plus)
+
+**Recommended (49 chars):**
+```
+Faith Funnels AI - Christian Funnel Builder
+```
+
+**Alternatives:**
+- Faith Funnels AI - Bible Verse Sales Funnel Builder (54 chars)
+- Faith Funnels AI - Faith-Based Funnel Builder (50 chars)
+- Faith Funnels AI - Christian Sales Funnel Builder (54 chars)
+
+---
+
 ## MAIN OFFER - Basic ($17)
 
 ### Short Description (150 characters max)
