@@ -116,11 +116,9 @@ export default function Landing() {
                 The complete SaaS tool for creating professional sales funnels with Bible verses, custom themes, and instant HTML export. Built with faith, designed for profit.
               </p>
               <div className="flex flex-wrap gap-4">
-                <Link href="/app">
-                  <Button size="lg" className="text-lg px-10 py-6 shadow-lg shadow-primary/25 hover:shadow-xl hover:shadow-primary/30" data-testid="button-get-started">
-                    Get Started Now
-                  </Button>
-                </Link>
+                <a href="https://warriorplus.com/o2/buy/bt2gm2/cryf6k/vygh1c" data-testid="button-get-started">
+                  <img src="https://warriorplus.com/o2/btn/cn150011000/bt2gm2/cryf6k/449699" alt="Get Started Now" />
+                </a>
                 <a href="#features">
                   <Button size="lg" variant="outline" className="text-lg px-10 py-6 border-2" data-testid="button-see-features">
                     See Features
@@ -292,11 +290,9 @@ export default function Landing() {
                 Join successful faith-based marketers who are using Faith Funnels AI to create profitable sales funnels that honor God and grow their business.
               </p>
               <div className="flex flex-col sm:flex-row gap-6 justify-center pt-4">
-                <Link href="/app">
-                  <Button size="lg" className="text-xl px-12 py-7 shadow-2xl shadow-primary/30 hover:shadow-primary/50 w-full sm:w-auto" data-testid="button-start-building">
-                    Start Building Now
-                  </Button>
-                </Link>
+                <a href="https://warriorplus.com/o2/buy/bt2gm2/cryf6k/vygh1c" data-testid="button-start-building">
+                  <img src="https://warriorplus.com/o2/btn/cn150011000/bt2gm2/cryf6k/449699" alt="Start Building Now" />
+                </a>
               </div>
               <div className="pt-6 border-t border-primary/10">
                 <p className="text-lg italic text-muted-foreground bg-gradient-to-r from-primary/10 to-accent/10 rounded-lg px-6 py-4 inline-block border border-primary/20">
