@@ -32,12 +32,21 @@ export default function Landing() {
     script.defer = true;
     document.body.appendChild(script);
 
+    const trackingPixel = document.createElement('img');
+    trackingPixel.src = 'https://warriorplus.com/o2/v/bt2gm2/cryf6k';
+    trackingPixel.width = 1;
+    trackingPixel.height = 1;
+    trackingPixel.style.position = 'absolute';
+    trackingPixel.style.visibility = 'hidden';
+    document.body.appendChild(trackingPixel);
+
     return () => {
       document.removeEventListener('copy', preventCopy);
       document.removeEventListener('cut', preventCopy);
       document.removeEventListener('paste', preventCopy);
       document.removeEventListener('contextmenu', preventContextMenu);
       document.body.removeChild(script);
+      document.body.removeChild(trackingPixel);
     };
   }, []);
   const features = [
