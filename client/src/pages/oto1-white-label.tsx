@@ -95,13 +95,11 @@ export default function OTO1WhiteLabel() {
 
         {/* CTA */}
         <div className="text-center space-y-4">
-          <Button 
-            size="lg" 
-            className="w-full max-w-md text-lg h-14"
-            data-testid="button-upgrade-white-label"
-          >
-            YES! Upgrade to White Label for $47
-          </Button>
+          <div className="flex justify-center">
+            <a href="https://warriorplus.com/o2/buy/bt2gm2/f60l89/w5qzdv" data-testid="button-upgrade-white-label">
+              <img src="https://warriorplus.com/o2/btn/cn150011000/bt2gm2/f60l89/449773" alt="YES! Upgrade to White Label for $47" />
+            </a>
+          </div>
           <p className="text-sm text-muted-foreground">
             One-time payment • Instant access • 14-day money-back guarantee
           </p>
