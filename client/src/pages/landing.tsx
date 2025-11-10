@@ -26,11 +26,18 @@ export default function Landing() {
     document.addEventListener('paste', preventCopy);
     document.addEventListener('contextmenu', preventContextMenu);
 
+    const script = document.createElement('script');
+    script.type = 'text/javascript';
+    script.src = 'https://warriorplus.com/o2/disclaimer/bt2gm2';
+    script.defer = true;
+    document.body.appendChild(script);
+
     return () => {
       document.removeEventListener('copy', preventCopy);
       document.removeEventListener('cut', preventCopy);
       document.removeEventListener('paste', preventCopy);
       document.removeEventListener('contextmenu', preventContextMenu);
+      document.body.removeChild(script);
     };
   }, []);
   const features = [
@@ -301,6 +308,12 @@ export default function Landing() {
               </div>
             </CardContent>
           </Card>
+        </div>
+      </section>
+
+      <section className="py-8 bg-muted/50">
+        <div className="container mx-auto px-4">
+          <div className="wplus_spdisclaimer max-w-4xl mx-auto"></div>
         </div>
       </section>
 
