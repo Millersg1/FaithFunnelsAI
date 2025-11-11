@@ -2,8 +2,49 @@ import { Button } from "@/components/ui/button";
 import { Check, AlertCircle } from "lucide-react";
 import { useEffect } from "react";
 import { CountdownTimer } from "@/components/countdown-timer";
+import { ExitIntentPopup } from "@/components/exit-intent-popup";
+import { TrustBadges } from "@/components/trust-badges";
+import { FAQSection } from "@/components/faq-section";
+import { BonusStack } from "@/components/bonus-stack";
 
 export default function DS1WhiteLabelLite() {
+  const faqs = [
+    {
+      question: "Is 5 funnels really enough?",
+      answer: "For freelancers just starting out, absolutely! You can serve 2-3 clients with 5 funnels. Once you outgrow it, you can always upgrade to more capacity."
+    },
+    {
+      question: "Can I still charge clients for funnel creation?",
+      answer: "Yes! White Label Lite includes the Extended License, so you can legally create funnels for clients and charge for your services - just like the full White Label version."
+    },
+    {
+      question: "What's the difference between this and Basic?",
+      answer: "Basic ($17) is personal use only with 3 funnels. White Label Lite ($27) gives you commercial rights, your own branding, 5 funnels, and 50 exports - perfect for getting started with clients."
+    },
+    {
+      question: "Will this price really disappear?",
+      answer: "Yes! This $27 price is only available on this page. Leave and it goes back to $47. This is a special downsell offer just for you."
+    }
+  ];
+
+  const bonuses = [
+    {
+      title: "Beginner's Funnel Guide",
+      description: "Simple guide to creating your first faith-based funnel in under 30 minutes",
+      value: 27
+    },
+    {
+      title: "3 Starter Templates",
+      description: "Ready-to-customize funnel templates to get started immediately",
+      value: 37
+    },
+    {
+      title: "First Client Checklist",
+      description: "Step-by-step checklist for landing and delivering your first client project",
+      value: 17
+    }
+  ];
+
   useEffect(() => {
     const script = document.createElement('script');
     script.type = 'text/javascript';
@@ -158,6 +199,15 @@ export default function DS1WhiteLabelLite() {
           </p>
         </div>
 
+        {/* Bonus Stack */}
+        <BonusStack bonuses={bonuses} />
+
+        {/* Trust Badges */}
+        <TrustBadges />
+
+        {/* FAQ */}
+        <FAQSection faqs={faqs} />
+
         {/* CTA */}
         <div className="text-center space-y-4">
           <div className="flex justify-center">
@@ -178,6 +228,14 @@ export default function DS1WhiteLabelLite() {
           <div className="wplus_spdisclaimer max-w-4xl mx-auto"></div>
         </div>
       </div>
+
+      {/* Exit Intent Popup */}
+      <ExitIntentPopup
+        offerName="White Label Lite"
+        originalPrice={47}
+        discountedPrice={27}
+        onAccept={() => window.location.href = 'https://warriorplus.com/o2/buy/bt2gm2/f0ydj0/rfzsl2'}
+      />
     </div>
   );
 }

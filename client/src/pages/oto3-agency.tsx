@@ -2,8 +2,49 @@ import { Button } from "@/components/ui/button";
 import { Check, Crown } from "lucide-react";
 import { useEffect } from "react";
 import { CountdownTimer } from "@/components/countdown-timer";
+import { ExitIntentPopup } from "@/components/exit-intent-popup";
+import { TrustBadges } from "@/components/trust-badges";
+import { FAQSection } from "@/components/faq-section";
+import { BonusStack } from "@/components/bonus-stack";
 
 export default function OTO3Agency() {
+  const faqs = [
+    {
+      question: "What makes the Agency Package different from Premium?",
+      answer: "Agency Package includes everything from Premium PLUS advanced analytics, client management tools, priority feature access, and a verified agency badge. It's designed specifically for professional service providers."
+    },
+    {
+      question: "Can I really charge clients $300-$500 per funnel?",
+      answer: "Absolutely! Many agencies charge between $300-$500 for faith-based funnel creation. With our white label system and professional tools, you can confidently deliver premium services to your clients."
+    },
+    {
+      question: "What are the advanced analytics?",
+      answer: "Track performance metrics across all client funnels in one dashboard - conversion rates, clicks, engagement, and more. Perfect for showing clients the value you're delivering."
+    },
+    {
+      question: "Is this price really disappearing forever?",
+      answer: "Yes! This is a one-time upgrade offer. If you leave this page, the Agency Package will cost $247. This $97 price is only available right now during your purchase flow."
+    }
+  ];
+
+  const bonuses = [
+    {
+      title: "Agency Business Training",
+      description: "Complete course on building a profitable faith-based funnel agency from scratch",
+      value: 197
+    },
+    {
+      title: "Client Proposal Templates",
+      description: "Professional proposals and contracts to close more agency deals faster",
+      value: 97
+    },
+    {
+      title: "Premium Support Priority",
+      description: "Jump to the front of the support queue with dedicated agency support",
+      value: 147
+    }
+  ];
+
   useEffect(() => {
     const script = document.createElement('script');
     script.type = 'text/javascript';
@@ -162,6 +203,15 @@ export default function OTO3Agency() {
           </p>
         </div>
 
+        {/* Bonus Stack */}
+        <BonusStack bonuses={bonuses} />
+
+        {/* Trust Badges */}
+        <TrustBadges />
+
+        {/* FAQ */}
+        <FAQSection faqs={faqs} />
+
         {/* CTA */}
         <div className="text-center space-y-4">
           <div className="flex justify-center">
@@ -182,6 +232,14 @@ export default function OTO3Agency() {
           <div className="wplus_spdisclaimer max-w-4xl mx-auto"></div>
         </div>
       </div>
+
+      {/* Exit Intent Popup */}
+      <ExitIntentPopup
+        offerName="Agency Package"
+        originalPrice={247}
+        discountedPrice={97}
+        onAccept={() => window.location.href = 'https://warriorplus.com/o2/buy/bt2gm2/xnv8wv/d7c278'}
+      />
     </div>
   );
 }

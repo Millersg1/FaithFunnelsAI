@@ -2,8 +2,49 @@ import { Button } from "@/components/ui/button";
 import { Check, AlertCircle } from "lucide-react";
 import { useEffect } from "react";
 import { CountdownTimer } from "@/components/countdown-timer";
+import { ExitIntentPopup } from "@/components/exit-intent-popup";
+import { TrustBadges } from "@/components/trust-badges";
+import { FAQSection } from "@/components/faq-section";
+import { BonusStack } from "@/components/bonus-stack";
 
 export default function DS2PremiumLite() {
+  const faqs = [
+    {
+      question: "Is 25 funnels enough for my agency?",
+      answer: "For most growing agencies with 5-10 clients, yes! Each client typically needs 2-3 funnels, so 25 funnels supports solid growth. You can always upgrade to unlimited later."
+    },
+    {
+      question: "Do I get the same premium templates as full Premium?",
+      answer: "Yes! Premium Lite includes all the same exclusive templates as Premium Unlimited. The only difference is the capacity limits (25 funnels vs unlimited)."
+    },
+    {
+      question: "Can I upgrade to Premium Unlimited later?",
+      answer: "Yes, but you won't get this $47 price. Premium Unlimited will cost $67 later. Save $20 by grabbing Premium Lite now at this special downsell price."
+    },
+    {
+      question: "What if I outgrow 25 funnels?",
+      answer: "You can upgrade to Premium Unlimited anytime for just the price difference. But this downsell offer saves you the most money right now."
+    }
+  ];
+
+  const bonuses = [
+    {
+      title: "5 Premium Funnel Templates",
+      description: "Exclusive high-converting templates not available in lower tiers",
+      value: 67
+    },
+    {
+      title: "Multi-Client Management Guide",
+      description: "How to efficiently manage 5-10 clients simultaneously",
+      value: 37
+    },
+    {
+      title: "Scaling Your Agency Playbook",
+      description: "Step-by-step plan for growing from 5 to 20+ clients",
+      value: 47
+    }
+  ];
+
   useEffect(() => {
     const script = document.createElement('script');
     script.type = 'text/javascript';
@@ -171,6 +212,15 @@ export default function DS2PremiumLite() {
           </p>
         </div>
 
+        {/* Bonus Stack */}
+        <BonusStack bonuses={bonuses} />
+
+        {/* Trust Badges */}
+        <TrustBadges />
+
+        {/* FAQ */}
+        <FAQSection faqs={faqs} />
+
         {/* CTA */}
         <div className="text-center space-y-4">
           <div className="flex justify-center">
@@ -191,6 +241,14 @@ export default function DS2PremiumLite() {
           <div className="wplus_spdisclaimer max-w-4xl mx-auto"></div>
         </div>
       </div>
+
+      {/* Exit Intent Popup */}
+      <ExitIntentPopup
+        offerName="Premium Lite"
+        originalPrice={67}
+        discountedPrice={47}
+        onAccept={() => window.location.href = 'https://warriorplus.com/o2/buy/bt2gm2/jvdrq0/wr6bns'}
+      />
     </div>
   );
 }

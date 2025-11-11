@@ -2,8 +2,49 @@ import { Button } from "@/components/ui/button";
 import { Check, X } from "lucide-react";
 import { useEffect } from "react";
 import { CountdownTimer } from "@/components/countdown-timer";
+import { ExitIntentPopup } from "@/components/exit-intent-popup";
+import { TrustBadges } from "@/components/trust-badges";
+import { FAQSection } from "@/components/faq-section";
+import { BonusStack } from "@/components/bonus-stack";
 
 export default function OTO1WhiteLabel() {
+  const faqs = [
+    {
+      question: "Can I really rebrand this as my own business?",
+      answer: "Absolutely! With White Label Rights, you can replace our branding with yours - business name, logo, colors, and support email. Your clients will only see YOUR brand."
+    },
+    {
+      question: "Am I allowed to charge clients for funnel creation?",
+      answer: "Yes! The Extended License allows you to create funnels for clients and charge for your services. This is perfect for agencies and freelancers."
+    },
+    {
+      question: "What's the difference between Basic and White Label?",
+      answer: "Basic gives you 3 funnels and 10 exports for personal use only. White Label gives you 10 funnels, 100 exports, full branding control, and the right to serve clients commercially."
+    },
+    {
+      question: "How quickly can I get started?",
+      answer: "Instantly! Once you upgrade, you'll have immediate access to all White Label features. Set up your branding in minutes and start creating client funnels right away."
+    }
+  ];
+
+  const bonuses = [
+    {
+      title: "Ready-Made Funnel Templates",
+      description: "5 proven faith-based funnel templates you can customize and use immediately",
+      value: 47
+    },
+    {
+      title: "White Label Setup Training",
+      description: "Step-by-step video showing how to set up your white label branding perfectly",
+      value: 27
+    },
+    {
+      title: "Client Pricing Guide",
+      description: "Know exactly what to charge clients for different funnel packages",
+      value: 17
+    }
+  ];
+
   useEffect(() => {
     const script = document.createElement('script');
     script.type = 'text/javascript';
@@ -121,6 +162,15 @@ export default function OTO1WhiteLabel() {
           </div>
         </div>
 
+        {/* Bonus Stack */}
+        <BonusStack bonuses={bonuses} />
+
+        {/* Trust Badges */}
+        <TrustBadges />
+
+        {/* FAQ */}
+        <FAQSection faqs={faqs} />
+
         {/* CTA */}
         <div className="text-center space-y-4">
           <div className="flex justify-center">
@@ -141,6 +191,14 @@ export default function OTO1WhiteLabel() {
           <div className="wplus_spdisclaimer max-w-4xl mx-auto"></div>
         </div>
       </div>
+
+      {/* Exit Intent Popup */}
+      <ExitIntentPopup
+        offerName="White Label Rights"
+        originalPrice={97}
+        discountedPrice={47}
+        onAccept={() => window.location.href = 'https://warriorplus.com/o2/buy/bt2gm2/f60l89/w5qzdv'}
+      />
     </div>
   );
 }

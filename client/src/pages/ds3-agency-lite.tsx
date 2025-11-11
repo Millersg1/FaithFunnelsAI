@@ -2,8 +2,49 @@ import { Button } from "@/components/ui/button";
 import { Check, AlertCircle, X } from "lucide-react";
 import { useEffect } from "react";
 import { CountdownTimer } from "@/components/countdown-timer";
+import { ExitIntentPopup } from "@/components/exit-intent-popup";
+import { TrustBadges } from "@/components/trust-badges";
+import { FAQSection } from "@/components/faq-section";
+import { BonusStack } from "@/components/bonus-stack";
 
 export default function DS3AgencyLite() {
+  const faqs = [
+    {
+      question: "What am I missing without the analytics dashboard?",
+      answer: "You'll still have unlimited funnels, clients, and all core features. The only difference is you won't have the advanced analytics dashboard that tracks detailed performance metrics across all client projects."
+    },
+    {
+      question: "Can I add analytics later?",
+      answer: "Yes, but you'll pay $97 instead of this special $67 downsell price. If you think you'll want analytics eventually, grab Agency Lite now and save $30."
+    },
+    {
+      question: "Do I still get priority support?",
+      answer: "You get priority feature access, but the full Agency Package ($97) includes priority support. Agency Lite gets standard support response times."
+    },
+    {
+      question: "Is Agency Lite worth it vs Premium?",
+      answer: "If you want the verified agency badge, client management tools, and early feature access, absolutely! It's only $20 more than Premium Lite but positions you as a professional agency partner."
+    }
+  ];
+
+  const bonuses = [
+    {
+      title: "Agency Starter Kit",
+      description: "Everything you need to launch your faith-funnel agency in 30 days",
+      value: 127
+    },
+    {
+      title: "Client Onboarding System",
+      description: "Templates and workflows for seamless client onboarding",
+      value: 67
+    },
+    {
+      title: "Professional Agency Badge",
+      description: "Display your verified Faith Funnels AI agency partner status",
+      value: 97
+    }
+  ];
+
   useEffect(() => {
     const script = document.createElement('script');
     script.type = 'text/javascript';
@@ -185,6 +226,15 @@ export default function DS3AgencyLite() {
           </p>
         </div>
 
+        {/* Bonus Stack */}
+        <BonusStack bonuses={bonuses} />
+
+        {/* Trust Badges */}
+        <TrustBadges />
+
+        {/* FAQ */}
+        <FAQSection faqs={faqs} />
+
         {/* CTA */}
         <div className="text-center space-y-4">
           <div className="flex justify-center">
@@ -205,6 +255,14 @@ export default function DS3AgencyLite() {
           <div className="wplus_spdisclaimer max-w-4xl mx-auto"></div>
         </div>
       </div>
+
+      {/* Exit Intent Popup */}
+      <ExitIntentPopup
+        offerName="Agency Lite"
+        originalPrice={97}
+        discountedPrice={67}
+        onAccept={() => window.location.href = 'https://warriorplus.com/o2/buy/bt2gm2/wrjz9c/y079dw'}
+      />
     </div>
   );
 }

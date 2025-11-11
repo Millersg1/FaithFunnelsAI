@@ -2,8 +2,49 @@ import { Button } from "@/components/ui/button";
 import { Check, Zap } from "lucide-react";
 import { useEffect } from "react";
 import { CountdownTimer } from "@/components/countdown-timer";
+import { ExitIntentPopup } from "@/components/exit-intent-popup";
+import { TrustBadges } from "@/components/trust-badges";
+import { FAQSection } from "@/components/faq-section";
+import { BonusStack } from "@/components/bonus-stack";
 
 export default function OTO2Premium() {
+  const faqs = [
+    {
+      question: "Why do I need unlimited funnels?",
+      answer: "If you're serving multiple clients or running multiple campaigns, you'll quickly hit the 10-funnel limit. Premium Unlimited lets you create as many funnels as you need without worrying about limits."
+    },
+    {
+      question: "What are Premium Templates?",
+      answer: "Exclusive, professionally-designed funnel templates that aren't available in White Label. These are conversion-optimized designs created specifically for faith-based businesses."
+    },
+    {
+      question: "Can I still use my white label branding?",
+      answer: "Absolutely! Premium Unlimited includes ALL White Label features plus unlimited capacity and premium templates. You keep all the branding control you had."
+    },
+    {
+      question: "Is there a monthly fee?",
+      answer: "No! This is a one-time payment of just $67. You get unlimited funnels and exports forever with no recurring charges."
+    }
+  ];
+
+  const bonuses = [
+    {
+      title: "10 Premium Funnel Templates",
+      description: "Exclusive high-converting templates for faith-based offers, events, and ministries",
+      value: 97
+    },
+    {
+      title: "Unlimited Client Onboarding System",
+      description: "Email templates and workflows for onboarding unlimited clients smoothly",
+      value: 47
+    },
+    {
+      title: "Advanced Funnel Strategy Guide",
+      description: "Learn how to create complex multi-offer funnels that maximize revenue",
+      value: 67
+    }
+  ];
+
   useEffect(() => {
     const script = document.createElement('script');
     script.type = 'text/javascript';
@@ -131,6 +172,15 @@ export default function OTO2Premium() {
           </p>
         </div>
 
+        {/* Bonus Stack */}
+        <BonusStack bonuses={bonuses} />
+
+        {/* Trust Badges */}
+        <TrustBadges />
+
+        {/* FAQ */}
+        <FAQSection faqs={faqs} />
+
         {/* CTA */}
         <div className="text-center space-y-4">
           <div className="flex justify-center">
@@ -151,6 +201,14 @@ export default function OTO2Premium() {
           <div className="wplus_spdisclaimer max-w-4xl mx-auto"></div>
         </div>
       </div>
+
+      {/* Exit Intent Popup */}
+      <ExitIntentPopup
+        offerName="Premium Unlimited"
+        originalPrice={147}
+        discountedPrice={67}
+        onAccept={() => window.location.href = 'https://warriorplus.com/o2/buy/bt2gm2/pfs25p/mg3bpk'}
+      />
     </div>
   );
 }
