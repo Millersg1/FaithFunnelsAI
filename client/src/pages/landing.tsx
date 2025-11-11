@@ -4,7 +4,6 @@ import { CheckCircle2, Sparkles, Download, Palette, BookOpen, Zap } from "lucide
 import { Link } from "wouter";
 import { useEffect } from "react";
 import { ChatbotWidget } from "@/components/chatbot-widget";
-import { ExitIntentPopup } from "@/components/exit-intent-popup";
 import { TrustBadges } from "@/components/trust-badges";
 import { FAQSection } from "@/components/faq-section";
 import heroImage from "@assets/stock_images/modern_faith-based_b_c2b925cb.jpg";
@@ -424,14 +423,6 @@ export default function Landing() {
         </div>
       </footer>
       <ChatbotWidget />
-
-      {/* Exit Intent Popup */}
-      <ExitIntentPopup
-        offerName="Faith Funnels AI - Basic"
-        originalPrice={47}
-        discountedPrice={17}
-        onAccept={() => window.location.href = 'https://warriorplus.com/o2/buy/bt2gm2/cryf6k/vygh1c'}
-      />
     </div>
   );
 }
