@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Check, X } from "lucide-react";
 import { useEffect } from "react";
+import { CountdownTimer } from "@/components/countdown-timer";
 
 export default function OTO1WhiteLabel() {
   useEffect(() => {
@@ -35,6 +36,11 @@ export default function OTO1WhiteLabel() {
           <p className="text-xl text-muted-foreground">
             Rebrand Faith Funnels AI as YOUR business and create funnels for clients!
           </p>
+        </div>
+
+        {/* Countdown Timer */}
+        <div className="flex justify-center">
+          <CountdownTimer storageKey="oto1-timer" durationMinutes={10} />
         </div>
 
         {/* Special Offer Box */}

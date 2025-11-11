@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Check, Zap } from "lucide-react";
 import { useEffect } from "react";
+import { CountdownTimer } from "@/components/countdown-timer";
 
 export default function OTO2Premium() {
   useEffect(() => {
@@ -39,6 +40,11 @@ export default function OTO2Premium() {
           <p className="text-xl text-muted-foreground">
             Remove all limits and create funnels for unlimited clients!
           </p>
+        </div>
+
+        {/* Countdown Timer */}
+        <div className="flex justify-center">
+          <CountdownTimer storageKey="oto2-timer" durationMinutes={10} />
         </div>
 
         {/* Special Offer Box */}

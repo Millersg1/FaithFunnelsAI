@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Check, Crown } from "lucide-react";
 import { useEffect } from "react";
+import { CountdownTimer } from "@/components/countdown-timer";
 
 export default function OTO3Agency() {
   useEffect(() => {
@@ -39,6 +40,11 @@ export default function OTO3Agency() {
           <p className="text-xl text-muted-foreground">
             Get EVERYTHING + exclusive agency features for professional service providers
           </p>
+        </div>
+
+        {/* Countdown Timer */}
+        <div className="flex justify-center">
+          <CountdownTimer storageKey="oto3-timer" durationMinutes={10} />
         </div>
 
         {/* Special Offer Box */}

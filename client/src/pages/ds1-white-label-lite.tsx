@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Check, AlertCircle } from "lucide-react";
 import { useEffect } from "react";
+import { CountdownTimer } from "@/components/countdown-timer";
 
 export default function DS1WhiteLabelLite() {
   useEffect(() => {
@@ -39,6 +40,11 @@ export default function DS1WhiteLabelLite() {
           <p className="text-xl text-muted-foreground">
             Get white label rights at a special downsell price - just $27!
           </p>
+        </div>
+
+        {/* Countdown Timer */}
+        <div className="flex justify-center">
+          <CountdownTimer storageKey="ds1-timer" durationMinutes={10} />
         </div>
 
         {/* Special Offer Box */}

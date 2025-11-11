@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Check, AlertCircle, X } from "lucide-react";
 import { useEffect } from "react";
+import { CountdownTimer } from "@/components/countdown-timer";
 
 export default function DS3AgencyLite() {
   useEffect(() => {
@@ -39,6 +40,11 @@ export default function DS3AgencyLite() {
           <p className="text-xl text-muted-foreground">
             Get most agency features at a special downsell price!
           </p>
+        </div>
+
+        {/* Countdown Timer */}
+        <div className="flex justify-center">
+          <CountdownTimer storageKey="ds3-timer" durationMinutes={10} />
         </div>
 
         {/* Special Offer Box */}
