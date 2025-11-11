@@ -1,7 +1,29 @@
 import { Button } from "@/components/ui/button";
 import { Check, Crown } from "lucide-react";
+import { useEffect } from "react";
 
 export default function OTO3Agency() {
+  useEffect(() => {
+    const script = document.createElement('script');
+    script.type = 'text/javascript';
+    script.src = 'https://warriorplus.com/o2/disclaimer/bt2gm2';
+    script.defer = true;
+    document.body.appendChild(script);
+
+    const trackingPixel = document.createElement('img');
+    trackingPixel.src = 'https://warriorplus.com/o2/v/bt2gm2/xnv8wv';
+    trackingPixel.width = 1;
+    trackingPixel.height = 1;
+    trackingPixel.style.position = 'absolute';
+    trackingPixel.style.visibility = 'hidden';
+    document.body.appendChild(trackingPixel);
+
+    return () => {
+      document.body.removeChild(script);
+      document.body.removeChild(trackingPixel);
+    };
+  }, []);
+
   return (
     <div className="min-h-screen bg-gradient-to-b from-background to-muted">
       <div className="max-w-4xl mx-auto px-4 py-12 space-y-8">
@@ -136,19 +158,22 @@ export default function OTO3Agency() {
 
         {/* CTA */}
         <div className="text-center space-y-4">
-          <Button 
-            size="lg" 
-            className="w-full max-w-md text-lg h-14 bg-gradient-to-r from-amber-600 to-primary hover:from-amber-700 hover:to-primary/90"
-            data-testid="button-upgrade-agency"
-          >
-            YES! Give Me the Agency Package for $97
-          </Button>
+          <div className="flex justify-center">
+            <a href="https://warriorplus.com/o2/buy/bt2gm2/xnv8wv/d7c278" data-testid="button-upgrade-agency">
+              <img src="https://warriorplus.com/o2/btn/cn150011001/bt2gm2/xnv8wv/449791" alt="YES! Give Me the Agency Package for $97" />
+            </a>
+          </div>
           <p className="text-sm text-muted-foreground">
             One-time payment • Instant access • 14-day money-back guarantee
           </p>
-          <a href="#" className="text-sm text-muted-foreground hover:underline block">
+          <a href="https://warriorplus.com/o/nothanks/xnv8wv" className="text-sm text-muted-foreground hover:underline block">
             No thanks, I don't need agency features
           </a>
+        </div>
+
+        {/* Disclaimer */}
+        <div className="py-8">
+          <div className="wplus_spdisclaimer max-w-4xl mx-auto"></div>
         </div>
       </div>
     </div>
