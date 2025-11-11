@@ -1,7 +1,29 @@
 import { Button } from "@/components/ui/button";
 import { Check, AlertCircle } from "lucide-react";
+import { useEffect } from "react";
 
 export default function DS2PremiumLite() {
+  useEffect(() => {
+    const script = document.createElement('script');
+    script.type = 'text/javascript';
+    script.src = 'https://warriorplus.com/o2/disclaimer/bt2gm2';
+    script.defer = true;
+    document.body.appendChild(script);
+
+    const trackingPixel = document.createElement('img');
+    trackingPixel.src = 'https://warriorplus.com/o2/v/bt2gm2/jvdrq0';
+    trackingPixel.width = 1;
+    trackingPixel.height = 1;
+    trackingPixel.style.position = 'absolute';
+    trackingPixel.style.visibility = 'hidden';
+    document.body.appendChild(trackingPixel);
+
+    return () => {
+      document.body.removeChild(script);
+      document.body.removeChild(trackingPixel);
+    };
+  }, []);
+
   return (
     <div className="min-h-screen bg-gradient-to-b from-background to-muted">
       <div className="max-w-4xl mx-auto px-4 py-12 space-y-8">
@@ -145,19 +167,22 @@ export default function DS2PremiumLite() {
 
         {/* CTA */}
         <div className="text-center space-y-4">
-          <Button 
-            size="lg" 
-            className="w-full max-w-md text-lg h-14"
-            data-testid="button-downsell-premium-lite"
-          >
-            YES! Get Premium Lite for $47
-          </Button>
+          <div className="flex justify-center">
+            <a href="https://warriorplus.com/o2/buy/bt2gm2/jvdrq0/wr6bns" data-testid="button-downsell-premium-lite">
+              <img src="https://warriorplus.com/o2/btn/cn150011000/bt2gm2/jvdrq0/449821" alt="YES! Get Premium Lite for $47" />
+            </a>
+          </div>
           <p className="text-sm text-muted-foreground">
             One-time payment • Instant access • 14-day money-back guarantee
           </p>
-          <a href="#" className="text-sm text-muted-foreground hover:underline block">
+          <a href="https://warriorplus.com/o/nothanks/jvdrq0" className="text-sm text-muted-foreground hover:underline block">
             No thanks, I'll stick with White Label
           </a>
+        </div>
+
+        {/* Disclaimer */}
+        <div className="py-8">
+          <div className="wplus_spdisclaimer max-w-4xl mx-auto"></div>
         </div>
       </div>
     </div>
