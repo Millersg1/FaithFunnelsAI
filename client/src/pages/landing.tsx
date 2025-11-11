@@ -4,12 +4,41 @@ import { CheckCircle2, Sparkles, Download, Palette, BookOpen, Zap } from "lucide
 import { Link } from "wouter";
 import { useEffect } from "react";
 import { ChatbotWidget } from "@/components/chatbot-widget";
+import { ExitIntentPopup } from "@/components/exit-intent-popup";
+import { TrustBadges } from "@/components/trust-badges";
+import { FAQSection } from "@/components/faq-section";
 import heroImage from "@assets/stock_images/modern_faith-based_b_c2b925cb.jpg";
 import dashboardImage from "@assets/stock_images/digital_marketing_da_5b5dfa8d.jpg";
 import successImage from "@assets/stock_images/successful_online_bu_c7443eb8.jpg";
 import funnelImage from "@assets/stock_images/website_funnel_conve_bf6909f9.jpg";
 
 export default function Landing() {
+  const faqs = [
+    {
+      question: "Do I need technical skills to use Faith Funnels AI?",
+      answer: "Not at all! Faith Funnels AI is designed for complete beginners. Our intuitive dashboard makes it easy to build professional funnels in minutes, even if you've never created a sales page before."
+    },
+    {
+      question: "Can I really use this for Warrior Plus and JVZoo launches?",
+      answer: "Absolutely! Faith Funnels AI exports standalone HTML files that you can upload directly to any hosting provider. They're perfect for Warrior Plus, JVZoo, or any other marketplace."
+    },
+    {
+      question: "What's included for $17?",
+      answer: "The Basic tier includes everything you need to get started: 3 funnels, 10 exports per month, Bible verse integration, custom theme designer, and all legal pages (Terms, Privacy, Refund). Perfect for personal use and testing."
+    },
+    {
+      question: "Is there a monthly fee?",
+      answer: "No! This is a one-time payment of just $17. You own it forever with no recurring charges. You can upgrade to higher tiers later if you need more capacity or white label rights."
+    },
+    {
+      question: "What if I'm not satisfied?",
+      answer: "We offer a 14-day money-back guarantee. If Faith Funnels AI doesn't work for you, just email support@faithfunnelsai.com and we'll refund you immediately - no questions asked."
+    },
+    {
+      question: "Can I upgrade later?",
+      answer: "Yes! You can upgrade to White Label ($47), Premium ($67), or Agency Package ($97) at any time to unlock more funnels, commercial rights, and advanced features."
+    }
+  ];
   useEffect(() => {
     const preventCopy = (e: Event) => {
       e.preventDefault();
@@ -287,6 +316,32 @@ export default function Landing() {
         </div>
       </section>
 
+      {/* Trust Badges Section */}
+      <section className="py-16 bg-muted/30">
+        <div className="container mx-auto px-4">
+          <div className="max-w-4xl mx-auto">
+            <TrustBadges />
+          </div>
+        </div>
+      </section>
+
+      {/* FAQ Section */}
+      <section className="py-24 bg-gradient-to-b from-background to-muted/50">
+        <div className="container mx-auto px-4">
+          <div className="max-w-4xl mx-auto space-y-8">
+            <div className="text-center space-y-4">
+              <h2 className="text-4xl lg:text-5xl font-bold">
+                Frequently Asked Questions
+              </h2>
+              <p className="text-xl text-muted-foreground">
+                Everything you need to know about Faith Funnels AI
+              </p>
+            </div>
+            <FAQSection faqs={faqs} />
+          </div>
+        </div>
+      </section>
+
       <section className="py-24 relative overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-secondary/10 to-accent/10" />
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(120,119,198,0.1),transparent_70%)]" />
@@ -369,6 +424,14 @@ export default function Landing() {
         </div>
       </footer>
       <ChatbotWidget />
+
+      {/* Exit Intent Popup */}
+      <ExitIntentPopup
+        offerName="Faith Funnels AI - Basic"
+        originalPrice={47}
+        discountedPrice={17}
+        onAccept={() => window.location.href = 'https://warriorplus.com/o2/buy/bt2gm2/cryf6k/vygh1c'}
+      />
     </div>
   );
 }
