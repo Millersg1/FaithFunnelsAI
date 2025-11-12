@@ -10,6 +10,7 @@ import heroImage from "@assets/stock_images/modern_faith-based_b_c2b925cb.jpg";
 import dashboardImage from "@assets/stock_images/digital_marketing_da_5b5dfa8d.jpg";
 import successImage from "@assets/stock_images/successful_online_bu_c7443eb8.jpg";
 import funnelImage from "@assets/stock_images/website_funnel_conve_bf6909f9.jpg";
+import logoImage from "@assets/FaithFunnelsAI logo 125x125_1762695489231.png";
 
 export default function Landing() {
   const faqs = [
@@ -125,10 +126,12 @@ export default function Landing() {
     <div className="min-h-screen select-none">
       <header className="border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 sticky top-0 z-50">
         <div className="container mx-auto px-4 py-4 flex items-center justify-between">
-          <div className="flex items-center gap-2">
-            <div className="h-8 w-8 rounded-lg bg-primary flex items-center justify-center">
-              <BookOpen className="h-5 w-5 text-primary-foreground" />
-            </div>
+          <div className="flex items-center gap-3">
+            <img 
+              src={logoImage} 
+              alt="Faith Funnels AI Logo" 
+              className="h-10 w-10 object-contain"
+            />
             <span className="font-semibold text-lg">Faith Funnels AI</span>
           </div>
           <Link href="/app">
@@ -384,10 +387,12 @@ export default function Landing() {
         <div className="container mx-auto px-4">
           <div className="grid md:grid-cols-4 gap-8 mb-8">
             <div>
-              <div className="flex items-center gap-2 mb-4">
-                <div className="h-8 w-8 rounded-lg bg-primary flex items-center justify-center">
-                  <BookOpen className="h-5 w-5 text-primary-foreground" />
-                </div>
+              <div className="flex items-center gap-3 mb-4">
+                <img 
+                  src={logoImage} 
+                  alt="Faith Funnels AI Logo" 
+                  className="h-8 w-8 object-contain"
+                />
                 <span className="font-semibold">Faith Funnels AI</span>
               </div>
               <p className="text-sm text-muted-foreground">
