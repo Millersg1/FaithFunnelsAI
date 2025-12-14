@@ -19,8 +19,8 @@ export default function Landing() {
       answer: "Not at all! Faith Funnels AI is designed for complete beginners. Our intuitive dashboard makes it easy to build professional funnels in minutes, even if you've never created a sales page before."
     },
     {
-      question: "Can I really use this for Warrior Plus and JVZoo launches?",
-      answer: "Absolutely! Faith Funnels AI exports standalone HTML files that you can upload directly to any hosting provider. They're perfect for Warrior Plus, JVZoo, or any other marketplace."
+      question: "Can I use this for Warrior Plus, JVZoo and Explodely launches?",
+      answer: "Absolutely! Faith Funnels AI exports standalone HTML files that you can upload directly to any hosting provider. They're perfect for Warrior Plus, JVZoo, Explodely, or any other marketplace."
     },
     {
       question: "What's included for $17?",
@@ -97,7 +97,7 @@ export default function Landing() {
     {
       icon: Download,
       title: "One-Click Export",
-      description: "Download complete HTML/ZIP packages ready for Warrior Plus & JVZoo."
+      description: "Download complete HTML/ZIP packages ready for Warrior Plus, JVZoo & Explodely."
     },
     {
       icon: Zap,
@@ -117,7 +117,7 @@ export default function Landing() {
     "Beginner-friendly dashboard interface",
     "Professional templates included",
     "Export standalone HTML files",
-    "Perfect for Warrior Plus & JVZoo launches",
+    "Perfect for Warrior Plus, JVZoo & Explodely launches",
     "Complete legal compliance built-in",
     "Faith-based messaging that converts"
   ];
@@ -297,11 +297,11 @@ export default function Landing() {
                 <span className="text-sm font-semibold text-primary">MARKETPLACE READY</span>
               </div>
               <h2 className="text-4xl lg:text-5xl font-bold leading-tight">
-                Perfect for Warrior Plus & JVZoo Sellers
+                Perfect for Warrior Plus, JVZoo & Explodely Sellers
               </h2>
               <p className="text-xl text-muted-foreground leading-relaxed">
                 Faith Funnels AI generates complete, standalone HTML funnels that you can upload directly to your hosting. 
-                No dependencies, no hassle.
+                Works with all major marketplaces. No dependencies, no hassle.
               </p>
               <div className="space-y-4 bg-card/50 backdrop-blur-sm rounded-2xl p-6 border-2">
                 {benefits.map((benefit, idx) => (

@@ -59,7 +59,7 @@ export default function ExplodelyLanding() {
     {
       icon: Download,
       title: "One-Click Export",
-      description: "Download complete HTML/ZIP packages ready for any platform."
+      description: "Download complete HTML/ZIP packages ready for Warrior Plus, JVZoo & Explodely."
     },
     {
       icon: Zap,
@@ -79,7 +79,7 @@ export default function ExplodelyLanding() {
     "Beginner-friendly dashboard interface",
     "Professional templates included",
     "Export standalone HTML files",
-    "Perfect for affiliate marketing",
+    "Perfect for Warrior Plus, JVZoo & Explodely launches",
     "Complete legal compliance built-in",
     "Faith-based messaging that converts"
   ];
