@@ -3,7 +3,7 @@ import { useQuery } from "@tanstack/react-query";
 import { useRoute } from "wouter";
 import type { Tenant, TenantSettings, TierType } from "@shared/schema";
 import { TIERS, TIER_FEATURES } from "@shared/schema";
-import faithFunnelsLogo from "@assets/FaithFunnelsAI logo 125x125_1762695489231.png";
+import faithFunnelsLogo from "@assets/generated_images/faith_funnels_ai_logo.png";
 
 interface TenantContextValue {
   slug: string | null;
