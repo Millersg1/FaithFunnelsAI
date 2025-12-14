@@ -1,0 +1,261 @@
+================================================================================
+FAITH FUNNELS AI - MARKETPLACE SETUP GUIDE
+================================================================================
+
+PRODUCT INFORMATION (Use for all platforms)
+--------------------------------------------------------------------------------
+
+Product Name: Faith Funnels AI
+
+Tagline: The First AI Powered Sales Funnel Builder for Churches and Ministries
+
+Short Description (special chars allowed: , . ! $):
+Faith Funnels AI is the first complete sales funnel builder designed for churches, ministries, and faith based businesses. Build professional multi stage funnels with main offers, upsells, and downsells. Add inspiring Bible verses with custom calls to action. Apply beautiful themes and export everything as standalone HTML ready to upload anywhere. White label rights included!
+
+Long Description (special chars allowed: , . ! $):
+Faith Funnels AI is the first AI powered sales funnel builder created specifically for the faith based market. Build complete sales funnels with main offers, one time offers, and downsells. Add powerful Bible verses with custom calls to action. Choose from beautiful preset themes or create your own. Export everything as standalone HTML files ready to upload to any hosting. Includes white label rights so you can rebrand and use for client projects. Perfect for churches, ministries, Christian coaches, faith based authors, and religious organizations. Works with Warrior Plus, JVZoo, and Explodely. No monthly fees. One time payment. Instant access!
+
+Category: Software
+Sub Category: Marketing Tools
+
+Support Email: support@faithfunnelsai.com
+Vendor Email: support@faithfunnelsai.com
+
+
+================================================================================
+EXPLODELY SETUP
+================================================================================
+
+FRONT END PRODUCT
+--------------------------------------------------------------------------------
+Product Name: Faith Funnels AI
+Price: $17.00
+Commission: 50%
+Sales Page URL: https://faithfunnelsai.com/explodely
+Thank You Page URL: https://faithfunnelsai.com/explodely/thankyou
+Customer Helpdesk URL: https://faithfunnelsai.com/support
+Affiliate Page URL: https://faithfunnelsai.com/affiliates
+
+ORDER BUMP (Optional)
+--------------------------------------------------------------------------------
+Product Name: Extra Bible Verse Packs
+Price: $9.00
+Commission: 50%
+Sales Page URL: https://faithfunnelsai.com/explodely/orderbump
+
+Order Bump Description:
+Add 500 extra Bible verses to your order! Get 10 complete verse packs covering salvation, prosperity, healing, faith, love, peace, strength, gratitude, wisdom and protection. Never run out of inspiring content for your funnels. Just $9 today!
+
+OTO1 - WHITE LABEL LICENSE
+--------------------------------------------------------------------------------
+Product Name: Faith Funnels AI White Label License
+Price: $47.00
+Commission: 50%
+Sales Page URL: https://faithfunnelsai.com/explodely/oto1
+Downsell URL: https://faithfunnelsai.com/explodely/ds1
+
+DS1 - WHITE LABEL LITE
+--------------------------------------------------------------------------------
+Product Name: Faith Funnels AI White Label Lite
+Price: $27.00
+Commission: 50%
+Sales Page URL: https://faithfunnelsai.com/explodely/ds1
+
+OTO2 - PREMIUM TEMPLATES
+--------------------------------------------------------------------------------
+Product Name: Faith Funnels AI Premium Templates
+Price: $67.00
+Commission: 50%
+Sales Page URL: https://faithfunnelsai.com/explodely/oto2
+Downsell URL: https://faithfunnelsai.com/explodely/ds2
+
+DS2 - PREMIUM LITE
+--------------------------------------------------------------------------------
+Product Name: Faith Funnels AI Premium Lite
+Price: $37.00
+Commission: 50%
+Sales Page URL: https://faithfunnelsai.com/explodely/ds2
+
+OTO3 - AGENCY LICENSE
+--------------------------------------------------------------------------------
+Product Name: Faith Funnels AI Agency License
+Price: $97.00
+Commission: 50%
+Sales Page URL: https://faithfunnelsai.com/explodely/oto3
+Downsell URL: https://faithfunnelsai.com/explodely/ds3
+
+DS3 - AGENCY LITE
+--------------------------------------------------------------------------------
+Product Name: Faith Funnels AI Agency Lite
+Price: $47.00
+Commission: 50%
+Sales Page URL: https://faithfunnelsai.com/explodely/ds3
+
+
+================================================================================
+WARRIOR PLUS SETUP
+================================================================================
+
+FRONT END PRODUCT
+--------------------------------------------------------------------------------
+Product Name: Faith Funnels AI
+Price: $17.00
+Commission: 50%
+Sales Page URL: https://faithfunnelsai.com
+Thank You Page URL: https://faithfunnelsai.com/download
+JV Page URL: https://faithfunnelsai.com/affiliates
+
+OTO1 - WHITE LABEL LICENSE
+--------------------------------------------------------------------------------
+Product Name: Faith Funnels AI White Label License
+Price: $47.00
+Commission: 50%
+Sales Page URL: https://faithfunnelsai.com/oto1
+Downsell URL: https://faithfunnelsai.com/ds1
+
+DS1 - WHITE LABEL LITE
+--------------------------------------------------------------------------------
+Product Name: Faith Funnels AI White Label Lite
+Price: $27.00
+Commission: 50%
+Sales Page URL: https://faithfunnelsai.com/ds1
+
+OTO2 - PREMIUM TEMPLATES
+--------------------------------------------------------------------------------
+Product Name: Faith Funnels AI Premium Templates
+Price: $67.00
+Commission: 50%
+Sales Page URL: https://faithfunnelsai.com/oto2
+Downsell URL: https://faithfunnelsai.com/ds2
+
+DS2 - PREMIUM LITE
+--------------------------------------------------------------------------------
+Product Name: Faith Funnels AI Premium Lite
+Price: $37.00
+Commission: 50%
+Sales Page URL: https://faithfunnelsai.com/ds2
+
+OTO3 - AGENCY LICENSE
+--------------------------------------------------------------------------------
+Product Name: Faith Funnels AI Agency License
+Price: $97.00
+Commission: 50%
+Sales Page URL: https://faithfunnelsai.com/oto3
+Downsell URL: https://faithfunnelsai.com/ds3
+
+DS3 - AGENCY LITE
+--------------------------------------------------------------------------------
+Product Name: Faith Funnels AI Agency Lite
+Price: $47.00
+Commission: 50%
+Sales Page URL: https://faithfunnelsai.com/ds3
+
+
+================================================================================
+JVZOO SETUP
+================================================================================
+
+FRONT END PRODUCT
+--------------------------------------------------------------------------------
+Product Name: Faith Funnels AI
+Price: $17.00
+Commission: 50%
+Sales Page URL: https://faithfunnelsai.com
+Thank You Page URL: https://faithfunnelsai.com/download
+JV Page URL: https://faithfunnelsai.com/affiliates
+
+OTO1 - WHITE LABEL LICENSE
+--------------------------------------------------------------------------------
+Product Name: Faith Funnels AI White Label License
+Price: $47.00
+Commission: 50%
+Sales Page URL: https://faithfunnelsai.com/oto1
+
+DS1 - WHITE LABEL LITE
+--------------------------------------------------------------------------------
+Product Name: Faith Funnels AI White Label Lite
+Price: $27.00
+Commission: 50%
+Sales Page URL: https://faithfunnelsai.com/ds1
+
+OTO2 - PREMIUM TEMPLATES
+--------------------------------------------------------------------------------
+Product Name: Faith Funnels AI Premium Templates
+Price: $67.00
+Commission: 50%
+Sales Page URL: https://faithfunnelsai.com/oto2
+
+DS2 - PREMIUM LITE
+--------------------------------------------------------------------------------
+Product Name: Faith Funnels AI Premium Lite
+Price: $37.00
+Commission: 50%
+Sales Page URL: https://faithfunnelsai.com/ds2
+
+OTO3 - AGENCY LICENSE
+--------------------------------------------------------------------------------
+Product Name: Faith Funnels AI Agency License
+Price: $97.00
+Commission: 50%
+Sales Page URL: https://faithfunnelsai.com/oto3
+
+DS3 - AGENCY LITE
+--------------------------------------------------------------------------------
+Product Name: Faith Funnels AI Agency Lite
+Price: $47.00
+Commission: 50%
+Sales Page URL: https://faithfunnelsai.com/ds3
+
+
+================================================================================
+FUNNEL FLOW SUMMARY
+================================================================================
+
+EXPLODELY FUNNEL:
+Sales Page --> Order Bump --> OTO1 --> DS1 (if decline) --> OTO2 --> DS2 (if decline) --> OTO3 --> DS3 (if decline) --> Thank You
+
+WARRIOR PLUS / JVZOO FUNNEL:
+Sales Page --> OTO1 --> DS1 (if decline) --> OTO2 --> DS2 (if decline) --> OTO3 --> DS3 (if decline) --> Download Page
+
+
+================================================================================
+COMMISSION STRUCTURE
+================================================================================
+
+Product              Price      Commission    Affiliate Earns
+-----------------------------------------------------------------
+Front End            $17.00     50%           $8.50
+Order Bump           $9.00      50%           $4.50
+OTO1 White Label     $47.00     50%           $23.50
+DS1 White Label Lite $27.00     50%           $13.50
+OTO2 Premium         $67.00     50%           $33.50
+DS2 Premium Lite     $37.00     50%           $18.50
+OTO3 Agency          $97.00     50%           $48.50
+DS3 Agency Lite      $47.00     50%           $23.50
+
+Maximum Earnings Per Customer (Full Funnel): $122.00
+
+
+================================================================================
+REFUND POLICY
+================================================================================
+
+14 Day Money Back Guarantee
+
+Refund Policy Text:
+We offer a 14 day money back guarantee on all purchases. If you are not satisfied with your purchase, simply contact us at support@faithfunnelsai.com within 14 days of your purchase for a full refund. No questions asked.
+
+
+================================================================================
+IMPORTANT NOTES
+================================================================================
+
+1. All URLs use faithfunnelsai.com as the domain
+2. Explodely has separate pages under /explodely/ path
+3. Warrior Plus and JVZoo use the root domain pages
+4. All commissions are set to 50% across all products
+5. Support email for all platforms: support@faithfunnelsai.com
+6. Exit intent settings: Enable if available
+7. Coupons: Skip for initial launch
+
+================================================================================
