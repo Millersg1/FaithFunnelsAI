@@ -34,6 +34,7 @@ import ExplodelyOTO3 from "@/pages/explodely/oto3-agency";
 import ExplodelyDS1 from "@/pages/explodely/ds1-white-label-lite";
 import ExplodelyDS2 from "@/pages/explodely/ds2-premium-lite";
 import ExplodelyDS3 from "@/pages/explodely/ds3-agency-lite";
+import ExplodelyThankYou from "@/pages/explodely/thankyou";
 
 function AppLayout({ children }: { children: React.ReactNode }) {
   const { settings } = useTenant();
@@ -111,6 +112,7 @@ function App() {
             <Route path="/explodely/ds1" component={ExplodelyDS1} />
             <Route path="/explodely/ds2" component={ExplodelyDS2} />
             <Route path="/explodely/ds3" component={ExplodelyDS3} />
+            <Route path="/explodely/thankyou" component={ExplodelyThankYou} />
             <Route path="/terms">
               {() => (
                 <AppLayout>
