@@ -27,6 +27,13 @@ import OTO3Agency from "@/pages/oto3-agency";
 import DS1WhiteLabelLite from "@/pages/ds1-white-label-lite";
 import DS2PremiumLite from "@/pages/ds2-premium-lite";
 import DS3AgencyLite from "@/pages/ds3-agency-lite";
+import ExplodelyLanding from "@/pages/explodely/landing";
+import ExplodelyOTO1 from "@/pages/explodely/oto1-white-label";
+import ExplodelyOTO2 from "@/pages/explodely/oto2-premium";
+import ExplodelyOTO3 from "@/pages/explodely/oto3-agency";
+import ExplodelyDS1 from "@/pages/explodely/ds1-white-label-lite";
+import ExplodelyDS2 from "@/pages/explodely/ds2-premium-lite";
+import ExplodelyDS3 from "@/pages/explodely/ds3-agency-lite";
 
 function AppLayout({ children }: { children: React.ReactNode }) {
   const { settings } = useTenant();
@@ -97,6 +104,13 @@ function App() {
             <Route path="/ds1" component={DS1WhiteLabelLite} />
             <Route path="/ds2" component={DS2PremiumLite} />
             <Route path="/ds3" component={DS3AgencyLite} />
+            <Route path="/explodely" component={ExplodelyLanding} />
+            <Route path="/explodely/oto1" component={ExplodelyOTO1} />
+            <Route path="/explodely/oto2" component={ExplodelyOTO2} />
+            <Route path="/explodely/oto3" component={ExplodelyOTO3} />
+            <Route path="/explodely/ds1" component={ExplodelyDS1} />
+            <Route path="/explodely/ds2" component={ExplodelyDS2} />
+            <Route path="/explodely/ds3" component={ExplodelyDS3} />
             <Route path="/terms">
               {() => (
                 <AppLayout>
