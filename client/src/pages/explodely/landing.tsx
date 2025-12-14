@@ -92,7 +92,7 @@ export default function ExplodelyLanding() {
             <img 
               src={logoImage} 
               alt="Faith Funnels AI Logo" 
-              className="h-10 w-10 object-contain"
+              className="h-14 w-14 object-contain"
             />
             <span className="font-semibold text-lg">Faith Funnels AI</span>
           </div>
@@ -349,7 +349,7 @@ export default function ExplodelyLanding() {
                 <img 
                   src={logoImage} 
                   alt="Faith Funnels AI Logo" 
-                  className="h-8 w-8 object-contain"
+                  className="h-24 w-24 object-contain"
                 />
                 <span className="font-semibold">Faith Funnels AI</span>
               </div>
