@@ -36,6 +36,7 @@ import ExplodelyDS2 from "@/pages/explodely/ds2-premium-lite";
 import ExplodelyDS3 from "@/pages/explodely/ds3-agency-lite";
 import ExplodelyThankYou from "@/pages/explodely/thankyou";
 import ExplodelyOrderBumpVerses from "@/pages/explodely/order-bump-verses";
+import ExplodelyOrderBumpThankYou from "@/pages/explodely/orderbump-thankyou";
 import Affiliates from "@/pages/affiliates";
 
 function AppLayout({ children }: { children: React.ReactNode }) {
@@ -117,6 +118,7 @@ function App() {
             <Route path="/explodely/ds3" component={ExplodelyDS3} />
             <Route path="/explodely/thankyou" component={ExplodelyThankYou} />
             <Route path="/explodely/orderbump" component={ExplodelyOrderBumpVerses} />
+            <Route path="/explodely/orderbump/thankyou" component={ExplodelyOrderBumpThankYou} />
             <Route path="/terms">
               {() => (
                 <AppLayout>
