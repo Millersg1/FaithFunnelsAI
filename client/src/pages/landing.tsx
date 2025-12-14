@@ -391,9 +391,9 @@ export default function Landing() {
                 <img 
                   src={logoImage} 
                   alt="Faith Funnels AI Logo" 
-                  className="h-8 w-8 object-contain"
+                  className="h-16 w-16 object-contain"
                 />
-                <span className="font-semibold">Faith Funnels AI</span>
+                <span className="font-semibold text-lg">Faith Funnels AI</span>
               </div>
               <p className="text-sm text-muted-foreground">
                 Build Your Ministry. Grow Your Business.
