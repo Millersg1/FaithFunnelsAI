@@ -1,0 +1,241 @@
+================================================================================
+FAITH FUNNELS AI - JVZOO COMPLETE SETUP GUIDE
+================================================================================
+Copy and paste each section when creating your products on JVZoo
+================================================================================
+
+GLOBAL SETTINGS
+--------------------------------------------------------------------------------
+Vendor Name: Faith Funnels AI
+Support Email: support@faithfunnelsai.com
+JV Page URL: https://faithfunnelsai.com/affiliates
+Customer Support URL: https://faithfunnelsai.com/support
+Refund Policy: 14 Day Money Back Guarantee
+
+
+================================================================================
+FRONT END - FAITH FUNNELS AI
+================================================================================
+
+PRODUCT DETAILS:
+Product Name: Faith Funnels AI
+Price: $17.00
+Commission: 50%
+Category: Software
+Sub Category: Marketing Tools
+
+URLS:
+Sales Page URL: https://faithfunnelsai.com
+Thank You Page URL: https://faithfunnelsai.com/download
+JV Page URL: https://faithfunnelsai.com/affiliates
+Support URL: https://faithfunnelsai.com/support
+
+MEMO:
+Faith Funnels AI - Faith Based Funnel Builder
+
+DESCRIPTION:
+Faith Funnels AI is the first complete sales funnel builder designed for churches, ministries, and faith based businesses. Build professional multi stage funnels with main offers, upsells, and downsells. Add inspiring Bible verses with custom calls to action. Apply beautiful themes and export everything as standalone HTML ready to upload anywhere. One time payment. Instant access!
+
+
+================================================================================
+OTO1 - WHITE LABEL LICENSE
+================================================================================
+
+PRODUCT DETAILS:
+Product Name: Faith Funnels AI White Label License
+Price: $47.00
+Commission: 50%
+Category: Software
+Sub Category: Marketing Tools
+
+URLS:
+Sales Page URL: https://faithfunnelsai.com/oto1
+Thank You Page URL: https://faithfunnelsai.com/download
+JV Page URL: https://faithfunnelsai.com/affiliates
+Support URL: https://faithfunnelsai.com/support
+
+MEMO:
+Faith Funnels AI White Label License - Full Rebrand Rights
+
+DESCRIPTION:
+Unlock white label rights for Faith Funnels AI. Remove all branding and add your own business name, logo, and colors. Perfect for agencies and freelancers who create funnels for clients. Rebrand the entire dashboard. Use for unlimited client projects. One time payment!
+
+
+================================================================================
+DS1 - WHITE LABEL LITE
+================================================================================
+
+PRODUCT DETAILS:
+Product Name: Faith Funnels AI White Label Lite
+Price: $27.00
+Commission: 50%
+Category: Software
+Sub Category: Marketing Tools
+
+URLS:
+Sales Page URL: https://faithfunnelsai.com/ds1
+Thank You Page URL: https://faithfunnelsai.com/download
+JV Page URL: https://faithfunnelsai.com/affiliates
+Support URL: https://faithfunnelsai.com/support
+
+MEMO:
+Faith Funnels AI White Label Lite - Basic Rebrand Rights
+
+DESCRIPTION:
+Get white label rights at a special reduced price. Add your own branding to Faith Funnels AI. Great for getting started with client projects. Limited features compared to full white label license. One time payment!
+
+
+================================================================================
+OTO2 - PREMIUM TEMPLATES
+================================================================================
+
+PRODUCT DETAILS:
+Product Name: Faith Funnels AI Premium Templates
+Price: $67.00
+Commission: 50%
+Category: Software
+Sub Category: Marketing Tools
+
+URLS:
+Sales Page URL: https://faithfunnelsai.com/oto2
+Thank You Page URL: https://faithfunnelsai.com/download
+JV Page URL: https://faithfunnelsai.com/affiliates
+Support URL: https://faithfunnelsai.com/support
+
+MEMO:
+Faith Funnels AI Premium Templates - 50 Done For You Funnels
+
+DESCRIPTION:
+Get 50 done for you premium funnel templates designed for faith based businesses. Includes templates for churches, ministries, Christian coaches, authors, and more. Just customize and export. Save hours of work. One time payment!
+
+
+================================================================================
+DS2 - PREMIUM LITE
+================================================================================
+
+PRODUCT DETAILS:
+Product Name: Faith Funnels AI Premium Lite
+Price: $37.00
+Commission: 50%
+Category: Software
+Sub Category: Marketing Tools
+
+URLS:
+Sales Page URL: https://faithfunnelsai.com/ds2
+Thank You Page URL: https://faithfunnelsai.com/download
+JV Page URL: https://faithfunnelsai.com/affiliates
+Support URL: https://faithfunnelsai.com/support
+
+MEMO:
+Faith Funnels AI Premium Lite - 20 Done For You Funnels
+
+DESCRIPTION:
+Get 20 done for you premium funnel templates at a reduced price. Perfect for getting started quickly. Includes church, ministry, and coaching templates. One time payment!
+
+
+================================================================================
+OTO3 - AGENCY LICENSE
+================================================================================
+
+PRODUCT DETAILS:
+Product Name: Faith Funnels AI Agency License
+Price: $97.00
+Commission: 50%
+Category: Software
+Sub Category: Marketing Tools
+
+URLS:
+Sales Page URL: https://faithfunnelsai.com/oto3
+Thank You Page URL: https://faithfunnelsai.com/download
+JV Page URL: https://faithfunnelsai.com/affiliates
+Support URL: https://faithfunnelsai.com/support
+
+MEMO:
+Faith Funnels AI Agency License - Unlimited Client Rights
+
+DESCRIPTION:
+Unlock the agency license for Faith Funnels AI. Create and sell unlimited funnels for clients. Charge any price you want. Keep 100 percent of client payments. Includes priority support and future updates. One time payment!
+
+
+================================================================================
+DS3 - AGENCY LITE
+================================================================================
+
+PRODUCT DETAILS:
+Product Name: Faith Funnels AI Agency Lite
+Price: $47.00
+Commission: 50%
+Category: Software
+Sub Category: Marketing Tools
+
+URLS:
+Sales Page URL: https://faithfunnelsai.com/ds3
+Thank You Page URL: https://faithfunnelsai.com/download
+JV Page URL: https://faithfunnelsai.com/affiliates
+Support URL: https://faithfunnelsai.com/support
+
+MEMO:
+Faith Funnels AI Agency Lite - 10 Client Rights
+
+DESCRIPTION:
+Get agency rights at a special reduced price. Create funnels for up to 10 clients. Great for getting started with your funnel agency. One time payment!
+
+
+================================================================================
+FUNNEL FLOW
+================================================================================
+
+Sales Page --> OTO1 --> DS1 (if decline) --> OTO2 --> DS2 (if decline) --> OTO3 --> DS3 (if decline) --> Download Page
+
+
+================================================================================
+COMMISSION STRUCTURE
+================================================================================
+
+Product              Price      Commission    Affiliate Earns
+-----------------------------------------------------------------
+Front End            $17.00     50%           $8.50
+OTO1 White Label     $47.00     50%           $23.50
+DS1 White Label Lite $27.00     50%           $13.50
+OTO2 Premium         $67.00     50%           $33.50
+DS2 Premium Lite     $37.00     50%           $18.50
+OTO3 Agency          $97.00     50%           $48.50
+DS3 Agency Lite      $47.00     50%           $23.50
+
+Maximum Per Customer: $122.00
+
+
+================================================================================
+REFUND POLICY
+================================================================================
+
+We offer a 14 day money back guarantee on all purchases. If you are not satisfied with your purchase, simply contact us at support@faithfunnelsai.com within 14 days of your purchase for a full refund. No questions asked.
+
+
+================================================================================
+IMAGES NEEDED
+================================================================================
+
+Logo: attached_assets/generated_images/faith_funnels_ai_logo.png
+
+Upload this logo when setting up your JVZoo vendor profile and products.
+
+
+================================================================================
+CHECKLIST
+================================================================================
+
+[ ] Create Front End product
+[ ] Create OTO1 - White Label License
+[ ] Create DS1 - White Label Lite
+[ ] Create OTO2 - Premium Templates
+[ ] Create DS2 - Premium Lite
+[ ] Create OTO3 - Agency License
+[ ] Create DS3 - Agency Lite
+[ ] Set all commissions to 50%
+[ ] Link all products in funnel sequence
+[ ] Test funnel flow
+[ ] Submit for approval
+
+
+================================================================================

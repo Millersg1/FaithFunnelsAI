@@ -1,0 +1,275 @@
+================================================================================
+FAITH FUNNELS AI - EXPLODELY COMPLETE SETUP GUIDE
+================================================================================
+Copy and paste each section when creating your products on Explodely
+================================================================================
+
+GLOBAL SETTINGS
+--------------------------------------------------------------------------------
+Vendor Name: Faith Funnels AI
+Support Email: support@faithfunnelsai.com
+Affiliate Page URL: https://faithfunnelsai.com/affiliates
+Customer Helpdesk URL: https://faithfunnelsai.com/support
+Refund Policy: 14 Day Money Back Guarantee
+
+
+================================================================================
+FRONT END - FAITH FUNNELS AI
+================================================================================
+
+PRODUCT DETAILS:
+Product Name: Faith Funnels AI
+Price: $17.00
+Commission: 50%
+Category: Software
+Sub Category: Marketing Tools
+
+URLS:
+Sales Page URL: https://faithfunnelsai.com/explodely
+Thank You Page URL: https://faithfunnelsai.com/explodely/thankyou
+Customer Helpdesk URL: https://faithfunnelsai.com/support
+Affiliate Page URL: https://faithfunnelsai.com/affiliates
+
+MEMO:
+Faith Funnels AI - Faith Based Funnel Builder
+
+DESCRIPTION:
+Faith Funnels AI is the first complete sales funnel builder designed for churches, ministries, and faith based businesses. Build professional multi stage funnels with main offers, upsells, and downsells. Add inspiring Bible verses with custom calls to action. Apply beautiful themes and export everything as standalone HTML ready to upload anywhere. One time payment. Instant access!
+
+
+================================================================================
+ORDER BUMP - EXTRA BIBLE VERSE PACKS
+================================================================================
+
+PRODUCT DETAILS:
+Product Name: Extra Bible Verse Packs
+Price: $9.00
+Commission: 50%
+Category: Software
+Sub Category: Marketing Tools
+
+URLS:
+Sales Page URL: https://faithfunnelsai.com/explodely/orderbump
+Thank You Page URL: https://faithfunnelsai.com/explodely/orderbump/thankyou
+Customer Helpdesk URL: https://faithfunnelsai.com/support
+Affiliate Page URL: https://faithfunnelsai.com/affiliates
+
+MEMO:
+Extra Bible Verse Packs - 500 Verses in 10 Categories
+
+DESCRIPTION:
+Get 500 extra Bible verses organized into 10 powerful packs. Includes salvation, prosperity, healing, faith, love, peace, strength, gratitude, wisdom and protection verses. Each verse comes with a suggested call to action. Copy and paste into any funnel. Perfect addon for Faith Funnels AI users. One time payment. Instant download!
+
+IMAGE:
+attached_assets/generated_images/bible_verse_packs_product.png
+
+
+================================================================================
+OTO1 - WHITE LABEL LICENSE
+================================================================================
+
+PRODUCT DETAILS:
+Product Name: Faith Funnels AI White Label License
+Price: $47.00
+Commission: 50%
+Category: Software
+Sub Category: Marketing Tools
+
+URLS:
+Sales Page URL: https://faithfunnelsai.com/explodely/oto1
+Thank You Page URL: https://faithfunnelsai.com/explodely/thankyou
+Downsell URL: https://faithfunnelsai.com/explodely/ds1
+Customer Helpdesk URL: https://faithfunnelsai.com/support
+Affiliate Page URL: https://faithfunnelsai.com/affiliates
+
+MEMO:
+Faith Funnels AI White Label License - Full Rebrand Rights
+
+DESCRIPTION:
+Unlock white label rights for Faith Funnels AI. Remove all branding and add your own business name, logo, and colors. Perfect for agencies and freelancers who create funnels for clients. Rebrand the entire dashboard. Use for unlimited client projects. One time payment!
+
+
+================================================================================
+DS1 - WHITE LABEL LITE
+================================================================================
+
+PRODUCT DETAILS:
+Product Name: Faith Funnels AI White Label Lite
+Price: $27.00
+Commission: 50%
+Category: Software
+Sub Category: Marketing Tools
+
+URLS:
+Sales Page URL: https://faithfunnelsai.com/explodely/ds1
+Thank You Page URL: https://faithfunnelsai.com/explodely/thankyou
+Customer Helpdesk URL: https://faithfunnelsai.com/support
+Affiliate Page URL: https://faithfunnelsai.com/affiliates
+
+MEMO:
+Faith Funnels AI White Label Lite - Basic Rebrand Rights
+
+DESCRIPTION:
+Get white label rights at a special reduced price. Add your own branding to Faith Funnels AI. Great for getting started with client projects. Limited features compared to full white label license. One time payment!
+
+
+================================================================================
+OTO2 - PREMIUM TEMPLATES
+================================================================================
+
+PRODUCT DETAILS:
+Product Name: Faith Funnels AI Premium Templates
+Price: $67.00
+Commission: 50%
+Category: Software
+Sub Category: Marketing Tools
+
+URLS:
+Sales Page URL: https://faithfunnelsai.com/explodely/oto2
+Thank You Page URL: https://faithfunnelsai.com/explodely/thankyou
+Downsell URL: https://faithfunnelsai.com/explodely/ds2
+Customer Helpdesk URL: https://faithfunnelsai.com/support
+Affiliate Page URL: https://faithfunnelsai.com/affiliates
+
+MEMO:
+Faith Funnels AI Premium Templates - 50 Done For You Funnels
+
+DESCRIPTION:
+Get 50 done for you premium funnel templates designed for faith based businesses. Includes templates for churches, ministries, Christian coaches, authors, and more. Just customize and export. Save hours of work. One time payment!
+
+
+================================================================================
+DS2 - PREMIUM LITE
+================================================================================
+
+PRODUCT DETAILS:
+Product Name: Faith Funnels AI Premium Lite
+Price: $37.00
+Commission: 50%
+Category: Software
+Sub Category: Marketing Tools
+
+URLS:
+Sales Page URL: https://faithfunnelsai.com/explodely/ds2
+Thank You Page URL: https://faithfunnelsai.com/explodely/thankyou
+Customer Helpdesk URL: https://faithfunnelsai.com/support
+Affiliate Page URL: https://faithfunnelsai.com/affiliates
+
+MEMO:
+Faith Funnels AI Premium Lite - 20 Done For You Funnels
+
+DESCRIPTION:
+Get 20 done for you premium funnel templates at a reduced price. Perfect for getting started quickly. Includes church, ministry, and coaching templates. One time payment!
+
+
+================================================================================
+OTO3 - AGENCY LICENSE
+================================================================================
+
+PRODUCT DETAILS:
+Product Name: Faith Funnels AI Agency License
+Price: $97.00
+Commission: 50%
+Category: Software
+Sub Category: Marketing Tools
+
+URLS:
+Sales Page URL: https://faithfunnelsai.com/explodely/oto3
+Thank You Page URL: https://faithfunnelsai.com/explodely/thankyou
+Downsell URL: https://faithfunnelsai.com/explodely/ds3
+Customer Helpdesk URL: https://faithfunnelsai.com/support
+Affiliate Page URL: https://faithfunnelsai.com/affiliates
+
+MEMO:
+Faith Funnels AI Agency License - Unlimited Client Rights
+
+DESCRIPTION:
+Unlock the agency license for Faith Funnels AI. Create and sell unlimited funnels for clients. Charge any price you want. Keep 100 percent of client payments. Includes priority support and future updates. One time payment!
+
+
+================================================================================
+DS3 - AGENCY LITE
+================================================================================
+
+PRODUCT DETAILS:
+Product Name: Faith Funnels AI Agency Lite
+Price: $47.00
+Commission: 50%
+Category: Software
+Sub Category: Marketing Tools
+
+URLS:
+Sales Page URL: https://faithfunnelsai.com/explodely/ds3
+Thank You Page URL: https://faithfunnelsai.com/explodely/thankyou
+Customer Helpdesk URL: https://faithfunnelsai.com/support
+Affiliate Page URL: https://faithfunnelsai.com/affiliates
+
+MEMO:
+Faith Funnels AI Agency Lite - 10 Client Rights
+
+DESCRIPTION:
+Get agency rights at a special reduced price. Create funnels for up to 10 clients. Great for getting started with your funnel agency. One time payment!
+
+
+================================================================================
+FUNNEL FLOW
+================================================================================
+
+Sales Page --> Order Bump --> OTO1 --> DS1 (if decline) --> OTO2 --> DS2 (if decline) --> OTO3 --> DS3 (if decline) --> Thank You
+
+
+================================================================================
+COMMISSION STRUCTURE
+================================================================================
+
+Product              Price      Commission    Affiliate Earns
+-----------------------------------------------------------------
+Front End            $17.00     50%           $8.50
+Order Bump           $9.00      50%           $4.50
+OTO1 White Label     $47.00     50%           $23.50
+DS1 White Label Lite $27.00     50%           $13.50
+OTO2 Premium         $67.00     50%           $33.50
+DS2 Premium Lite     $37.00     50%           $18.50
+OTO3 Agency          $97.00     50%           $48.50
+DS3 Agency Lite      $47.00     50%           $23.50
+
+Maximum Per Customer: $126.50
+
+
+================================================================================
+REFUND POLICY
+================================================================================
+
+We offer a 14 day money back guarantee on all purchases. If you are not satisfied with your purchase, simply contact us at support@faithfunnelsai.com within 14 days of your purchase for a full refund. No questions asked.
+
+
+================================================================================
+IMAGES NEEDED
+================================================================================
+
+Logo: attached_assets/generated_images/faith_funnels_ai_logo.png
+Order Bump Image: attached_assets/generated_images/bible_verse_packs_product.png
+
+Upload these images when setting up your products.
+
+
+================================================================================
+CHECKLIST
+================================================================================
+
+[ ] Create Front End product
+[ ] Create Order Bump - Extra Bible Verse Packs
+[ ] Create OTO1 - White Label License
+[ ] Create DS1 - White Label Lite (link as downsell to OTO1)
+[ ] Create OTO2 - Premium Templates
+[ ] Create DS2 - Premium Lite (link as downsell to OTO2)
+[ ] Create OTO3 - Agency License
+[ ] Create DS3 - Agency Lite (link as downsell to OTO3)
+[ ] Set all commissions to 50%
+[ ] Link all products in funnel sequence
+[ ] Enable exit intent (optional)
+[ ] Test funnel flow
+[ ] Submit for approval
+
+
+================================================================================
