@@ -43,14 +43,26 @@ export default function ExplodelyThankYou() {
               
               <div className="bg-background rounded-lg p-6 border space-y-4">
                 <p className="text-lg">
-                  Click the button below to access your Faith Funnels AI dashboard and start building your first funnel!
+                  Your Faith Funnels AI account is ready! Click the button below to log in and access your dashboard.
                 </p>
                 
-                <Link href="/app">
+                <a href="/api/login">
                   <Button size="lg" className="text-lg px-10 py-6" data-testid="button-access-dashboard">
-                    Access Your Dashboard Now
+                    Log In to Your Dashboard
                   </Button>
-                </Link>
+                </a>
+                
+                <div className="mt-4 p-4 bg-muted/50 rounded-lg text-sm text-muted-foreground">
+                  <p className="font-medium text-foreground mb-2">How to Access Your Account:</p>
+                  <ol className="list-decimal list-inside space-y-1 text-left">
+                    <li>Click "Log In to Your Dashboard" above</li>
+                    <li>Sign in with your Replit account (or create one for free)</li>
+                    <li>You'll be redirected to your Faith Funnels AI dashboard</li>
+                  </ol>
+                  <p className="mt-3 text-xs">
+                    Bookmark this link for easy access: <span className="font-mono text-primary">faithfunnelsai.com/app</span>
+                  </p>
+                </div>
               </div>
 
               <div className="text-left space-y-4 pt-4 border-t">

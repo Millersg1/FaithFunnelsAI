@@ -12,12 +12,15 @@ import {
   type Lead,
   type InsertLead,
   type FunnelStage,
+  type User,
+  type UpsertUser,
   funnels,
   verses,
   themes,
   tenants,
   tenantSettings,
-  leads
+  leads,
+  users
 } from "@shared/schema";
 import { randomUUID } from "crypto";
 import { db } from "./db";
@@ -53,6 +56,9 @@ export interface IStorage {
   getLead(id: string): Promise<Lead | undefined>;
   getLeadByEmail(email: string): Promise<Lead | undefined>;
   createLead(lead: InsertLead): Promise<Lead>;
+  
+  getUser(id: string): Promise<User | undefined>;
+  upsertUser(user: UpsertUser): Promise<User>;
 }
 
 export class PgStorage implements IStorage {
@@ -183,6 +189,26 @@ export class PgStorage implements IStorage {
   async createLead(insertLead: InsertLead): Promise<Lead> {
     const result = await db.insert(leads).values(insertLead).returning();
     return result[0];
+  }
+
+  async getUser(id: string): Promise<User | undefined> {
+    const [user] = await db.select().from(users).where(eq(users.id, id));
+    return user;
+  }
+
+  async upsertUser(userData: UpsertUser): Promise<User> {
+    const [user] = await db
+      .insert(users)
+      .values(userData)
+      .onConflictDoUpdate({
+        target: users.id,
+        set: {
+          ...userData,
+          updatedAt: new Date(),
+        },
+      })
+      .returning();
+    return user;
   }
 }
 

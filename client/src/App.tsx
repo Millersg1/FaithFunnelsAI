@@ -6,6 +6,11 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
 import { AppSidebar } from "@/components/app-sidebar";
 import { TenantProvider, useTenant } from "@/contexts/TenantContext";
+import { ProtectedRoute } from "@/components/ProtectedRoute";
+import { useAuth } from "@/hooks/useAuth";
+import { Button } from "@/components/ui/button";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { LogOut, User } from "lucide-react";
 import NotFound from "@/pages/not-found";
 import Landing from "@/pages/landing";
 import DownloadPage from "@/pages/download";
@@ -41,10 +46,24 @@ import Affiliates from "@/pages/affiliates";
 
 function AppLayout({ children }: { children: React.ReactNode }) {
   const { settings } = useTenant();
+  const { user } = useAuth();
   
   const style = {
     "--sidebar-width": "16rem",
     "--sidebar-width-icon": "3rem",
+  };
+
+  const getInitials = (firstName?: string | null, lastName?: string | null, email?: string | null) => {
+    if (firstName && lastName) {
+      return `${firstName[0]}${lastName[0]}`.toUpperCase();
+    }
+    if (firstName) {
+      return firstName[0].toUpperCase();
+    }
+    if (email) {
+      return email[0].toUpperCase();
+    }
+    return "U";
   };
 
   return (
@@ -71,16 +90,41 @@ function AppLayout({ children }: { children: React.ReactNode }) {
                 <div className="text-xs text-muted-foreground" data-testid="text-tagline">{settings?.tagline || "Build Professional Faith-Based Sales Funnels"}</div>
               </div>
             </div>
-            <div className="flex items-center gap-2">
-              <span className="text-xs text-muted-foreground">Support:</span>
-              <a 
-                href={`mailto:${settings?.supportEmail || 'support@faithfunnelsai.com'}`} 
-                className="text-xs hover:underline"
-                style={{ color: settings?.accentColor || undefined }}
-                data-testid="link-support-email"
-              >
-                {settings?.supportEmail || 'support@faithfunnelsai.com'}
-              </a>
+            <div className="flex items-center gap-4">
+              <div className="hidden md:flex items-center gap-2">
+                <span className="text-xs text-muted-foreground">Support:</span>
+                <a 
+                  href={`mailto:${settings?.supportEmail || 'support@faithfunnelsai.com'}`} 
+                  className="text-xs hover:underline"
+                  style={{ color: settings?.accentColor || undefined }}
+                  data-testid="link-support-email"
+                >
+                  {settings?.supportEmail || 'support@faithfunnelsai.com'}
+                </a>
+              </div>
+              {user && (
+                <div className="flex items-center gap-3">
+                  <div className="flex items-center gap-2">
+                    <Avatar className="h-8 w-8">
+                      <AvatarImage src={user.profileImageUrl || undefined} alt={user.firstName || "User"} className="object-cover" />
+                      <AvatarFallback>
+                        {getInitials(user.firstName, user.lastName, user.email)}
+                      </AvatarFallback>
+                    </Avatar>
+                    <span className="hidden lg:block text-sm font-medium" data-testid="text-user-name">
+                      {user.firstName || user.email?.split('@')[0] || 'User'}
+                    </span>
+                  </div>
+                  <Button 
+                    variant="ghost" 
+                    size="icon"
+                    onClick={() => window.location.href = '/api/logout'}
+                    data-testid="button-logout"
+                  >
+                    <LogOut className="h-4 w-4" />
+                  </Button>
+                </div>
+              )}
             </div>
           </header>
           <main className="flex-1 overflow-auto p-6">
@@ -143,94 +187,120 @@ function App() {
             
             <Route path="/app">
               {() => (
-                <AppLayout>
-                  <Dashboard />
-                </AppLayout>
+                <ProtectedRoute>
+                  <AppLayout>
+                    <Dashboard />
+                  </AppLayout>
+                </ProtectedRoute>
               )}
             </Route>
             <Route path="/app/funnels">
               {() => (
-                <AppLayout>
-                  <Funnels />
-                </AppLayout>
+                <ProtectedRoute>
+                  <AppLayout>
+                    <Funnels />
+                  </AppLayout>
+                </ProtectedRoute>
               )}
             </Route>
             <Route path="/app/funnels/:id">
               {() => (
-                <AppLayout>
-                  <FunnelEditor />
-                </AppLayout>
+                <ProtectedRoute>
+                  <AppLayout>
+                    <FunnelEditor />
+                  </AppLayout>
+                </ProtectedRoute>
               )}
             </Route>
             <Route path="/app/verse-builder">
               {() => (
-                <AppLayout>
-                  <VerseBuilder />
-                </AppLayout>
+                <ProtectedRoute>
+                  <AppLayout>
+                    <VerseBuilder />
+                  </AppLayout>
+                </ProtectedRoute>
               )}
             </Route>
             <Route path="/app/theme-settings">
               {() => (
-                <AppLayout>
-                  <ThemeSettings />
-                </AppLayout>
+                <ProtectedRoute>
+                  <AppLayout>
+                    <ThemeSettings />
+                  </AppLayout>
+                </ProtectedRoute>
               )}
             </Route>
             <Route path="/app/export">
               {() => (
-                <AppLayout>
-                  <Export />
-                </AppLayout>
+                <ProtectedRoute>
+                  <AppLayout>
+                    <Export />
+                  </AppLayout>
+                </ProtectedRoute>
               )}
             </Route>
 
             <Route path="/t/:slug">
               {() => (
-                <AppLayout>
-                  <Dashboard />
-                </AppLayout>
+                <ProtectedRoute>
+                  <AppLayout>
+                    <Dashboard />
+                  </AppLayout>
+                </ProtectedRoute>
               )}
             </Route>
             <Route path="/t/:slug/funnels">
               {() => (
-                <AppLayout>
-                  <Funnels />
-                </AppLayout>
+                <ProtectedRoute>
+                  <AppLayout>
+                    <Funnels />
+                  </AppLayout>
+                </ProtectedRoute>
               )}
             </Route>
             <Route path="/t/:slug/funnels/:id">
               {() => (
-                <AppLayout>
-                  <FunnelEditor />
-                </AppLayout>
+                <ProtectedRoute>
+                  <AppLayout>
+                    <FunnelEditor />
+                  </AppLayout>
+                </ProtectedRoute>
               )}
             </Route>
             <Route path="/t/:slug/verse-builder">
               {() => (
-                <AppLayout>
-                  <VerseBuilder />
-                </AppLayout>
+                <ProtectedRoute>
+                  <AppLayout>
+                    <VerseBuilder />
+                  </AppLayout>
+                </ProtectedRoute>
               )}
             </Route>
             <Route path="/t/:slug/theme-settings">
               {() => (
-                <AppLayout>
-                  <ThemeSettings />
-                </AppLayout>
+                <ProtectedRoute>
+                  <AppLayout>
+                    <ThemeSettings />
+                  </AppLayout>
+                </ProtectedRoute>
               )}
             </Route>
             <Route path="/t/:slug/export">
               {() => (
-                <AppLayout>
-                  <Export />
-                </AppLayout>
+                <ProtectedRoute>
+                  <AppLayout>
+                    <Export />
+                  </AppLayout>
+                </ProtectedRoute>
               )}
             </Route>
             <Route path="/t/:slug/admin">
               {() => (
-                <AppLayout>
-                  <WhiteLabelAdmin />
-                </AppLayout>
+                <ProtectedRoute>
+                  <AppLayout>
+                    <WhiteLabelAdmin />
+                  </AppLayout>
+                </ProtectedRoute>
               )}
             </Route>
             
