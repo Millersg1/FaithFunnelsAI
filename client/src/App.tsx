@@ -43,6 +43,7 @@ import ExplodelyThankYou from "@/pages/explodely/thankyou";
 import ExplodelyOrderBumpVerses from "@/pages/explodely/order-bump-verses";
 import ExplodelyOrderBumpThankYou from "@/pages/explodely/orderbump-thankyou";
 import Affiliates from "@/pages/affiliates";
+import DemoAccess from "@/pages/demo-access";
 
 function AppLayout({ children }: { children: React.ReactNode }) {
   const { settings } = useTenant();
@@ -147,6 +148,7 @@ function App() {
             <Route path="/demo" component={DemoPage} />
             <Route path="/support" component={SupportPage} />
             <Route path="/affiliates" component={Affiliates} />
+            <Route path="/wplus-review" component={DemoAccess} />
             <Route path="/oto1" component={OTO1WhiteLabel} />
             <Route path="/oto2" component={OTO2Premium} />
             <Route path="/oto3" component={OTO3Agency} />
