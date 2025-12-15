@@ -32,6 +32,9 @@ The application follows a modern dashboard design inspired by Linear, Notion, an
 - ✅ **OTOs and DSs match tenant white-label branding in exports**
 - ✅ **Lead magnet chatbot with email capture (OpenAI-powered)**
 - ✅ **AI assistant for instant customer support and pre-sales questions**
+- ✅ **User authentication via Replit Auth (OpenID Connect)**
+- ✅ **Protected dashboard routes - login required to access /app**
+- ✅ **Thank you page with clear login instructions for buyers**
 
 **Implementation Notes:**
 - Using PostgreSQL database with Neon WebSocket support for production-ready multi-tenancy
