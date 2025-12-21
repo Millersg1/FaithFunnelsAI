@@ -4,6 +4,7 @@ import { CheckCircle2, Sparkles, Download, Palette, BookOpen, Zap } from "lucide
 import { Link } from "wouter";
 import { useEffect } from "react";
 import { ChatbotWidget } from "@/components/chatbot-widget";
+import { ManageCookiesButton } from "@/components/cookie-consent";
 import { TrustBadges } from "@/components/trust-badges";
 import { FAQSection } from "@/components/faq-section";
 import heroImage from "@assets/stock_images/modern_faith-based_b_c2b925cb.jpg";
@@ -341,6 +342,23 @@ export default function ExplodelyLanding() {
         </div>
       </section>
 
+      <section className="py-8 bg-muted/50 border-t">
+        <div className="container mx-auto px-4">
+          <div className="max-w-4xl mx-auto text-center space-y-4">
+            <h3 className="text-sm font-semibold text-muted-foreground uppercase tracking-wide">Earnings Disclaimer</h3>
+            <p className="text-xs text-muted-foreground leading-relaxed">
+              <strong>INCOME DISCLAIMER:</strong> The results mentioned on this page are not typical. Your results will vary and depend on many factors including but not limited to your background, experience, and work ethic. All business involves risk and requires consistent effort and action. Faith Funnels AI is a tool to help you build sales funnels - we make no guarantees of income or success. The testimonials and examples used are exceptional results that do not apply to the average purchaser and are not intended to represent or guarantee that anyone will achieve the same or similar results.
+            </p>
+            <p className="text-xs text-muted-foreground leading-relaxed">
+              <strong>FTC COMPLIANCE:</strong> In accordance with the FTC guidelines, we are required to inform you that some of the links on this page may be affiliate links. This means that if you click on the link and purchase the item, we may receive an affiliate commission. We only recommend products or services that we believe will add value to our customers.
+            </p>
+            <p className="text-xs text-muted-foreground leading-relaxed">
+              <strong>AI DISCLOSURE:</strong> This product uses artificial intelligence technology powered by OpenAI for the customer support chatbot feature. AI-generated responses are provided for informational purposes. By using the chatbot, you consent to having your conversations processed by AI systems.
+            </p>
+          </div>
+        </div>
+      </section>
+
       <footer className="border-t py-12 bg-muted/30">
         <div className="container mx-auto px-4">
           <div className="grid md:grid-cols-4 gap-8 mb-8">
@@ -371,6 +389,7 @@ export default function ExplodelyLanding() {
                 <li><Link href="/terms" data-testid="link-terms">Terms of Service</Link></li>
                 <li><Link href="/privacy" data-testid="link-privacy">Privacy Policy</Link></li>
                 <li><Link href="/refund" data-testid="link-refund">Refund Policy</Link></li>
+                <li><ManageCookiesButton /></li>
               </ul>
             </div>
             <div>

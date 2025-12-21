@@ -44,6 +44,7 @@ import ExplodelyOrderBumpVerses from "@/pages/explodely/order-bump-verses";
 import ExplodelyOrderBumpThankYou from "@/pages/explodely/orderbump-thankyou";
 import Affiliates from "@/pages/affiliates";
 import DemoAccess from "@/pages/demo-access";
+import { CookieConsentProvider, ManageCookiesButton } from "@/components/cookie-consent";
 
 function AppLayout({ children }: { children: React.ReactNode }) {
   const { settings } = useTenant();
@@ -131,6 +132,14 @@ function AppLayout({ children }: { children: React.ReactNode }) {
           <main className="flex-1 overflow-auto p-6">
             {children}
           </main>
+          <footer className="border-t px-6 py-2 flex items-center justify-between text-xs text-muted-foreground">
+            <div className="flex items-center gap-4">
+              <a href="/terms" className="hover:underline">Terms</a>
+              <a href="/privacy" className="hover:underline">Privacy</a>
+              <ManageCookiesButton />
+            </div>
+            <span>&copy; {new Date().getFullYear()} {settings?.businessName || 'Faith Funnels AI'}</span>
+          </footer>
         </div>
       </div>
     </SidebarProvider>
@@ -141,6 +150,7 @@ function App() {
   return (
     <QueryClientProvider client={queryClient}>
       <TooltipProvider>
+        <CookieConsentProvider>
         <TenantProvider>
           <Switch>
             <Route path="/" component={Landing} />
@@ -309,6 +319,7 @@ function App() {
             <Route component={NotFound} />
           </Switch>
         </TenantProvider>
+        </CookieConsentProvider>
         <Toaster />
       </TooltipProvider>
     </QueryClientProvider>
