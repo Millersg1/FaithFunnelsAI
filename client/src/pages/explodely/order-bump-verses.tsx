@@ -2,6 +2,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { CheckCircle2, BookOpen, Sparkles, Gift } from "lucide-react";
 import logoImage from "@assets/generated_images/faith_funnels_ai_logo.png";
+import { ExplodelyDisclaimer } from "@/components/explodely-disclaimer";
 
 export default function OrderBumpVerses() {
   const versePacks = [
@@ -133,6 +134,7 @@ export default function OrderBumpVerses() {
           <p>&copy; {new Date().getFullYear()} Faith Funnels AI. All rights reserved.</p>
         </div>
       </footer>
+      <ExplodelyDisclaimer />
     </div>
   );
 }

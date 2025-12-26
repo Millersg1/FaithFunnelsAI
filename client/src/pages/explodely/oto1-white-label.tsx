@@ -5,6 +5,7 @@ import { ExitIntentPopup } from "@/components/exit-intent-popup";
 import { TrustBadges } from "@/components/trust-badges";
 import { FAQSection } from "@/components/faq-section";
 import { BonusStack } from "@/components/bonus-stack";
+import { ExplodelyDisclaimer } from "@/components/explodely-disclaimer";
 
 export default function ExplodelyOTO1WhiteLabel() {
   const faqs = [
@@ -156,6 +157,7 @@ export default function ExplodelyOTO1WhiteLabel() {
         </div>
       </div>
 
+      <ExplodelyDisclaimer />
       <ExitIntentPopup
         offerName="White Label Rights"
         originalPrice={97}

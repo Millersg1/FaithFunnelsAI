@@ -3,6 +3,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { CheckCircle2, Download, BookOpen, Palette, Sparkles } from "lucide-react";
 import { Link } from "wouter";
 import logoImage from "@assets/generated_images/faith_funnels_ai_logo.png";
+import { ExplodelyDisclaimer } from "@/components/explodely-disclaimer";
 
 export default function ExplodelyThankYou() {
   return (
@@ -131,6 +132,7 @@ export default function ExplodelyThankYou() {
           </p>
         </div>
       </footer>
+      <ExplodelyDisclaimer />
     </div>
   );
 }

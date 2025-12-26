@@ -5,6 +5,7 @@ import { ExitIntentPopup } from "@/components/exit-intent-popup";
 import { TrustBadges } from "@/components/trust-badges";
 import { FAQSection } from "@/components/faq-section";
 import { BonusStack } from "@/components/bonus-stack";
+import { ExplodelyDisclaimer } from "@/components/explodely-disclaimer";
 
 export default function ExplodelyDS3AgencyLite() {
   const faqs = [
@@ -195,6 +196,7 @@ export default function ExplodelyDS3AgencyLite() {
         </div>
       </div>
 
+      <ExplodelyDisclaimer />
       <ExitIntentPopup
         offerName="Agency Lite"
         originalPrice={97}
