@@ -2,96 +2,101 @@ export default function Refund() {
   return (
     <div className="max-w-4xl space-y-6">
       <div>
-        <h1 className="text-3xl font-semibold">Refund Policy</h1>
-        <p className="text-muted-foreground">Last updated: November 8, 2025</p>
+        <h1 className="text-3xl font-semibold">Return and Refund Policy</h1>
+        <p className="text-muted-foreground">Last updated: December 26, 2025</p>
       </div>
 
       <div className="prose prose-sm max-w-none space-y-6">
-        <section className="space-y-3">
-          <h2 className="text-xl font-semibold">14-Day Money-Back Guarantee</h2>
-          <p className="leading-relaxed text-muted-foreground">
-            We stand behind the quality of Faith Funnels AI. If you're not completely satisfied with your purchase, we offer a 14-day money-back guarantee from the date of purchase.
-          </p>
-        </section>
+        <p className="leading-relaxed text-muted-foreground">
+          Thank you for shopping at Faith Funnels AI.
+        </p>
+        <p className="leading-relaxed text-muted-foreground">
+          If, for any reason, You are not completely satisfied with a purchase We invite you to review our policy on refunds and returns. The following terms are applicable for any product/service that You purchased with Us.
+        </p>
 
         <section className="space-y-3">
-          <h2 className="text-xl font-semibold">Refund Eligibility</h2>
+          <h2 className="text-xl font-semibold">Interpretation and Definitions</h2>
+          
+          <h3 className="text-lg font-medium">Interpretation</h3>
           <p className="leading-relaxed text-muted-foreground">
-            To be eligible for a refund, you must:
+            The words of which the initial letter is capitalized have meanings defined under the following conditions. The following definitions shall have the same meaning regardless of whether they appear in singular or in the plural.
+          </p>
+
+          <h3 className="text-lg font-medium">Definitions</h3>
+          <p className="leading-relaxed text-muted-foreground">
+            For the purposes of this Return and Refund Policy:
           </p>
           <ul className="list-disc pl-6 space-y-2 text-muted-foreground">
-            <li>Request the refund within 14 days of your original purchase date</li>
-            <li>Provide a valid reason for the refund request</li>
-            <li>Have made a good faith effort to use the software</li>
-            <li>Contact our support team at support@faithfunnelsai.com</li>
+            <li><strong>Company</strong> (referred to as either "the Company", "We", "Us" or "Our" in this Agreement) refers to Faith Harbor LLC, Cleveland, OH 44114.</li>
+            <li><strong>Goods</strong> refer to the items offered for sale on the Service.</li>
+            <li><strong>Orders</strong> mean a request by You to purchase Goods from Us.</li>
+            <li><strong>Service</strong> refers to the Website.</li>
+            <li><strong>Website</strong> refers to Faith Funnels AI, accessible from{" "}
+              <a href="https://faithfunnelsai.com/support" className="text-primary hover:underline">
+                https://faithfunnelsai.com/support
+              </a>
+            </li>
+            <li><strong>You</strong> means the individual accessing or using the Service, or the company, or other legal entity on behalf of which such individual is accessing or using the Service, as applicable.</li>
           </ul>
         </section>
 
         <section className="space-y-3">
-          <h2 className="text-xl font-semibold">Non-Refundable Situations</h2>
+          <h2 className="text-xl font-semibold">Your Order Cancellation Rights</h2>
           <p className="leading-relaxed text-muted-foreground">
-            Refunds will not be provided in the following cases:
+            You are entitled to cancel Your Order within 14 days without giving any reason for doing so.
+          </p>
+          <p className="leading-relaxed text-muted-foreground">
+            The deadline for cancelling an Order is 14 days from the date on which You received the Goods/Service.
+          </p>
+          <p className="leading-relaxed text-muted-foreground">
+            Explodely.com is the trusted gateway for{" "}
+            <a href="https://faithfunnelsai.com/explodely" className="text-primary hover:underline">
+              https://faithfunnelsai.com/explodely
+            </a>
+            . You can request a refund:
           </p>
           <ul className="list-disc pl-6 space-y-2 text-muted-foreground">
-            <li>Requests made after the 14-day refund period</li>
-            <li>Violation of our Terms of Service</li>
-            <li>Abuse of the refund policy</li>
-            <li>Technical issues on your end that prevent proper use</li>
-            <li>Change of mind without attempting to use the software</li>
+            <li>Via email:{" "}
+              <a href="mailto:support@explodely.com" className="text-primary hover:underline">
+                support@explodely.com
+              </a>
+            </li>
+            <li>By visiting this page on our website:{" "}
+              <a href="https://explodely.com/contact/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">
+                https://explodely.com/contact/
+              </a>
+            </li>
+            <li>By phone number: +1 (833) EXP-LDLY or +1 (833) 397-5359</li>
           </ul>
         </section>
 
         <section className="space-y-3">
-          <h2 className="text-xl font-semibold">How to Request a Refund</h2>
+          <h2 className="text-xl font-semibold">Conditions for Returns</h2>
           <p className="leading-relaxed text-muted-foreground">
-            To request a refund, please follow these steps:
-          </p>
-          <ol className="list-decimal pl-6 space-y-2 text-muted-foreground">
-            <li>Email our support team at support@faithfunnelsai.com</li>
-            <li>Include your order number and purchase date</li>
-            <li>Provide a brief explanation of why you're requesting a refund</li>
-            <li>Allow 3-5 business days for our team to review your request</li>
-          </ol>
-        </section>
-
-        <section className="space-y-3">
-          <h2 className="text-xl font-semibold">Refund Processing</h2>
-          <p className="leading-relaxed text-muted-foreground">
-            Once your refund request is approved:
+            In order for the Goods to be eligible for a return, please make sure that:
           </p>
           <ul className="list-disc pl-6 space-y-2 text-muted-foreground">
-            <li>Your access to Faith Funnels AI will be terminated</li>
-            <li>The refund will be processed to your original payment method</li>
-            <li>Refunds typically take 5-10 business days to appear in your account</li>
-            <li>You will receive a confirmation email once the refund is processed</li>
+            <li>The Goods were purchased in the last 14 days</li>
           </ul>
         </section>
 
         <section className="space-y-3">
-          <h2 className="text-xl font-semibold">White Label License Refunds</h2>
+          <h2 className="text-xl font-semibold">Contact Us</h2>
           <p className="leading-relaxed text-muted-foreground">
-            If you have purchased Faith Funnels AI with white label licensing:
+            If you have any questions about our Goods, please contact us:
           </p>
           <ul className="list-disc pl-6 space-y-2 text-muted-foreground">
-            <li>The same 14-day refund policy applies</li>
-            <li>You must cease all use of the software upon refund</li>
-            <li>Any white-labeled versions must be discontinued</li>
-            <li>You must not retain access to the dashboard or white-label features</li>
+            <li>By email:{" "}
+              <a href="mailto:support@faithfunnelsai.com" className="text-primary hover:underline">
+                support@faithfunnelsai.com
+              </a>
+            </li>
+            <li>By visiting this page on our website:{" "}
+              <a href="https://faithfunnelsai.com/support" className="text-primary hover:underline">
+                https://faithfunnelsai.com/support
+              </a>
+            </li>
           </ul>
-        </section>
-
-        <section className="space-y-3">
-          <h2 className="text-xl font-semibold">Support Before Refund</h2>
-          <p className="leading-relaxed text-muted-foreground">
-            We encourage you to contact our support team before requesting a refund. Many issues can be resolved quickly, and we're committed to helping you succeed with Faith Funnels AI.
-          </p>
-        </section>
-
-        <section className="space-y-3">
-          <h2 className="text-xl font-semibold">Contact Information</h2>
-          <p className="leading-relaxed text-muted-foreground">
-            For refund requests or questions about this policy, please contact us at support@faithfunnelsai.com
-          </p>
         </section>
       </div>
     </div>
