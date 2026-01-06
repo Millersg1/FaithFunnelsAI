@@ -19,7 +19,7 @@ export default function ExplodelyDS2PremiumLite() {
     },
     {
       question: "Can I upgrade to Premium Unlimited later?",
-      answer: "Yes, but you won't get this $47 price. Premium Unlimited will cost $67 later. Save $20 by grabbing Premium Lite now at this special downsell price."
+      answer: "Yes, but you won't get this $37 price. Premium Unlimited will cost $67 later. Save $30 by grabbing Premium Lite now at this special downsell price."
     },
     {
       question: "What if I outgrow 25 funnels?",
