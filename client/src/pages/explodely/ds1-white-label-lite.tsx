@@ -156,7 +156,7 @@ export default function ExplodelyDS1WhiteLabelLite() {
         offerName="White Label Lite"
         originalPrice={47}
         discountedPrice={27}
-        onAccept={() => window.location.href = 'https://explodely.com/checkout/YOUR_DS1_PRODUCT_ID'}
+        onAccept={() => window.location.href = 'https://explodely.com/checkout/YOUR_DS1_PRODUCT_ID?ocu=yes'}
       />
     </div>
   );

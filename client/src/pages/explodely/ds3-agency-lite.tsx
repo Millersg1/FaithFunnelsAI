@@ -207,7 +207,7 @@ export default function ExplodelyDS3AgencyLite() {
         offerName="Agency Lite"
         originalPrice={97}
         discountedPrice={67}
-        onAccept={() => window.location.href = 'https://explodely.com/checkout/YOUR_DS3_PRODUCT_ID'}
+        onAccept={() => window.location.href = 'https://explodely.com/checkout/YOUR_DS3_PRODUCT_ID?ocu=yes'}
       />
     </div>
   );

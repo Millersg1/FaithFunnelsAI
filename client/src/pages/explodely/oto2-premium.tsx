@@ -171,7 +171,7 @@ export default function ExplodelyOTO2Premium() {
         offerName="Premium Unlimited"
         originalPrice={147}
         discountedPrice={67}
-        onAccept={() => window.location.href = 'https://explodely.com/checkout/YOUR_OTO2_PRODUCT_ID'}
+        onAccept={() => window.location.href = 'https://explodely.com/checkout/YOUR_OTO2_PRODUCT_ID?ocu=yes'}
       />
     </div>
   );

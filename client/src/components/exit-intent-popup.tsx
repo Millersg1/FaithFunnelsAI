@@ -7,9 +7,10 @@ interface ExitIntentPopupProps {
   originalPrice: number;
   discountedPrice: number;
   onAccept: () => void;
+  paymentUrl?: string;
 }
 
-export function ExitIntentPopup({ offerName, originalPrice, discountedPrice, onAccept }: ExitIntentPopupProps) {
+export function ExitIntentPopup({ offerName, originalPrice, discountedPrice, onAccept, paymentUrl }: ExitIntentPopupProps) {
   const [isVisible, setIsVisible] = useState(false);
   const [hasShown, setHasShown] = useState(false);
 
@@ -63,6 +64,10 @@ export function ExitIntentPopup({ offerName, originalPrice, discountedPrice, onA
               This is a <span className="font-bold text-foreground">one-time offer</span> that expires in 2 minutes
             </p>
             
+            <div className="text-center">
+              <p className="text-2xl font-bold mb-2">Only ${discountedPrice}</p>
+            </div>
+            
             <Button
               size="lg"
               className="w-full text-lg h-14"
@@ -71,6 +76,13 @@ export function ExitIntentPopup({ offerName, originalPrice, discountedPrice, onA
             >
               YES! Give Me This Deal Now
             </Button>
+            
+            <p className="text-xs text-muted-foreground italic text-center">
+              This is a 1 Click Upsell and will be charged directly
+            </p>
+            <p className="text-xs text-muted-foreground text-center">
+              SplitPay available - pay in 2 easy installments
+            </p>
 
             <button
               onClick={() => setIsVisible(false)}

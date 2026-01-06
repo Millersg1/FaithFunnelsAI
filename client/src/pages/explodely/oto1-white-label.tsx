@@ -168,7 +168,7 @@ export default function ExplodelyOTO1WhiteLabel() {
         offerName="White Label Rights"
         originalPrice={97}
         discountedPrice={47}
-        onAccept={() => window.location.href = 'https://explodely.com/checkout/YOUR_OTO1_PRODUCT_ID'}
+        onAccept={() => window.location.href = 'https://explodely.com/checkout/YOUR_OTO1_PRODUCT_ID?ocu=yes'}
       />
     </div>
   );
