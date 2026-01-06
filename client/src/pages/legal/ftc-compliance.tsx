@@ -49,8 +49,8 @@ export default function FTCCompliance() {
           <h2 className="text-xl font-semibold">Questions</h2>
           <p className="leading-relaxed text-muted-foreground">
             Contact us at{" "}
-            <a href="mailto:pastorshawn@faithharborministries.com" className="text-primary hover:underline">
-              pastorshawn@faithharborministries.com
+            <a href="mailto:support@faithfunnelsai.com" className="text-primary hover:underline">
+              support@faithfunnelsai.com
             </a>{" "}
             if you have questions about compliance disclosures.
           </p>
@@ -58,9 +58,9 @@ export default function FTCCompliance() {
 
         <section className="border-t pt-6 mt-8 space-y-3">
           <p className="text-sm text-muted-foreground">
-            <strong>Contact:</strong> Faith Harbor Ministries, LLC • 815 Superior Ave East, Suite 1618 • Cleveland, OH 44114 • United States • Email:{" "}
-            <a href="mailto:pastorshawn@faithharborministries.com" className="text-primary hover:underline">
-              pastorshawn@faithharborministries.com
+            <strong>Contact:</strong> Faith Harbor LLC • 815 Superior Ave East, Suite 1618 • Cleveland, OH 44114 • United States • Email:{" "}
+            <a href="mailto:support@faithfunnelsai.com" className="text-primary hover:underline">
+              support@faithfunnelsai.com
             </a>
           </p>
           <p className="text-xs text-muted-foreground italic">
