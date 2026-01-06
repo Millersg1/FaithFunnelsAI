@@ -130,7 +130,7 @@ export default function ExplodelyDS2PremiumLite() {
 
         <div className="text-center space-y-4">
           <div className="flex flex-col items-center gap-2">
-            <a href="https://explodely.com/checkout/YOUR_DS2_PRODUCT_ID?ocu=yes" data-testid="button-downsell-premium-lite">
+            <a href="https://explodely.com/p/226220626?ocu=yes" data-testid="button-downsell-premium-lite">
               <Button size="lg" className="text-lg px-10 py-6 bg-primary hover:bg-primary/90">
                 YES! Get Premium Lite for $37
               </Button>
@@ -156,7 +156,7 @@ export default function ExplodelyDS2PremiumLite() {
         offerName="Premium Lite"
         originalPrice={67}
         discountedPrice={37}
-        onAccept={() => window.location.href = 'https://explodely.com/checkout/YOUR_DS2_PRODUCT_ID?ocu=yes'}
+        onAccept={() => window.location.href = 'https://explodely.com/p/226220626?ocu=yes'}
       />
     </div>
   );

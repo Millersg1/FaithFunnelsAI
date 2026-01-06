@@ -145,7 +145,7 @@ export default function ExplodelyOTO2Premium() {
 
         <div className="text-center space-y-4">
           <div className="flex flex-col items-center gap-2">
-            <a href="https://explodely.com/checkout/YOUR_OTO2_PRODUCT_ID?ocu=yes" data-testid="button-upgrade-premium">
+            <a href="https://explodely.com/p/867339268?ocu=yes" data-testid="button-upgrade-premium">
               <Button size="lg" className="text-lg px-10 py-6 bg-primary hover:bg-primary/90">
                 YES! Upgrade to Premium for $67
               </Button>
@@ -171,7 +171,7 @@ export default function ExplodelyOTO2Premium() {
         offerName="Premium Unlimited"
         originalPrice={147}
         discountedPrice={67}
-        onAccept={() => window.location.href = 'https://explodely.com/checkout/YOUR_OTO2_PRODUCT_ID?ocu=yes'}
+        onAccept={() => window.location.href = 'https://explodely.com/p/867339268?ocu=yes'}
       />
     </div>
   );

@@ -130,7 +130,7 @@ export default function ExplodelyDS1WhiteLabelLite() {
 
         <div className="text-center space-y-4">
           <div className="flex flex-col items-center gap-2">
-            <a href="https://explodely.com/checkout/YOUR_DS1_PRODUCT_ID?ocu=yes" data-testid="button-downsell-white-label-lite">
+            <a href="https://explodely.com/p/99290742?ocu=yes" data-testid="button-downsell-white-label-lite">
               <Button size="lg" className="text-lg px-10 py-6 bg-primary hover:bg-primary/90">
                 YES! Get White Label Lite for $27
               </Button>
@@ -156,7 +156,7 @@ export default function ExplodelyDS1WhiteLabelLite() {
         offerName="White Label Lite"
         originalPrice={47}
         discountedPrice={27}
-        onAccept={() => window.location.href = 'https://explodely.com/checkout/YOUR_DS1_PRODUCT_ID?ocu=yes'}
+        onAccept={() => window.location.href = 'https://explodely.com/p/99290742?ocu=yes'}
       />
     </div>
   );
