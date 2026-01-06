@@ -390,6 +390,7 @@ export default function ExplodelyLanding() {
                 <li><Link href="/terms" data-testid="link-terms">Terms of Service</Link></li>
                 <li><Link href="/privacy" data-testid="link-privacy">Privacy Policy</Link></li>
                 <li><Link href="/refund" data-testid="link-refund">Refund Policy</Link></li>
+                <li><Link href="/ftc-compliance" data-testid="link-ftc-compliance">FTC Compliance</Link></li>
                 <li><ManageCookiesButton /></li>
               </ul>
             </div>

@@ -26,6 +26,7 @@ import WhiteLabelAdmin from "@/pages/white-label-admin";
 import Terms from "@/pages/legal/terms";
 import Privacy from "@/pages/legal/privacy";
 import Refund from "@/pages/legal/refund";
+import FTCCompliance from "@/pages/legal/ftc-compliance";
 import OTO1WhiteLabel from "@/pages/oto1-white-label";
 import OTO2Premium from "@/pages/oto2-premium";
 import OTO3Agency from "@/pages/oto3-agency";
@@ -133,9 +134,11 @@ function AppLayout({ children }: { children: React.ReactNode }) {
             {children}
           </main>
           <footer className="border-t px-6 py-2 flex items-center justify-between text-xs text-muted-foreground">
-            <div className="flex items-center gap-4">
+            <div className="flex items-center gap-4 flex-wrap">
               <a href="/terms" className="hover:underline">Terms</a>
               <a href="/privacy" className="hover:underline">Privacy</a>
+              <a href="/refund" className="hover:underline">Refund</a>
+              <a href="/ftc-compliance" className="hover:underline">FTC Compliance</a>
               <ManageCookiesButton />
             </div>
             <span>&copy; {new Date().getFullYear()} {settings?.businessName || 'Faith Funnels AI'}</span>
@@ -193,6 +196,13 @@ function App() {
               {() => (
                 <AppLayout>
                   <Refund />
+                </AppLayout>
+              )}
+            </Route>
+            <Route path="/ftc-compliance">
+              {() => (
+                <AppLayout>
+                  <FTCCompliance />
                 </AppLayout>
               )}
             </Route>
