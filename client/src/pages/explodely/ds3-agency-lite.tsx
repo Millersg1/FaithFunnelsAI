@@ -180,12 +180,18 @@ export default function ExplodelyDS3AgencyLite() {
         <FAQSection faqs={faqs} />
 
         <div className="text-center space-y-4">
-          <div className="flex justify-center">
-            <a href="https://explodely.com/checkout/YOUR_DS3_PRODUCT_ID" data-testid="button-downsell-agency-lite">
+          <div className="flex flex-col items-center gap-2">
+            <a href="https://explodely.com/checkout/YOUR_DS3_PRODUCT_ID?ocu=yes" data-testid="button-downsell-agency-lite">
               <Button size="lg" className="text-lg px-10 py-6 bg-gradient-to-r from-amber-600 to-primary hover:from-amber-700 hover:to-primary/90">
                 YES! Get Agency Lite for $67
               </Button>
             </a>
+            <p className="text-xs text-muted-foreground italic">
+              This is a 1 Click Upsell and will be charged directly
+            </p>
+            <p className="text-xs text-muted-foreground">
+              SplitPay available - pay in 2 easy installments
+            </p>
           </div>
           <p className="text-sm text-muted-foreground">
             One-time payment • Instant access • 14-day money-back guarantee

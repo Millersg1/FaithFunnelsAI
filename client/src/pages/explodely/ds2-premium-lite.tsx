@@ -57,7 +57,7 @@ export default function ExplodelyDS2PremiumLite() {
             Wait! Try <span className="text-primary">Premium Lite</span> Instead
           </h1>
           <p className="text-xl text-muted-foreground">
-            Get more capacity at a special downsell price - just $47!
+            Get more capacity at a special downsell price - just $37!
           </p>
         </div>
 
@@ -67,8 +67,8 @@ export default function ExplodelyDS2PremiumLite() {
 
         <div className="bg-primary text-primary-foreground p-6 rounded-lg text-center">
           <p className="text-2xl font-bold mb-2">SPECIAL DOWNSELL PRICE</p>
-          <p className="text-4xl font-bold mb-2">Only $47</p>
-          <p className="text-sm opacity-90">(Regular: $67 | You Save: $20)</p>
+          <p className="text-4xl font-bold mb-2">Only $37</p>
+          <p className="text-sm opacity-90">(Regular: $67 | You Save: $30)</p>
         </div>
 
         <div className="bg-card border rounded-lg p-8 space-y-6">
@@ -120,7 +120,7 @@ export default function ExplodelyDS2PremiumLite() {
         <div className="bg-destructive/10 border border-destructive/20 rounded-lg p-6 text-center">
           <p className="font-semibold text-destructive mb-2">One-Time Offer - Expires in 60 Seconds</p>
           <p className="text-sm text-muted-foreground">
-            If you leave, Premium Lite will cost $67. Save $20 by acting now!
+            If you leave, Premium Lite will cost $67. Save $30 by acting now!
           </p>
         </div>
 
@@ -129,12 +129,18 @@ export default function ExplodelyDS2PremiumLite() {
         <FAQSection faqs={faqs} />
 
         <div className="text-center space-y-4">
-          <div className="flex justify-center">
-            <a href="https://explodely.com/checkout/YOUR_DS2_PRODUCT_ID" data-testid="button-downsell-premium-lite">
+          <div className="flex flex-col items-center gap-2">
+            <a href="https://explodely.com/checkout/YOUR_DS2_PRODUCT_ID?ocu=yes" data-testid="button-downsell-premium-lite">
               <Button size="lg" className="text-lg px-10 py-6 bg-primary hover:bg-primary/90">
-                YES! Get Premium Lite for $47
+                YES! Get Premium Lite for $37
               </Button>
             </a>
+            <p className="text-xs text-muted-foreground italic">
+              This is a 1 Click Upsell and will be charged directly
+            </p>
+            <p className="text-xs text-muted-foreground">
+              SplitPay available - pay in 2 easy installments
+            </p>
           </div>
           <p className="text-sm text-muted-foreground">
             One-time payment • Instant access • 14-day money-back guarantee
@@ -149,7 +155,7 @@ export default function ExplodelyDS2PremiumLite() {
       <ExitIntentPopup
         offerName="Premium Lite"
         originalPrice={67}
-        discountedPrice={47}
+        discountedPrice={37}
         onAccept={() => window.location.href = 'https://explodely.com/checkout/YOUR_DS2_PRODUCT_ID'}
       />
     </div>

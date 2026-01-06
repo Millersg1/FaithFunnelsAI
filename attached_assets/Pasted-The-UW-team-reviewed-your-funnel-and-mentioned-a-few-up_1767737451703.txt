@@ -1,0 +1,52 @@
+The UW team reviewed your funnel and mentioned a few updates that are required to ensure everything is compliant and set up correctly. 
+
+For all pages: 
+
+1. Kindly add the Explodely Disclaimer at the bottom of all pages (FE, OTOs, and TY pages):
+https://expldely.com/disclaimer
+
+2. Please add the following footer links (after updating your details) to all pages (FE, OTOs, and TY pages):
+• Explodely Refund Policy: https://expldely.com/refundpolicy
+• FTC Compliance: https://expldely.com/ftc-compliance
+• Product Support link: a link to your contact form or support email address
+• Billing Support link: https://help.explodely.com/support/tickets/new
+
+3. The funnel flow is currently incorrect. The TY page of each product should redirect to the next offer in the funnel.
+• TY page of FE → OTO1 sales page
+• TY page of OTO1 and DS1 → OTO2 sales page, and so on
+
+4. Please update the payment links on all pages as explained in this article:
+https://help.explodely.com/support/solutions/articles/101000477693-how-to-create-a-payment-link-
+
+5. The DS3 product is part of the funnel flow but is not added to your seller account. Please add it:
+https://faithfunnelsai.com/explodely/ds3
+
+----------------------------------------
+
+For all OTO pages:
+
+1. Please update the payment links and add “?ocu=yes” at the end of each payment link.
+
+2. Kindly add 1-click upsell verbiage near all pay buttons. You may use either of the following:
+“Add directly to my order”
+“This is a 1 Click Upsell and will be charged directly”
+
+3. Please mention the SplitPay verbiage near all the upsell and downsell pay buttons as explained in the Requirements section of the article below:
+Explodely SplitPay Feauture 
+
+----------------------------------------
+
+For all DS pop-ups:
+
+1. Please mention the product price, add the appropriate verbiage, and ensure the correct payment links are used.
+Screenshot: https://cln.sh/mcZ9c8BN
+Screenshot: https://cln.sh/w9cN8D6g
+
+----------------------------------------
+
+For the sales page https://faithfunnelsai.com/explodely/ds2:
+
+1. There is a price mismatch. The price in the seller account is $37, while the sales page shows $47. Please update either one to maintain pricing consistency.
+Screenshot: https://cln.sh/ptVw8tNh
+
+Please let us know once you have made all the changes so we can move ahead with the approval process. 
