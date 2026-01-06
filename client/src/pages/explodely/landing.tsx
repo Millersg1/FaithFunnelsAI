@@ -127,7 +127,7 @@ export default function ExplodelyLanding() {
                 The complete SaaS tool for creating professional sales funnels with Bible verses, custom themes, and instant HTML export. Built with faith, designed for profit.
               </p>
               <div className="flex flex-wrap gap-4">
-                <a href="https://explodely.com/checkout/YOUR_PRODUCT_ID" data-testid="button-get-started">
+                <a href="https://explodely.com/p/1218285437" data-testid="button-get-started">
                   <Button size="lg" className="text-lg px-10 py-6 bg-primary hover:bg-primary/90">
                     Get Started Now - Only $17
                   </Button>
@@ -327,7 +327,7 @@ export default function ExplodelyLanding() {
                 Join successful faith-based marketers who are using Faith Funnels AI to create profitable sales funnels that honor God and grow their business.
               </p>
               <div className="flex flex-col sm:flex-row gap-6 justify-center pt-4">
-                <a href="https://explodely.com/checkout/YOUR_PRODUCT_ID" data-testid="button-start-building">
+                <a href="https://explodely.com/p/1218285437" data-testid="button-start-building">
                   <Button size="lg" className="text-lg px-10 py-6 bg-primary hover:bg-primary/90">
                     Start Building Now - Only $17
                   </Button>
