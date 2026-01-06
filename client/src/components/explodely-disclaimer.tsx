@@ -4,18 +4,14 @@ export function ExplodelyDisclaimer() {
       <div className="container mx-auto px-4 space-y-4">
         <div className="flex flex-wrap justify-center gap-4 text-xs">
           <a 
-            href="https://expldely.com/refundpolicy" 
-            target="_blank" 
-            rel="noopener noreferrer"
+            href="/refund"
             className="text-muted-foreground hover:text-foreground underline"
-            data-testid="link-explodely-refund"
+            data-testid="link-refund-policy"
           >
-            Explodely Refund Policy
+            Refund Policy
           </a>
           <a 
-            href="https://expldely.com/ftc-compliance" 
-            target="_blank" 
-            rel="noopener noreferrer"
+            href="/ftc-compliance"
             className="text-muted-foreground hover:text-foreground underline"
             data-testid="link-ftc-compliance"
           >
