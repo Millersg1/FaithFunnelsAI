@@ -142,7 +142,7 @@ export default function ExplodelyOTO1WhiteLabel() {
 
         <div className="text-center space-y-4">
           <div className="flex flex-col items-center gap-2">
-            <a href="https://explodely.com/p/1654858389?ocu=yes" data-testid="button-upgrade-white-label">
+            <a href="https://explodely.com/p/1698606963?ocu=yes" data-testid="button-upgrade-white-label">
               <Button size="lg" className="text-lg px-10 py-6 bg-primary hover:bg-primary/90">
                 YES! Upgrade to White Label for $47
               </Button>
@@ -168,7 +168,7 @@ export default function ExplodelyOTO1WhiteLabel() {
         offerName="White Label Rights"
         originalPrice={97}
         discountedPrice={47}
-        onAccept={() => window.location.href = 'https://explodely.com/p/1654858389?ocu=yes'}
+        onAccept={() => window.location.href = 'https://explodely.com/p/1698606963?ocu=yes'}
       />
     </div>
   );
