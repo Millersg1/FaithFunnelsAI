@@ -173,7 +173,7 @@ export default function ExplodelyOTO3Agency() {
           <p className="text-sm text-muted-foreground">
             One-time payment • Instant access • 14-day money-back guarantee
           </p>
-          <a href="/explodely/ds3" className="text-sm text-muted-foreground hover:underline block">
+          <a href="/explodely/thankyou" className="text-sm text-muted-foreground hover:underline block">
             No thanks, I don't need agency features
           </a>
         </div>

@@ -39,7 +39,6 @@ import ExplodelyOTO2 from "@/pages/explodely/oto2-premium";
 import ExplodelyOTO3 from "@/pages/explodely/oto3-agency";
 import ExplodelyDS1 from "@/pages/explodely/ds1-white-label-lite";
 import ExplodelyDS2 from "@/pages/explodely/ds2-premium-lite";
-import ExplodelyDS3 from "@/pages/explodely/ds3-agency-lite";
 import ExplodelyThankYou from "@/pages/explodely/thankyou";
 import ExplodelyOrderBumpVerses from "@/pages/explodely/order-bump-verses";
 import ExplodelyOrderBumpThankYou from "@/pages/explodely/orderbump-thankyou";
@@ -174,7 +173,6 @@ function App() {
             <Route path="/explodely/oto3" component={ExplodelyOTO3} />
             <Route path="/explodely/ds1" component={ExplodelyDS1} />
             <Route path="/explodely/ds2" component={ExplodelyDS2} />
-            <Route path="/explodely/ds3" component={ExplodelyDS3} />
             <Route path="/explodely/thankyou" component={ExplodelyThankYou} />
             <Route path="/explodely/orderbump" component={ExplodelyOrderBumpVerses} />
             <Route path="/explodely/orderbump/thankyou" component={ExplodelyOrderBumpThankYou} />
