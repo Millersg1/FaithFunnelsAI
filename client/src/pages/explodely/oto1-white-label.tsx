@@ -148,10 +148,10 @@ export default function ExplodelyOTO1WhiteLabel() {
               </Button>
             </a>
             <p className="text-xs text-muted-foreground italic">
-              This is a 1 Click Upsell and will be charged directly
+              1-Click Upsell - Charged directly to your payment method
             </p>
             <p className="text-xs text-muted-foreground">
-              SplitPay available - pay in 2 easy installments
+              Or choose SplitPay at checkout: 2 payments of $23.50
             </p>
           </div>
           <p className="text-sm text-muted-foreground">
