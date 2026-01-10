@@ -4,18 +4,40 @@ export function ExplodelyDisclaimer() {
       <div className="container mx-auto px-4 space-y-4">
         <div className="flex flex-wrap justify-center gap-4 text-xs">
           <a 
-            href="/refund"
+            href="https://explodely.com/disclaimer" 
+            target="_blank" 
+            rel="noopener noreferrer"
             className="text-muted-foreground hover:text-foreground underline"
-            data-testid="link-refund-policy"
+            data-testid="link-explodely-disclaimer"
           >
-            Refund Policy
+            Explodely Disclaimer
           </a>
           <a 
-            href="/ftc-compliance"
+            href="https://explodely.com/refundpolicy" 
+            target="_blank" 
+            rel="noopener noreferrer"
             className="text-muted-foreground hover:text-foreground underline"
-            data-testid="link-ftc-compliance"
+            data-testid="link-explodely-refund"
+          >
+            Explodely Refund Policy
+          </a>
+          <a 
+            href="https://explodely.com/ftc-compliance" 
+            target="_blank" 
+            rel="noopener noreferrer"
+            className="text-muted-foreground hover:text-foreground underline"
+            data-testid="link-explodely-ftc"
           >
             FTC Compliance
+          </a>
+          <a 
+            href="https://explodely.com/earnings-disclaimer" 
+            target="_blank" 
+            rel="noopener noreferrer"
+            className="text-muted-foreground hover:text-foreground underline"
+            data-testid="link-earnings-disclaimer"
+          >
+            Earnings Disclaimer
           </a>
           <a 
             href="mailto:support@faithfunnelsai.com"
