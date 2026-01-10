@@ -270,11 +270,18 @@ export default function Funnels() {
                 </div>
               </div>
 
-              <div className="bg-primary/5 rounded-lg p-4 border text-center">
+              <div className="bg-primary/5 rounded-lg p-4 border text-center space-y-3">
                 <p className="font-medium">Ready to build your first funnel?</p>
-                <p className="text-sm text-muted-foreground mt-1">
+                <p className="text-sm text-muted-foreground">
                   Click "Create Funnel" above and start adding your Main Offer, OTOs, and Downsells!
                 </p>
+                <Button 
+                  onClick={() => setIsLearnMoreOpen(false)} 
+                  className="w-full"
+                  data-testid="button-got-it"
+                >
+                  Got It, Let's Build!
+                </Button>
               </div>
             </div>
           </DialogContent>
