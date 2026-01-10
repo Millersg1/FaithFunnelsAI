@@ -27,6 +27,8 @@ import Terms from "@/pages/legal/terms";
 import Privacy from "@/pages/legal/privacy";
 import Refund from "@/pages/legal/refund";
 import FTCCompliance from "@/pages/legal/ftc-compliance";
+import Disclaimer from "@/pages/legal/disclaimer";
+import EarningsDisclaimer from "@/pages/legal/earnings-disclaimer";
 import OTO1WhiteLabel from "@/pages/oto1-white-label";
 import OTO2Premium from "@/pages/oto2-premium";
 import OTO3Agency from "@/pages/oto3-agency";
@@ -201,6 +203,20 @@ function App() {
               {() => (
                 <AppLayout>
                   <FTCCompliance />
+                </AppLayout>
+              )}
+            </Route>
+            <Route path="/disclaimer">
+              {() => (
+                <AppLayout>
+                  <Disclaimer />
+                </AppLayout>
+              )}
+            </Route>
+            <Route path="/earnings-disclaimer">
+              {() => (
+                <AppLayout>
+                  <EarningsDisclaimer />
                 </AppLayout>
               )}
             </Route>
