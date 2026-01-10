@@ -147,13 +147,14 @@ export function ChatbotWidget() {
               </div>
             </div>
             <Button
-              size="icon"
+              size="sm"
               variant="ghost"
-              className="h-8 w-8 text-primary-foreground hover:bg-primary-foreground/20"
+              className="text-primary-foreground hover:bg-primary-foreground/20 gap-1"
               onClick={() => setIsOpen(false)}
               data-testid="button-chatbot-close"
             >
               <X className="h-4 w-4" />
+              Close
             </Button>
           </div>
 
