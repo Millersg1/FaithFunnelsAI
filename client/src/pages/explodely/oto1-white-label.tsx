@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Check, X } from "lucide-react";
 import { CountdownTimer } from "@/components/countdown-timer";
@@ -8,6 +9,13 @@ import { BonusStack } from "@/components/bonus-stack";
 import { ExplodelyDisclaimer } from "@/components/explodely-disclaimer";
 
 export default function ExplodelyOTO1WhiteLabel() {
+  const [isProcessing, setIsProcessing] = useState(false);
+
+  const handlePurchaseClick = () => {
+    if (isProcessing) return;
+    setIsProcessing(true);
+    window.location.href = 'https://explodely.com/p/1698606963?ocu=yes';
+  };
   const faqs = [
     {
       question: "Can I really rebrand this as my own business?",
@@ -142,11 +150,15 @@ export default function ExplodelyOTO1WhiteLabel() {
 
         <div className="text-center space-y-4">
           <div className="flex flex-col items-center gap-2">
-            <a href="https://explodely.com/p/1698606963?ocu=yes" data-testid="button-upgrade-white-label">
-              <Button size="lg" className="text-lg px-10 py-6 bg-primary hover:bg-primary/90">
-                YES! Upgrade to White Label for $47
-              </Button>
-            </a>
+            <Button 
+              size="lg" 
+              className="text-lg px-10 py-6 bg-primary hover:bg-primary/90"
+              onClick={handlePurchaseClick}
+              disabled={isProcessing}
+              data-testid="button-upgrade-white-label"
+            >
+              {isProcessing ? "Processing..." : "YES! Upgrade to White Label for $47"}
+            </Button>
             <p className="text-xs text-muted-foreground italic">
               1-Click Upsell - Charged directly to your payment method
             </p>

@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Check, Crown } from "lucide-react";
 import { CountdownTimer } from "@/components/countdown-timer";
@@ -8,6 +9,13 @@ import { BonusStack } from "@/components/bonus-stack";
 import { ExplodelyDisclaimer } from "@/components/explodely-disclaimer";
 
 export default function ExplodelyOTO3Agency() {
+  const [isProcessing, setIsProcessing] = useState(false);
+
+  const handlePurchaseClick = () => {
+    if (isProcessing) return;
+    setIsProcessing(true);
+    window.location.href = 'https://explodely.com/p/1328614703?ocu=yes';
+  };
   const faqs = [
     {
       question: "What makes the Agency Package different from Premium?",
@@ -158,11 +166,15 @@ export default function ExplodelyOTO3Agency() {
 
         <div className="text-center space-y-4">
           <div className="flex flex-col items-center gap-2">
-            <a href="https://explodely.com/p/1328614703?ocu=yes" data-testid="button-upgrade-agency">
-              <Button size="lg" className="text-lg px-10 py-6 bg-gradient-to-r from-amber-600 to-primary hover:from-amber-700 hover:to-primary/90">
-                YES! Give Me the Agency Package for $97
-              </Button>
-            </a>
+            <Button 
+              size="lg" 
+              className="text-lg px-10 py-6 bg-gradient-to-r from-amber-600 to-primary hover:from-amber-700 hover:to-primary/90"
+              onClick={handlePurchaseClick}
+              disabled={isProcessing}
+              data-testid="button-upgrade-agency"
+            >
+              {isProcessing ? "Processing..." : "YES! Give Me the Agency Package for $97"}
+            </Button>
             <p className="text-xs text-muted-foreground italic">
               1-Click Upsell - Charged directly to your payment method
             </p>

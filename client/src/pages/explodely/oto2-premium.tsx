@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Check, Zap } from "lucide-react";
 import { CountdownTimer } from "@/components/countdown-timer";
@@ -8,6 +9,13 @@ import { BonusStack } from "@/components/bonus-stack";
 import { ExplodelyDisclaimer } from "@/components/explodely-disclaimer";
 
 export default function ExplodelyOTO2Premium() {
+  const [isProcessing, setIsProcessing] = useState(false);
+
+  const handlePurchaseClick = () => {
+    if (isProcessing) return;
+    setIsProcessing(true);
+    window.location.href = 'https://explodely.com/p/867339268?ocu=yes';
+  };
   const faqs = [
     {
       question: "Why do I need unlimited funnels?",
@@ -145,11 +153,15 @@ export default function ExplodelyOTO2Premium() {
 
         <div className="text-center space-y-4">
           <div className="flex flex-col items-center gap-2">
-            <a href="https://explodely.com/p/867339268?ocu=yes" data-testid="button-upgrade-premium">
-              <Button size="lg" className="text-lg px-10 py-6 bg-primary hover:bg-primary/90">
-                YES! Upgrade to Premium for $67
-              </Button>
-            </a>
+            <Button 
+              size="lg" 
+              className="text-lg px-10 py-6 bg-primary hover:bg-primary/90"
+              onClick={handlePurchaseClick}
+              disabled={isProcessing}
+              data-testid="button-upgrade-premium"
+            >
+              {isProcessing ? "Processing..." : "YES! Upgrade to Premium for $67"}
+            </Button>
             <p className="text-xs text-muted-foreground italic">
               1-Click Upsell - Charged directly to your payment method
             </p>
