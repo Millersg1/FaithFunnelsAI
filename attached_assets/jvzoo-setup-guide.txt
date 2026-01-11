@@ -8,7 +8,7 @@ GLOBAL SETTINGS
 --------------------------------------------------------------------------------
 Vendor Name: Faith Funnels AI
 Support Email: support@faithfunnelsai.com
-JV Page URL: https://faithfunnelsai.com/affiliates
+JV Page URL: https://faithfunnelsai.com/jvzoo/affiliates
 Customer Support URL: https://faithfunnelsai.com/support
 Refund Policy: 14 Day Money Back Guarantee
 
@@ -27,7 +27,7 @@ Sub Category: Website Design
 URLS:
 Sales Page URL: https://faithfunnelsai.com/jvzoo
 Thank You Page URL: https://faithfunnelsai.com/jvzoo/thankyou
-JV Page URL: https://faithfunnelsai.com/affiliates
+JV Page URL: https://faithfunnelsai.com/jvzoo/affiliates
 Support URL: https://faithfunnelsai.com/support
 
 MEMO:
@@ -51,7 +51,7 @@ Sub Category: Website Design
 URLS:
 Sales Page URL: https://faithfunnelsai.com/jvzoo/oto1
 Thank You Page URL: https://faithfunnelsai.com/jvzoo/thankyou
-JV Page URL: https://faithfunnelsai.com/affiliates
+JV Page URL: https://faithfunnelsai.com/jvzoo/affiliates
 Support URL: https://faithfunnelsai.com/support
 
 MEMO:
@@ -75,7 +75,7 @@ Sub Category: Website Design
 URLS:
 Sales Page URL: https://faithfunnelsai.com/jvzoo/ds1
 Thank You Page URL: https://faithfunnelsai.com/jvzoo/thankyou
-JV Page URL: https://faithfunnelsai.com/affiliates
+JV Page URL: https://faithfunnelsai.com/jvzoo/affiliates
 Support URL: https://faithfunnelsai.com/support
 
 MEMO:
@@ -99,7 +99,7 @@ Sub Category: Website Design
 URLS:
 Sales Page URL: https://faithfunnelsai.com/jvzoo/oto2
 Thank You Page URL: https://faithfunnelsai.com/jvzoo/thankyou
-JV Page URL: https://faithfunnelsai.com/affiliates
+JV Page URL: https://faithfunnelsai.com/jvzoo/affiliates
 Support URL: https://faithfunnelsai.com/support
 
 MEMO:
@@ -123,7 +123,7 @@ Sub Category: Website Design
 URLS:
 Sales Page URL: https://faithfunnelsai.com/jvzoo/ds2
 Thank You Page URL: https://faithfunnelsai.com/jvzoo/thankyou
-JV Page URL: https://faithfunnelsai.com/affiliates
+JV Page URL: https://faithfunnelsai.com/jvzoo/affiliates
 Support URL: https://faithfunnelsai.com/support
 
 MEMO:
@@ -147,7 +147,7 @@ Sub Category: Website Design
 URLS:
 Sales Page URL: https://faithfunnelsai.com/jvzoo/oto3
 Thank You Page URL: https://faithfunnelsai.com/jvzoo/thankyou
-JV Page URL: https://faithfunnelsai.com/affiliates
+JV Page URL: https://faithfunnelsai.com/jvzoo/affiliates
 Support URL: https://faithfunnelsai.com/support
 
 MEMO:
@@ -171,7 +171,7 @@ Sub Category: Website Design
 URLS:
 Sales Page URL: https://faithfunnelsai.com/jvzoo/ds3
 Thank You Page URL: https://faithfunnelsai.com/jvzoo/thankyou
-JV Page URL: https://faithfunnelsai.com/affiliates
+JV Page URL: https://faithfunnelsai.com/jvzoo/affiliates
 Support URL: https://faithfunnelsai.com/support
 
 MEMO:
@@ -195,7 +195,7 @@ Sub Category: Website Design
 URLS:
 Sales Page URL: https://faithfunnelsai.com/jvzoo/orderbump
 Thank You Page URL: https://faithfunnelsai.com/jvzoo/thankyou
-JV Page URL: https://faithfunnelsai.com/affiliates
+JV Page URL: https://faithfunnelsai.com/jvzoo/affiliates
 Support URL: https://faithfunnelsai.com/support
 
 MEMO:

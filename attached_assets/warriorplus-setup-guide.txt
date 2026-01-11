@@ -8,7 +8,7 @@ GLOBAL SETTINGS
 --------------------------------------------------------------------------------
 Vendor Name: Faith Funnels AI
 Support Email: support@faithfunnelsai.com
-JV Page URL: https://faithfunnelsai.com/affiliates
+JV Page URL: https://faithfunnelsai.com/wplus/affiliates
 Customer Support URL: https://faithfunnelsai.com/support
 Refund Policy: 14 Day Money Back Guarantee
 
@@ -27,7 +27,7 @@ Sub Category: Marketing Tools
 URLS:
 Sales Page URL: https://faithfunnelsai.com
 Thank You Page URL: https://faithfunnelsai.com/download
-JV Page URL: https://faithfunnelsai.com/affiliates
+JV Page URL: https://faithfunnelsai.com/wplus/affiliates
 Support URL: https://faithfunnelsai.com/support
 
 MEMO:
@@ -52,7 +52,7 @@ URLS:
 Sales Page URL: https://faithfunnelsai.com/oto1
 Thank You Page URL: https://faithfunnelsai.com/download
 Downsell URL: https://faithfunnelsai.com/ds1
-JV Page URL: https://faithfunnelsai.com/affiliates
+JV Page URL: https://faithfunnelsai.com/wplus/affiliates
 Support URL: https://faithfunnelsai.com/support
 
 MEMO:
@@ -76,7 +76,7 @@ Sub Category: Marketing Tools
 URLS:
 Sales Page URL: https://faithfunnelsai.com/ds1
 Thank You Page URL: https://faithfunnelsai.com/download
-JV Page URL: https://faithfunnelsai.com/affiliates
+JV Page URL: https://faithfunnelsai.com/wplus/affiliates
 Support URL: https://faithfunnelsai.com/support
 
 MEMO:
@@ -101,7 +101,7 @@ URLS:
 Sales Page URL: https://faithfunnelsai.com/oto2
 Thank You Page URL: https://faithfunnelsai.com/download
 Downsell URL: https://faithfunnelsai.com/ds2
-JV Page URL: https://faithfunnelsai.com/affiliates
+JV Page URL: https://faithfunnelsai.com/wplus/affiliates
 Support URL: https://faithfunnelsai.com/support
 
 MEMO:
@@ -125,7 +125,7 @@ Sub Category: Marketing Tools
 URLS:
 Sales Page URL: https://faithfunnelsai.com/ds2
 Thank You Page URL: https://faithfunnelsai.com/download
-JV Page URL: https://faithfunnelsai.com/affiliates
+JV Page URL: https://faithfunnelsai.com/wplus/affiliates
 Support URL: https://faithfunnelsai.com/support
 
 MEMO:
@@ -150,7 +150,7 @@ URLS:
 Sales Page URL: https://faithfunnelsai.com/oto3
 Thank You Page URL: https://faithfunnelsai.com/download
 Downsell URL: https://faithfunnelsai.com/ds3
-JV Page URL: https://faithfunnelsai.com/affiliates
+JV Page URL: https://faithfunnelsai.com/wplus/affiliates
 Support URL: https://faithfunnelsai.com/support
 
 MEMO:
@@ -174,7 +174,7 @@ Sub Category: Marketing Tools
 URLS:
 Sales Page URL: https://faithfunnelsai.com/ds3
 Thank You Page URL: https://faithfunnelsai.com/download
-JV Page URL: https://faithfunnelsai.com/affiliates
+JV Page URL: https://faithfunnelsai.com/wplus/affiliates
 Support URL: https://faithfunnelsai.com/support
 
 MEMO:
@@ -198,7 +198,7 @@ Sub Category: Marketing Tools
 URLS:
 Sales Page URL: https://faithfunnelsai.com/orderbump
 Thank You Page URL: https://faithfunnelsai.com/download
-JV Page URL: https://faithfunnelsai.com/affiliates
+JV Page URL: https://faithfunnelsai.com/wplus/affiliates
 Support URL: https://faithfunnelsai.com/support
 
 MEMO:

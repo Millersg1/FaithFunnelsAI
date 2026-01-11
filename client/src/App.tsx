@@ -54,7 +54,9 @@ import JVZooDS3 from "@/pages/jvzoo/ds3-agency-lite";
 import JVZooThankYou from "@/pages/jvzoo/thankyou";
 import JVZooOrderBumpVerses from "@/pages/jvzoo/order-bump-verses";
 import JVZooReview from "@/pages/jvzoo-review";
+import JVZooAffiliates from "@/pages/jvzoo/affiliates";
 import WPlusOrderBumpVerses from "@/pages/order-bump-verses";
+import WPlusAffiliates from "@/pages/wplus/affiliates";
 import ExplodelyRefund from "@/pages/explodely/legal/refund";
 import ExplodelyDisclaimer from "@/pages/explodely/legal/disclaimer";
 import ExplodelyEarningsDisclaimer from "@/pages/explodely/legal/earnings-disclaimer";
@@ -211,7 +213,9 @@ function App() {
             <Route path="/jvzoo/refund" component={JVZooRefund} />
             <Route path="/jvzoo/disclaimer" component={JVZooLegalDisclaimer} />
             <Route path="/jvzoo/earnings-disclaimer" component={JVZooEarningsDisclaimer} />
+            <Route path="/jvzoo/affiliates" component={JVZooAffiliates} />
             <Route path="/jvzoo-review" component={JVZooReview} />
+            <Route path="/wplus/affiliates" component={WPlusAffiliates} />
             <Route path="/terms">
               {() => (
                 <AppLayout>
