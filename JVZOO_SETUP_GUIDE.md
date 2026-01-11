@@ -31,6 +31,37 @@ https://faithfunnelsai.com/api/webhooks/jvzipn
 
 ---
 
+## Receipt Information
+
+### Custom Receipt Information (HTML enabled)
+Copy this for the web receipt:
+
+```html
+<h2>Thank You for Your Purchase!</h2>
+<p><strong>Your Faith Funnels AI access is ready.</strong></p>
+<p><a href="https://faithfunnelsai.com/jvzoo-thank-you" style="background:#4F46E5;color:#fff;padding:12px 24px;text-decoration:none;border-radius:6px;display:inline-block;">Access Your Dashboard</a></p>
+<p><strong>Login with:</strong> Your JVZoo purchase email</p>
+<p>Questions? Contact <a href="mailto:support@faithfunnelsai.com">support@faithfunnelsai.com</a></p>
+```
+
+### Custom Email Receipt Information (HTML disabled)
+Copy this for the email receipt:
+
+```
+THANK YOU FOR YOUR PURCHASE!
+
+Your Faith Funnels AI access is ready.
+
+ACCESS YOUR DASHBOARD:
+https://faithfunnelsai.com/jvzoo-thank-you
+
+LOGIN WITH: Your JVZoo purchase email
+
+Questions? Contact support@faithfunnelsai.com
+```
+
+---
+
 ## Product Tiers & Naming
 
 ### Payment Reference (Max 22 chars)
