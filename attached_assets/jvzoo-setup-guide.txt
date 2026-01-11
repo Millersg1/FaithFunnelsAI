@@ -25,8 +25,8 @@ Category: Software
 Sub Category: Marketing Tools
 
 URLS:
-Sales Page URL: https://faithfunnelsai.com
-Thank You Page URL: https://faithfunnelsai.com/download
+Sales Page URL: https://faithfunnelsai.com/jvzoo
+Thank You Page URL: https://faithfunnelsai.com/jvzoo/thankyou
 JV Page URL: https://faithfunnelsai.com/affiliates
 Support URL: https://faithfunnelsai.com/support
 
@@ -49,8 +49,8 @@ Category: Software
 Sub Category: Marketing Tools
 
 URLS:
-Sales Page URL: https://faithfunnelsai.com/oto1
-Thank You Page URL: https://faithfunnelsai.com/download
+Sales Page URL: https://faithfunnelsai.com/jvzoo/oto1
+Thank You Page URL: https://faithfunnelsai.com/jvzoo/thankyou
 JV Page URL: https://faithfunnelsai.com/affiliates
 Support URL: https://faithfunnelsai.com/support
 
@@ -73,8 +73,8 @@ Category: Software
 Sub Category: Marketing Tools
 
 URLS:
-Sales Page URL: https://faithfunnelsai.com/ds1
-Thank You Page URL: https://faithfunnelsai.com/download
+Sales Page URL: https://faithfunnelsai.com/jvzoo/ds1
+Thank You Page URL: https://faithfunnelsai.com/jvzoo/thankyou
 JV Page URL: https://faithfunnelsai.com/affiliates
 Support URL: https://faithfunnelsai.com/support
 
@@ -97,8 +97,8 @@ Category: Software
 Sub Category: Marketing Tools
 
 URLS:
-Sales Page URL: https://faithfunnelsai.com/oto2
-Thank You Page URL: https://faithfunnelsai.com/download
+Sales Page URL: https://faithfunnelsai.com/jvzoo/oto2
+Thank You Page URL: https://faithfunnelsai.com/jvzoo/thankyou
 JV Page URL: https://faithfunnelsai.com/affiliates
 Support URL: https://faithfunnelsai.com/support
 
@@ -121,8 +121,8 @@ Category: Software
 Sub Category: Marketing Tools
 
 URLS:
-Sales Page URL: https://faithfunnelsai.com/ds2
-Thank You Page URL: https://faithfunnelsai.com/download
+Sales Page URL: https://faithfunnelsai.com/jvzoo/ds2
+Thank You Page URL: https://faithfunnelsai.com/jvzoo/thankyou
 JV Page URL: https://faithfunnelsai.com/affiliates
 Support URL: https://faithfunnelsai.com/support
 
@@ -145,8 +145,8 @@ Category: Software
 Sub Category: Marketing Tools
 
 URLS:
-Sales Page URL: https://faithfunnelsai.com/oto3
-Thank You Page URL: https://faithfunnelsai.com/download
+Sales Page URL: https://faithfunnelsai.com/jvzoo/oto3
+Thank You Page URL: https://faithfunnelsai.com/jvzoo/thankyou
 JV Page URL: https://faithfunnelsai.com/affiliates
 Support URL: https://faithfunnelsai.com/support
 
@@ -169,8 +169,8 @@ Category: Software
 Sub Category: Marketing Tools
 
 URLS:
-Sales Page URL: https://faithfunnelsai.com/ds3
-Thank You Page URL: https://faithfunnelsai.com/download
+Sales Page URL: https://faithfunnelsai.com/jvzoo/ds3
+Thank You Page URL: https://faithfunnelsai.com/jvzoo/thankyou
 JV Page URL: https://faithfunnelsai.com/affiliates
 Support URL: https://faithfunnelsai.com/support
 
