@@ -53,6 +53,12 @@ import JVZooDS2 from "@/pages/jvzoo/ds2-premium-lite";
 import JVZooDS3 from "@/pages/jvzoo/ds3-agency-lite";
 import JVZooThankYou from "@/pages/jvzoo/thankyou";
 import JVZooReview from "@/pages/jvzoo-review";
+import ExplodelyRefund from "@/pages/explodely/legal/refund";
+import ExplodelyDisclaimer from "@/pages/explodely/legal/disclaimer";
+import ExplodelyEarningsDisclaimer from "@/pages/explodely/legal/earnings-disclaimer";
+import JVZooRefund from "@/pages/jvzoo/legal/refund";
+import JVZooLegalDisclaimer from "@/pages/jvzoo/legal/disclaimer";
+import JVZooEarningsDisclaimer from "@/pages/jvzoo/legal/earnings-disclaimer";
 import Affiliates from "@/pages/affiliates";
 import DemoAccess from "@/pages/demo-access";
 import { CookieConsentProvider, ManageCookiesButton } from "@/components/cookie-consent";
@@ -187,6 +193,9 @@ function App() {
             <Route path="/explodely/thankyou" component={ExplodelyThankYou} />
             <Route path="/explodely/orderbump" component={ExplodelyOrderBumpVerses} />
             <Route path="/explodely/orderbump/thankyou" component={ExplodelyOrderBumpThankYou} />
+            <Route path="/explodely/refund" component={ExplodelyRefund} />
+            <Route path="/explodely/disclaimer" component={ExplodelyDisclaimer} />
+            <Route path="/explodely/earnings-disclaimer" component={ExplodelyEarningsDisclaimer} />
             <Route path="/jvzoo" component={JVZooLanding} />
             <Route path="/jvzoo/oto1" component={JVZooOTO1} />
             <Route path="/jvzoo/oto2" component={JVZooOTO2} />
@@ -195,6 +204,9 @@ function App() {
             <Route path="/jvzoo/ds2" component={JVZooDS2} />
             <Route path="/jvzoo/ds3" component={JVZooDS3} />
             <Route path="/jvzoo/thankyou" component={JVZooThankYou} />
+            <Route path="/jvzoo/refund" component={JVZooRefund} />
+            <Route path="/jvzoo/disclaimer" component={JVZooLegalDisclaimer} />
+            <Route path="/jvzoo/earnings-disclaimer" component={JVZooEarningsDisclaimer} />
             <Route path="/jvzoo-review" component={JVZooReview} />
             <Route path="/terms">
               {() => (
