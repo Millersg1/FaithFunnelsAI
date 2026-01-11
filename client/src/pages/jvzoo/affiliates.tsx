@@ -3,6 +3,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { CheckCircle2, DollarSign, Users, TrendingUp, Mail, ExternalLink } from "lucide-react";
 import { Link } from "wouter";
 import logoImage from "@assets/generated_images/faith_funnels_ai_logo.png";
+import jvzooLogo from "@assets/jvzoo_logo_3_17_1768161220939.png";
 import { JVZooDisclaimer } from "@/components/jvzoo-disclaimer";
 
 export default function JVZooAffiliates() {
@@ -44,7 +45,11 @@ export default function JVZooAffiliates() {
           </Link>
           <div className="flex items-center gap-3">
             <span className="text-sm text-muted-foreground hidden sm:block">Available on</span>
-            <span className="font-semibold text-orange-600">JVZoo</span>
+            <img 
+              src={jvzooLogo} 
+              alt="JVZoo" 
+              className="h-8 object-contain"
+            />
           </div>
         </div>
       </header>

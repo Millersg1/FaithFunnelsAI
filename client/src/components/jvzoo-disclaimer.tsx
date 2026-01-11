@@ -1,10 +1,18 @@
 import { Link } from "wouter";
+import jvzooLogo from "@assets/jvzoo_logo_3_17_1768161220939.png";
 
 export function JVZooDisclaimer() {
   return (
     <div className="bg-muted/50 border-t py-8 mt-8">
       <div className="container mx-auto px-4">
         <div className="max-w-4xl mx-auto space-y-6">
+          <div className="flex justify-center mb-4">
+            <img 
+              src={jvzooLogo} 
+              alt="JVZoo" 
+              className="h-10 object-contain"
+            />
+          </div>
           <div className="text-center space-y-4">
             <h3 className="text-sm font-semibold text-muted-foreground uppercase tracking-wide">Disclaimer</h3>
             <div className="text-xs text-muted-foreground leading-relaxed space-y-3">

@@ -12,6 +12,7 @@ import dashboardImage from "@assets/stock_images/digital_marketing_da_5b5dfa8d.j
 import successImage from "@assets/stock_images/successful_online_bu_c7443eb8.jpg";
 import funnelImage from "@assets/stock_images/sales_funnel_convers_ac3aa24c.jpg";
 import logoImage from "@assets/generated_images/faith_funnels_ai_logo.png";
+import jvzooLogo from "@assets/jvzoo_logo_3_17_1768161220939.png";
 
 export default function JVZooLanding() {
   const faqs = [
