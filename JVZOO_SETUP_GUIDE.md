@@ -13,6 +13,13 @@ https://faithfunnelsai.com/api/webhooks/jvzipn
 - ✅ Use JVZIPN Output as Key Generation (check this box)
 - ❌ PayPal IPN Forwarding URL (leave blank - JVZIPN handles everything)
 
+### Product Checkboxes
+
+| Setting | Recommendation | Why |
+|---------|----------------|-----|
+| ✅ Pass parameters to Thank You / Download Page | **CHECK** | Passes customer info (email, name, transaction ID) to your thank you page for personalization |
+| ❌ Pass Affiliate ID to sales page | Skip for now | Only needed if your landing page tracks affiliate referrals |
+
 ### What the Webhook Handles Automatically:
 | Transaction Type | Action |
 |-----------------|--------|
