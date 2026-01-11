@@ -84,6 +84,22 @@ export const leads = pgTable("leads", {
   createdAt: text("created_at").notNull().default(sql`CURRENT_TIMESTAMP`),
 });
 
+export const purchases = pgTable("purchases", {
+  id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
+  transactionId: varchar("transaction_id").notNull().unique(),
+  email: text("email").notNull(),
+  firstName: text("first_name"),
+  lastName: text("last_name"),
+  productId: varchar("product_id").notNull(),
+  productName: text("product_name").notNull(),
+  amount: text("amount").notNull(),
+  tier: text("tier").notNull().default("basic"),
+  marketplace: text("marketplace").notNull().default("jvzoo"),
+  status: text("status").notNull().default("completed"),
+  ipnData: jsonb("ipn_data"),
+  createdAt: timestamp("created_at").defaultNow(),
+});
+
 export type FunnelStage = {
   id: string;
   title: string;
@@ -106,12 +122,15 @@ export const insertLeadSchema = createInsertSchema(leads).omit({ id: true, creat
   source: z.string().min(1, "Source is required"),
 });
 
+export const insertPurchaseSchema = createInsertSchema(purchases).omit({ id: true, createdAt: true });
+
 export type InsertFunnel = z.infer<typeof insertFunnelSchema>;
 export type InsertVerse = z.infer<typeof insertVerseSchema>;
 export type InsertTheme = z.infer<typeof insertThemeSchema>;
 export type InsertTenant = z.infer<typeof insertTenantSchema>;
 export type InsertTenantSettings = z.infer<typeof insertTenantSettingsSchema>;
 export type InsertLead = z.infer<typeof insertLeadSchema>;
+export type InsertPurchase = z.infer<typeof insertPurchaseSchema>;
 
 export type Funnel = typeof funnels.$inferSelect;
 export type Verse = typeof verses.$inferSelect;
@@ -119,6 +138,7 @@ export type Theme = typeof themes.$inferSelect;
 export type Tenant = typeof tenants.$inferSelect;
 export type TenantSettings = typeof tenantSettings.$inferSelect;
 export type Lead = typeof leads.$inferSelect;
+export type Purchase = typeof purchases.$inferSelect;
 
 export const TIERS = {
   BASIC: "basic",

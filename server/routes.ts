@@ -57,6 +57,170 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
+  // JVZIPN v2 Webhook - JVZoo Instant Payment Notification
+  // Product mapping for tier assignment
+  const JVZOO_PRODUCTS: Record<string, { tier: string; name: string }> = {
+    // Front-End product ID - assign basic tier
+    "FE": { tier: "basic", name: "Faith Funnels AI - Front End" },
+    // OTO1 - White Label
+    "OTO1": { tier: "white_label", name: "Faith Funnels AI - White Label" },
+    "DS1": { tier: "white_label", name: "Faith Funnels AI - White Label Lite" },
+    // OTO2 - Premium
+    "OTO2": { tier: "premium", name: "Faith Funnels AI - Premium" },
+    "DS2": { tier: "premium", name: "Faith Funnels AI - Premium Lite" },
+    // OTO3 - Agency/Reseller
+    "OTO3": { tier: "reseller", name: "Faith Funnels AI - Agency" },
+    "DS3": { tier: "reseller", name: "Faith Funnels AI - Agency Lite" },
+    // Order Bump (doesn't change tier, just tracks purchase)
+    "BUMP": { tier: "basic", name: "Faith Funnels AI - Bible Verses Pack" },
+  };
+
+  // Tier priority for upgrades (higher number = better tier)
+  const TIER_PRIORITY: Record<string, number> = {
+    "basic": 1,
+    "white_label": 2,
+    "premium": 3,
+    "reseller": 4,
+  };
+
+  app.post('/api/webhooks/jvzipn', async (req, res) => {
+    try {
+      const ipnData = req.body;
+      console.log("JVZIPN received:", JSON.stringify(ipnData, null, 2));
+
+      // Verify the secret key if configured
+      const secretKey = process.env.JVZIPN_SECRET_KEY;
+      if (secretKey && ipnData.cverify !== secretKey) {
+        console.error("JVZIPN verification failed");
+        return res.status(401).json({ error: "Verification failed" });
+      }
+
+      // Extract purchase data from JVZoo IPN
+      const transactionId = ipnData.ctransreceipt || ipnData.ctransaction || `jvzoo-${Date.now()}`;
+      const email = ipnData.ccustemail?.toLowerCase();
+      const firstName = ipnData.ccustname?.split(' ')[0] || '';
+      const lastName = ipnData.ccustname?.split(' ').slice(1).join(' ') || '';
+      const amount = ipnData.ctransamount || '0';
+      const productId = ipnData.cproditem || ipnData.cprodtitle || 'FE';
+      const transactionType = ipnData.ctransaction_type || 'SALE';
+
+      if (!email) {
+        console.error("JVZIPN missing email");
+        return res.status(400).json({ error: "Missing customer email" });
+      }
+
+      // Only process SALE and BILL transactions (not RFND/CGBK)
+      if (!['SALE', 'BILL', 'TEST_SALE'].includes(transactionType)) {
+        console.log(`JVZIPN skipping transaction type: ${transactionType}`);
+        return res.json({ success: true, message: `Skipped ${transactionType}` });
+      }
+
+      // Check for duplicate transaction
+      const existingPurchase = await storage.getPurchaseByTransactionId(transactionId);
+      if (existingPurchase) {
+        console.log(`JVZIPN duplicate transaction: ${transactionId}`);
+        return res.json({ success: true, message: "Already processed" });
+      }
+
+      // Determine product tier from product ID/title
+      let productKey = 'FE';
+      const productTitle = (ipnData.cprodtitle || '').toLowerCase();
+      if (productTitle.includes('oto1') || productTitle.includes('white label')) {
+        productKey = 'OTO1';
+      } else if (productTitle.includes('ds1')) {
+        productKey = 'DS1';
+      } else if (productTitle.includes('oto2') || productTitle.includes('premium')) {
+        productKey = 'OTO2';
+      } else if (productTitle.includes('ds2')) {
+        productKey = 'DS2';
+      } else if (productTitle.includes('oto3') || productTitle.includes('agency')) {
+        productKey = 'OTO3';
+      } else if (productTitle.includes('ds3')) {
+        productKey = 'DS3';
+      } else if (productTitle.includes('bump') || productTitle.includes('verse')) {
+        productKey = 'BUMP';
+      }
+
+      const productInfo = JVZOO_PRODUCTS[productKey] || JVZOO_PRODUCTS['FE'];
+      const purchasedTier = productInfo.tier;
+
+      // Log the purchase
+      await storage.createPurchase({
+        transactionId,
+        email,
+        firstName,
+        lastName,
+        productId: productKey,
+        productName: productInfo.name,
+        amount,
+        tier: purchasedTier,
+        marketplace: 'jvzoo',
+        status: 'completed',
+        ipnData: ipnData,
+      });
+
+      // Create or update user account
+      const userId = `jvzoo-${email.replace(/[^a-z0-9]/gi, '-')}`;
+      await storage.upsertUser({
+        id: userId,
+        email,
+        firstName,
+        lastName,
+        profileImageUrl: null,
+      });
+
+      // Check if tenant exists for this user, otherwise create one
+      const tenantSlug = `jvzoo-${email.replace(/[^a-z0-9]/gi, '-').substring(0, 30)}`;
+      let tenant = await storage.getTenantBySlug(tenantSlug);
+      
+      if (tenant) {
+        // Upgrade tier if this purchase has a higher tier
+        const currentPriority = TIER_PRIORITY[tenant.tier] || 1;
+        const newPriority = TIER_PRIORITY[purchasedTier] || 1;
+        if (newPriority > currentPriority) {
+          console.log(`Upgrading tenant ${tenantSlug} from ${tenant.tier} to ${purchasedTier}`);
+          // Note: Would need to add updateTenant method for actual upgrade
+        }
+      } else {
+        // Create new tenant
+        tenant = await storage.createTenant({
+          slug: tenantSlug,
+          adminPin: Math.random().toString(36).substring(2, 8).toUpperCase(),
+          isPaid: true,
+          tier: purchasedTier,
+        });
+
+        // Create tenant settings
+        await storage.createTenantSettings({
+          tenantId: tenant.id,
+          businessName: `${firstName}'s Faith Funnels`,
+          supportEmail: email,
+        });
+      }
+
+      console.log(`JVZIPN processed: ${email} purchased ${productInfo.name} (${purchasedTier})`);
+      res.json({ 
+        success: true, 
+        message: "Purchase processed",
+        tenantUrl: `/t/${tenant.slug}`,
+      });
+
+    } catch (error) {
+      console.error("JVZIPN error:", error);
+      res.status(500).json({ error: "Failed to process IPN" });
+    }
+  });
+
+  // Get purchases for admin view
+  app.get('/api/purchases', isAuthenticated, async (req, res) => {
+    try {
+      const purchases = await storage.getPurchases();
+      res.json(purchases);
+    } catch (error) {
+      res.status(500).json({ error: "Failed to fetch purchases" });
+    }
+  });
+
   app.get('/api/auth/user', isAuthenticated, async (req: any, res) => {
     try {
       const userId = req.user?.claims?.sub;

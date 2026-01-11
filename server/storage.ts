@@ -11,6 +11,8 @@ import {
   type InsertTenantSettings,
   type Lead,
   type InsertLead,
+  type Purchase,
+  type InsertPurchase,
   type FunnelStage,
   type User,
   type UpsertUser,
@@ -20,6 +22,7 @@ import {
   tenants,
   tenantSettings,
   leads,
+  purchases,
   users
 } from "@shared/schema";
 import { randomUUID } from "crypto";
@@ -56,6 +59,11 @@ export interface IStorage {
   getLead(id: string): Promise<Lead | undefined>;
   getLeadByEmail(email: string): Promise<Lead | undefined>;
   createLead(lead: InsertLead): Promise<Lead>;
+  
+  getPurchases(): Promise<Purchase[]>;
+  getPurchaseByTransactionId(transactionId: string): Promise<Purchase | undefined>;
+  getPurchasesByEmail(email: string): Promise<Purchase[]>;
+  createPurchase(purchase: InsertPurchase): Promise<Purchase>;
   
   getUser(id: string): Promise<User | undefined>;
   upsertUser(user: UpsertUser): Promise<User>;
@@ -188,6 +196,24 @@ export class PgStorage implements IStorage {
 
   async createLead(insertLead: InsertLead): Promise<Lead> {
     const result = await db.insert(leads).values(insertLead).returning();
+    return result[0];
+  }
+
+  async getPurchases(): Promise<Purchase[]> {
+    return await db.select().from(purchases);
+  }
+
+  async getPurchaseByTransactionId(transactionId: string): Promise<Purchase | undefined> {
+    const result = await db.select().from(purchases).where(eq(purchases.transactionId, transactionId));
+    return result[0];
+  }
+
+  async getPurchasesByEmail(email: string): Promise<Purchase[]> {
+    return await db.select().from(purchases).where(eq(purchases.email, email));
+  }
+
+  async createPurchase(insertPurchase: InsertPurchase): Promise<Purchase> {
+    const result = await db.insert(purchases).values(insertPurchase).returning();
     return result[0];
   }
 
