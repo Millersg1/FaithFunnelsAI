@@ -50,6 +50,7 @@ export interface IStorage {
   
   getTenantBySlug(slug: string): Promise<Tenant | undefined>;
   createTenant(tenant: InsertTenant): Promise<Tenant>;
+  updateTenant(id: string, update: Partial<InsertTenant>): Promise<Tenant | undefined>;
   
   getTenantSettings(tenantId: string): Promise<TenantSettings | undefined>;
   createTenantSettings(settings: InsertTenantSettings): Promise<TenantSettings>;
@@ -162,6 +163,11 @@ export class PgStorage implements IStorage {
 
   async createTenant(insertTenant: InsertTenant): Promise<Tenant> {
     const result = await db.insert(tenants).values(insertTenant).returning();
+    return result[0];
+  }
+
+  async updateTenant(id: string, update: Partial<InsertTenant>): Promise<Tenant | undefined> {
+    const result = await db.update(tenants).set(update).where(eq(tenants.id, id)).returning();
     return result[0];
   }
 

@@ -109,9 +109,52 @@ export async function registerRoutes(app: Express): Promise<Server> {
         return res.status(400).json({ error: "Missing customer email" });
       }
 
-      // Only process SALE and BILL transactions (not RFND/CGBK)
+      // Handle refunds and cancellations - disable access
+      if (['RFND', 'CGBK', 'CANCEL-REBILL', 'INSF'].includes(transactionType)) {
+        console.log(`JVZIPN processing ${transactionType} for ${email}`);
+        
+        // Find and disable the tenant
+        const tenantSlug = `jvzoo-${email.replace(/[^a-z0-9]/gi, '-').substring(0, 30)}`;
+        const tenant = await storage.getTenantBySlug(tenantSlug);
+        
+        if (tenant) {
+          // Mark tenant as unpaid (access disabled)
+          await storage.updateTenant(tenant.id, { isPaid: false });
+          console.log(`JVZIPN: Disabled access for ${email} due to ${transactionType}`);
+          
+          // Log the refund/cancellation
+          await storage.createPurchase({
+            transactionId: `${transactionId}-${transactionType}`,
+            email,
+            firstName,
+            lastName,
+            productId: 'REFUND',
+            productName: `Refund/Cancel: ${transactionType}`,
+            amount: `-${amount}`,
+            tier: 'none',
+            marketplace: 'jvzoo',
+            status: 'refunded',
+            ipnData: ipnData,
+          });
+        }
+        
+        return res.json({ success: true, message: `${transactionType} processed` });
+      }
+
+      // Handle subscription resumption
+      if (transactionType === 'UNCANCEL-REBILL') {
+        const tenantSlug = `jvzoo-${email.replace(/[^a-z0-9]/gi, '-').substring(0, 30)}`;
+        const tenant = await storage.getTenantBySlug(tenantSlug);
+        if (tenant) {
+          await storage.updateTenant(tenant.id, { isPaid: true });
+          console.log(`JVZIPN: Re-enabled access for ${email}`);
+        }
+        return res.json({ success: true, message: "Access restored" });
+      }
+
+      // Only process SALE and BILL transactions for new access
       if (!['SALE', 'BILL', 'TEST_SALE'].includes(transactionType)) {
-        console.log(`JVZIPN skipping transaction type: ${transactionType}`);
+        console.log(`JVZIPN skipping unknown transaction type: ${transactionType}`);
         return res.json({ success: true, message: `Skipped ${transactionType}` });
       }
 
