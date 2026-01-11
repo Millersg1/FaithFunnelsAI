@@ -8,6 +8,55 @@ import { setupAuth, isAuthenticated } from "./replitAuth";
 export async function registerRoutes(app: Express): Promise<Server> {
   await setupAuth(app);
 
+  // Review login for JVZoo/WarriorPlus reviewers
+  app.post('/api/auth/review-login', async (req: any, res) => {
+    try {
+      const { token } = req.body;
+      const reviewToken = process.env.REVIEW_ACCESS_TOKEN;
+      
+      if (!reviewToken) {
+        return res.status(500).json({ message: "Review access not configured" });
+      }
+      
+      if (token !== reviewToken) {
+        return res.status(401).json({ message: "Invalid review token" });
+      }
+      
+      // Create or get review user
+      const reviewUserId = "reviewer-jvzoo-wplus";
+      await storage.upsertUser({
+        id: reviewUserId,
+        email: "reviewer@faithfunnelsai.com",
+        firstName: "JVZoo",
+        lastName: "Reviewer",
+        profileImageUrl: null,
+      });
+      
+      // Set up session for reviewer
+      req.login({
+        claims: {
+          sub: reviewUserId,
+          email: "reviewer@faithfunnelsai.com",
+          first_name: "JVZoo",
+          last_name: "Reviewer",
+          exp: Math.floor(Date.now() / 1000) + (7 * 24 * 60 * 60), // 1 week
+        },
+        access_token: "review-access",
+        refresh_token: null,
+        expires_at: Math.floor(Date.now() / 1000) + (7 * 24 * 60 * 60),
+      }, (err: any) => {
+        if (err) {
+          console.error("Review login error:", err);
+          return res.status(500).json({ message: "Login failed" });
+        }
+        res.json({ success: true, redirect: "/app" });
+      });
+    } catch (error) {
+      console.error("Review login error:", error);
+      res.status(500).json({ message: "Login failed" });
+    }
+  });
+
   app.get('/api/auth/user', isAuthenticated, async (req: any, res) => {
     try {
       const userId = req.user?.claims?.sub;

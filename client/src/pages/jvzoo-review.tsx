@@ -1,10 +1,64 @@
+import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { CheckCircle2, ExternalLink, Shield, Star } from "lucide-react";
-import { Link } from "wouter";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { CheckCircle2, ExternalLink, Shield, Star, Lock, Loader2 } from "lucide-react";
+import { Link, useLocation } from "wouter";
 import logoImage from "@assets/generated_images/faith_funnels_ai_logo.png";
+import { useToast } from "@/hooks/use-toast";
 
 export default function JVZooReview() {
+  const [token, setToken] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
+  const [, setLocation] = useLocation();
+  const { toast } = useToast();
+
+  const handleReviewLogin = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!token.trim()) {
+      toast({
+        title: "Token Required",
+        description: "Please enter the review access token.",
+        variant: "destructive",
+      });
+      return;
+    }
+
+    setIsLoading(true);
+    try {
+      const response = await fetch("/api/auth/review-login", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ token: token.trim() }),
+      });
+
+      const data = await response.json();
+
+      if (response.ok && data.success) {
+        toast({
+          title: "Access Granted",
+          description: "Redirecting to dashboard...",
+        });
+        setLocation("/app");
+      } else {
+        toast({
+          title: "Access Denied",
+          description: data.message || "Invalid review token.",
+          variant: "destructive",
+        });
+      }
+    } catch (error) {
+      toast({
+        title: "Error",
+        description: "Failed to authenticate. Please try again.",
+        variant: "destructive",
+      });
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
   return (
     <div className="min-h-screen bg-gradient-to-b from-background to-muted/30">
       <header className="border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 sticky top-0 z-50">
@@ -43,30 +97,59 @@ export default function JVZooReview() {
             </h1>
             <p className="text-xl text-muted-foreground">
               Thank you for taking the time to review Faith Funnels AI. 
-              Below you'll find everything you need to evaluate our product.
+              Enter your review access token below to get full access.
             </p>
           </div>
 
+          <Card className="border-2 border-primary/20 bg-gradient-to-br from-primary/5 to-accent/5 max-w-md mx-auto">
+            <CardContent className="p-8 space-y-6">
+              <div className="flex items-center justify-center gap-2">
+                <Lock className="h-5 w-5 text-primary" />
+                <h2 className="text-xl font-bold">Review Access Login</h2>
+              </div>
+              
+              <form onSubmit={handleReviewLogin} className="space-y-4">
+                <div className="space-y-2 text-left">
+                  <Label htmlFor="token">Access Token</Label>
+                  <Input
+                    id="token"
+                    type="password"
+                    placeholder="Enter your review token"
+                    value={token}
+                    onChange={(e) => setToken(e.target.value)}
+                    data-testid="input-review-token"
+                  />
+                </div>
+                <Button 
+                  type="submit" 
+                  className="w-full" 
+                  size="lg"
+                  disabled={isLoading}
+                  data-testid="button-review-login"
+                >
+                  {isLoading ? (
+                    <>
+                      <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                      Authenticating...
+                    </>
+                  ) : (
+                    "Access Dashboard"
+                  )}
+                </Button>
+              </form>
+              
+              <p className="text-xs text-muted-foreground">
+                The access token was provided in your JVZoo review instructions.
+              </p>
+            </CardContent>
+          </Card>
+
           <Card className="border-2 border-primary/20 bg-gradient-to-br from-primary/5 to-accent/5">
             <CardContent className="p-8 space-y-6">
-              <h2 className="text-2xl font-bold">Quick Access Links</h2>
+              <h2 className="text-2xl font-bold">Sales Pages to Review</h2>
+              <p className="text-muted-foreground">These pages are publicly accessible - no login required:</p>
               
               <div className="space-y-4">
-                <div className="bg-background rounded-lg p-4 border flex items-center justify-between">
-                  <div className="flex items-center gap-3">
-                    <CheckCircle2 className="h-5 w-5 text-primary" />
-                    <div className="text-left">
-                      <p className="font-semibold">Live Dashboard Demo</p>
-                      <p className="text-sm text-muted-foreground">Full access to the Faith Funnels AI dashboard</p>
-                    </div>
-                  </div>
-                  <Link href="/app">
-                    <Button data-testid="button-demo-dashboard">
-                      Open Dashboard <ExternalLink className="ml-2 h-4 w-4" />
-                    </Button>
-                  </Link>
-                </div>
-
                 <div className="bg-background rounded-lg p-4 border flex items-center justify-between">
                   <div className="flex items-center gap-3">
                     <CheckCircle2 className="h-5 w-5 text-primary" />
@@ -126,6 +209,21 @@ export default function JVZooReview() {
                     </Button>
                   </Link>
                 </div>
+
+                <div className="bg-background rounded-lg p-4 border flex items-center justify-between">
+                  <div className="flex items-center gap-3">
+                    <CheckCircle2 className="h-5 w-5 text-primary" />
+                    <div className="text-left">
+                      <p className="font-semibold">Order Bump - Bible Verses ($9)</p>
+                      <p className="text-sm text-muted-foreground">500 extra Bible verses</p>
+                    </div>
+                  </div>
+                  <Link href="/jvzoo/orderbump">
+                    <Button variant="outline" size="sm" data-testid="button-orderbump">
+                      View Order Bump
+                    </Button>
+                  </Link>
+                </div>
               </div>
             </CardContent>
           </Card>
@@ -142,7 +240,7 @@ export default function JVZooReview() {
                   <strong className="text-foreground">Front-End Price:</strong> $17 (Regular $47)
                 </p>
                 <p>
-                  <strong className="text-foreground">Funnel Flow:</strong> FE → OTO1 → DS1 (if declined) → OTO2 → DS2 (if declined) → OTO3 → DS3 (if declined) → Thank You
+                  <strong className="text-foreground">Funnel Flow:</strong> FE → Order Bump → OTO1 → DS1 (if declined) → OTO2 → DS2 (if declined) → OTO3 → DS3 (if declined) → Thank You
                 </p>
                 <p>
                   <strong className="text-foreground">License:</strong> Extended License with White Label Rights. 
@@ -195,14 +293,6 @@ export default function JVZooReview() {
                 support@faithfunnelsai.com
               </a>
             </p>
-          </div>
-
-          <div className="pt-4">
-            <Link href="/app">
-              <Button size="lg" className="text-lg px-10 py-6" data-testid="button-start-demo">
-                Start Exploring the Dashboard
-              </Button>
-            </Link>
           </div>
         </div>
       </main>
