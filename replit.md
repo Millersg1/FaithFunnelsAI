@@ -35,6 +35,9 @@ The application follows a modern dashboard design inspired by Linear, Notion, an
 - ✅ **User authentication via Replit Auth (OpenID Connect)**
 - ✅ **Protected dashboard routes - login required to access /app**
 - ✅ **Thank you page with clear login instructions for buyers**
+- ✅ **WarriorPlus/Explodely funnel integration with 1-Click Upsell compliance**
+- ✅ **JVZoo marketplace funnel integration with complete OTO/DS flow**
+- ✅ **Reviewer demo access pages (/wplus-review, /jvzoo-review)**
 
 **Implementation Notes:**
 - Using PostgreSQL database with Neon WebSocket support for production-ready multi-tenancy

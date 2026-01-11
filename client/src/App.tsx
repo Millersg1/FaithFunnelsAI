@@ -44,6 +44,15 @@ import ExplodelyDS2 from "@/pages/explodely/ds2-premium-lite";
 import ExplodelyThankYou from "@/pages/explodely/thankyou";
 import ExplodelyOrderBumpVerses from "@/pages/explodely/order-bump-verses";
 import ExplodelyOrderBumpThankYou from "@/pages/explodely/orderbump-thankyou";
+import JVZooLanding from "@/pages/jvzoo/landing";
+import JVZooOTO1 from "@/pages/jvzoo/oto1-white-label";
+import JVZooOTO2 from "@/pages/jvzoo/oto2-premium";
+import JVZooOTO3 from "@/pages/jvzoo/oto3-agency";
+import JVZooDS1 from "@/pages/jvzoo/ds1-white-label-lite";
+import JVZooDS2 from "@/pages/jvzoo/ds2-premium-lite";
+import JVZooDS3 from "@/pages/jvzoo/ds3-agency-lite";
+import JVZooThankYou from "@/pages/jvzoo/thankyou";
+import JVZooReview from "@/pages/jvzoo-review";
 import Affiliates from "@/pages/affiliates";
 import DemoAccess from "@/pages/demo-access";
 import { CookieConsentProvider, ManageCookiesButton } from "@/components/cookie-consent";
@@ -178,6 +187,15 @@ function App() {
             <Route path="/explodely/thankyou" component={ExplodelyThankYou} />
             <Route path="/explodely/orderbump" component={ExplodelyOrderBumpVerses} />
             <Route path="/explodely/orderbump/thankyou" component={ExplodelyOrderBumpThankYou} />
+            <Route path="/jvzoo" component={JVZooLanding} />
+            <Route path="/jvzoo/oto1" component={JVZooOTO1} />
+            <Route path="/jvzoo/oto2" component={JVZooOTO2} />
+            <Route path="/jvzoo/oto3" component={JVZooOTO3} />
+            <Route path="/jvzoo/ds1" component={JVZooDS1} />
+            <Route path="/jvzoo/ds2" component={JVZooDS2} />
+            <Route path="/jvzoo/ds3" component={JVZooDS3} />
+            <Route path="/jvzoo/thankyou" component={JVZooThankYou} />
+            <Route path="/jvzoo-review" component={JVZooReview} />
             <Route path="/terms">
               {() => (
                 <AppLayout>
