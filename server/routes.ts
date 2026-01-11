@@ -199,10 +199,16 @@ export async function registerRoutes(app: Express): Promise<Server> {
       }
 
       console.log(`JVZIPN processed: ${email} purchased ${productInfo.name} (${purchasedTier})`);
+      
+      // Return access instructions for JVZoo to display as "license key"
+      const accessUrl = `https://faithfunnelsai.com/jvzoo-thank-you`;
+      const adminPin = tenant.adminPin;
+      
+      // JVZoo displays this as the license/access key to the customer
       res.json({ 
-        success: true, 
-        message: "Purchase processed",
-        tenantUrl: `/t/${tenant.slug}`,
+        success: true,
+        // This text is shown to the buyer in JVZoo
+        license_key: `ACCESS URL: ${accessUrl}\nADMIN PIN: ${adminPin}\nEMAIL: ${email}\n\nLogin with your JVZoo email to access your dashboard.`,
       });
 
     } catch (error) {
