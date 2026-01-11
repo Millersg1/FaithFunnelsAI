@@ -52,7 +52,9 @@ import JVZooDS1 from "@/pages/jvzoo/ds1-white-label-lite";
 import JVZooDS2 from "@/pages/jvzoo/ds2-premium-lite";
 import JVZooDS3 from "@/pages/jvzoo/ds3-agency-lite";
 import JVZooThankYou from "@/pages/jvzoo/thankyou";
+import JVZooOrderBumpVerses from "@/pages/jvzoo/order-bump-verses";
 import JVZooReview from "@/pages/jvzoo-review";
+import WPlusOrderBumpVerses from "@/pages/order-bump-verses";
 import ExplodelyRefund from "@/pages/explodely/legal/refund";
 import ExplodelyDisclaimer from "@/pages/explodely/legal/disclaimer";
 import ExplodelyEarningsDisclaimer from "@/pages/explodely/legal/earnings-disclaimer";
@@ -184,6 +186,7 @@ function App() {
             <Route path="/ds1" component={DS1WhiteLabelLite} />
             <Route path="/ds2" component={DS2PremiumLite} />
             <Route path="/ds3" component={DS3AgencyLite} />
+            <Route path="/orderbump" component={WPlusOrderBumpVerses} />
             <Route path="/explodely" component={ExplodelyLanding} />
             <Route path="/explodely/oto1" component={ExplodelyOTO1} />
             <Route path="/explodely/oto2" component={ExplodelyOTO2} />
@@ -204,6 +207,7 @@ function App() {
             <Route path="/jvzoo/ds2" component={JVZooDS2} />
             <Route path="/jvzoo/ds3" component={JVZooDS3} />
             <Route path="/jvzoo/thankyou" component={JVZooThankYou} />
+            <Route path="/jvzoo/orderbump" component={JVZooOrderBumpVerses} />
             <Route path="/jvzoo/refund" component={JVZooRefund} />
             <Route path="/jvzoo/disclaimer" component={JVZooLegalDisclaimer} />
             <Route path="/jvzoo/earnings-disclaimer" component={JVZooEarningsDisclaimer} />

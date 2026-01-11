@@ -182,10 +182,43 @@ Get agency rights at a special reduced price. Create funnels for up to 10 client
 
 
 ================================================================================
+ORDER BUMP - EXTRA BIBLE VERSE PACKS
+================================================================================
+
+PRODUCT DETAILS:
+Product Name: Faith Funnels AI Extra Bible Verse Packs
+Price: $9.00
+Commission: 50%
+Category: Software
+Sub Category: Marketing Tools
+
+URLS:
+Sales Page URL: https://faithfunnelsai.com/jvzoo/orderbump
+Thank You Page URL: https://faithfunnelsai.com/jvzoo/thankyou
+JV Page URL: https://faithfunnelsai.com/affiliates
+Support URL: https://faithfunnelsai.com/support
+
+MEMO:
+Faith Funnels AI Extra Bible Verse Packs - 500 Verses
+
+DESCRIPTION:
+Get 500 extra Bible verses organized into 10 categories. Includes Salvation & Redemption, Prosperity & Abundance, Healing & Restoration, Faith & Trust, Love & Relationships, Peace & Comfort, Strength & Courage, Gratitude & Praise, Wisdom & Guidance, and Protection & Safety verses. Perfect for any faith-based funnel. One time payment!
+
+NOTE: This can be configured as an Order Bump (checkbox on checkout) or as a separate upsell page in your funnel sequence.
+
+
+================================================================================
 FUNNEL FLOW
 ================================================================================
 
+Standard Flow:
 Sales Page --> OTO1 --> DS1 (if decline) --> OTO2 --> DS2 (if decline) --> OTO3 --> DS3 (if decline) --> Download Page
+
+With Order Bump (Option A - Checkout Bump):
+Configure in JVZoo dashboard as order bump checkbox on Front End checkout page
+
+With Order Bump (Option B - Upsell Page):
+Sales Page --> Order Bump Page --> OTO1 --> DS1 (if decline) --> OTO2 --> DS2 (if decline) --> OTO3 --> DS3 (if decline) --> Download Page
 
 
 ================================================================================
@@ -195,6 +228,7 @@ COMMISSION STRUCTURE
 Product              Price      Commission    Affiliate Earns
 -----------------------------------------------------------------
 Front End            $17.00     50%           $8.50
+Order Bump Verses    $9.00      50%           $4.50
 OTO1 White Label     $47.00     50%           $23.50
 DS1 White Label Lite $27.00     50%           $13.50
 OTO2 Premium         $67.00     50%           $33.50
@@ -202,7 +236,7 @@ DS2 Premium Lite     $37.00     50%           $18.50
 OTO3 Agency          $97.00     50%           $48.50
 DS3 Agency Lite      $47.00     50%           $23.50
 
-Maximum Per Customer: $122.00
+Maximum Per Customer: $131.00 (with order bump)
 
 
 ================================================================================
@@ -226,6 +260,7 @@ CHECKLIST
 ================================================================================
 
 [ ] Create Front End product
+[ ] Create Order Bump - Extra Bible Verse Packs
 [ ] Create OTO1 - White Label License
 [ ] Create DS1 - White Label Lite
 [ ] Create OTO2 - Premium Templates
@@ -233,6 +268,7 @@ CHECKLIST
 [ ] Create OTO3 - Agency License
 [ ] Create DS3 - Agency Lite
 [ ] Set all commissions to 50%
+[ ] Link order bump to Front End (as checkout bump or upsell)
 [ ] Link all products in funnel sequence
 [ ] Test funnel flow
 [ ] Submit for approval
