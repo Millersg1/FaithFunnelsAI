@@ -22,7 +22,7 @@ Product Name: Faith Funnels AI
 Price: $17.00
 Commission: 50%
 Category: Software
-Sub Category: Marketing Tools
+Sub Category: Website Design
 
 URLS:
 Sales Page URL: https://faithfunnelsai.com/jvzoo
@@ -46,7 +46,7 @@ Product Name: Faith Funnels AI White Label License
 Price: $47.00
 Commission: 50%
 Category: Software
-Sub Category: Marketing Tools
+Sub Category: Website Design
 
 URLS:
 Sales Page URL: https://faithfunnelsai.com/jvzoo/oto1
@@ -70,7 +70,7 @@ Product Name: Faith Funnels AI White Label Lite
 Price: $27.00
 Commission: 50%
 Category: Software
-Sub Category: Marketing Tools
+Sub Category: Website Design
 
 URLS:
 Sales Page URL: https://faithfunnelsai.com/jvzoo/ds1
@@ -94,7 +94,7 @@ Product Name: Faith Funnels AI Premium Templates
 Price: $67.00
 Commission: 50%
 Category: Software
-Sub Category: Marketing Tools
+Sub Category: Website Design
 
 URLS:
 Sales Page URL: https://faithfunnelsai.com/jvzoo/oto2
@@ -118,7 +118,7 @@ Product Name: Faith Funnels AI Premium Lite
 Price: $37.00
 Commission: 50%
 Category: Software
-Sub Category: Marketing Tools
+Sub Category: Website Design
 
 URLS:
 Sales Page URL: https://faithfunnelsai.com/jvzoo/ds2
@@ -142,7 +142,7 @@ Product Name: Faith Funnels AI Agency License
 Price: $97.00
 Commission: 50%
 Category: Software
-Sub Category: Marketing Tools
+Sub Category: Website Design
 
 URLS:
 Sales Page URL: https://faithfunnelsai.com/jvzoo/oto3
@@ -166,7 +166,7 @@ Product Name: Faith Funnels AI Agency Lite
 Price: $47.00
 Commission: 50%
 Category: Software
-Sub Category: Marketing Tools
+Sub Category: Website Design
 
 URLS:
 Sales Page URL: https://faithfunnelsai.com/jvzoo/ds3
@@ -190,7 +190,7 @@ Product Name: Faith Funnels AI Extra Bible Verse Packs
 Price: $9.00
 Commission: 50%
 Category: Software
-Sub Category: Marketing Tools
+Sub Category: Website Design
 
 URLS:
 Sales Page URL: https://faithfunnelsai.com/jvzoo/orderbump
