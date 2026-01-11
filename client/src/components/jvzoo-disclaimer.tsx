@@ -27,11 +27,11 @@ export function JVZooDisclaimer() {
             <span>|</span>
             <Link href="/privacy" className="hover:underline">Privacy Policy</Link>
             <span>|</span>
-            <Link href="/refund" className="hover:underline">Refund Policy</Link>
+            <Link href="/jvzoo/refund" className="hover:underline">Refund Policy</Link>
             <span>|</span>
-            <Link href="/disclaimer" className="hover:underline">Disclaimer</Link>
+            <Link href="/jvzoo/disclaimer" className="hover:underline">Disclaimer</Link>
             <span>|</span>
-            <Link href="/earnings-disclaimer" className="hover:underline">Earnings Disclaimer</Link>
+            <Link href="/jvzoo/earnings-disclaimer" className="hover:underline">Earnings Disclaimer</Link>
             <span>|</span>
             <Link href="/ftc-compliance" className="hover:underline">FTC Compliance</Link>
           </div>
