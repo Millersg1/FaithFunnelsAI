@@ -183,6 +183,26 @@ The webhook automatically assigns tiers based on product purchased:
 
 ---
 
+## Reviewer Access
+
+For JVZoo product reviewers who need temporary access without purchasing:
+
+**Reviewer Access URL:**
+```
+https://faithfunnelsai.com/jvzoo-review
+```
+
+**Access Token:**
+```
+FaithFunnels2026Review
+```
+
+Reviewers visit the URL, enter the token, and get instant full dashboard access.
+
+**To change the token:** Update the `REVIEW_ACCESS_TOKEN` secret in Replit.
+
+---
+
 ## Testing
 
 Before going live:
