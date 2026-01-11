@@ -6,19 +6,13 @@ export function JVZooDisclaimer() {
       <div className="container mx-auto px-4">
         <div className="max-w-4xl mx-auto space-y-6">
           <div className="text-center space-y-4">
-            <h3 className="text-sm font-semibold text-muted-foreground uppercase tracking-wide">Important Disclaimers</h3>
+            <h3 className="text-sm font-semibold text-muted-foreground uppercase tracking-wide">Disclaimer</h3>
             <div className="text-xs text-muted-foreground leading-relaxed space-y-3">
               <p>
-                <strong>INCOME DISCLAIMER:</strong> The results mentioned on this page are not typical. Your results will vary and depend on many factors including but not limited to your background, experience, and work ethic. All business involves risk and requires consistent effort and action. Faith Funnels AI is a tool to help you build sales funnels - we make no guarantees of income or success.
+                Please note that this product does not provide any guarantee of income or success. The results achieved by the product owner or any other individuals mentioned are not indicative of future success or earnings. This website is not affiliated with FaceBook or any of its associated entities. Once you navigate away from FaceBook, the responsibility for the content and its usage lies solely with the user. All content on this website, including but not limited to text, images, and multimedia, is protected by copyright law and the Digital Millennium Copyright Act. Unauthorized copying, duplication, modification, or theft, whether intentional or unintentional, is strictly prohibited. Violators will be prosecuted to the fullest extent of the law.
               </p>
               <p>
-                <strong>FTC COMPLIANCE:</strong> In accordance with the FTC guidelines, we are required to inform you that some of the links on this page may be affiliate links. If you click on the link and purchase the item, we may receive an affiliate commission. We only recommend products or services that we believe will add value to our customers.
-              </p>
-              <p>
-                <strong>AI DISCLOSURE:</strong> This product uses artificial intelligence technology powered by OpenAI for the customer support chatbot feature. AI-generated responses are provided for informational purposes. By using the chatbot, you consent to having your conversations processed by AI systems.
-              </p>
-              <p>
-                <strong>JVZOO DISCLOSURE:</strong> This product is sold through JVZoo marketplace. JVZoo is a trusted third-party payment processor. Your purchase is protected by JVZoo's buyer protection policies.
+                We want to clarify that JVZoo serves as the retailer for the products featured on this site. JVZoo® is a registered trademark of BBC Systems Inc., a Florida corporation located at 1809 E. Broadway Street, Suite 125, Oviedo, FL 32765, USA, and is used with permission. The role of JVZoo as a retailer does not constitute an endorsement, approval, or review of these products or any claims, statements, or opinions used in their promotion.
               </p>
             </div>
           </div>
