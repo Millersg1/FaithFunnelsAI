@@ -64,7 +64,7 @@ export default function EarningsDisclaimer() {
         <section className="space-y-3">
           <h2 className="text-xl font-semibold">Payment Processing</h2>
           <p className="leading-relaxed text-muted-foreground">
-            Explodely.com is the trusted gateway for Faith Funnels AI. Explodely is a trademark of Explodely LLC, a US corporation located at 1317 Edgewater Drive Suite #4648, Orlando FL, 32804, United States and used by permission.
+            Faith Funnels AI is sold through authorized digital marketplace platforms. The role of any payment processor or marketplace as a provider does not constitute an endorsement, approval, or review of this product(s).
           </p>
         </section>
 

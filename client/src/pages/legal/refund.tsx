@@ -49,24 +49,19 @@ export default function Refund() {
             The deadline for cancelling an Order is 14 days from the date on which You received the Goods/Service.
           </p>
           <p className="leading-relaxed text-muted-foreground">
-            Explodely.com is the trusted gateway for{" "}
-            <a href="https://faithfunnelsai.com/explodely" className="text-primary hover:underline">
-              https://faithfunnelsai.com/explodely
-            </a>
-            . You can request a refund:
+            To request a refund, please contact us through one of the following methods:
           </p>
           <ul className="list-disc pl-6 space-y-2 text-muted-foreground">
-            <li>Via email:{" "}
-              <a href="mailto:support@explodely.com" className="text-primary hover:underline">
-                support@explodely.com
+            <li>By email:{" "}
+              <a href="mailto:support@faithfunnelsai.com" className="text-primary hover:underline">
+                support@faithfunnelsai.com
               </a>
             </li>
             <li>By visiting this page on our website:{" "}
-              <a href="https://explodely.com/contact/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">
-                https://explodely.com/contact/
+              <a href="https://faithfunnelsai.com/support" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">
+                https://faithfunnelsai.com/support
               </a>
             </li>
-            <li>By phone number: +1 (833) EXP-LDLY or +1 (833) 397-5359</li>
           </ul>
         </section>
 
