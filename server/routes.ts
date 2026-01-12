@@ -59,28 +59,31 @@ export async function registerRoutes(app: Express): Promise<Server> {
 
   // JVZIPN v2 Webhook - JVZoo Instant Payment Notification
   // Product mapping for tier assignment
-  const JVZOO_PRODUCTS: Record<string, { tier: string; name: string }> = {
+  const JVZOO_PRODUCTS: Record<string, { tier: TierType; name: string }> = {
     // Front-End product ID - assign basic tier
-    "FE": { tier: "basic", name: "Faith Funnels AI - Front End" },
+    "FE": { tier: TIERS.BASIC, name: "Faith Funnels AI - Front End" },
     // OTO1 - White Label
-    "OTO1": { tier: "white_label", name: "Faith Funnels AI - White Label" },
-    "DS1": { tier: "white_label", name: "Faith Funnels AI - White Label Lite" },
+    "OTO1": { tier: TIERS.WHITE_LABEL, name: "Faith Funnels AI - White Label" },
+    "DS1": { tier: TIERS.WHITE_LABEL_LITE, name: "Faith Funnels AI - White Label Lite" },
     // OTO2 - Premium
-    "OTO2": { tier: "premium", name: "Faith Funnels AI - Premium" },
-    "DS2": { tier: "premium", name: "Faith Funnels AI - Premium Lite" },
+    "OTO2": { tier: TIERS.PREMIUM, name: "Faith Funnels AI - Premium" },
+    "DS2": { tier: TIERS.PREMIUM_LITE, name: "Faith Funnels AI - Premium Lite" },
     // OTO3 - Agency/Reseller
-    "OTO3": { tier: "reseller", name: "Faith Funnels AI - Agency" },
-    "DS3": { tier: "reseller", name: "Faith Funnels AI - Agency Lite" },
+    "OTO3": { tier: TIERS.RESELLER, name: "Faith Funnels AI - Agency" },
+    "DS3": { tier: TIERS.AGENCY_LITE, name: "Faith Funnels AI - Agency Lite" },
     // Order Bump (doesn't change tier, just tracks purchase)
-    "BUMP": { tier: "basic", name: "Faith Funnels AI - Bible Verses Pack" },
+    "BUMP": { tier: TIERS.BASIC, name: "Faith Funnels AI - Bible Verses Pack" },
   };
 
   // Tier priority for upgrades (higher number = better tier)
-  const TIER_PRIORITY: Record<string, number> = {
-    "basic": 1,
-    "white_label": 2,
-    "premium": 3,
-    "reseller": 4,
+  const TIER_PRIORITY: Record<TierType, number> = {
+    [TIERS.BASIC]: 1,
+    [TIERS.WHITE_LABEL_LITE]: 2,
+    [TIERS.WHITE_LABEL]: 3,
+    [TIERS.PREMIUM_LITE]: 4,
+    [TIERS.PREMIUM]: 5,
+    [TIERS.AGENCY_LITE]: 6,
+    [TIERS.RESELLER]: 7,
   };
 
   app.post('/api/webhooks/jvzipn', async (req, res) => {
@@ -262,15 +265,15 @@ export async function registerRoutes(app: Express): Promise<Server> {
 
   // Explodely IPN Webhook - Explodely Instant Payment Notification
   // Uses same product mapping as JVZoo
-  const EXPLODELY_PRODUCTS: Record<string, { tier: string; name: string }> = {
-    "FE": { tier: "basic", name: "Faith Funnels AI - Front End" },
-    "OTO1": { tier: "white_label", name: "Faith Funnels AI - White Label" },
-    "DS1": { tier: "white_label", name: "Faith Funnels AI - White Label Lite" },
-    "OTO2": { tier: "premium", name: "Faith Funnels AI - Premium" },
-    "DS2": { tier: "premium", name: "Faith Funnels AI - Premium Lite" },
-    "OTO3": { tier: "reseller", name: "Faith Funnels AI - Agency" },
-    "DS3": { tier: "reseller", name: "Faith Funnels AI - Agency Lite" },
-    "BUMP": { tier: "basic", name: "Faith Funnels AI - Bible Verses Pack" },
+  const EXPLODELY_PRODUCTS: Record<string, { tier: TierType; name: string }> = {
+    "FE": { tier: TIERS.BASIC, name: "Faith Funnels AI - Front End" },
+    "OTO1": { tier: TIERS.WHITE_LABEL, name: "Faith Funnels AI - White Label" },
+    "DS1": { tier: TIERS.WHITE_LABEL_LITE, name: "Faith Funnels AI - White Label Lite" },
+    "OTO2": { tier: TIERS.PREMIUM, name: "Faith Funnels AI - Premium" },
+    "DS2": { tier: TIERS.PREMIUM_LITE, name: "Faith Funnels AI - Premium Lite" },
+    "OTO3": { tier: TIERS.RESELLER, name: "Faith Funnels AI - Agency" },
+    "DS3": { tier: TIERS.AGENCY_LITE, name: "Faith Funnels AI - Agency Lite" },
+    "BUMP": { tier: TIERS.BASIC, name: "Faith Funnels AI - Bible Verses Pack" },
   };
 
   app.post('/api/webhooks/explodely', async (req, res) => {
@@ -458,16 +461,26 @@ export async function registerRoutes(app: Express): Promise<Server> {
   // Templates API
   app.get('/api/templates', async (req, res) => {
     try {
-      const tier = req.query.tier as string | undefined;
+      const tier = req.query.tier as TierType | undefined;
       const allTemplates = await storage.getTemplates();
       
-      // Filter based on tier access
-      if (tier === 'premium_lite') {
+      // Get feature flags for the tier
+      const features = tier ? TIER_FEATURES[tier as keyof typeof TIER_FEATURES] : null;
+      
+      if (!features) {
+        return res.json([]);
+      }
+      
+      // Filter based on feature flags
+      if (features.premiumTemplates) {
+        // Has premium access - all templates
+        res.json(allTemplates);
+      } else if (features.liteTemplates) {
+        // Has lite access only - filter to premium_lite templates
         const filtered = allTemplates.filter(t => t.tier === 'premium_lite');
         res.json(filtered);
-      } else if (tier === 'premium' || tier === 'reseller') {
-        res.json(allTemplates);
       } else {
+        // No template access
         res.json([]);
       }
     } catch (error) {

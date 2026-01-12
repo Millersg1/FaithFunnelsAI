@@ -10,6 +10,7 @@ import { useLocation } from "wouter";
 import { queryClient, apiRequest } from "@/lib/queryClient";
 import { Loader2, Search, Lock, Sparkles, BookOpen, LayoutTemplate } from "lucide-react";
 import type { Template } from "@shared/schema";
+import { useTenant } from "@/contexts/TenantContext";
 
 const CATEGORIES = [
   "All Categories",
@@ -31,8 +32,11 @@ export default function Templates() {
   const [selectedCategory, setSelectedCategory] = useState("All Categories");
   const [, setLocation] = useLocation();
   const { toast } = useToast();
+  const { tier, slug, hasFeature } = useTenant();
 
-  const userTier: string = "premium";
+  const userTier = tier;
+  const canAccessLiteTemplates = hasFeature("liteTemplates");
+  const canAccessPremiumTemplates = hasFeature("premiumTemplates");
 
   const { data: templates = [], isLoading } = useQuery<Template[]>({
     queryKey: ["/api/templates", { tier: userTier }],
@@ -50,7 +54,8 @@ export default function Templates() {
         title: "Funnel Created",
         description: "Your funnel has been created from the template.",
       });
-      setLocation(`/app/funnels/${funnel.id}`);
+      const basePath = slug ? `/t/${slug}` : "/app";
+      setLocation(`${basePath}/funnels/${funnel.id}`);
     },
     onError: (error) => {
       toast({
@@ -70,9 +75,6 @@ export default function Templates() {
 
   const premiumLiteTemplates = filteredTemplates.filter(t => t.tier === "premium_lite");
   const premiumOnlyTemplates = filteredTemplates.filter(t => t.tier === "premium");
-
-  const canAccessPremium = userTier === "premium" || userTier === "reseller";
-  const canAccessPremiumLite = userTier === "premium_lite" || canAccessPremium;
 
   if (isLoading) {
     return (
@@ -135,7 +137,7 @@ export default function Templates() {
                 template={template}
                 onUse={() => useTemplateMutation.mutate(template.id)}
                 isLoading={useTemplateMutation.isPending}
-                hasAccess={canAccessPremiumLite}
+                hasAccess={canAccessLiteTemplates}
               />
             ))}
           </div>
@@ -156,7 +158,7 @@ export default function Templates() {
                 template={template}
                 onUse={() => useTemplateMutation.mutate(template.id)}
                 isLoading={useTemplateMutation.isPending}
-                hasAccess={canAccessPremium}
+                hasAccess={canAccessPremiumTemplates}
                 isPremium
               />
             ))}
