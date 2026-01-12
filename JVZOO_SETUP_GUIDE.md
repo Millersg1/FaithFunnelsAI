@@ -69,8 +69,11 @@ Questions? Contact support@faithfunnelsai.com
 |---------|---------------------|
 | Front-End | `FAITHFUNNELS FE` |
 | OTO 1 (White Label) | `FAITHFUNNELS WHITELBL` |
+| DS 1 (White Label Lite) | `FAITHFUNNELS WL LITE` |
 | OTO 2 (Premium) | `FAITHFUNNELS PREMIUM` |
+| DS 2 (Premium Lite) | `FAITHFUNNELS PREM LT` |
 | OTO 3 (Agency) | `FAITHFUNNELS AGENCY` |
+| DS 3 (Agency Lite) | `FAITHFUNNELS AGNCY LT` |
 | Order Bump | `FAITHFUNNELS VERSES` |
 
 ---
