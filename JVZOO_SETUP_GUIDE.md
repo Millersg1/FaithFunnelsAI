@@ -213,6 +213,20 @@ Before going live:
 
 ---
 
+## Email Integration (GetResponse)
+
+**API Key Location:** Stored securely as `GETRESPONSE_API_KEY` secret in Replit.
+
+**To get your GetResponse API Key:**
+1. Log into GetResponse
+2. Go to Menu → Integrations & API → API
+3. Click "Generate API Key"
+4. Copy and store in Replit Secrets
+
+**Usage:** The API key is used to automatically add leads captured by the chatbot to your GetResponse email list for follow-up sequences.
+
+---
+
 ## Support
 
 - Customer Support: support@faithfunnelsai.com
