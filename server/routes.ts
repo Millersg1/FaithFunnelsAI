@@ -260,6 +260,191 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
+  // Explodely IPN Webhook - Explodely Instant Payment Notification
+  // Uses same product mapping as JVZoo
+  const EXPLODELY_PRODUCTS: Record<string, { tier: string; name: string }> = {
+    "FE": { tier: "basic", name: "Faith Funnels AI - Front End" },
+    "OTO1": { tier: "white_label", name: "Faith Funnels AI - White Label" },
+    "DS1": { tier: "white_label", name: "Faith Funnels AI - White Label Lite" },
+    "OTO2": { tier: "premium", name: "Faith Funnels AI - Premium" },
+    "DS2": { tier: "premium", name: "Faith Funnels AI - Premium Lite" },
+    "OTO3": { tier: "reseller", name: "Faith Funnels AI - Agency" },
+    "DS3": { tier: "reseller", name: "Faith Funnels AI - Agency Lite" },
+    "BUMP": { tier: "basic", name: "Faith Funnels AI - Bible Verses Pack" },
+  };
+
+  app.post('/api/webhooks/explodely', async (req, res) => {
+    try {
+      const ipnData = req.body;
+      console.log("Explodely IPN received:", JSON.stringify(ipnData, null, 2));
+
+      // Verify secret key if configured (optional but recommended)
+      const secretKey = process.env.EXPLODELY_SECRET_KEY;
+      if (secretKey && ipnData.secret !== secretKey) {
+        console.error("Explodely IPN verification failed");
+        return res.status(401).send("Verification failed");
+      }
+
+      // Extract Explodely IPN parameters
+      const orderId = ipnData.orderid || `explodely-${Date.now()}`;
+      const ipnType = (ipnData.type || 'sale').toLowerCase();
+      const productId = ipnData.productId || '';
+      const productName = ipnData.productName || '';
+      const customerName = ipnData.customerName || '';
+      const customerEmail = ipnData.customerEmail?.toLowerCase();
+      const amount = ipnData.amount || '0';
+      const affiliate = ipnData.affiliate || '';
+
+      if (!customerEmail) {
+        console.error("Explodely IPN missing customerEmail");
+        return res.status(400).send("Missing customerEmail");
+      }
+
+      // Parse customer name
+      const nameParts = customerName.split(' ');
+      const firstName = nameParts[0] || '';
+      const lastName = nameParts.slice(1).join(' ') || '';
+
+      // Handle refunds
+      if (ipnType === 'refund') {
+        console.log(`Explodely processing refund for ${customerEmail}`);
+        
+        const tenantSlug = `explodely-${customerEmail.replace(/[^a-z0-9]/gi, '-').substring(0, 30)}`;
+        const tenant = await storage.getTenantBySlug(tenantSlug);
+        
+        if (tenant) {
+          await storage.updateTenant(tenant.id, { isPaid: false });
+          console.log(`Explodely: Disabled access for ${customerEmail} due to refund`);
+          
+          await storage.createPurchase({
+            transactionId: `${orderId}-refund`,
+            email: customerEmail,
+            firstName,
+            lastName,
+            productId: 'REFUND',
+            productName: `Refund: ${productName}`,
+            amount: `-${amount}`,
+            tier: 'none',
+            marketplace: 'explodely',
+            status: 'refunded',
+            ipnData: ipnData,
+          });
+        }
+        
+        return res.send("OK");
+      }
+
+      // Handle rebill cancellations
+      if (ipnType === 'rebill_cancel' || ipnType === 'cancel') {
+        const tenantSlug = `explodely-${customerEmail.replace(/[^a-z0-9]/gi, '-').substring(0, 30)}`;
+        const tenant = await storage.getTenantBySlug(tenantSlug);
+        if (tenant) {
+          await storage.updateTenant(tenant.id, { isPaid: false });
+          console.log(`Explodely: Disabled access for ${customerEmail} due to cancellation`);
+        }
+        return res.send("OK");
+      }
+
+      // Only process sale transactions
+      if (ipnType !== 'sale' && ipnType !== 'rebill' && ipnType !== 'partial') {
+        console.log(`Explodely skipping IPN type: ${ipnType}`);
+        return res.send("OK");
+      }
+
+      // Check for duplicate transaction
+      const existingPurchase = await storage.getPurchaseByTransactionId(orderId);
+      if (existingPurchase) {
+        console.log(`Explodely duplicate transaction: ${orderId}`);
+        return res.send("OK");
+      }
+
+      // Determine product tier from product name
+      let productKey = 'FE';
+      const productNameLower = productName.toLowerCase();
+      if (productNameLower.includes('oto1') || productNameLower.includes('white label')) {
+        productKey = 'OTO1';
+      } else if (productNameLower.includes('ds1')) {
+        productKey = 'DS1';
+      } else if (productNameLower.includes('oto2') || productNameLower.includes('premium')) {
+        productKey = 'OTO2';
+      } else if (productNameLower.includes('ds2')) {
+        productKey = 'DS2';
+      } else if (productNameLower.includes('oto3') || productNameLower.includes('agency')) {
+        productKey = 'OTO3';
+      } else if (productNameLower.includes('ds3')) {
+        productKey = 'DS3';
+      } else if (productNameLower.includes('bump') || productNameLower.includes('verse')) {
+        productKey = 'BUMP';
+      }
+
+      const productInfo = EXPLODELY_PRODUCTS[productKey] || EXPLODELY_PRODUCTS['FE'];
+      const purchasedTier = productInfo.tier;
+
+      // Log the purchase
+      await storage.createPurchase({
+        transactionId: orderId,
+        email: customerEmail,
+        firstName,
+        lastName,
+        productId: productKey,
+        productName: productInfo.name,
+        amount,
+        tier: purchasedTier,
+        marketplace: 'explodely',
+        status: 'completed',
+        ipnData: ipnData,
+      });
+
+      // Create or update user account
+      const userId = `explodely-${customerEmail.replace(/[^a-z0-9]/gi, '-')}`;
+      await storage.upsertUser({
+        id: userId,
+        email: customerEmail,
+        firstName,
+        lastName,
+        profileImageUrl: null,
+      });
+
+      // Check if tenant exists for this user, otherwise create one
+      const tenantSlug = `explodely-${customerEmail.replace(/[^a-z0-9]/gi, '-').substring(0, 30)}`;
+      let tenant = await storage.getTenantBySlug(tenantSlug);
+      
+      if (tenant) {
+        // Upgrade tier if this purchase has a higher tier
+        const currentPriority = TIER_PRIORITY[tenant.tier] || 1;
+        const newPriority = TIER_PRIORITY[purchasedTier] || 1;
+        if (newPriority > currentPriority) {
+          console.log(`Upgrading Explodely tenant ${tenantSlug} from ${tenant.tier} to ${purchasedTier}`);
+          await storage.updateTenant(tenant.id, { tier: purchasedTier as any });
+        }
+      } else {
+        // Create new tenant
+        tenant = await storage.createTenant({
+          slug: tenantSlug,
+          adminPin: Math.random().toString(36).substring(2, 8).toUpperCase(),
+          isPaid: true,
+          tier: purchasedTier,
+        });
+
+        // Create tenant settings
+        await storage.createTenantSettings({
+          tenantId: tenant.id,
+          businessName: `${firstName}'s Faith Funnels`,
+          supportEmail: customerEmail,
+        });
+      }
+
+      console.log(`Explodely IPN processed: ${customerEmail} purchased ${productInfo.name} (${purchasedTier})`);
+      
+      // Explodely expects a simple "OK" response
+      res.send("OK");
+
+    } catch (error) {
+      console.error("Explodely IPN error:", error);
+      res.status(500).send("Error processing IPN");
+    }
+  });
+
   // Get purchases for admin view
   app.get('/api/purchases', isAuthenticated, async (req, res) => {
     try {
