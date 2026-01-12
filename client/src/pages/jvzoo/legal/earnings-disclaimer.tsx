@@ -1,6 +1,9 @@
+import { JVZooDisclaimer } from "@/components/jvzoo-disclaimer";
+
 export default function JVZooEarningsDisclaimer() {
   return (
-    <div className="max-w-4xl mx-auto px-4 py-12 space-y-6">
+    <div className="min-h-screen flex flex-col">
+    <div className="flex-1 max-w-4xl mx-auto px-4 py-12 space-y-6">
       <div>
         <h1 className="text-3xl font-semibold">Earnings Disclaimer</h1>
         <p className="text-muted-foreground">Last updated: January 10, 2026</p>
@@ -87,6 +90,8 @@ export default function JVZooEarningsDisclaimer() {
           </ul>
         </section>
       </div>
+    </div>
+    <JVZooDisclaimer />
     </div>
   );
 }
