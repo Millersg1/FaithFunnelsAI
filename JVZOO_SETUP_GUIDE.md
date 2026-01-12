@@ -215,15 +215,16 @@ Before going live:
 
 ## Email Integration (GetResponse)
 
-**API Key Location:** Stored securely as `GETRESPONSE_API_KEY` secret in Replit.
+**Your GetResponse API Key (for JVZoo product setup):**
+```
+vhsjeni5qziwugjnfedq036bcv4icjp2
+```
 
-**To get your GetResponse API Key:**
-1. Log into GetResponse
-2. Go to Menu → Integrations & API → API
-3. Click "Generate API Key"
-4. Copy and store in Replit Secrets
+Copy this into each JVZoo product's GetResponse integration field.
 
-**Usage:** This API key is used for JVZoo buyer integration - automatically adding customers to your GetResponse email list after purchase.
+**Also stored as:** `GETRESPONSE_API_KEY` secret in Replit.
+
+**Usage:** Automatically adds JVZoo buyers to your GetResponse email list after purchase.
 
 ---
 
