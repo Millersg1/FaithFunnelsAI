@@ -127,7 +127,7 @@ export default function JVZooLanding() {
                 The complete SaaS tool for creating professional sales funnels with Bible verses, custom themes, and instant HTML export. Built with faith, designed for profit.
               </p>
               <div className="flex flex-wrap gap-4">
-                <a href="#buy" data-testid="button-get-started">
+                <a href="https://www.jvzoo.com/b/115363/432233/99" data-testid="button-get-started">
                   <Button size="lg" className="text-lg px-10 py-6 bg-primary hover:bg-primary/90">
                     Get Started Now - Only $17
                   </Button>
@@ -327,12 +327,15 @@ export default function JVZooLanding() {
                 Join successful faith-based marketers who are using Faith Funnels AI to create profitable sales funnels that honor God and grow their business.
               </p>
               <div className="flex flex-col sm:flex-row gap-6 justify-center pt-4">
-                <Button size="lg" className="text-lg px-10 py-6 bg-primary hover:bg-primary/90" data-testid="button-start-building">
-                  Start Building Now - Only $17
-                </Button>
+                <a href="https://www.jvzoo.com/b/115363/432233/99" data-testid="link-jvzoo-buy">
+                  <img src="https://i.jvzoo.com/115363/432233/99" alt="" width="1" height="1" className="absolute" />
+                  <Button size="lg" className="text-lg px-10 py-6 bg-primary hover:bg-primary/90" data-testid="button-start-building">
+                    Start Building Now - Only $17
+                  </Button>
+                </a>
               </div>
               <p className="text-sm text-muted-foreground">
-                JVZoo buy button will appear here after product approval
+                14-Day Money-Back Guarantee - Secure Checkout via JVZoo
               </p>
               <div className="pt-6 border-t border-primary/10">
                 <p className="text-lg italic text-muted-foreground bg-gradient-to-r from-primary/10 to-accent/10 rounded-lg px-6 py-4 inline-block border border-primary/20">
