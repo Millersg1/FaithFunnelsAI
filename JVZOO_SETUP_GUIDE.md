@@ -223,7 +223,7 @@ Before going live:
 3. Click "Generate API Key"
 4. Copy and store in Replit Secrets
 
-**Usage:** The API key is used to automatically add leads captured by the chatbot to your GetResponse email list for follow-up sequences.
+**Usage:** This API key is used for JVZoo buyer integration - automatically adding customers to your GetResponse email list after purchase.
 
 ---
 
