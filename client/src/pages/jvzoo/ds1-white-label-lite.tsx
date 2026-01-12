@@ -141,15 +141,16 @@ export default function JVZooDS1WhiteLabelLite() {
 
         <div className="text-center space-y-4">
           <div className="flex flex-col items-center gap-2">
-            <Button 
-              size="lg" 
-              className="text-lg px-10 py-6 bg-orange-500 hover:bg-orange-600"
-              onClick={handlePurchaseClick}
-              disabled={isProcessing}
-              data-testid="button-upgrade-lite"
-            >
-              {isProcessing ? "Processing..." : "YES! Get White Label Lite for $27"}
-            </Button>
+            <a href="https://www.jvzoo.com/b/115363/432247/99" data-testid="link-jvzoo-ds1">
+              <img src="https://i.jvzoo.com/115363/432247/99" alt="" width="1" height="1" className="absolute" />
+              <Button 
+                size="lg" 
+                className="text-lg px-10 py-6 bg-orange-500 hover:bg-orange-600"
+                data-testid="button-upgrade-lite"
+              >
+                YES! Get White Label Lite for $27
+              </Button>
+            </a>
             <p className="text-xs text-muted-foreground italic">
               1-Click Upsell - Charged directly to your payment method
             </p>
@@ -157,7 +158,7 @@ export default function JVZooDS1WhiteLabelLite() {
           <p className="text-sm text-muted-foreground">
             One-time payment - Instant access - 14-day money-back guarantee
           </p>
-          <a href="/jvzoo/oto2" className="text-sm text-muted-foreground hover:underline flex items-center justify-center gap-1">
+          <a href="https://www.jvzoo.com/nothanks/432247" className="text-sm text-muted-foreground hover:underline flex items-center justify-center gap-1" data-testid="link-no-thanks-ds1">
             No thanks, continue to next offer <ArrowRight className="h-4 w-4" />
           </a>
         </div>
