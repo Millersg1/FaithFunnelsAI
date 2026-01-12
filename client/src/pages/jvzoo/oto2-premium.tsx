@@ -7,6 +7,7 @@ import { TrustBadges } from "@/components/trust-badges";
 import { FAQSection } from "@/components/faq-section";
 import { BonusStack } from "@/components/bonus-stack";
 import { JVZooDisclaimer } from "@/components/jvzoo-disclaimer";
+import { TemplateShowcase } from "@/components/template-showcase";
 
 export default function JVZooOTO2Premium() {
   const [isProcessing, setIsProcessing] = useState(false);
@@ -144,6 +145,8 @@ export default function JVZooOTO2Premium() {
             </div>
           </div>
         </div>
+
+        <TemplateShowcase variant="full" isPremium={true} />
 
         <BonusStack bonuses={bonuses} />
         <TrustBadges />

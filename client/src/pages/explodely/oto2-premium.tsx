@@ -7,6 +7,7 @@ import { TrustBadges } from "@/components/trust-badges";
 import { FAQSection } from "@/components/faq-section";
 import { BonusStack } from "@/components/bonus-stack";
 import { ExplodelyDisclaimer } from "@/components/explodely-disclaimer";
+import { TemplateShowcase } from "@/components/template-showcase";
 
 export default function ExplodelyOTO2Premium() {
   const [isProcessing, setIsProcessing] = useState(false);
@@ -146,6 +147,8 @@ export default function ExplodelyOTO2Premium() {
             If you come back later, Premium Unlimited will cost $147 (not $67)
           </p>
         </div>
+
+        <TemplateShowcase variant="full" isPremium={true} />
 
         <BonusStack bonuses={bonuses} />
         <TrustBadges />

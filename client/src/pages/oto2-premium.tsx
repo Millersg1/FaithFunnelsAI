@@ -6,6 +6,7 @@ import { ExitIntentPopup } from "@/components/exit-intent-popup";
 import { TrustBadges } from "@/components/trust-badges";
 import { FAQSection } from "@/components/faq-section";
 import { BonusStack } from "@/components/bonus-stack";
+import { TemplateShowcase } from "@/components/template-showcase";
 
 export default function OTO2Premium() {
   const faqs = [
@@ -139,6 +140,9 @@ export default function OTO2Premium() {
             </div>
           </div>
         </div>
+
+        {/* Template Showcase */}
+        <TemplateShowcase variant="full" isPremium={true} />
 
         {/* Perfect For */}
         <div className="bg-card border rounded-lg p-8 space-y-4">
