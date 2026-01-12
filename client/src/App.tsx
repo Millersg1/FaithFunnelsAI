@@ -65,6 +65,7 @@ import JVZooLegalDisclaimer from "@/pages/jvzoo/legal/disclaimer";
 import JVZooEarningsDisclaimer from "@/pages/jvzoo/legal/earnings-disclaimer";
 import Affiliates from "@/pages/affiliates";
 import DemoAccess from "@/pages/demo-access";
+import Templates from "@/pages/templates";
 import { CookieConsentProvider, ManageCookiesButton } from "@/components/cookie-consent";
 
 function AppLayout({ children }: { children: React.ReactNode }) {
@@ -309,6 +310,15 @@ function App() {
                 <ProtectedRoute>
                   <AppLayout>
                     <Export />
+                  </AppLayout>
+                </ProtectedRoute>
+              )}
+            </Route>
+            <Route path="/app/templates">
+              {() => (
+                <ProtectedRoute>
+                  <AppLayout>
+                    <Templates />
                   </AppLayout>
                 </ProtectedRoute>
               )}

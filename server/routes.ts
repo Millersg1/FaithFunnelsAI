@@ -455,6 +455,82 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
+  // Templates API
+  app.get('/api/templates', async (req, res) => {
+    try {
+      const tier = req.query.tier as string | undefined;
+      const allTemplates = await storage.getTemplates();
+      
+      // Filter based on tier access
+      if (tier === 'premium_lite') {
+        const filtered = allTemplates.filter(t => t.tier === 'premium_lite');
+        res.json(filtered);
+      } else if (tier === 'premium' || tier === 'reseller') {
+        res.json(allTemplates);
+      } else {
+        res.json([]);
+      }
+    } catch (error) {
+      res.status(500).json({ error: "Failed to fetch templates" });
+    }
+  });
+
+  app.get('/api/templates/:id', async (req, res) => {
+    try {
+      const template = await storage.getTemplate(req.params.id);
+      if (!template) {
+        return res.status(404).json({ error: "Template not found" });
+      }
+      res.json(template);
+    } catch (error) {
+      res.status(500).json({ error: "Failed to fetch template" });
+    }
+  });
+
+  // Create funnel from template
+  app.post('/api/templates/:id/use', isAuthenticated, async (req, res) => {
+    try {
+      const template = await storage.getTemplate(req.params.id);
+      if (!template) {
+        return res.status(404).json({ error: "Template not found" });
+      }
+
+      // Create a new funnel based on the template
+      const newFunnel = await storage.createFunnel({
+        name: `${template.name} (from template)`,
+        stages: template.stages,
+      });
+
+      // If template has a verse, create it for the funnel
+      if (template.verse) {
+        await storage.createVerse({
+          funnelId: newFunnel.id,
+          verseText: template.verse.text,
+          reference: template.verse.reference,
+          ctaText: template.verse.ctaText,
+          ctaUrl: "",
+        });
+      }
+
+      // If template has a theme, create it for the funnel
+      if (template.theme) {
+        await storage.createTheme({
+          funnelId: newFunnel.id,
+          name: `${template.name} Theme`,
+          primaryColor: template.theme.primary,
+          secondaryColor: template.theme.secondary,
+          accentColor: template.theme.accent,
+          isDefault: true,
+        });
+      }
+
+      res.json(newFunnel);
+    } catch (error) {
+      console.error("Error creating funnel from template:", error);
+      res.status(500).json({ error: "Failed to create funnel from template" });
+    }
+  });
+
   app.get('/api/auth/user', isAuthenticated, async (req: any, res) => {
     try {
       const userId = req.user?.claims?.sub;

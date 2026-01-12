@@ -13,6 +13,8 @@ import {
   type InsertLead,
   type Purchase,
   type InsertPurchase,
+  type Template,
+  type InsertTemplate,
   type FunnelStage,
   type User,
   type UpsertUser,
@@ -23,6 +25,7 @@ import {
   tenantSettings,
   leads,
   purchases,
+  templates,
   users
 } from "@shared/schema";
 import { randomUUID } from "crypto";
@@ -68,6 +71,10 @@ export interface IStorage {
   
   getUser(id: string): Promise<User | undefined>;
   upsertUser(user: UpsertUser): Promise<User>;
+  
+  getTemplates(tier?: string): Promise<Template[]>;
+  getTemplate(id: string): Promise<Template | undefined>;
+  createTemplate(template: InsertTemplate): Promise<Template>;
 }
 
 export class PgStorage implements IStorage {
@@ -241,6 +248,26 @@ export class PgStorage implements IStorage {
       })
       .returning();
     return user;
+  }
+
+  async getTemplates(tier?: string): Promise<Template[]> {
+    if (tier === 'premium_lite') {
+      return await db.select().from(templates).where(eq(templates.tier, 'premium_lite'));
+    }
+    return await db.select().from(templates);
+  }
+
+  async getTemplate(id: string): Promise<Template | undefined> {
+    const result = await db.select().from(templates).where(eq(templates.id, id));
+    return result[0];
+  }
+
+  async createTemplate(insertTemplate: InsertTemplate): Promise<Template> {
+    const result = await db.insert(templates).values({
+      ...insertTemplate,
+      stages: (insertTemplate.stages as FunnelStage[]) || []
+    }).returning();
+    return result[0];
   }
 }
 
@@ -423,5 +450,15 @@ export async function seedDemoData() {
     
     await db.insert(tenants).values(demoTenant);
     await db.insert(tenantSettings).values(demoSettings);
+  }
+  
+  // Seed templates if they don't exist
+  const existingTemplates = await storage.getTemplates();
+  if (existingTemplates.length === 0) {
+    const { TEMPLATE_SEEDS } = await import("./templateSeeds");
+    for (const template of TEMPLATE_SEEDS) {
+      await storage.createTemplate(template);
+    }
+    console.log(`Seeded ${TEMPLATE_SEEDS.length} funnel templates`);
   }
 }

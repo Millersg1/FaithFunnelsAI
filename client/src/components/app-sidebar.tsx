@@ -1,4 +1,4 @@
-import { Home, Filter, BookOpen, Palette, Download, Settings, FileText } from "lucide-react";
+import { Home, Filter, BookOpen, Palette, Download, Settings, FileText, LayoutTemplate } from "lucide-react";
 import {
   Sidebar,
   SidebarContent,
@@ -24,6 +24,11 @@ const menuItems = [
     title: "My Funnels",
     url: "/app/funnels",
     icon: Filter,
+  },
+  {
+    title: "Templates",
+    url: "/app/templates",
+    icon: LayoutTemplate,
   },
   {
     title: "Verse Builder",

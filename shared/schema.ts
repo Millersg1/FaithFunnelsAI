@@ -111,6 +111,23 @@ export type FunnelStage = {
   imageUrl?: string;
 };
 
+export const templates = pgTable("templates", {
+  id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
+  name: text("name").notNull(),
+  description: text("description").notNull(),
+  category: text("category").notNull(),
+  tier: text("tier").notNull().default("premium"),
+  stages: jsonb("stages").notNull().$type<FunnelStage[]>().default([]),
+  verse: jsonb("verse").$type<{ text: string; reference: string; ctaText: string }>(),
+  theme: jsonb("theme").$type<{ primary: string; secondary: string; accent: string }>(),
+  thumbnailUrl: text("thumbnail_url"),
+  createdAt: timestamp("created_at").defaultNow(),
+});
+
+export const insertTemplateSchema = createInsertSchema(templates).omit({ id: true, createdAt: true });
+export type InsertTemplate = z.infer<typeof insertTemplateSchema>;
+export type Template = typeof templates.$inferSelect;
+
 export const insertFunnelSchema = createInsertSchema(funnels).omit({ id: true });
 export const insertVerseSchema = createInsertSchema(verses).omit({ id: true });
 export const insertThemeSchema = createInsertSchema(themes).omit({ id: true });
