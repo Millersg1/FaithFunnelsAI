@@ -30,7 +30,7 @@ export default function OTO2Premium() {
 
   const bonuses = [
     {
-      title: "10 Premium Funnel Templates",
+      title: "55 Premium Funnel Templates",
       description: "Exclusive high-converting templates for faith-based offers, events, and ministries",
       value: 97
     },

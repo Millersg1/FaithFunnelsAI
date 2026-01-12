@@ -6,6 +6,7 @@ import { ExitIntentPopup } from "@/components/exit-intent-popup";
 import { TrustBadges } from "@/components/trust-badges";
 import { FAQSection } from "@/components/faq-section";
 import { BonusStack } from "@/components/bonus-stack";
+import { TemplateShowcase } from "@/components/template-showcase";
 
 export default function DS2PremiumLite() {
   const faqs = [
@@ -211,6 +212,9 @@ export default function DS2PremiumLite() {
             If you leave, Premium Lite will cost $67. Save $20 by acting now!
           </p>
         </div>
+
+        {/* Template Showcase - 25 Lite Templates */}
+        <TemplateShowcase variant="full" isPremium={false} />
 
         {/* Bonus Stack */}
         <BonusStack bonuses={bonuses} />

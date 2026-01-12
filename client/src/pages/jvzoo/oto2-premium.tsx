@@ -39,7 +39,7 @@ export default function JVZooOTO2Premium() {
 
   const bonuses = [
     {
-      title: "50 Premium Funnel Templates",
+      title: "55 Premium Funnel Templates",
       description: "Done-for-you templates for churches, ministries, coaches, and authors",
       value: 197
     },
@@ -100,7 +100,7 @@ export default function JVZooOTO2Premium() {
             <div className="flex items-start gap-3">
               <Check className="w-6 h-6 text-primary mt-1 flex-shrink-0" />
               <div>
-                <p className="font-semibold">50 Premium Templates</p>
+                <p className="font-semibold">55 Premium Templates</p>
                 <p className="text-sm text-muted-foreground">Exclusive, conversion-optimized templates not available elsewhere</p>
               </div>
             </div>

@@ -7,6 +7,7 @@ import { TrustBadges } from "@/components/trust-badges";
 import { FAQSection } from "@/components/faq-section";
 import { BonusStack } from "@/components/bonus-stack";
 import { ExplodelyDisclaimer } from "@/components/explodely-disclaimer";
+import { TemplateShowcase } from "@/components/template-showcase";
 
 export default function ExplodelyDS2PremiumLite() {
   const [isProcessing, setIsProcessing] = useState(false);
@@ -131,6 +132,8 @@ export default function ExplodelyDS2PremiumLite() {
             If you leave, Premium Lite will cost $67. Save $30 by acting now!
           </p>
         </div>
+
+        <TemplateShowcase variant="full" isPremium={false} />
 
         <BonusStack bonuses={bonuses} />
         <TrustBadges />
