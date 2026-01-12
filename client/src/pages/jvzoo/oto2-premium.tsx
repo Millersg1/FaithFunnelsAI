@@ -151,15 +151,16 @@ export default function JVZooOTO2Premium() {
 
         <div className="text-center space-y-4">
           <div className="flex flex-col items-center gap-2">
-            <Button 
-              size="lg" 
-              className="text-lg px-10 py-6 bg-primary hover:bg-primary/90"
-              onClick={handlePurchaseClick}
-              disabled={isProcessing}
-              data-testid="button-upgrade-premium"
-            >
-              {isProcessing ? "Processing..." : "YES! Upgrade to Premium for $67"}
-            </Button>
+            <a href="https://www.jvzoo.com/b/115363/432251/99" data-testid="link-jvzoo-oto2">
+              <img src="https://i.jvzoo.com/115363/432251/99" alt="" width="1" height="1" className="absolute" />
+              <Button 
+                size="lg" 
+                className="text-lg px-10 py-6 bg-primary hover:bg-primary/90"
+                data-testid="button-upgrade-premium"
+              >
+                YES! Upgrade to Premium for $67
+              </Button>
+            </a>
             <p className="text-xs text-muted-foreground italic">
               1-Click Upsell - Charged directly to your payment method
             </p>
@@ -167,7 +168,7 @@ export default function JVZooOTO2Premium() {
           <p className="text-sm text-muted-foreground">
             One-time payment - Instant access - 14-day money-back guarantee
           </p>
-          <a href="/jvzoo/ds2" className="text-sm text-muted-foreground hover:underline block">
+          <a href="https://www.jvzoo.com/nothanks/432251" className="text-sm text-muted-foreground hover:underline block" data-testid="link-no-thanks-oto2">
             No thanks, I'll keep my current plan
           </a>
         </div>
