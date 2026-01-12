@@ -98,15 +98,17 @@ export default function JVZooOrderBumpVerses() {
                   <p className="text-sm text-muted-foreground">One-time payment. Instant access.</p>
                 </div>
 
-                <div className="bg-muted/50 border-2 border-dashed border-muted-foreground/30 rounded-lg p-6">
-                  <p className="text-sm text-muted-foreground mb-3">JVZoo Buy Button Will Appear Here</p>
-                  <Button 
-                    size="lg" 
-                    className="w-full max-w-md text-lg py-6 bg-amber-500 hover:bg-amber-600 text-white"
-                    data-testid="button-jvzoo-order-bump-buy"
-                  >
-                    YES! Add Bible Verse Packs To My Order
-                  </Button>
+                <div className="flex flex-col items-center gap-2">
+                  <a href="https://www.jvzoo.com/b/115363/432259/99" data-testid="link-jvzoo-verses">
+                    <img src="https://i.jvzoo.com/115363/432259/99" alt="" width="1" height="1" className="absolute" />
+                    <Button 
+                      size="lg" 
+                      className="w-full max-w-md text-lg py-6 bg-amber-500 hover:bg-amber-600 text-white"
+                      data-testid="button-jvzoo-order-bump-buy"
+                    >
+                      YES! Add Bible Verse Packs To My Order
+                    </Button>
+                  </a>
                 </div>
 
                 <p className="text-xs text-muted-foreground">
@@ -127,7 +129,7 @@ export default function JVZooOrderBumpVerses() {
 
           <div className="text-center">
             <a 
-              href="/jvzoo/thankyou" 
+              href="https://www.jvzoo.com/nothanks/432259" 
               className="text-sm text-muted-foreground hover:underline"
               data-testid="link-jvzoo-skip-order-bump"
             >
