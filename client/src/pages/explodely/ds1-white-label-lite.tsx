@@ -166,9 +166,9 @@ export default function ExplodelyDS1WhiteLabelLite() {
       <ExplodelyDisclaimer />
       <ExitIntentPopup
         offerName="White Label Lite"
-        originalPrice={27}
-        discountedPrice={17}
-        onAccept={() => window.location.href = 'https://explodely.com/p/99290742?cid=explodely10off'}
+        originalPrice={47}
+        discountedPrice={27}
+        onAccept={() => window.location.href = 'https://explodely.com/p/99290742?ocu=yes'}
       />
     </div>
   );
