@@ -194,8 +194,8 @@ export default function ExplodelyOTO3Agency() {
       <ExplodelyDisclaimer />
       <ExitIntentPopup
         offerName="Agency Package"
-        originalPrice={247}
-        discountedPrice={97}
+        originalPrice={97}
+        discountedPrice={87}
         onAccept={() => window.location.href = 'https://explodely.com/p/1328614703?ocu=yes'}
       />
     </div>

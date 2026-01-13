@@ -177,8 +177,8 @@ export default function JVZooOTO1WhiteLabel() {
       <JVZooDisclaimer />
       <ExitIntentPopup
         offerName="White Label Rights"
-        originalPrice={97}
-        discountedPrice={47}
+        originalPrice={47}
+        discountedPrice={37}
         onAccept={() => window.location.href = '/jvzoo/oto2'}
       />
     </div>

@@ -259,8 +259,8 @@ export default function DS3AgencyLite() {
       {/* Exit Intent Popup */}
       <ExitIntentPopup
         offerName="Agency Lite"
-        originalPrice={97}
-        discountedPrice={67}
+        originalPrice={67}
+        discountedPrice={57}
         onAccept={() => window.location.href = 'https://warriorplus.com/o2/buy/bt2gm2/wrjz9c/y079dw'}
       />
     </div>

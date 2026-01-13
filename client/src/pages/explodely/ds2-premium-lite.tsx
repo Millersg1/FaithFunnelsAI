@@ -169,8 +169,8 @@ export default function ExplodelyDS2PremiumLite() {
       <ExplodelyDisclaimer />
       <ExitIntentPopup
         offerName="Premium Lite"
-        originalPrice={67}
-        discountedPrice={37}
+        originalPrice={37}
+        discountedPrice={27}
         onAccept={() => window.location.href = 'https://explodely.com/p/226220626?ocu=yes'}
       />
     </div>

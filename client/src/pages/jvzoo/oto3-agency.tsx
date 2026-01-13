@@ -182,8 +182,8 @@ export default function JVZooOTO3Agency() {
       <JVZooDisclaimer />
       <ExitIntentPopup
         offerName="Agency Package"
-        originalPrice={297}
-        discountedPrice={97}
+        originalPrice={97}
+        discountedPrice={87}
         onAccept={() => window.location.href = '/jvzoo/thankyou'}
       />
     </div>

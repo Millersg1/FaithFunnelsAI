@@ -178,8 +178,8 @@ export default function ExplodelyOTO1WhiteLabel() {
       <ExplodelyDisclaimer />
       <ExitIntentPopup
         offerName="White Label Rights"
-        originalPrice={97}
-        discountedPrice={47}
+        originalPrice={47}
+        discountedPrice={37}
         onAccept={() => window.location.href = 'https://explodely.com/p/1698606963?ocu=yes'}
       />
     </div>

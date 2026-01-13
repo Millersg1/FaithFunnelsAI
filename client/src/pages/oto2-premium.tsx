@@ -209,8 +209,8 @@ export default function OTO2Premium() {
       {/* Exit Intent Popup */}
       <ExitIntentPopup
         offerName="Premium Unlimited"
-        originalPrice={147}
-        discountedPrice={67}
+        originalPrice={67}
+        discountedPrice={57}
         onAccept={() => window.location.href = 'https://warriorplus.com/o2/buy/bt2gm2/pfs25p/mg3bpk'}
       />
     </div>

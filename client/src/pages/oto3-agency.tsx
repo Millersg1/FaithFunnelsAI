@@ -236,8 +236,8 @@ export default function OTO3Agency() {
       {/* Exit Intent Popup */}
       <ExitIntentPopup
         offerName="Agency Package"
-        originalPrice={247}
-        discountedPrice={97}
+        originalPrice={97}
+        discountedPrice={87}
         onAccept={() => window.location.href = 'https://warriorplus.com/o2/buy/bt2gm2/xnv8wv/d7c278'}
       />
     </div>
