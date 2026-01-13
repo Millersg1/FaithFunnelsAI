@@ -38,9 +38,9 @@ export default function ExplodelyOTO2Premium() {
 
   const bonuses = [
     {
-      title: "60 Premium Funnel Templates",
-      description: "Exclusive high-converting templates for faith-based offers, events, and ministries",
-      value: 97
+      title: "5 Starter Funnel Templates",
+      description: "Ready-to-use templates for donations, events, newsletters, prayer requests, and welcome pages",
+      value: 47
     },
     {
       title: "Unlimited Client Onboarding System",

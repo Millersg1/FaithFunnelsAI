@@ -39,9 +39,9 @@ export default function JVZooOTO2Premium() {
 
   const bonuses = [
     {
-      title: "60 Premium Funnel Templates",
-      description: "Done-for-you templates for churches, ministries, coaches, and authors",
-      value: 197
+      title: "5 Starter Funnel Templates",
+      description: "Ready-to-use templates for donations, events, newsletters, prayer requests, and welcome pages",
+      value: 47
     },
     {
       title: "Advanced Conversion Training",
