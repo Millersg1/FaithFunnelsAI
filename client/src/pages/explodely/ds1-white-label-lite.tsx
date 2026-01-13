@@ -2,7 +2,6 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Check, AlertCircle } from "lucide-react";
 import { CountdownTimer } from "@/components/countdown-timer";
-import { ExitIntentPopup } from "@/components/exit-intent-popup";
 import { TrustBadges } from "@/components/trust-badges";
 import { FAQSection } from "@/components/faq-section";
 import { BonusStack } from "@/components/bonus-stack";
@@ -164,12 +163,6 @@ export default function ExplodelyDS1WhiteLabelLite() {
       </div>
 
       <ExplodelyDisclaimer />
-      <ExitIntentPopup
-        offerName="White Label Lite"
-        originalPrice={47}
-        discountedPrice={27}
-        onAccept={() => window.location.href = 'https://explodely.com/p/99290742?ocu=yes'}
-      />
     </div>
   );
 }

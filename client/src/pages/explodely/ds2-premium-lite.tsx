@@ -2,7 +2,6 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Check, AlertCircle } from "lucide-react";
 import { CountdownTimer } from "@/components/countdown-timer";
-import { ExitIntentPopup } from "@/components/exit-intent-popup";
 import { TrustBadges } from "@/components/trust-badges";
 import { FAQSection } from "@/components/faq-section";
 import { BonusStack } from "@/components/bonus-stack";
@@ -167,12 +166,6 @@ export default function ExplodelyDS2PremiumLite() {
       </div>
 
       <ExplodelyDisclaimer />
-      <ExitIntentPopup
-        offerName="Premium Lite"
-        originalPrice={67}
-        discountedPrice={37}
-        onAccept={() => window.location.href = 'https://explodely.com/p/226220626?ocu=yes'}
-      />
     </div>
   );
 }
