@@ -100,8 +100,8 @@ export default function JVZooOTO2Premium() {
             <div className="flex items-start gap-3">
               <Check className="w-6 h-6 text-primary mt-1 flex-shrink-0" />
               <div>
-                <p className="font-semibold">60 Premium Templates</p>
-                <p className="text-sm text-muted-foreground">Exclusive, conversion-optimized templates not available elsewhere</p>
+                <p className="font-semibold">All 60 Premium Templates</p>
+                <p className="text-sm text-muted-foreground">Access the complete library of 60 conversion-optimized templates</p>
               </div>
             </div>
 
