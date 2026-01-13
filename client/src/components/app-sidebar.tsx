@@ -13,6 +13,7 @@ import {
 } from "@/components/ui/sidebar";
 import { Link, useLocation } from "wouter";
 import { useTenant } from "@/contexts/TenantContext";
+import { UpgradeBanner } from "@/components/upgrade-banner";
 
 const menuItems = [
   {
@@ -142,7 +143,8 @@ export function AppSidebar() {
           </SidebarGroupContent>
         </SidebarGroup>
       </SidebarContent>
-      <SidebarFooter className="p-4">
+      <SidebarFooter className="p-4 space-y-4">
+        <UpgradeBanner variant="sidebar" />
         <div className="text-xs text-muted-foreground">
           <p>Support: {settings?.supportEmail || "support@faithfunnelsai.com"}</p>
         </div>
