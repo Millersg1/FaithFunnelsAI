@@ -20,11 +20,11 @@ export default function JVZooDS2PremiumLite() {
   const faqs = [
     {
       question: "How many templates are included?",
-      answer: "Premium Lite includes 25 done-for-you templates - enough to cover most faith-based niches including churches, ministries, Christian coaches, and authors."
+      answer: "Premium Lite includes 30 done-for-you templates (5 starter + 25 professional) - enough to cover most faith-based niches including churches, ministries, Christian coaches, and authors."
     },
     {
       question: "What's the difference between this and full Premium?",
-      answer: "Full Premium has 55 templates and unlimited funnels. Premium Lite has 25 templates and 25 funnels - still plenty for most users at a lower price point."
+      answer: "Full Premium has 60 templates and unlimited funnels. Premium Lite has 30 templates and 25 funnels - still plenty for most users at a lower price point."
     },
     {
       question: "Do I keep all my previous features?",
@@ -38,8 +38,8 @@ export default function JVZooDS2PremiumLite() {
 
   const bonuses = [
     {
-      title: "25 Premium Templates",
-      description: "Professionally designed templates for churches, ministries, and coaches",
+      title: "30 Premium Templates",
+      description: "Professionally designed templates for churches, ministries, and coaches (includes 5 starter templates)",
       value: 97
     },
     {
@@ -60,7 +60,7 @@ export default function JVZooDS2PremiumLite() {
             Get <span className="text-primary">Premium Lite</span> Instead
           </h1>
           <p className="text-xl text-muted-foreground">
-            25 templates + 25 funnels at a reduced price!
+            30 templates + 25 funnels at a reduced price!
           </p>
         </div>
 
@@ -81,8 +81,8 @@ export default function JVZooDS2PremiumLite() {
             <div className="flex items-start gap-3">
               <Check className="w-6 h-6 text-primary mt-1 flex-shrink-0" />
               <div>
-                <p className="font-semibold">25 Premium Templates</p>
-                <p className="text-sm text-muted-foreground">Done-for-you designs for churches, ministries, and coaches</p>
+                <p className="font-semibold">30 Premium Templates</p>
+                <p className="text-sm text-muted-foreground">Done-for-you designs for churches, ministries, and coaches (includes 5 starter templates)</p>
               </div>
             </div>
 
@@ -125,13 +125,13 @@ export default function JVZooDS2PremiumLite() {
               <p className="font-bold text-lg">Premium Lite</p>
               <p className="text-2xl font-bold text-primary">$37</p>
               <p className="text-muted-foreground">25 funnels</p>
-              <p className="text-muted-foreground">25 templates</p>
+              <p className="text-muted-foreground">30 templates</p>
             </div>
             <div className="text-center p-4 bg-background rounded-lg border">
               <p className="font-bold text-lg">Full Premium</p>
               <p className="text-2xl font-bold text-muted-foreground line-through">$67</p>
               <p className="text-muted-foreground">Unlimited</p>
-              <p className="text-muted-foreground">55 templates</p>
+              <p className="text-muted-foreground">60 templates</p>
             </div>
           </div>
         </div>

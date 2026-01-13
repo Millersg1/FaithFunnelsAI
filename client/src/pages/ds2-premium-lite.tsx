@@ -213,7 +213,7 @@ export default function DS2PremiumLite() {
           </p>
         </div>
 
-        {/* Template Showcase - 25 Lite Templates */}
+        {/* Template Showcase - 30 Lite Templates (5 starter + 25 professional) */}
         <TemplateShowcase variant="full" isPremium={false} />
 
         {/* Bonus Stack */}

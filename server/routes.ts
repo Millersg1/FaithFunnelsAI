@@ -471,13 +471,20 @@ export async function registerRoutes(app: Express): Promise<Server> {
         return res.json([]);
       }
       
-      // Filter based on feature flags
+      // Filter based on feature flags - templates are cumulative
+      // Premium gets all templates (basic + lite + premium)
+      // Lite gets basic + lite templates
+      // Basic gets only basic templates
       if (features.premiumTemplates) {
-        // Has premium access - all templates
+        // Has premium access - all templates (basic + lite + premium)
         res.json(allTemplates);
       } else if (features.liteTemplates) {
-        // Has lite access only - filter to premium_lite templates
-        const filtered = allTemplates.filter(t => t.tier === 'premium_lite');
+        // Has lite access - basic + premium_lite templates
+        const filtered = allTemplates.filter(t => t.tier === 'basic' || t.tier === 'premium_lite');
+        res.json(filtered);
+      } else if (features.basicTemplates) {
+        // Has basic access only - just basic templates
+        const filtered = allTemplates.filter(t => t.tier === 'basic');
         res.json(filtered);
       } else {
         // No template access

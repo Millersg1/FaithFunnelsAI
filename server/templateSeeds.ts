@@ -22,6 +22,53 @@ const createStages = (mainTitle: string, otoTitle: string, dsTitle: string): Fun
 ];
 
 export const TEMPLATE_SEEDS: InsertTemplate[] = [
+  // STARTER TEMPLATES - 5 templates (basic tier - included with all purchases)
+  {
+    name: "Simple Donation Page",
+    description: "A clean, straightforward donation page for any ministry or cause",
+    category: "Starter Templates",
+    tier: "basic",
+    stages: createStages("Donation Main Page", "Monthly Giving OTO", "One-Time Gift DS"),
+    verse: { text: "Each of you should give what you have decided in your heart to give.", reference: "2 Corinthians 9:7", ctaText: "Give Now" },
+    theme: { primary: "#2563EB", secondary: "#3B82F6", accent: "#F59E0B" },
+  },
+  {
+    name: "Event Registration",
+    description: "Simple event signup page for church gatherings and community events",
+    category: "Starter Templates",
+    tier: "basic",
+    stages: createStages("Event Signup", "VIP Access OTO", "Standard Entry DS"),
+    verse: { text: "For where two or three gather in my name, there am I with them.", reference: "Matthew 18:20", ctaText: "Register Now" },
+    theme: { primary: "#059669", secondary: "#10B981", accent: "#8B5CF6" },
+  },
+  {
+    name: "Newsletter Signup",
+    description: "Grow your email list with a faith-inspired newsletter signup page",
+    category: "Starter Templates",
+    tier: "basic",
+    stages: createStages("Newsletter Signup", "Premium Content OTO", "Free Updates DS"),
+    verse: { text: "Your word is a lamp for my feet, a light on my path.", reference: "Psalm 119:105", ctaText: "Subscribe" },
+    theme: { primary: "#7C3AED", secondary: "#8B5CF6", accent: "#EC4899" },
+  },
+  {
+    name: "Prayer Request Form",
+    description: "Collect prayer requests from your congregation or online community",
+    category: "Starter Templates",
+    tier: "basic",
+    stages: createStages("Submit Prayer Request", "Prayer Partner OTO", "Weekly Prayers DS"),
+    verse: { text: "The prayer of a righteous person is powerful and effective.", reference: "James 5:16", ctaText: "Submit Request" },
+    theme: { primary: "#DC2626", secondary: "#EF4444", accent: "#3B82F6" },
+  },
+  {
+    name: "Welcome Page",
+    description: "A warm welcome page for new visitors to your church or ministry",
+    category: "Starter Templates",
+    tier: "basic",
+    stages: createStages("Welcome Message", "Get Connected OTO", "Stay Informed DS"),
+    verse: { text: "Come to me, all you who are weary and burdened, and I will give you rest.", reference: "Matthew 11:28", ctaText: "Learn More" },
+    theme: { primary: "#0891B2", secondary: "#22D3EE", accent: "#F97316" },
+  },
+
   // CHURCH FUNDRAISING - 5 templates (premium_lite)
   {
     name: "Building Fund Campaign",
