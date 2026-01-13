@@ -171,7 +171,7 @@ export default function ExplodelyDS2PremiumLite() {
         offerName="Premium Lite"
         originalPrice={37}
         discountedPrice={27}
-        onAccept={() => window.location.href = 'https://explodely.com/p/226220626?ocu=yes'}
+        onAccept={() => window.location.href = 'https://explodely.com/p/226220626?cid=explodely10off'}
       />
     </div>
   );

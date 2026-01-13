@@ -196,7 +196,7 @@ export default function ExplodelyOTO3Agency() {
         offerName="Agency Package"
         originalPrice={97}
         discountedPrice={87}
-        onAccept={() => window.location.href = 'https://explodely.com/p/1328614703?ocu=yes'}
+        onAccept={() => window.location.href = 'https://explodely.com/p/1328614703?cid=explodely10off'}
       />
     </div>
   );
