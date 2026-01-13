@@ -184,7 +184,8 @@ export default function JVZooOTO3Agency() {
         offerName="Agency Package"
         originalPrice={97}
         discountedPrice={87}
-        onAccept={() => window.location.href = '/jvzoo/thankyou'}
+        couponCode="jvzoo10off"
+        onAccept={() => window.location.href = 'https://www.jvzoo.com/b/115363/432253/99'}
       />
     </div>
   );

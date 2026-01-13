@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { X, AlertCircle } from "lucide-react";
+import { X, AlertCircle, Copy, Check } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 interface ExitIntentPopupProps {
@@ -8,11 +8,21 @@ interface ExitIntentPopupProps {
   discountedPrice: number;
   onAccept: () => void;
   paymentUrl?: string;
+  couponCode?: string;
 }
 
-export function ExitIntentPopup({ offerName, originalPrice, discountedPrice, onAccept, paymentUrl }: ExitIntentPopupProps) {
+export function ExitIntentPopup({ offerName, originalPrice, discountedPrice, onAccept, paymentUrl, couponCode }: ExitIntentPopupProps) {
   const [isVisible, setIsVisible] = useState(false);
   const [hasShown, setHasShown] = useState(false);
+  const [copied, setCopied] = useState(false);
+
+  const handleCopy = async () => {
+    if (couponCode) {
+      await navigator.clipboard.writeText(couponCode);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
+    }
+  };
 
   useEffect(() => {
     const handleMouseLeave = (e: MouseEvent) => {
@@ -67,6 +77,26 @@ export function ExitIntentPopup({ offerName, originalPrice, discountedPrice, onA
             <div className="text-center">
               <p className="text-2xl font-bold mb-2">Only ${discountedPrice}</p>
             </div>
+
+            {couponCode && (
+              <div className="bg-muted/50 border border-dashed border-primary/50 rounded-lg p-4">
+                <p className="text-xs text-muted-foreground mb-2">Use this code at checkout:</p>
+                <div className="flex items-center justify-center gap-2">
+                  <code className="bg-background px-4 py-2 rounded text-lg font-mono font-bold tracking-wider">
+                    {couponCode}
+                  </code>
+                  <Button
+                    size="sm"
+                    variant="outline"
+                    onClick={handleCopy}
+                    data-testid="button-copy-coupon"
+                  >
+                    {copied ? <Check className="w-4 h-4 text-green-500" /> : <Copy className="w-4 h-4" />}
+                  </Button>
+                </div>
+                <p className="text-xs text-muted-foreground mt-2">Copy and paste at checkout to save ${originalPrice - discountedPrice}</p>
+              </div>
+            )}
             
             <Button
               size="lg"
@@ -74,12 +104,14 @@ export function ExitIntentPopup({ offerName, originalPrice, discountedPrice, onA
               onClick={onAccept}
               data-testid="button-accept-exit-offer"
             >
-              YES! Give Me This Deal Now
+              {couponCode ? "Go To Checkout Now" : "YES! Give Me This Deal Now"}
             </Button>
             
-            <p className="text-xs text-muted-foreground italic text-center">
-              This is a 1 Click Upsell and will be charged directly
-            </p>
+            {!couponCode && (
+              <p className="text-xs text-muted-foreground italic text-center">
+                This is a 1 Click Upsell and will be charged directly
+              </p>
+            )}
             <p className="text-xs text-muted-foreground text-center">
               SplitPay available - pay in 2 easy installments
             </p>

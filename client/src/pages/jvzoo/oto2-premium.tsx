@@ -182,7 +182,8 @@ export default function JVZooOTO2Premium() {
         offerName="Premium Unlimited"
         originalPrice={67}
         discountedPrice={57}
-        onAccept={() => window.location.href = '/jvzoo/oto3'}
+        couponCode="jvzoo10off"
+        onAccept={() => window.location.href = 'https://www.jvzoo.com/b/115363/432251/99'}
       />
     </div>
   );

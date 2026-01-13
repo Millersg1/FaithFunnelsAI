@@ -179,7 +179,8 @@ export default function JVZooOTO1WhiteLabel() {
         offerName="White Label Rights"
         originalPrice={47}
         discountedPrice={37}
-        onAccept={() => window.location.href = '/jvzoo/oto2'}
+        couponCode="jvzoo10off"
+        onAccept={() => window.location.href = 'https://www.jvzoo.com/b/115363/432239/99'}
       />
     </div>
   );
