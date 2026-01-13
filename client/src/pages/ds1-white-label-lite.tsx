@@ -2,7 +2,6 @@ import { Button } from "@/components/ui/button";
 import { Check, AlertCircle } from "lucide-react";
 import { useEffect } from "react";
 import { CountdownTimer } from "@/components/countdown-timer";
-import { ExitIntentPopup } from "@/components/exit-intent-popup";
 import { TrustBadges } from "@/components/trust-badges";
 import { FAQSection } from "@/components/faq-section";
 import { BonusStack } from "@/components/bonus-stack";
@@ -228,14 +227,6 @@ export default function DS1WhiteLabelLite() {
           <div className="wplus_spdisclaimer max-w-4xl mx-auto"></div>
         </div>
       </div>
-
-      {/* Exit Intent Popup */}
-      <ExitIntentPopup
-        offerName="White Label Lite"
-        originalPrice={47}
-        discountedPrice={27}
-        onAccept={() => window.location.href = 'https://warriorplus.com/o2/buy/bt2gm2/f0ydj0/rfzsl2'}
-      />
     </div>
   );
 }

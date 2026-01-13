@@ -2,7 +2,6 @@ import { Button } from "@/components/ui/button";
 import { Check, AlertCircle, X } from "lucide-react";
 import { useEffect } from "react";
 import { CountdownTimer } from "@/components/countdown-timer";
-import { ExitIntentPopup } from "@/components/exit-intent-popup";
 import { TrustBadges } from "@/components/trust-badges";
 import { FAQSection } from "@/components/faq-section";
 import { BonusStack } from "@/components/bonus-stack";
@@ -255,14 +254,6 @@ export default function DS3AgencyLite() {
           <div className="wplus_spdisclaimer max-w-4xl mx-auto"></div>
         </div>
       </div>
-
-      {/* Exit Intent Popup */}
-      <ExitIntentPopup
-        offerName="Agency Lite"
-        originalPrice={67}
-        discountedPrice={57}
-        onAccept={() => window.location.href = 'https://warriorplus.com/o2/buy/bt2gm2/wrjz9c/y079dw'}
-      />
     </div>
   );
 }
