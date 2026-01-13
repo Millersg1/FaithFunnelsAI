@@ -238,7 +238,7 @@ export default function OTO3Agency() {
         offerName="Agency Package"
         originalPrice={97}
         discountedPrice={87}
-        onAccept={() => window.location.href = 'https://warriorplus.com/o2/buy/bt2gm2/xnv8wv/d7c278'}
+        onAccept={() => window.location.href = 'https://warriorplus.com/o2/buy/bt2gm2/xnv8wv/d7c278?cp=wapl10off'}
       />
     </div>
   );

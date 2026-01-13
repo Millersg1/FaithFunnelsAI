@@ -197,7 +197,7 @@ export default function OTO1WhiteLabel() {
         offerName="White Label Rights"
         originalPrice={47}
         discountedPrice={37}
-        onAccept={() => window.location.href = 'https://warriorplus.com/o2/buy/bt2gm2/f60l89/w5qzdv'}
+        onAccept={() => window.location.href = 'https://warriorplus.com/o2/buy/bt2gm2/f60l89/w5qzdv?cp=wapl10off'}
       />
     </div>
   );

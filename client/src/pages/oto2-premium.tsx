@@ -211,7 +211,7 @@ export default function OTO2Premium() {
         offerName="Premium Unlimited"
         originalPrice={67}
         discountedPrice={57}
-        onAccept={() => window.location.href = 'https://warriorplus.com/o2/buy/bt2gm2/pfs25p/mg3bpk'}
+        onAccept={() => window.location.href = 'https://warriorplus.com/o2/buy/bt2gm2/pfs25p/mg3bpk?cp=wapl10off'}
       />
     </div>
   );
