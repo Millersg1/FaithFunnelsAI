@@ -18,6 +18,12 @@ import {
   type FunnelStage,
   type User,
   type UpsertUser,
+  type FunnelEvent,
+  type InsertFunnelEvent,
+  type AbTest,
+  type InsertAbTest,
+  type AbVariant,
+  type InsertAbVariant,
   funnels,
   verses,
   themes,
@@ -26,11 +32,14 @@ import {
   leads,
   purchases,
   templates,
-  users
+  users,
+  funnelEvents,
+  abTests,
+  abVariants
 } from "@shared/schema";
 import { randomUUID } from "crypto";
 import { db } from "./db";
-import { eq } from "drizzle-orm";
+import { eq, sql, and, gte, lte, desc } from "drizzle-orm";
 
 export interface IStorage {
   getFunnels(): Promise<Funnel[]>;
@@ -75,6 +84,25 @@ export interface IStorage {
   getTemplates(tier?: string): Promise<Template[]>;
   getTemplate(id: string): Promise<Template | undefined>;
   createTemplate(template: InsertTemplate): Promise<Template>;
+  
+  // Analytics
+  createFunnelEvent(event: InsertFunnelEvent): Promise<FunnelEvent>;
+  getFunnelEvents(funnelId: string, startDate?: Date, endDate?: Date): Promise<FunnelEvent[]>;
+  getFunnelAnalytics(funnelId: string): Promise<{ views: number; conversions: number; revenue: number; conversionRate: number }>;
+  
+  // A/B Testing
+  getAbTests(funnelId: string): Promise<AbTest[]>;
+  getAbTest(id: string): Promise<AbTest | undefined>;
+  createAbTest(test: InsertAbTest): Promise<AbTest>;
+  updateAbTest(id: string, update: Partial<InsertAbTest>): Promise<AbTest | undefined>;
+  deleteAbTest(id: string): Promise<boolean>;
+  
+  getAbVariants(testId: string): Promise<AbVariant[]>;
+  getAbVariant(id: string): Promise<AbVariant | undefined>;
+  createAbVariant(variant: InsertAbVariant): Promise<AbVariant>;
+  updateAbVariant(id: string, update: Partial<InsertAbVariant>): Promise<AbVariant | undefined>;
+  deleteAbVariant(id: string): Promise<boolean>;
+  incrementVariantStats(variantId: string, type: 'view' | 'conversion', revenue?: number): Promise<void>;
 }
 
 export class PgStorage implements IStorage {
@@ -268,6 +296,97 @@ export class PgStorage implements IStorage {
       stages: (insertTemplate.stages as FunnelStage[]) || []
     }).returning();
     return result[0];
+  }
+
+  // Analytics Methods
+  async createFunnelEvent(event: InsertFunnelEvent): Promise<FunnelEvent> {
+    const result = await db.insert(funnelEvents).values(event).returning();
+    return result[0];
+  }
+
+  async getFunnelEvents(funnelId: string, startDate?: Date, endDate?: Date): Promise<FunnelEvent[]> {
+    let query = db.select().from(funnelEvents).where(eq(funnelEvents.funnelId, funnelId));
+    if (startDate && endDate) {
+      return await db.select().from(funnelEvents).where(
+        and(
+          eq(funnelEvents.funnelId, funnelId),
+          gte(funnelEvents.createdAt, startDate),
+          lte(funnelEvents.createdAt, endDate)
+        )
+      ).orderBy(desc(funnelEvents.createdAt));
+    }
+    return await db.select().from(funnelEvents).where(eq(funnelEvents.funnelId, funnelId)).orderBy(desc(funnelEvents.createdAt));
+  }
+
+  async getFunnelAnalytics(funnelId: string): Promise<{ views: number; conversions: number; revenue: number; conversionRate: number }> {
+    const events = await this.getFunnelEvents(funnelId);
+    const views = events.filter(e => e.eventType === 'view').length;
+    const conversions = events.filter(e => e.eventType === 'conversion').length;
+    const revenue = events.filter(e => e.eventType === 'purchase').reduce((sum, e) => sum + (e.amount || 0), 0);
+    const conversionRate = views > 0 ? (conversions / views) * 100 : 0;
+    return { views, conversions, revenue, conversionRate };
+  }
+
+  // A/B Testing Methods
+  async getAbTests(funnelId: string): Promise<AbTest[]> {
+    return await db.select().from(abTests).where(eq(abTests.funnelId, funnelId)).orderBy(desc(abTests.createdAt));
+  }
+
+  async getAbTest(id: string): Promise<AbTest | undefined> {
+    const result = await db.select().from(abTests).where(eq(abTests.id, id));
+    return result[0];
+  }
+
+  async createAbTest(test: InsertAbTest): Promise<AbTest> {
+    const result = await db.insert(abTests).values(test).returning();
+    return result[0];
+  }
+
+  async updateAbTest(id: string, update: Partial<InsertAbTest>): Promise<AbTest | undefined> {
+    const result = await db.update(abTests).set(update).where(eq(abTests.id, id)).returning();
+    return result[0];
+  }
+
+  async deleteAbTest(id: string): Promise<boolean> {
+    const result = await db.delete(abTests).where(eq(abTests.id, id));
+    return result.rowCount ? result.rowCount > 0 : false;
+  }
+
+  async getAbVariants(testId: string): Promise<AbVariant[]> {
+    return await db.select().from(abVariants).where(eq(abVariants.testId, testId));
+  }
+
+  async getAbVariant(id: string): Promise<AbVariant | undefined> {
+    const result = await db.select().from(abVariants).where(eq(abVariants.id, id));
+    return result[0];
+  }
+
+  async createAbVariant(variant: InsertAbVariant): Promise<AbVariant> {
+    const result = await db.insert(abVariants).values(variant).returning();
+    return result[0];
+  }
+
+  async updateAbVariant(id: string, update: Partial<InsertAbVariant>): Promise<AbVariant | undefined> {
+    const result = await db.update(abVariants).set(update).where(eq(abVariants.id, id)).returning();
+    return result[0];
+  }
+
+  async deleteAbVariant(id: string): Promise<boolean> {
+    const result = await db.delete(abVariants).where(eq(abVariants.id, id));
+    return result.rowCount ? result.rowCount > 0 : false;
+  }
+
+  async incrementVariantStats(variantId: string, type: 'view' | 'conversion', revenue?: number): Promise<void> {
+    if (type === 'view') {
+      await db.update(abVariants).set({
+        views: sql`${abVariants.views} + 1`
+      }).where(eq(abVariants.id, variantId));
+    } else if (type === 'conversion') {
+      await db.update(abVariants).set({
+        conversions: sql`${abVariants.conversions} + 1`,
+        revenue: revenue ? sql`${abVariants.revenue} + ${revenue}` : abVariants.revenue
+      }).where(eq(abVariants.id, variantId));
+    }
   }
 }
 

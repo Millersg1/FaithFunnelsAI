@@ -4,28 +4,29 @@ import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Input } from "@/components/ui/input";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { useToast } from "@/hooks/use-toast";
 import { useLocation } from "wouter";
 import { queryClient, apiRequest } from "@/lib/queryClient";
-import { Loader2, Search, Lock, Sparkles, BookOpen, LayoutTemplate } from "lucide-react";
+import { Loader2, Search, Lock, Sparkles, BookOpen, LayoutTemplate, Church, Users, Heart, GraduationCap, Music, Globe, PenTool, CalendarDays, School, Filter } from "lucide-react";
 import type { Template } from "@shared/schema";
 import { useTenant } from "@/contexts/TenantContext";
 
-const CATEGORIES = [
-  "All Categories",
-  "Church Fundraising",
-  "Ministry Outreach",
-  "Faith Coaching",
-  "Bible Study",
-  "Youth Ministry",
-  "Worship Music",
-  "Missions & Evangelism",
-  "Christian Authors",
-  "Retreat & Events",
-  "Pastoral Counseling",
-  "Christian Education",
+const CATEGORY_DATA = [
+  { name: "All Categories", icon: Filter, color: "bg-primary" },
+  { name: "Church Fundraising", icon: Church, color: "bg-blue-500" },
+  { name: "Ministry Outreach", icon: Users, color: "bg-green-500" },
+  { name: "Faith Coaching", icon: Heart, color: "bg-pink-500" },
+  { name: "Bible Study", icon: BookOpen, color: "bg-amber-500" },
+  { name: "Youth Ministry", icon: GraduationCap, color: "bg-purple-500" },
+  { name: "Worship Music", icon: Music, color: "bg-red-500" },
+  { name: "Missions & Evangelism", icon: Globe, color: "bg-cyan-500" },
+  { name: "Christian Authors", icon: PenTool, color: "bg-indigo-500" },
+  { name: "Retreats & Events", icon: CalendarDays, color: "bg-orange-500" },
+  { name: "Pastoral Counseling", icon: Heart, color: "bg-rose-500" },
+  { name: "Christian Education", icon: School, color: "bg-teal-500" },
 ];
+
+const CATEGORIES = CATEGORY_DATA.map(c => c.name);
 
 export default function Templates() {
   const [searchQuery, setSearchQuery] = useState("");
@@ -97,29 +98,37 @@ export default function Templates() {
           </div>
         </div>
 
-        <div className="flex flex-col sm:flex-row gap-4">
-          <div className="relative flex-1">
-            <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
-            <Input
-              placeholder="Search templates..."
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-              className="pl-10"
-              data-testid="input-search-templates"
-            />
-          </div>
-          <Select value={selectedCategory} onValueChange={setSelectedCategory}>
-            <SelectTrigger className="w-full sm:w-[200px]" data-testid="select-category">
-              <SelectValue placeholder="Category" />
-            </SelectTrigger>
-            <SelectContent>
-              {CATEGORIES.map((category) => (
-                <SelectItem key={category} value={category}>
-                  {category}
-                </SelectItem>
-              ))}
-            </SelectContent>
-          </Select>
+        <div className="relative">
+          <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+          <Input
+            placeholder="Search templates..."
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+            className="pl-10 max-w-md"
+            data-testid="input-search-templates"
+          />
+        </div>
+
+        <div className="flex flex-wrap gap-2" data-testid="category-chips">
+          {CATEGORY_DATA.map((category) => {
+            const Icon = category.icon;
+            const isSelected = selectedCategory === category.name;
+            return (
+              <button
+                key={category.name}
+                onClick={() => setSelectedCategory(category.name)}
+                className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-sm font-medium transition-all ${
+                  isSelected
+                    ? `${category.color} text-white`
+                    : "bg-muted hover:bg-muted/80 text-muted-foreground hover:text-foreground"
+                }`}
+                data-testid={`chip-category-${category.name.toLowerCase().replace(/\s+/g, "-")}`}
+              >
+                <Icon className="h-3.5 w-3.5" />
+                <span>{category.name === "All Categories" ? "All" : category.name}</span>
+              </button>
+            );
+          })}
         </div>
       </div>
 

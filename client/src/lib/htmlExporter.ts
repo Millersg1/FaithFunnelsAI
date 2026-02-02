@@ -347,15 +347,14 @@ function generateLegalPage(title: string, content: string, businessName: string 
 </html>`;
 }
 
-export async function exportFunnelAsZip(
+export async function addFunnelToZip(
+  zip: JSZip,
   funnel: Funnel,
   verses: Verse[],
   themes: Theme[],
   tenantSettings?: Partial<TenantSettings>
 ): Promise<void> {
-  const zip = new JSZip();
   const imagesFolder = zip.folder("images");
-
   const imageMap = new Map<string, string>();
 
   for (const stage of funnel.stages) {
@@ -387,409 +386,9 @@ export async function exportFunnelAsZip(
     zip.file(filename, html);
   });
 
-  const termsContent = `
-    <p><strong>Last Updated:</strong> ${new Date().toLocaleDateString()}</p>
-    
-    <h2>1. Acceptance of Terms</h2>
-    <p>By purchasing, accessing, or using ${businessName} ("the Software," "the Service," or "the Product"), you ("Licensee," "you," or "your") accept and agree to be bound by these Terms of Service ("Agreement"). If you do not agree to these terms, do not use the Software.</p>
-    
-    <h2>2. Extended License with White Label Rights</h2>
-    <p>${businessName} is provided with an Extended License that includes White Label Rights for agencies and service providers. Depending on your purchased tier, you receive the following rights:</p>
-    
-    <p><strong>2.1 What You CAN Do:</strong></p>
-    <ul>
-      <li>Create funnels for clients as an agency or service provider</li>
-      <li>Use this product as part of client projects and charge for your funnel creation services</li>
-      <li>Rebrand and customize with your own business name, logo, and colors</li>
-      <li>Modify exported funnels, themes, and design elements</li>
-      <li>Charge clients for your funnel creation services (not software licenses)</li>
-      <li>Keep 100% of the profits from your client services</li>
-      <li>Use your custom domain to access the white-labeled dashboard</li>
-    </ul>
-    
-    <p><strong>2.2 What You CANNOT Do:</strong></p>
-    <ul>
-      <li>Resell the software dashboard access itself to customers</li>
-      <li>Give clients direct access to your ${businessName} dashboard</li>
-      <li>Claim original authorship of the core ${businessName} software platform</li>
-      <li>Trademark the name "${businessName}" or confusingly similar names</li>
-      <li>Decompile, reverse engineer, or extract the source code</li>
-      <li>Use the software for illegal activities or fraudulent purposes</li>
-      <li>Sell as part of an MLM, pyramid scheme, or similar structure</li>
-    </ul>
-    
-    <p><strong>Important:</strong> You create funnels FOR your clients (as a service), not WITH them. You do not transfer software access or licenses to clients. You charge for your funnel creation services, not for software licenses.</p>
-    
-    <h2>3. Tier-Specific Rights</h2>
-    <p>Your rights depend on which tier you purchased:</p>
-    <ul>
-      <li><strong>Basic ($17):</strong> Personal use only, 3 funnels, 10 exports, no client services</li>
-      <li><strong>White Label ($47):</strong> Create funnels for clients, 10 funnels, 100 exports, white label branding</li>
-      <li><strong>Premium Unlimited ($67):</strong> Unlimited funnels/exports for unlimited clients, premium templates included</li>
-      <li><strong>Agency Package ($97):</strong> All features, unlimited clients, full white label rights, perfect for agencies and service providers</li>
-    </ul>
-    
-    <h2>4. Modification Rights</h2>
-    <p>You have the right to modify and customize ${businessName} for your business needs:</p>
-    <ul>
-      <li>Rebrand with your own business identity (name, logo, colors, custom domain)</li>
-      <li>Customize exported funnel templates and content</li>
-      <li>Modify theme colors and design elements</li>
-      <li>Add your own Bible verses and call-to-action content</li>
-      <li>However, you may not modify the core software platform code or redistribute modified versions of the dashboard software itself</li>
-    </ul>
-    
-    <h2>5. Support and Service Obligations</h2>
-    <p>Support responsibilities are structured as follows:</p>
-    <ul>
-      <li><strong>Direct Buyers:</strong> ${businessName} (${supportEmail}) provides support only to customers who purchased directly</li>
-      <li><strong>Agencies/Service Providers:</strong> If you create funnels for clients, you are responsible for providing support to YOUR clients</li>
-      <li><strong>White Label Support:</strong> Your clients should contact YOUR support email (configured in your white label settings)</li>
-      <li><strong>No Transfer of Support:</strong> We do not provide support to your clients - you assume all support obligations for funnels you create</li>
-    </ul>
-    
-    <h2>6. Prohibited Uses</h2>
-    <p>You may not use ${businessName} for the following purposes:</p>
-    <ul>
-      <li>Any illegal activity or violation of local, state, national, or international law</li>
-      <li>Fraudulent, deceptive, or misleading marketing practices</li>
-      <li>Spam, unsolicited commercial email, or violations of anti-spam laws</li>
-      <li>Violating the terms of service of Warrior Plus, JVZoo, or other platforms</li>
-      <li>Creating content that infringes on copyrights, trademarks, or intellectual property</li>
-      <li>Harassment, hate speech, or content that promotes violence or discrimination</li>
-    </ul>
-    
-    <h2>7. Ownership and Intellectual Property</h2>
-    <p><strong>7.1 Software Ownership:</strong> ${businessName} and its licensors retain all rights, title, and interest in and to the original Software, including all intellectual property rights. This Agreement does not transfer ownership of the Software to you.</p>
-    
-    <p><strong>7.2 Your Content:</strong> You retain all rights to content you create using the Software, including sales copy, images, Bible verses selections, and funnel configurations. You are solely responsible for ensuring your content complies with all applicable laws.</p>
-    
-    <p><strong>7.3 White Label Branding:</strong> You own all rights to your custom branding, logos, business names, and marketing materials you create in connection with your white-labeled version of the Software.</p>
-    
-    <h2>8. Updates and Upgrades Policy</h2>
-    <p>Software updates and version management:</p>
-    <ul>
-      <li>Direct buyers receive free minor updates and bug fixes</li>
-      <li>Major version updates may require a separate purchase or upgrade fee</li>
-      <li>No guarantee of ongoing updates, new features, or maintenance</li>
-      <li>Updates are provided "as available" without specific timelines</li>
-      <li>You can re-export funnels after updates to benefit from improvements</li>
-    </ul>
-    
-    <h2>9. Account Tiers and Features</h2>
-    <p><strong>9.1 Tier Levels:</strong> The Software is offered in multiple tiers (Basic, White Label, Premium, Agency Package) with different feature sets and usage limits. Your access to features is determined by your purchased tier.</p>
-    
-    <p><strong>9.2 Feature Restrictions:</strong> Certain features (white-label customization, unlimited funnels, unlimited exports, client services) require specific tier purchases. Attempting to bypass tier restrictions is prohibited and may result in account suspension.</p>
-    
-    <p><strong>9.3 Upgrades:</strong> You may upgrade your tier at any time by purchasing the applicable upgrade. Downgrades are not offered, and all purchases are final (subject to our Refund Policy).</p>
-    
-    <h2>5. Payment Terms</h2>
-    <p><strong>5.1 Pricing:</strong> All prices are listed in USD and are subject to change. You will be charged the price displayed at the time of purchase.</p>
-    
-    <p><strong>5.2 One-Time Payment:</strong> All tiers are offered as one-time payments unless otherwise specified. There are no recurring subscription fees.</p>
-    
-    <p><strong>5.3 Payment Processing:</strong> Payments are processed through third-party payment processors (such as Warrior Plus, JVZoo, PayPal, or Stripe). You agree to comply with their terms of service.</p>
-    
-    <h2>6. User Responsibilities</h2>
-    <p><strong>6.1 Account Security:</strong> You are responsible for maintaining the confidentiality of your account credentials and for all activities that occur under your account.</p>
-    
-    <p><strong>6.2 Content Compliance:</strong> You are solely responsible for ensuring that all content you create and deploy using the Software complies with applicable laws, including but not limited to:</p>
-    <ul>
-      <li>FTC disclosure requirements for affiliate marketing</li>
-      <li>CAN-SPAM Act for email marketing</li>
-      <li>GDPR and other privacy regulations</li>
-      <li>Copyright and trademark laws</li>
-      <li>Truth in advertising laws</li>
-    </ul>
-    
-    <p><strong>6.3 Prohibited Content:</strong> You may not use the Software to create or promote:</p>
-    <ul>
-      <li>Illegal products or services</li>
-      <li>Fraudulent or deceptive offers</li>
-      <li>Hate speech, violence, or discrimination</li>
-      <li>Adult or explicit content</li>
-      <li>Pyramid schemes or multi-level marketing that violates applicable laws</li>
-    </ul>
-    
-    <h2>10. Warranties and Disclaimers</h2>
-    <p><strong>10.1 AS-IS Basis:</strong> THE SOFTWARE IS PROVIDED "AS IS" AND "AS AVAILABLE" WITHOUT WARRANTIES OF ANY KIND, EITHER EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO IMPLIED WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, AND NON-INFRINGEMENT.</p>
-    
-    <p><strong>10.2 No Guarantee of Results:</strong> ${businessName} makes no guarantees regarding your sales, revenue, or business results from using the Software. Your success depends on many factors including your effort, marketing skills, and market conditions.</p>
-    
-    <p><strong>10.3 Service Availability:</strong> While we strive for 99.9% uptime, we do not guarantee uninterrupted access to the Software. Scheduled maintenance and unexpected outages may occur.</p>
-    
-    <h2>11. Liability Disclaimer and Limitation</h2>
-    <p>${businessName} is provided on an 'as is' and 'as available' basis without warranties of any kind:</p>
-    <ul>
-      <li><strong>No Warranties:</strong> We make no warranties, expressed or implied, regarding merchantability, fitness for a particular purpose, or non-infringement</li>
-      <li><strong>Software Sold As-Is:</strong> The software is provided without guarantee of error-free operation or uninterrupted service</li>
-      <li><strong>Agency/Service Provider Liability:</strong> If you create funnels for clients, you assume all liability for your services, client disputes, refunds, and support obligations</li>
-      <li><strong>No Liability for Client Services:</strong> ${businessName} is not responsible for any disputes between you and your clients</li>
-      <li><strong>Limitation of Damages:</strong> In no event shall ${businessName} be liable for any direct, indirect, incidental, consequential, or punitive damages arising from use of the software</li>
-      <li><strong>Maximum Liability:</strong> Our total liability shall not exceed the amount you paid for the software</li>
-    </ul>
-    
-    <p><strong>11.2 Additional Limitations:</strong> IN NO EVENT SHALL ${businessName.toUpperCase()}, ITS OFFICERS, DIRECTORS, EMPLOYEES, OR AGENTS BE LIABLE FOR ANY INDIRECT, INCIDENTAL, SPECIAL, CONSEQUENTIAL, OR PUNITIVE DAMAGES, INCLUDING BUT NOT LIMITED TO LOSS OF PROFITS, DATA, USE, GOODWILL, OR OTHER INTANGIBLE LOSSES, RESULTING FROM:</p>
-    <ul>
-      <li>Your use or inability to use the Software</li>
-      <li>Any unauthorized access to or use of our servers and/or any personal information stored therein</li>
-      <li>Any bugs, viruses, trojan horses, or similar that may be transmitted to or through the Software</li>
-      <li>Any errors or omissions in any content or for any loss or damage incurred as a result of your use of any content posted or transmitted through the Software</li>
-      <li>Disputes between you and your clients</li>
-    </ul>
-    
-    <h2>9. Indemnification</h2>
-    <p>You agree to indemnify, defend, and hold harmless ${businessName} and its officers, directors, employees, contractors, agents, licensors, and suppliers from and against any claims, liabilities, damages, judgments, awards, losses, costs, expenses, or fees (including reasonable attorneys' fees) arising out of or relating to your violation of these Terms or your use of the Software.</p>
-    
-    <h2>10. Term and Termination</h2>
-    <p><strong>10.1 Term:</strong> This Agreement begins on the date of your purchase and continues until terminated.</p>
-    
-    <p><strong>10.2 Termination for Cause:</strong> We may terminate your access to the Software immediately if you breach these Terms, engage in fraudulent activity, or use the Software for illegal purposes.</p>
-    
-    <p><strong>10.3 Effect of Termination:</strong> Upon termination, your right to use the Software ceases immediately. You may retain any funnels you have already exported, but you will lose access to the dashboard and may not create new funnels.</p>
-    
-    <h2>11. Modifications to Terms</h2>
-    <p>We reserve the right to modify these Terms at any time. Material changes will be communicated via email or dashboard notification. Your continued use of the Software after changes constitutes acceptance of the modified Terms.</p>
-    
-    <h2>12. Governing Law and Dispute Resolution</h2>
-    <p><strong>12.1 Governing Law:</strong> This Agreement shall be governed by and construed in accordance with the laws of the United States, without regard to its conflict of law provisions.</p>
-    
-    <p><strong>12.2 Dispute Resolution:</strong> Any disputes arising from this Agreement shall first be addressed through good-faith negotiation. If negotiation fails, disputes shall be resolved through binding arbitration in accordance with the rules of the American Arbitration Association.</p>
-    
-    <h2>13. Entire Agreement</h2>
-    <p>This Agreement, together with our Privacy Policy and Refund Policy, constitutes the entire agreement between you and ${businessName} regarding the Software and supersedes all prior agreements and understandings.</p>
-    
-    <h2>14. Severability</h2>
-    <p>If any provision of this Agreement is found to be unenforceable or invalid, that provision shall be limited or eliminated to the minimum extent necessary so that this Agreement shall otherwise remain in full force and effect.</p>
-    
-    <h2>15. Contact Information</h2>
-    <p>For questions, concerns, or notices regarding these Terms of Service, please contact us at:</p>
-    <p><strong>Email:</strong> ${supportEmail}<br>
-    <strong>Website:</strong> ${customDomain}</p>
-    
-    <p><em>By using ${businessName}, you acknowledge that you have read, understood, and agree to be bound by these Terms of Service.</em></p>
-  `;
-
-  const privacyContent = `
-    <p><strong>Last Updated:</strong> ${new Date().toLocaleDateString()}</p>
-    <p><strong>Effective Date:</strong> ${new Date().toLocaleDateString()}</p>
-    
-    <p>This Privacy Policy describes how ${businessName} ("we," "us," or "our") collects, uses, and protects your personal information when you use our web-based software service.</p>
-    
-    <h2>1. Information We Collect</h2>
-    
-    <p><strong>1.1 Information You Provide to Us:</strong></p>
-    <ul>
-      <li><strong>Account Information:</strong> Email address, name, and password when you create an account</li>
-      <li><strong>Payment Information:</strong> Billing details processed securely through third-party payment processors (we do not store credit card numbers)</li>
-      <li><strong>Content Data:</strong> Funnels, sales copy, images, Bible verses, and custom branding you create using the Software</li>
-      <li><strong>Support Communications:</strong> Messages, emails, and feedback you send to our support team</li>
-    </ul>
-    
-    <p><strong>1.2 Information Collected Automatically:</strong></p>
-    <ul>
-      <li><strong>Usage Data:</strong> Pages visited, features used, time spent in the Software, and actions taken</li>
-      <li><strong>Device Information:</strong> Browser type, operating system, IP address, and device identifiers</li>
-      <li><strong>Cookies and Tracking:</strong> Session cookies to keep you logged in and analytics cookies to improve our service</li>
-    </ul>
-    
-    <h2>2. How We Use Your Information</h2>
-    
-    <p>We use your information for the following purposes:</p>
-    <ul>
-      <li><strong>Service Delivery:</strong> To provide, maintain, and improve the Software functionality</li>
-      <li><strong>Account Management:</strong> To create and manage your account, process payments, and enforce tier restrictions</li>
-      <li><strong>Customer Support:</strong> To respond to your inquiries, troubleshoot issues, and provide technical assistance</li>
-      <li><strong>Communications:</strong> To send service updates, security alerts, and important announcements (you can opt out of marketing emails)</li>
-      <li><strong>Analytics and Improvement:</strong> To analyze usage patterns and improve features, performance, and user experience</li>
-      <li><strong>Security:</strong> To detect, prevent, and address fraud, abuse, and security vulnerabilities</li>
-      <li><strong>Legal Compliance:</strong> To comply with legal obligations and protect our rights</li>
-    </ul>
-    
-    <h2>3. Information Sharing and Disclosure</h2>
-    
-    <p><strong>3.1 We DO NOT sell your personal information to third parties.</strong></p>
-    
-    <p><strong>3.2 We may share your information with:</strong></p>
-    <ul>
-      <li><strong>Service Providers:</strong> Third-party vendors who help us operate the Software (hosting, payment processing, analytics) under strict confidentiality agreements</li>
-      <li><strong>Payment Processors:</strong> Warrior Plus, JVZoo, PayPal, Stripe, or other processors to complete transactions</li>
-      <li><strong>Legal Requirements:</strong> When required by law, court order, or government request</li>
-      <li><strong>Business Transfers:</strong> In connection with a merger, acquisition, or sale of assets (users will be notified)</li>
-      <li><strong>With Your Consent:</strong> When you explicitly authorize us to share information</li>
-    </ul>
-    
-    <p><strong>3.3 Your Exported Content:</strong> Funnels you export are downloaded to your device and deployed to your own hosting. We do not control or access content after export.</p>
-    
-    <h2>4. Data Retention</h2>
-    
-    <p>We retain your information for as long as your account is active or as needed to provide services. If you request account deletion, we will delete or anonymize your data within 30 days, except where retention is required by law.</p>
-    
-    <h2>5. Data Security</h2>
-    
-    <p>We implement industry-standard security measures to protect your information:</p>
-    <ul>
-      <li>HTTPS/TLS encryption for all data in transit</li>
-      <li>Encrypted storage for passwords and sensitive data</li>
-      <li>Regular security audits and updates</li>
-      <li>Access controls and authentication requirements</li>
-    </ul>
-    
-    <p>However, no system is 100% secure. We cannot guarantee absolute security but will notify you of any data breaches as required by law.</p>
-    
-    <h2>6. Your Privacy Rights</h2>
-    
-    <p><strong>6.1 Access and Portability:</strong> You can access, download, and export your account data and created funnels at any time through the dashboard.</p>
-    
-    <p><strong>6.2 Correction:</strong> You can update your account information and branding settings directly in the Software.</p>
-    
-    <p><strong>6.3 Deletion:</strong> You can request account deletion by contacting ${supportEmail}. We will delete your data within 30 days.</p>
-    
-    <p><strong>6.4 Opt-Out:</strong> You can unsubscribe from marketing emails via the unsubscribe link in any email.</p>
-    
-    <p><strong>6.5 Do Not Track:</strong> We honor Do Not Track browser settings for analytics tracking.</p>
-    
-    <p><strong>GDPR Rights (EU Users):</strong> If you are located in the European Union, you have additional rights including data portability, restriction of processing, and the right to object to processing. Contact us to exercise these rights.</p>
-    
-    <h2>7. Cookies and Tracking Technologies</h2>
-    
-    <p>We use cookies for:</p>
-    <ul>
-      <li><strong>Essential Cookies:</strong> Required for login sessions and core functionality (cannot be disabled)</li>
-      <li><strong>Analytics Cookies:</strong> To understand how users interact with the Software (can be disabled)</li>
-    </ul>
-    
-    <p>You can control cookies through your browser settings, but disabling essential cookies will prevent you from using the Software.</p>
-    
-    <h2>8. Third-Party Links and Services</h2>
-    
-    <p>The Software may contain links to third-party websites or integrate with third-party services. We are not responsible for their privacy practices. Please review their privacy policies before providing information.</p>
-    
-    <h2>9. Children's Privacy</h2>
-    
-    <p>The Software is not intended for users under 18 years of age. We do not knowingly collect information from children. If we discover we have collected data from a child, we will delete it immediately.</p>
-    
-    <h2>10. International Data Transfers</h2>
-    
-    <p>Your information may be stored and processed in the United States or other countries where our service providers operate. By using the Software, you consent to the transfer of your information to countries outside your residence.</p>
-    
-    <h2>11. Changes to This Privacy Policy</h2>
-    
-    <p>We may update this Privacy Policy from time to time. Material changes will be communicated via email or dashboard notification. The "Last Updated" date at the top reflects the most recent revision.</p>
-    
-    <h2>12. Contact Us</h2>
-    
-    <p>If you have questions, concerns, or requests regarding this Privacy Policy or your personal information, please contact us at:</p>
-    <p><strong>Email:</strong> ${supportEmail}<br>
-    <strong>Website:</strong> ${customDomain}</p>
-    
-    <p><em>We take your privacy seriously and will respond to all requests within 30 days.</em></p>
-  `;
-
-  const refundContent = `
-    <p><strong>Last Updated:</strong> ${new Date().toLocaleDateString()}</p>
-    
-    <h2>Our Commitment to You</h2>
-    <p>We stand behind the quality of ${businessName} and want you to be completely satisfied with your purchase. That's why we offer a straightforward 14-day money-back guarantee.</p>
-    
-    <h2>14-Day Money-Back Guarantee</h2>
-    <p>If you're not completely satisfied with ${businessName} for any reason, you may request a full refund within 14 days of your original purchase date. No questions asked.</p>
-    
-    <h2>Refund Eligibility</h2>
-    
-    <p><strong>You are eligible for a refund if:</strong></p>
-    <ul>
-      <li>You request the refund within 14 calendar days of your purchase date</li>
-      <li>You provide your order number or transaction ID</li>
-      <li>You purchased directly from us or through an authorized platform (Warrior Plus, JVZoo, etc.)</li>
-    </ul>
-    
-    <p><strong>Refunds are processed for:</strong></p>
-    <ul>
-      <li>The main product purchase</li>
-      <li>Any One-Time Offers (OTOs) or upsells purchased alongside the main product</li>
-      <li>All tier upgrades (if refunded together within the 14-day window)</li>
-    </ul>
-    
-    <h2>How to Request a Refund</h2>
-    
-    <p><strong>Step 1:</strong> Email our support team at <strong>${supportEmail}</strong> with the subject line "Refund Request"</p>
-    
-    <p><strong>Step 2:</strong> Include the following information:</p>
-    <ul>
-      <li>Your full name</li>
-      <li>Email address used for purchase</li>
-      <li>Order number or transaction ID</li>
-      <li>Purchase date</li>
-      <li>Brief reason for refund (optional but helpful for us to improve)</li>
-    </ul>
-    
-    <p><strong>Step 3:</strong> We will process your refund within 2-5 business days of receiving your request.</p>
-    
-    <h2>Refund Processing Times</h2>
-    
-    <p><strong>Approval:</strong> Most refund requests are approved within 24-48 hours during business days (Monday-Friday).</p>
-    
-    <p><strong>Processing:</strong> Once approved, refunds are processed through the original payment method:</p>
-    <ul>
-      <li><strong>PayPal:</strong> 1-2 business days</li>
-      <li><strong>Credit/Debit Card:</strong> 3-10 business days (depending on your bank)</li>
-      <li><strong>Warrior Plus/JVZoo Wallet:</strong> Instant to 24 hours</li>
-    </ul>
-    
-    <p>If you purchased through a third-party marketplace (Warrior Plus, JVZoo), refunds may need to be processed through their system. We'll guide you through the process.</p>
-    
-    <h2>What Happens After a Refund</h2>
-    
-    <p><strong>Account Access:</strong> Your account will be deactivated immediately upon refund processing. You will no longer have access to the dashboard or any features.</p>
-    
-    <p><strong>Exported Funnels:</strong> Any funnels you have already exported and deployed to your own hosting will continue to work. We do not have access to deactivate content on your own servers.</p>
-    
-    <p><strong>Data Retention:</strong> Your account data (funnels, settings, content) will be retained for 30 days in case you choose to repurchase. After 30 days, all data is permanently deleted.</p>
-    
-    <h2>Exceptions and Special Cases</h2>
-    
-    <p><strong>After 14 Days:</strong> Refunds requested after the 14-day guarantee period has expired will be evaluated on a case-by-case basis. We may offer partial refunds, account credits, or alternative solutions.</p>
-    
-    <p><strong>Abuse Policy:</strong> We reserve the right to deny refunds to customers who exhibit patterns of abuse, including:</p>
-    <ul>
-      <li>Multiple purchases and refunds of the same product</li>
-      <li>Extensive use of the Software followed by refund requests</li>
-      <li>Fraudulent or deceptive refund claims</li>
-    </ul>
-    
-    <p><strong>Technical Issues:</strong> If you're experiencing technical problems that prevent you from using the Software, please contact support BEFORE requesting a refund. We're here to help and can often resolve issues quickly.</p>
-    
-    <h2>No-Refund Scenarios</h2>
-    
-    <p>Refunds will NOT be issued in the following cases:</p>
-    <ul>
-      <li>Violation of our Terms of Service</li>
-      <li>Use of the Software for illegal or prohibited activities</li>
-      <li>Account suspension or termination due to policy violations</li>
-      <li>After the 14-day window (except at our sole discretion)</li>
-      <li>If purchased from an unauthorized reseller or third party</li>
-    </ul>
-    
-    <h2>Partial Refunds</h2>
-    
-    <p>If you purchased multiple tiers or upgrades at different times, you may request a partial refund for purchases made within the last 14 days while retaining access to earlier purchases.</p>
-    
-    <p><strong>Example:</strong> If you bought Basic tier 20 days ago and upgraded to Premium 5 days ago, you can request a refund for the Premium upgrade only.</p>
-    
-    <h2>Contact Information</h2>
-    
-    <p>For refund requests, questions about this policy, or general support:</p>
-    <p><strong>Email:</strong> ${supportEmail}<br>
-    <strong>Website:</strong> ${customDomain}<br>
-    <strong>Response Time:</strong> Within 24-48 hours (business days)</p>
-    
-    <h2>Fair Use Commitment</h2>
-    
-    <p>We are committed to fair and honest business practices. If you're unsure whether ${businessName} is right for you, please review our demo videos, feature list, and documentation before purchasing. We're here to help you make an informed decision.</p>
-    
-    <p><em>This refund policy is designed to protect both you and ${businessName}. We want happy customers who find value in our Software, and we stand behind our 14-day guarantee.</em></p>
-  `;
+  const termsContent = getFullTermsContent(businessName, supportEmail, customDomain);
+  const privacyContent = getFullPrivacyContent(businessName, supportEmail, customDomain);
+  const refundContent = getFullRefundContent(businessName, supportEmail, customDomain);
 
   zip.file("terms.html", generateLegalPage("Terms of Service", termsContent, businessName));
   zip.file("privacy.html", generateLegalPage("Privacy Policy", privacyContent, businessName));
@@ -820,7 +419,220 @@ Website: ${customDomain}
 
 © ${new Date().getFullYear()} ${businessName}. All rights reserved.
   `);
+}
+
+function getFullTermsContent(businessName: string, supportEmail: string, customDomain: string): string {
+  return `
+    <p><strong>Last Updated:</strong> ${new Date().toLocaleDateString()}</p>
+    
+    <h2>1. Acceptance of Terms</h2>
+    <p>By purchasing, accessing, or using ${businessName} ("the Software," "the Service," or "the Product"), you ("Licensee," "you," or "your") accept and agree to be bound by these Terms of Service ("Agreement"). If you do not agree to these terms, do not use the Software.</p>
+    
+    <h2>2. Extended License with White Label Rights</h2>
+    <p>${businessName} is provided with an Extended License that includes White Label Rights for agencies and service providers. Depending on your purchased tier, you receive the following rights:</p>
+    
+    <p><strong>2.1 What You CAN Do:</strong></p>
+    <ul>
+      <li>Create funnels for clients as an agency or service provider</li>
+      <li>Use this product as part of client projects and charge for your funnel creation services</li>
+      <li>Rebrand and customize with your own business name, logo, and colors</li>
+      <li>Modify exported funnels, themes, and design elements</li>
+      <li>Charge clients for your funnel creation services (not software licenses)</li>
+      <li>Keep 100% of the profits from your client services</li>
+      <li>Use your custom domain to access the white-labeled dashboard</li>
+    </ul>
+    
+    <p><strong>2.2 What You CANNOT Do:</strong></p>
+    <ul>
+      <li>Resell the software dashboard access itself to customers</li>
+      <li>Give clients direct access to your ${businessName} dashboard</li>
+      <li>Claim original authorship of the core ${businessName} software platform</li>
+      <li>Trademark the name "${businessName}" or confusingly similar names</li>
+      <li>Decompile, reverse engineer, or extract the source code</li>
+      <li>Use the software for illegal activities or fraudulent purposes</li>
+      <li>Sell as part of an MLM, pyramid scheme, or similar structure</li>
+    </ul>
+    
+    <h2>3. Tier-Specific Rights</h2>
+    <p>Your rights depend on which tier you purchased:</p>
+    <ul>
+      <li><strong>Basic ($17):</strong> Personal use only, 3 funnels, 10 exports, no client services</li>
+      <li><strong>White Label ($47):</strong> Create funnels for clients, 10 funnels, 100 exports, white label branding</li>
+      <li><strong>Premium Unlimited ($67):</strong> Unlimited funnels/exports for unlimited clients, premium templates included</li>
+      <li><strong>Agency Package ($97):</strong> All features, unlimited clients, full white label rights, perfect for agencies and service providers</li>
+    </ul>
+    
+    <h2>4. Prohibited Uses</h2>
+    <p>You may not use ${businessName} for the following purposes:</p>
+    <ul>
+      <li>Any illegal activity or violation of local, state, national, or international law</li>
+      <li>Fraudulent, deceptive, or misleading marketing practices</li>
+      <li>Spam, unsolicited commercial email, or violations of anti-spam laws</li>
+      <li>Violating the terms of service of Warrior Plus, JVZoo, or other platforms</li>
+      <li>Creating content that infringes on copyrights, trademarks, or intellectual property</li>
+      <li>Harassment, hate speech, or content that promotes violence or discrimination</li>
+    </ul>
+    
+    <h2>5. Warranties and Disclaimers</h2>
+    <p><strong>AS-IS Basis:</strong> THE SOFTWARE IS PROVIDED "AS IS" AND "AS AVAILABLE" WITHOUT WARRANTIES OF ANY KIND, EITHER EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO IMPLIED WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, AND NON-INFRINGEMENT.</p>
+    
+    <p><strong>No Guarantee of Results:</strong> ${businessName} makes no guarantees regarding your sales, revenue, or business results from using the Software.</p>
+    
+    <h2>6. Limitation of Liability</h2>
+    <p>${businessName} is provided on an 'as is' basis without warranties of any kind. In no event shall ${businessName} be liable for any direct, indirect, incidental, consequential, or punitive damages arising from use of the software. Our total liability shall not exceed the amount you paid for the software.</p>
+    
+    <h2>7. Contact Information</h2>
+    <p>For questions, concerns, or notices regarding these Terms of Service, please contact us at:</p>
+    <p><strong>Email:</strong> ${supportEmail}<br>
+    <strong>Website:</strong> ${customDomain}</p>
+    
+    <p><em>By using ${businessName}, you acknowledge that you have read, understood, and agree to be bound by these Terms of Service.</em></p>
+  `;
+}
+
+function getFullPrivacyContent(businessName: string, supportEmail: string, customDomain: string): string {
+  return `
+    <p><strong>Last Updated:</strong> ${new Date().toLocaleDateString()}</p>
+    <p><strong>Effective Date:</strong> ${new Date().toLocaleDateString()}</p>
+    
+    <p>This Privacy Policy describes how ${businessName} ("we," "us," or "our") collects, uses, and protects your personal information when you use our web-based software service.</p>
+    
+    <h2>1. Information We Collect</h2>
+    
+    <p><strong>1.1 Information You Provide to Us:</strong></p>
+    <ul>
+      <li><strong>Account Information:</strong> Email address, name, and password when you create an account</li>
+      <li><strong>Payment Information:</strong> Billing details processed securely through third-party payment processors (we do not store credit card numbers)</li>
+      <li><strong>Content Data:</strong> Funnels, sales copy, images, Bible verses, and custom branding you create using the Software</li>
+      <li><strong>Support Communications:</strong> Messages, emails, and feedback you send to our support team</li>
+    </ul>
+    
+    <p><strong>1.2 Information Collected Automatically:</strong></p>
+    <ul>
+      <li><strong>Usage Data:</strong> Pages visited, features used, time spent in the Software, and actions taken</li>
+      <li><strong>Device Information:</strong> Browser type, operating system, IP address, and device identifiers</li>
+      <li><strong>Cookies and Tracking:</strong> Session cookies to keep you logged in and analytics cookies to improve our service</li>
+    </ul>
+    
+    <h2>2. How We Use Your Information</h2>
+    <p>We use your information for the following purposes:</p>
+    <ul>
+      <li><strong>Service Delivery:</strong> To provide, maintain, and improve the Software functionality</li>
+      <li><strong>Account Management:</strong> To create and manage your account, process payments, and enforce tier restrictions</li>
+      <li><strong>Customer Support:</strong> To respond to your inquiries, troubleshoot issues, and provide technical assistance</li>
+      <li><strong>Communications:</strong> To send service updates, security alerts, and important announcements</li>
+      <li><strong>Analytics and Improvement:</strong> To analyze usage patterns and improve features, performance, and user experience</li>
+      <li><strong>Security:</strong> To detect, prevent, and address fraud, abuse, and security vulnerabilities</li>
+    </ul>
+    
+    <h2>3. Information Sharing and Disclosure</h2>
+    <p><strong>3.1 We DO NOT sell your personal information to third parties.</strong></p>
+    <p><strong>3.2 We may share your information with:</strong></p>
+    <ul>
+      <li><strong>Service Providers:</strong> Third-party vendors who help us operate the Software under strict confidentiality agreements</li>
+      <li><strong>Payment Processors:</strong> Warrior Plus, JVZoo, PayPal, Stripe, or other processors to complete transactions</li>
+      <li><strong>Legal Requirements:</strong> When required by law, court order, or government request</li>
+    </ul>
+    
+    <h2>4. Data Security</h2>
+    <p>We implement industry-standard security measures to protect your information:</p>
+    <ul>
+      <li>HTTPS/TLS encryption for all data in transit</li>
+      <li>Encrypted storage for passwords and sensitive data</li>
+      <li>Regular security audits and updates</li>
+      <li>Access controls and authentication requirements</li>
+    </ul>
+    
+    <h2>5. Your Privacy Rights</h2>
+    <p><strong>Access and Portability:</strong> You can access, download, and export your account data and created funnels at any time through the dashboard.</p>
+    <p><strong>Deletion:</strong> You can request account deletion by contacting ${supportEmail}. We will delete your data within 30 days.</p>
+    <p><strong>Opt-Out:</strong> You can unsubscribe from marketing emails via the unsubscribe link in any email.</p>
+    
+    <h2>6. Contact Us</h2>
+    <p>If you have questions, concerns, or requests regarding this Privacy Policy or your personal information, please contact us at:</p>
+    <p><strong>Email:</strong> ${supportEmail}<br>
+    <strong>Website:</strong> ${customDomain}</p>
+    
+    <p><em>We take your privacy seriously and will respond to all requests within 30 days.</em></p>
+  `;
+}
+
+function getFullRefundContent(businessName: string, supportEmail: string, customDomain: string): string {
+  return `
+    <p><strong>Last Updated:</strong> ${new Date().toLocaleDateString()}</p>
+    
+    <h2>Our Commitment to You</h2>
+    <p>We stand behind the quality of ${businessName} and want you to be completely satisfied with your purchase. That's why we offer a straightforward 14-day money-back guarantee.</p>
+    
+    <h2>14-Day Money-Back Guarantee</h2>
+    <p>If you're not completely satisfied with ${businessName} for any reason, you may request a full refund within 14 days of your original purchase date. No questions asked.</p>
+    
+    <h2>Refund Eligibility</h2>
+    <p><strong>You are eligible for a refund if:</strong></p>
+    <ul>
+      <li>You request the refund within 14 calendar days of your purchase date</li>
+      <li>You provide your order number or transaction ID</li>
+      <li>You purchased directly from us or through an authorized platform (Warrior Plus, JVZoo, etc.)</li>
+    </ul>
+    
+    <p><strong>Refunds are processed for:</strong></p>
+    <ul>
+      <li>The main product purchase</li>
+      <li>Any One-Time Offers (OTOs) or upsells purchased alongside the main product</li>
+      <li>All tier upgrades (if refunded together within the 14-day window)</li>
+    </ul>
+    
+    <h2>How to Request a Refund</h2>
+    <p><strong>Step 1:</strong> Email our support team at <strong>${supportEmail}</strong> with the subject line "Refund Request"</p>
+    <p><strong>Step 2:</strong> Include the following information:</p>
+    <ul>
+      <li>Your full name</li>
+      <li>Email address used for purchase</li>
+      <li>Order number or transaction ID</li>
+      <li>Purchase date</li>
+      <li>Brief reason for refund (optional but helpful for us to improve)</li>
+    </ul>
+    <p><strong>Step 3:</strong> We will process your refund within 2-5 business days of receiving your request.</p>
+    
+    <h2>Refund Processing Times</h2>
+    <p><strong>Approval:</strong> Most refund requests are approved within 24-48 hours during business days (Monday-Friday).</p>
+    <p><strong>Processing:</strong> Once approved, refunds are processed through the original payment method:</p>
+    <ul>
+      <li><strong>PayPal:</strong> 1-2 business days</li>
+      <li><strong>Credit/Debit Card:</strong> 3-10 business days (depending on your bank)</li>
+      <li><strong>Warrior Plus/JVZoo Wallet:</strong> Instant to 24 hours</li>
+    </ul>
+    
+    <h2>What Happens After a Refund</h2>
+    <p><strong>Account Access:</strong> Your account will be deactivated immediately upon refund processing. You will no longer have access to the dashboard or any features.</p>
+    <p><strong>Exported Funnels:</strong> Any funnels you have already exported and deployed to your own hosting will continue to work.</p>
+    <p><strong>Data Retention:</strong> Your account data will be retained for 30 days in case you choose to repurchase. After 30 days, all data is permanently deleted.</p>
+    
+    <h2>Exceptions and Special Cases</h2>
+    <p><strong>After 14 Days:</strong> Refunds requested after the 14-day guarantee period has expired will be evaluated on a case-by-case basis.</p>
+    <p><strong>Technical Issues:</strong> If you're experiencing technical problems, please contact support BEFORE requesting a refund. We can often resolve issues quickly.</p>
+    
+    <h2>Contact Information</h2>
+    <p>For refund requests, questions about this policy, or general support:</p>
+    <p><strong>Email:</strong> ${supportEmail}<br>
+    <strong>Website:</strong> ${customDomain}<br>
+    <strong>Response Time:</strong> Within 24-48 hours (business days)</p>
+    
+    <p><em>This refund policy is designed to protect both you and ${businessName}. We want happy customers who find value in our Software, and we stand behind our 14-day guarantee.</em></p>
+  `;
+}
+
+export async function exportFunnelAsZip(
+  funnel: Funnel,
+  verses: Verse[],
+  themes: Theme[],
+  tenantSettings?: Partial<TenantSettings>
+): Promise<void> {
+  const zip = new JSZip();
+  
+  await addFunnelToZip(zip, funnel, verses, themes, tenantSettings);
 
   const blob = await zip.generateAsync({ type: "blob" });
   saveAs(blob, `${funnel.name.replace(/\s+/g, '-').toLowerCase()}-funnel.zip`);
 }
+

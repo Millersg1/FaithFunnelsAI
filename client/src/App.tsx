@@ -66,6 +66,9 @@ import JVZooEarningsDisclaimer from "@/pages/jvzoo/legal/earnings-disclaimer";
 import Affiliates from "@/pages/affiliates";
 import DemoAccess from "@/pages/demo-access";
 import Templates from "@/pages/templates";
+import Analytics from "@/pages/analytics";
+import AbTesting from "@/pages/ab-testing";
+import PaymentSettings from "@/pages/payment-settings";
 import { CookieConsentProvider, ManageCookiesButton } from "@/components/cookie-consent";
 
 function AppLayout({ children }: { children: React.ReactNode }) {
@@ -319,6 +322,33 @@ function App() {
                 <ProtectedRoute>
                   <AppLayout>
                     <Templates />
+                  </AppLayout>
+                </ProtectedRoute>
+              )}
+            </Route>
+            <Route path="/app/analytics">
+              {() => (
+                <ProtectedRoute>
+                  <AppLayout>
+                    <Analytics />
+                  </AppLayout>
+                </ProtectedRoute>
+              )}
+            </Route>
+            <Route path="/app/ab-testing">
+              {() => (
+                <ProtectedRoute>
+                  <AppLayout>
+                    <AbTesting />
+                  </AppLayout>
+                </ProtectedRoute>
+              )}
+            </Route>
+            <Route path="/app/payment-settings">
+              {() => (
+                <ProtectedRoute>
+                  <AppLayout>
+                    <PaymentSettings />
                   </AppLayout>
                 </ProtectedRoute>
               )}

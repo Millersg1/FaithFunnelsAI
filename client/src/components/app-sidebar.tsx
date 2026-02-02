@@ -1,4 +1,4 @@
-import { Home, Filter, BookOpen, Palette, Download, Settings, FileText, LayoutTemplate } from "lucide-react";
+import { Home, Filter, BookOpen, Palette, Download, Settings, FileText, LayoutTemplate, BarChart3, FlaskConical, CreditCard } from "lucide-react";
 import {
   Sidebar,
   SidebarContent,
@@ -30,6 +30,21 @@ const menuItems = [
     title: "Templates",
     url: "/app/templates",
     icon: LayoutTemplate,
+  },
+  {
+    title: "Analytics",
+    url: "/app/analytics",
+    icon: BarChart3,
+  },
+  {
+    title: "A/B Testing",
+    url: "/app/ab-testing",
+    icon: FlaskConical,
+  },
+  {
+    title: "Payments",
+    url: "/app/payment-settings",
+    icon: CreditCard,
   },
   {
     title: "Verse Builder",

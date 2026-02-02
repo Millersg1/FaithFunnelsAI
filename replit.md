@@ -41,6 +41,14 @@ The application follows a modern dashboard design inspired by Linear, Notion, an
 - ✅ **Template Gallery with 55 professional faith-based funnel templates**
 - ✅ **Tier-based template access (liteTemplates for DS2, premiumTemplates for OTO2)**
 - ✅ **"Use Template" feature to create funnels from pre-designed templates**
+- ✅ **Template category filtering with visual chips (Church, Ministry, Coaching, etc.)**
+- ✅ **Funnel Analytics Dashboard tracking views, conversions, and revenue**
+- ✅ **A/B Testing system for headlines, CTAs, and Bible verses**
+- ✅ **Email marketing integration with GetResponse (tenant-specific API keys)**
+- ✅ **Live preview mode for funnels before export (desktop/tablet/mobile)**
+- ✅ **Onboarding tour for first-time users with guided walkthrough**
+- ✅ **Bulk export feature for multiple funnels at once**
+- ✅ **Stripe/PayPal payment integration settings for exported funnels**
 
 **Implementation Notes:**
 - Using PostgreSQL database with Neon WebSocket support for production-ready multi-tenancy

@@ -4,6 +4,7 @@ import { storage, seedDemoData } from "./storage";
 import { insertFunnelSchema, insertVerseSchema, insertThemeSchema, insertTenantSchema, insertTenantSettingsSchema, insertLeadSchema, TIER_FEATURES, TIERS, type TierType } from "@shared/schema";
 import OpenAI from "openai";
 import { setupAuth, isAuthenticated } from "./replitAuth";
+import { syncLeadToEmailProvider, getEmailLists, testEmailConnection } from "./emailMarketing";
 
 export async function registerRoutes(app: Express): Promise<Server> {
   await setupAuth(app);
@@ -790,6 +791,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
   app.post("/api/leads", async (req, res) => {
     try {
       const data = insertLeadSchema.parse(req.body);
+      const tenantId = req.body.tenantId;
       
       const existingLead = await storage.getLeadByEmail(data.email);
       if (existingLead) {
@@ -797,6 +799,13 @@ export async function registerRoutes(app: Express): Promise<Server> {
       }
       
       const lead = await storage.createLead(data);
+      
+      // Sync lead to email marketing provider (async, don't block response)
+      syncLeadToEmailProvider(
+        { email: lead.email, name: lead.name, source: lead.source },
+        tenantId
+      ).catch(err => console.error("Email sync error:", err));
+      
       res.status(201).json(lead);
     } catch (error) {
       res.status(400).json({ error: "Invalid lead data" });
@@ -905,6 +914,324 @@ Be helpful, concise, and enthusiastic about Faith Funnels AI. Answer questions a
       });
     } catch (error) {
       res.status(500).json({ error: "Failed to prepare export data" });
+    }
+  });
+
+  // ==================== Analytics Routes ====================
+  
+  // Track funnel event (view, conversion, purchase)
+  app.post("/api/analytics/track", async (req, res) => {
+    try {
+      const { funnelId, stageId, eventType, variantId, visitorId, amount, metadata } = req.body;
+      
+      if (!funnelId || !eventType) {
+        return res.status(400).json({ error: "funnelId and eventType are required" });
+      }
+      
+      const event = await storage.createFunnelEvent({
+        funnelId,
+        stageId,
+        eventType,
+        variantId,
+        visitorId,
+        amount: amount || 0,
+        metadata,
+      });
+      
+      // If tracking a variant event, update variant stats
+      if (variantId) {
+        if (eventType === 'view') {
+          await storage.incrementVariantStats(variantId, 'view');
+        } else if (eventType === 'conversion' || eventType === 'purchase') {
+          await storage.incrementVariantStats(variantId, 'conversion', amount);
+        }
+      }
+      
+      res.json(event);
+    } catch (error) {
+      console.error("Analytics tracking error:", error);
+      res.status(500).json({ error: "Failed to track event" });
+    }
+  });
+
+  // Get funnel analytics
+  app.get("/api/analytics/funnels/:funnelId", async (req, res) => {
+    try {
+      const analytics = await storage.getFunnelAnalytics(req.params.funnelId);
+      res.json(analytics);
+    } catch (error) {
+      res.status(500).json({ error: "Failed to fetch analytics" });
+    }
+  });
+
+  // Get funnel events
+  app.get("/api/analytics/funnels/:funnelId/events", async (req, res) => {
+    try {
+      const { startDate, endDate } = req.query;
+      const events = await storage.getFunnelEvents(
+        req.params.funnelId,
+        startDate ? new Date(startDate as string) : undefined,
+        endDate ? new Date(endDate as string) : undefined
+      );
+      res.json(events);
+    } catch (error) {
+      res.status(500).json({ error: "Failed to fetch events" });
+    }
+  });
+
+  // ==================== A/B Testing Routes ====================
+  
+  // Get all A/B tests for a funnel
+  app.get("/api/ab-tests/funnel/:funnelId", async (req, res) => {
+    try {
+      const tests = await storage.getAbTests(req.params.funnelId);
+      res.json(tests);
+    } catch (error) {
+      res.status(500).json({ error: "Failed to fetch A/B tests" });
+    }
+  });
+
+  // Get a single A/B test with variants
+  app.get("/api/ab-tests/:id", async (req, res) => {
+    try {
+      const test = await storage.getAbTest(req.params.id);
+      if (!test) {
+        return res.status(404).json({ error: "A/B test not found" });
+      }
+      const variants = await storage.getAbVariants(req.params.id);
+      res.json({ ...test, variants });
+    } catch (error) {
+      res.status(500).json({ error: "Failed to fetch A/B test" });
+    }
+  });
+
+  // Create A/B test
+  app.post("/api/ab-tests", isAuthenticated, async (req, res) => {
+    try {
+      const { funnelId, name, testType, stageId } = req.body;
+      
+      if (!funnelId || !name || !testType) {
+        return res.status(400).json({ error: "funnelId, name, and testType are required" });
+      }
+      
+      const test = await storage.createAbTest({
+        funnelId,
+        name,
+        testType,
+        stageId,
+        status: 'draft',
+      });
+      
+      res.status(201).json(test);
+    } catch (error) {
+      res.status(500).json({ error: "Failed to create A/B test" });
+    }
+  });
+
+  // Update A/B test
+  app.patch("/api/ab-tests/:id", isAuthenticated, async (req, res) => {
+    try {
+      const test = await storage.updateAbTest(req.params.id, req.body);
+      if (!test) {
+        return res.status(404).json({ error: "A/B test not found" });
+      }
+      res.json(test);
+    } catch (error) {
+      res.status(500).json({ error: "Failed to update A/B test" });
+    }
+  });
+
+  // Delete A/B test
+  app.delete("/api/ab-tests/:id", isAuthenticated, async (req, res) => {
+    try {
+      const deleted = await storage.deleteAbTest(req.params.id);
+      if (!deleted) {
+        return res.status(404).json({ error: "A/B test not found" });
+      }
+      res.json({ success: true });
+    } catch (error) {
+      res.status(500).json({ error: "Failed to delete A/B test" });
+    }
+  });
+
+  // Create variant for A/B test
+  app.post("/api/ab-tests/:testId/variants", isAuthenticated, async (req, res) => {
+    try {
+      const { name, content, weight } = req.body;
+      
+      if (!name || !content) {
+        return res.status(400).json({ error: "name and content are required" });
+      }
+      
+      const variant = await storage.createAbVariant({
+        testId: req.params.testId,
+        name,
+        content,
+        weight: weight || 50,
+      });
+      
+      res.status(201).json(variant);
+    } catch (error) {
+      res.status(500).json({ error: "Failed to create variant" });
+    }
+  });
+
+  // Update variant
+  app.patch("/api/ab-variants/:id", isAuthenticated, async (req, res) => {
+    try {
+      const variant = await storage.updateAbVariant(req.params.id, req.body);
+      if (!variant) {
+        return res.status(404).json({ error: "Variant not found" });
+      }
+      res.json(variant);
+    } catch (error) {
+      res.status(500).json({ error: "Failed to update variant" });
+    }
+  });
+
+  // Delete variant
+  app.delete("/api/ab-variants/:id", isAuthenticated, async (req, res) => {
+    try {
+      const deleted = await storage.deleteAbVariant(req.params.id);
+      if (!deleted) {
+        return res.status(404).json({ error: "Variant not found" });
+      }
+      res.json({ success: true });
+    } catch (error) {
+      res.status(500).json({ error: "Failed to delete variant" });
+    }
+  });
+
+  // Get random variant for visitor (for A/B split)
+  app.get("/api/ab-tests/:testId/assign", async (req, res) => {
+    try {
+      const test = await storage.getAbTest(req.params.testId);
+      if (!test || test.status !== 'active') {
+        return res.status(404).json({ error: "Active A/B test not found" });
+      }
+      
+      const variants = await storage.getAbVariants(req.params.testId);
+      if (variants.length === 0) {
+        return res.status(404).json({ error: "No variants found" });
+      }
+      
+      // Weighted random selection
+      const totalWeight = variants.reduce((sum, v) => sum + v.weight, 0);
+      let random = Math.random() * totalWeight;
+      
+      for (const variant of variants) {
+        random -= variant.weight;
+        if (random <= 0) {
+          return res.json({ variantId: variant.id, content: variant.content });
+        }
+      }
+      
+      // Fallback to first variant
+      res.json({ variantId: variants[0].id, content: variants[0].content });
+    } catch (error) {
+      res.status(500).json({ error: "Failed to assign variant" });
+    }
+  });
+
+  // ==================== Email Marketing Settings Routes ====================
+  
+  // Update tenant email marketing settings
+  app.patch("/api/tenants/:tenantId/email-settings", isAuthenticated, async (req, res) => {
+    try {
+      const { emailProvider, emailApiKey, emailListId } = req.body;
+      
+      const updated = await storage.updateTenantSettings(req.params.tenantId, {
+        emailProvider,
+        emailApiKey,
+        emailListId,
+      });
+      
+      if (!updated) {
+        return res.status(404).json({ error: "Tenant settings not found" });
+      }
+      
+      // Return masked API key for security
+      res.json({
+        ...updated,
+        emailApiKey: updated.emailApiKey ? '***' + updated.emailApiKey.slice(-4) : '',
+      });
+    } catch (error) {
+      res.status(500).json({ error: "Failed to update email settings" });
+    }
+  });
+
+  // Update tenant payment settings
+  app.patch("/api/tenants/:tenantId/payment-settings", isAuthenticated, async (req, res) => {
+    try {
+      const { stripePublishableKey, stripeSecretKey, paypalClientId } = req.body;
+      
+      const updated = await storage.updateTenantSettings(req.params.tenantId, {
+        stripePublishableKey,
+        stripeSecretKey,
+        paypalClientId,
+      });
+      
+      if (!updated) {
+        return res.status(404).json({ error: "Tenant settings not found" });
+      }
+      
+      // Return masked keys for security
+      res.json({
+        ...updated,
+        stripeSecretKey: updated.stripeSecretKey ? '***' + updated.stripeSecretKey.slice(-4) : '',
+        paypalClientId: updated.paypalClientId ? '***' + updated.paypalClientId.slice(-4) : '',
+      });
+    } catch (error) {
+      res.status(500).json({ error: "Failed to update payment settings" });
+    }
+  });
+
+  // Mark onboarding as completed
+  app.post("/api/tenants/:tenantId/complete-onboarding", isAuthenticated, async (req, res) => {
+    try {
+      const updated = await storage.updateTenantSettings(req.params.tenantId, {
+        hasCompletedOnboarding: true,
+      });
+      
+      if (!updated) {
+        return res.status(404).json({ error: "Tenant settings not found" });
+      }
+      
+      res.json({ success: true });
+    } catch (error) {
+      res.status(500).json({ error: "Failed to complete onboarding" });
+    }
+  });
+
+  // Test email marketing connection
+  app.post("/api/email/test-connection", isAuthenticated, async (req, res) => {
+    try {
+      const { apiKey, provider } = req.body;
+      
+      if (!apiKey) {
+        return res.status(400).json({ error: "API key is required" });
+      }
+      
+      const result = await testEmailConnection(apiKey, provider || "getresponse");
+      res.json(result);
+    } catch (error) {
+      res.status(500).json({ error: "Failed to test connection" });
+    }
+  });
+
+  // Get available email lists
+  app.post("/api/email/lists", isAuthenticated, async (req, res) => {
+    try {
+      const { apiKey, provider } = req.body;
+      
+      if (!apiKey) {
+        return res.status(400).json({ error: "API key is required" });
+      }
+      
+      const lists = await getEmailLists(apiKey, provider || "getresponse");
+      res.json(lists);
+    } catch (error) {
+      res.status(500).json({ error: "Failed to fetch email lists" });
     }
   });
 

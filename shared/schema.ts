@@ -1,5 +1,5 @@
 import { sql } from "drizzle-orm";
-import { pgTable, text, varchar, jsonb, boolean, timestamp, index } from "drizzle-orm/pg-core";
+import { pgTable, text, varchar, jsonb, boolean, timestamp, index, integer } from "drizzle-orm/pg-core";
 import { createInsertSchema } from "drizzle-zod";
 import { z } from "zod";
 
@@ -73,7 +73,53 @@ export const tenantSettings = pgTable("tenant_settings", {
   primaryColor: text("primary_color").notNull().default("#6366f1"),
   secondaryColor: text("secondary_color").notNull().default("#8b5cf6"),
   accentColor: text("accent_color").notNull().default("#ec4899"),
+  emailProvider: text("email_provider").default(""),
+  emailApiKey: text("email_api_key").default(""),
+  emailListId: text("email_list_id").default(""),
+  stripePublishableKey: text("stripe_publishable_key").default(""),
+  stripeSecretKey: text("stripe_secret_key").default(""),
+  paypalClientId: text("paypal_client_id").default(""),
+  hasCompletedOnboarding: boolean("has_completed_onboarding").default(false),
   updatedAt: text("updated_at").notNull().default(sql`CURRENT_TIMESTAMP`),
+});
+
+// Analytics: Track funnel events (views, conversions, revenue)
+export const funnelEvents = pgTable("funnel_events", {
+  id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
+  funnelId: varchar("funnel_id").notNull().references(() => funnels.id, { onDelete: "cascade" }),
+  stageId: varchar("stage_id"),
+  eventType: text("event_type").notNull(), // 'view', 'conversion', 'click', 'purchase'
+  variantId: varchar("variant_id"),
+  visitorId: varchar("visitor_id"),
+  amount: integer("amount").default(0), // For revenue tracking (in cents)
+  metadata: jsonb("metadata").$type<Record<string, any>>(),
+  createdAt: timestamp("created_at").defaultNow(),
+});
+
+// A/B Testing: Test definitions
+export const abTests = pgTable("ab_tests", {
+  id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
+  funnelId: varchar("funnel_id").notNull().references(() => funnels.id, { onDelete: "cascade" }),
+  name: text("name").notNull(),
+  status: text("status").notNull().default("draft"), // 'draft', 'active', 'paused', 'completed'
+  testType: text("test_type").notNull(), // 'headline', 'cta', 'verse', 'layout'
+  stageId: varchar("stage_id"),
+  winningVariantId: varchar("winning_variant_id"),
+  createdAt: timestamp("created_at").defaultNow(),
+  endedAt: timestamp("ended_at"),
+});
+
+// A/B Testing: Variants for each test
+export const abVariants = pgTable("ab_variants", {
+  id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
+  testId: varchar("test_id").notNull().references(() => abTests.id, { onDelete: "cascade" }),
+  name: text("name").notNull(),
+  content: jsonb("content").notNull().$type<Record<string, any>>(), // Variant-specific content
+  weight: integer("weight").notNull().default(50), // Traffic split percentage
+  views: integer("views").notNull().default(0),
+  conversions: integer("conversions").notNull().default(0),
+  revenue: integer("revenue").notNull().default(0),
+  createdAt: timestamp("created_at").defaultNow(),
 });
 
 export const leads = pgTable("leads", {
@@ -140,6 +186,9 @@ export const insertLeadSchema = createInsertSchema(leads).omit({ id: true, creat
 });
 
 export const insertPurchaseSchema = createInsertSchema(purchases).omit({ id: true, createdAt: true });
+export const insertFunnelEventSchema = createInsertSchema(funnelEvents).omit({ id: true, createdAt: true });
+export const insertAbTestSchema = createInsertSchema(abTests).omit({ id: true, createdAt: true, endedAt: true });
+export const insertAbVariantSchema = createInsertSchema(abVariants).omit({ id: true, createdAt: true });
 
 export type InsertFunnel = z.infer<typeof insertFunnelSchema>;
 export type InsertVerse = z.infer<typeof insertVerseSchema>;
@@ -148,6 +197,9 @@ export type InsertTenant = z.infer<typeof insertTenantSchema>;
 export type InsertTenantSettings = z.infer<typeof insertTenantSettingsSchema>;
 export type InsertLead = z.infer<typeof insertLeadSchema>;
 export type InsertPurchase = z.infer<typeof insertPurchaseSchema>;
+export type InsertFunnelEvent = z.infer<typeof insertFunnelEventSchema>;
+export type InsertAbTest = z.infer<typeof insertAbTestSchema>;
+export type InsertAbVariant = z.infer<typeof insertAbVariantSchema>;
 
 export type Funnel = typeof funnels.$inferSelect;
 export type Verse = typeof verses.$inferSelect;
@@ -156,6 +208,9 @@ export type Tenant = typeof tenants.$inferSelect;
 export type TenantSettings = typeof tenantSettings.$inferSelect;
 export type Lead = typeof leads.$inferSelect;
 export type Purchase = typeof purchases.$inferSelect;
+export type FunnelEvent = typeof funnelEvents.$inferSelect;
+export type AbTest = typeof abTests.$inferSelect;
+export type AbVariant = typeof abVariants.$inferSelect;
 
 export const TIERS = {
   BASIC: "basic",

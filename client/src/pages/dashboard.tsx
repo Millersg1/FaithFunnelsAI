@@ -1,4 +1,4 @@
-import { Filter, Download, Palette, BookOpen, Crown } from "lucide-react";
+import { Filter, Download, Palette, BookOpen, Crown, HelpCircle } from "lucide-react";
 import { StatCard } from "@/components/stat-card";
 import { VerseCard } from "@/components/verse-card";
 import { Button } from "@/components/ui/button";
@@ -7,9 +7,11 @@ import { Link } from "wouter";
 import { useQuery } from "@tanstack/react-query";
 import type { Funnel as FunnelType, Verse, Theme } from "@shared/schema";
 import { useTenant } from "@/contexts/TenantContext";
+import { OnboardingTour, useOnboarding } from "@/components/onboarding-tour";
 
 export default function Dashboard() {
   const { features, tier, slug } = useTenant();
+  const { showTour, completeTour, resetTour } = useOnboarding();
   
   const { data: funnels } = useQuery<FunnelType[]>({
     queryKey: ["/api/funnels"],
@@ -27,6 +29,8 @@ export default function Dashboard() {
 
   return (
     <div className="space-y-6">
+      {showTour && <OnboardingTour onComplete={completeTour} />}
+      
       <div className="flex items-center justify-between">
         <div>
           <div className="flex items-center gap-3">
@@ -38,12 +42,17 @@ export default function Dashboard() {
           </div>
           <p className="text-muted-foreground">Welcome to Faith Funnels AI</p>
         </div>
-        <Link href={slug ? `/t/${slug}/funnels` : "/app/funnels"}>
-          <Button data-testid="button-create-funnel">
-            <Filter className="mr-2 h-4 w-4" />
-            Create New Funnel
+        <div className="flex items-center gap-2">
+          <Button variant="outline" size="icon" onClick={resetTour} data-testid="button-restart-tour">
+            <HelpCircle className="h-4 w-4" />
           </Button>
-        </Link>
+          <Link href={slug ? `/t/${slug}/funnels` : "/app/funnels"}>
+            <Button data-testid="button-create-funnel">
+              <Filter className="mr-2 h-4 w-4" />
+              Create New Funnel
+            </Button>
+          </Link>
+        </div>
       </div>
 
       <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
