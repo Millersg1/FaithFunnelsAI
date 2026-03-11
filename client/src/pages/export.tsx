@@ -60,9 +60,11 @@ export default function Export() {
         description: "Your funnel has been downloaded as a ZIP file.",
       });
     } catch (error) {
+      console.error("Export error:", error);
+      const errorMsg = error instanceof Error ? error.message : String(error);
       toast({
         title: "Export failed",
-        description: "There was an error exporting your funnel. Please try again.",
+        description: `Error: ${errorMsg}`,
         variant: "destructive",
       });
     } finally {
@@ -107,9 +109,11 @@ export default function Export() {
         description: `${selectedFunnelIds.length} funnel(s) have been downloaded.`,
       });
     } catch (error) {
+      console.error("Bulk export error:", error);
+      const errorMsg = error instanceof Error ? error.message : String(error);
       toast({
         title: "Bulk export failed",
-        description: "There was an error exporting your funnels. Please try again.",
+        description: `Error: ${errorMsg}`,
         variant: "destructive",
       });
     } finally {
