@@ -71,6 +71,7 @@ import Templates from "@/pages/templates";
 import Analytics from "@/pages/analytics";
 import AbTesting from "@/pages/ab-testing";
 import PaymentSettings from "@/pages/payment-settings";
+import AdminPanel from "@/pages/admin";
 import { CookieConsentProvider, ManageCookiesButton } from "@/components/cookie-consent";
 
 function AppLayout({ children }: { children: React.ReactNode }) {
@@ -353,6 +354,15 @@ function App() {
                 <ProtectedRoute>
                   <AppLayout>
                     <PaymentSettings />
+                  </AppLayout>
+                </ProtectedRoute>
+              )}
+            </Route>
+            <Route path="/app/admin">
+              {() => (
+                <ProtectedRoute>
+                  <AppLayout>
+                    <AdminPanel />
                   </AppLayout>
                 </ProtectedRoute>
               )}

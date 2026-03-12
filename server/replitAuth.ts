@@ -95,6 +95,7 @@ export async function setupAuth(app: Express) {
         firstName: user.firstName,
         lastName: user.lastName,
         profileImageUrl: user.profileImageUrl,
+        isAdmin: user.isAdmin,
       });
     }
     res.status(401).json({ message: "Not authenticated" });

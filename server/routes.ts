@@ -1445,9 +1445,189 @@ Be helpful, concise, and enthusiastic about Faith Funnels AI. Answer questions a
     }
   });
 
+  // ==========================================
+  // ADMIN PANEL ENDPOINTS
+  // ==========================================
+
+  // Admin middleware - checks isAdmin flag on user
+  const requireAdmin = (req: any, res: any, next: any) => {
+    if (!req.isAuthenticated()) {
+      return res.status(401).json({ message: "Unauthorized" });
+    }
+    if (!req.user?.isAdmin) {
+      return res.status(403).json({ message: "Forbidden: Admin access required" });
+    }
+    next();
+  };
+
+  // Admin: Get system overview stats
+  app.get("/api/admin/stats", requireAdmin, async (_req, res) => {
+    try {
+      const users = await storage.getAllUsers();
+      const tenants = await storage.getAllTenants();
+      const funnels = await storage.getFunnels();
+
+      const totalUsers = users.length;
+      const totalTenants = tenants.length;
+      const paidTenants = tenants.filter((t: any) => t.isPaid).length;
+      const totalFunnels = funnels.length;
+
+      // Users created in last 7 days
+      const weekAgo = new Date();
+      weekAgo.setDate(weekAgo.getDate() - 7);
+      const recentUsers = users.filter((u: any) => u.createdAt && new Date(u.createdAt) > weekAgo).length;
+
+      // Tier breakdown
+      const tierBreakdown: Record<string, number> = {};
+      tenants.forEach((t: any) => {
+        tierBreakdown[t.tier] = (tierBreakdown[t.tier] || 0) + 1;
+      });
+
+      res.json({
+        totalUsers,
+        totalTenants,
+        paidTenants,
+        totalFunnels,
+        recentUsers,
+        tierBreakdown,
+      });
+    } catch (error) {
+      console.error("Admin stats error:", error);
+      res.status(500).json({ message: "Failed to fetch stats" });
+    }
+  });
+
+  // Admin: List all users
+  app.get("/api/admin/users", requireAdmin, async (_req, res) => {
+    try {
+      const users = await storage.getAllUsers();
+      // Strip passwords from response
+      const safeUsers = users.map((u: any) => ({
+        id: u.id,
+        email: u.email,
+        firstName: u.firstName,
+        lastName: u.lastName,
+        isAdmin: u.isAdmin,
+        createdAt: u.createdAt,
+        updatedAt: u.updatedAt,
+      }));
+      res.json(safeUsers);
+    } catch (error) {
+      console.error("Admin users error:", error);
+      res.status(500).json({ message: "Failed to fetch users" });
+    }
+  });
+
+  // Admin: Update a user (toggle admin, reset password)
+  app.patch("/api/admin/users/:id", requireAdmin, async (req: any, res) => {
+    try {
+      const { id } = req.params;
+      const { isAdmin: setAdmin, resetPassword } = req.body;
+
+      const user = await storage.getUser(id);
+      if (!user) {
+        return res.status(404).json({ message: "User not found" });
+      }
+
+      if (typeof setAdmin === "boolean") {
+        await storage.updateUserAdmin(id, setAdmin);
+      }
+
+      if (resetPassword && typeof resetPassword === "string") {
+        const hashedPassword = await bcrypt.hash(resetPassword, 12);
+        await storage.updateUserPassword(id, hashedPassword);
+      }
+
+      const updated = await storage.getUser(id);
+      res.json({
+        id: updated!.id,
+        email: updated!.email,
+        firstName: updated!.firstName,
+        lastName: updated!.lastName,
+        isAdmin: updated!.isAdmin,
+        createdAt: updated!.createdAt,
+      });
+    } catch (error) {
+      console.error("Admin update user error:", error);
+      res.status(500).json({ message: "Failed to update user" });
+    }
+  });
+
+  // Admin: Delete a user
+  app.delete("/api/admin/users/:id", requireAdmin, async (req: any, res) => {
+    try {
+      const { id } = req.params;
+      // Don't allow deleting yourself
+      if (req.user.id === id) {
+        return res.status(400).json({ message: "Cannot delete your own account" });
+      }
+      await storage.deleteUser(id);
+      res.json({ success: true });
+    } catch (error) {
+      console.error("Admin delete user error:", error);
+      res.status(500).json({ message: "Failed to delete user" });
+    }
+  });
+
+  // Admin: List all tenants with settings
+  app.get("/api/admin/tenants", requireAdmin, async (_req, res) => {
+    try {
+      const tenants = await storage.getAllTenants();
+      const tenantsWithSettings = await Promise.all(
+        tenants.map(async (t: any) => {
+          const settings = await storage.getTenantSettings(t.id);
+          return { ...t, settings };
+        })
+      );
+      res.json(tenantsWithSettings);
+    } catch (error) {
+      console.error("Admin tenants error:", error);
+      res.status(500).json({ message: "Failed to fetch tenants" });
+    }
+  });
+
+  // Admin: Update a tenant
+  app.patch("/api/admin/tenants/:id", requireAdmin, async (req, res) => {
+    try {
+      const { id } = req.params;
+      const { isPaid, tier } = req.body;
+      const updates: any = {};
+      if (typeof isPaid === "boolean") updates.isPaid = isPaid;
+      if (tier) updates.tier = tier;
+      await storage.updateTenant(id, updates);
+      const updated = await storage.getTenantBySlug((await storage.getAllTenants()).find((t: any) => t.id === id)?.slug || "");
+      res.json(updated);
+    } catch (error) {
+      console.error("Admin update tenant error:", error);
+      res.status(500).json({ message: "Failed to update tenant" });
+    }
+  });
+
+  // Admin: Get recent error logs (from PM2 or app)
+  app.get("/api/admin/health", requireAdmin, async (_req, res) => {
+    try {
+      const uptime = process.uptime();
+      const memUsage = process.memoryUsage();
+      res.json({
+        status: "running",
+        uptime: Math.floor(uptime),
+        uptimeFormatted: `${Math.floor(uptime / 86400)}d ${Math.floor((uptime % 86400) / 3600)}h ${Math.floor((uptime % 3600) / 60)}m`,
+        memory: {
+          rss: Math.round(memUsage.rss / 1024 / 1024),
+          heapUsed: Math.round(memUsage.heapUsed / 1024 / 1024),
+          heapTotal: Math.round(memUsage.heapTotal / 1024 / 1024),
+        },
+        nodeVersion: process.version,
+        env: process.env.NODE_ENV || "development",
+      });
+    } catch (error) {
+      res.status(500).json({ message: "Health check failed" });
+    }
+  });
+
   const httpServer = createServer(app);
-  
+
   seedDemoData().catch(console.error);
-  
+
   return httpServer;
 }

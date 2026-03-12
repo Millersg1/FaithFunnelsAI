@@ -84,6 +84,10 @@ export interface IStorage {
   setPasswordResetToken(userId: string, token: string, expiry: Date): Promise<void>;
   getUserByResetToken(token: string): Promise<User | undefined>;
   updateUserPassword(userId: string, hashedPassword: string): Promise<void>;
+  getAllUsers(): Promise<User[]>;
+  updateUserAdmin(userId: string, isAdmin: boolean): Promise<void>;
+  deleteUser(userId: string): Promise<void>;
+  getAllTenants(): Promise<Tenant[]>;
   
   getTemplates(tier?: string): Promise<Template[]>;
   getTemplate(id: string): Promise<Template | undefined>;
@@ -306,6 +310,22 @@ export class PgStorage implements IStorage {
       passwordResetExpiry: null,
       updatedAt: new Date(),
     }).where(eq(users.id, userId));
+  }
+
+  async getAllUsers(): Promise<User[]> {
+    return await db.select().from(users).orderBy(desc(users.createdAt));
+  }
+
+  async updateUserAdmin(userId: string, isAdmin: boolean): Promise<void> {
+    await db.update(users).set({ isAdmin, updatedAt: new Date() }).where(eq(users.id, userId));
+  }
+
+  async deleteUser(userId: string): Promise<void> {
+    await db.delete(users).where(eq(users.id, userId));
+  }
+
+  async getAllTenants(): Promise<Tenant[]> {
+    return await db.select().from(tenants).orderBy(desc(tenants.createdAt));
   }
 
   async getTemplates(tier?: string): Promise<Template[]> {

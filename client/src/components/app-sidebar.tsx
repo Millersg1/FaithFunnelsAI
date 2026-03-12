@@ -1,4 +1,4 @@
-import { Home, Filter, BookOpen, Palette, Download, Settings, FileText, LayoutTemplate, BarChart3, FlaskConical, CreditCard } from "lucide-react";
+import { Home, Filter, BookOpen, Palette, Download, Settings, FileText, LayoutTemplate, BarChart3, FlaskConical, CreditCard, ShieldCheck } from "lucide-react";
 import {
   Sidebar,
   SidebarContent,
@@ -13,6 +13,7 @@ import {
 } from "@/components/ui/sidebar";
 import { Link, useLocation } from "wouter";
 import { useTenant } from "@/contexts/TenantContext";
+import { useAuth } from "@/hooks/useAuth";
 import { UpgradeBanner } from "@/components/upgrade-banner";
 
 const menuItems = [
@@ -84,6 +85,7 @@ const legalItems = [
 export function AppSidebar() {
   const [location] = useLocation();
   const { settings, hasFeature, slug } = useTenant();
+  const { user } = useAuth();
 
   const tenantAwareMenuItems = menuItems.map(item => ({
     ...item,
@@ -132,6 +134,16 @@ export function AppSidebar() {
                     <Link href={`/t/${slug}/admin`}>
                       <Settings className="h-5 w-5" />
                       <span>White Label Admin{!hasFeature('whiteLabel') ? ' 🔒' : ''}</span>
+                    </Link>
+                  </SidebarMenuButton>
+                </SidebarMenuItem>
+              )}
+              {user?.isAdmin && (
+                <SidebarMenuItem>
+                  <SidebarMenuButton asChild isActive={location === "/app/admin"} data-testid="nav-admin-panel">
+                    <Link href="/app/admin">
+                      <ShieldCheck className="h-5 w-5" />
+                      <span>Admin Panel</span>
                     </Link>
                   </SidebarMenuButton>
                 </SidebarMenuItem>
