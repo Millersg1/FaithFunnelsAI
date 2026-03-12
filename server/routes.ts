@@ -5,9 +5,184 @@ import { insertFunnelSchema, insertVerseSchema, insertThemeSchema, insertTenantS
 import OpenAI from "openai";
 import { setupAuth, isAuthenticated } from "./replitAuth";
 import { syncLeadToEmailProvider, getEmailLists, testEmailConnection } from "./emailMarketing";
+import bcrypt from "bcrypt";
+import crypto from "crypto";
+import passport from "passport";
+import nodemailer from "nodemailer";
 
 export async function registerRoutes(app: Express): Promise<Server> {
   await setupAuth(app);
+
+  // Helper to create nodemailer transporter if SMTP env vars are set
+  function getMailTransporter() {
+    if (process.env.SMTP_HOST && process.env.SMTP_USER && process.env.SMTP_PASS) {
+      return nodemailer.createTransport({
+        host: process.env.SMTP_HOST,
+        port: parseInt(process.env.SMTP_PORT || "587"),
+        secure: process.env.SMTP_SECURE === "true",
+        auth: {
+          user: process.env.SMTP_USER,
+          pass: process.env.SMTP_PASS,
+        },
+      });
+    }
+    return null;
+  }
+
+  // POST /api/auth/login - Email/password login
+  app.post('/api/auth/login', (req, res, next) => {
+    passport.authenticate('local', (err: any, user: any, info: any) => {
+      if (err) return next(err);
+      if (!user) {
+        return res.status(401).json({ message: info?.message || "Invalid email or password" });
+      }
+      req.login(user, (err) => {
+        if (err) return next(err);
+        return res.json({ success: true, redirect: "/app" });
+      });
+    })(req, res, next);
+  });
+
+  // POST /api/auth/register - Create new account
+  app.post('/api/auth/register', async (req, res) => {
+    try {
+      const { email, password, firstName, lastName } = req.body;
+
+      if (!email || !password) {
+        return res.status(400).json({ message: "Email and password are required" });
+      }
+      if (password.length < 8) {
+        return res.status(400).json({ message: "Password must be at least 8 characters" });
+      }
+
+      const existing = await storage.getUserByEmail(email.toLowerCase());
+      if (existing) {
+        return res.status(400).json({ message: "An account with this email already exists" });
+      }
+
+      const hashedPassword = await bcrypt.hash(password, 10);
+      const user = await storage.upsertUser({
+        email: email.toLowerCase(),
+        firstName: firstName || null,
+        lastName: lastName || null,
+        password: hashedPassword,
+        profileImageUrl: null,
+      });
+
+      req.login(user, (err) => {
+        if (err) {
+          console.error("Auto-login after register error:", err);
+          return res.status(500).json({ message: "Account created but login failed" });
+        }
+        return res.json({ success: true, redirect: "/app" });
+      });
+    } catch (error) {
+      console.error("Registration error:", error);
+      res.status(500).json({ message: "Registration failed" });
+    }
+  });
+
+  // POST /api/auth/forgot-password - Send reset email
+  app.post('/api/auth/forgot-password', async (req, res) => {
+    try {
+      const { email } = req.body;
+      if (!email) {
+        return res.status(400).json({ message: "Email is required" });
+      }
+
+      const user = await storage.getUserByEmail(email.toLowerCase());
+      if (user) {
+        const token = crypto.randomBytes(32).toString('hex');
+        const expiry = new Date(Date.now() + 24 * 60 * 60 * 1000); // 24 hours
+        await storage.setPasswordResetToken(user.id, token, expiry);
+
+        const resetUrl = `${req.protocol}://${req.get('host')}/reset-password?token=${token}`;
+        const transporter = getMailTransporter();
+        if (transporter) {
+          await transporter.sendMail({
+            from: process.env.SMTP_FROM || process.env.SMTP_USER,
+            to: email,
+            subject: "Faith Funnels AI - Password Reset",
+            html: `
+              <h2>Password Reset</h2>
+              <p>You requested a password reset for your Faith Funnels AI account.</p>
+              <p><a href="${resetUrl}">Click here to reset your password</a></p>
+              <p>This link expires in 24 hours.</p>
+              <p>If you didn't request this, you can safely ignore this email.</p>
+            `,
+          });
+        } else {
+          console.log(`Password reset link for ${email}: ${resetUrl}`);
+        }
+      }
+
+      // Always return success to prevent email enumeration
+      res.json({ success: true, message: "If an account with that email exists, a reset link has been sent." });
+    } catch (error) {
+      console.error("Forgot password error:", error);
+      res.status(500).json({ message: "Failed to process request" });
+    }
+  });
+
+  // POST /api/auth/reset-password - Reset password with token
+  app.post('/api/auth/reset-password', async (req, res) => {
+    try {
+      const { token, password } = req.body;
+      if (!token || !password) {
+        return res.status(400).json({ message: "Token and password are required" });
+      }
+      if (password.length < 8) {
+        return res.status(400).json({ message: "Password must be at least 8 characters" });
+      }
+
+      const user = await storage.getUserByResetToken(token);
+      if (!user || !user.passwordResetExpiry || new Date() > user.passwordResetExpiry) {
+        return res.status(400).json({ message: "Invalid or expired reset token" });
+      }
+
+      const hashedPassword = await bcrypt.hash(password, 10);
+      await storage.updateUserPassword(user.id, hashedPassword);
+
+      res.json({ success: true, message: "Password has been reset. You can now log in." });
+    } catch (error) {
+      console.error("Reset password error:", error);
+      res.status(500).json({ message: "Failed to reset password" });
+    }
+  });
+
+  // POST /api/auth/set-password - Set password and auto-login (for first-time setup)
+  app.post('/api/auth/set-password', async (req, res) => {
+    try {
+      const { token, password } = req.body;
+      if (!token || !password) {
+        return res.status(400).json({ message: "Token and password are required" });
+      }
+      if (password.length < 8) {
+        return res.status(400).json({ message: "Password must be at least 8 characters" });
+      }
+
+      const user = await storage.getUserByResetToken(token);
+      if (!user || !user.passwordResetExpiry || new Date() > user.passwordResetExpiry) {
+        return res.status(400).json({ message: "Invalid or expired setup token" });
+      }
+
+      const hashedPassword = await bcrypt.hash(password, 10);
+      await storage.updateUserPassword(user.id, hashedPassword);
+
+      // Auto-login after setting password
+      const updatedUser = await storage.getUser(user.id);
+      req.login(updatedUser!, (err) => {
+        if (err) {
+          console.error("Auto-login after set-password error:", err);
+          return res.json({ success: true, message: "Password set. Please log in.", redirect: "/login" });
+        }
+        return res.json({ success: true, redirect: "/app" });
+      });
+    } catch (error) {
+      console.error("Set password error:", error);
+      res.status(500).json({ message: "Failed to set password" });
+    }
+  });
 
   // Review login for JVZoo/WarriorPlus reviewers
   app.post('/api/auth/review-login', async (req: any, res) => {
@@ -25,27 +200,16 @@ export async function registerRoutes(app: Express): Promise<Server> {
       
       // Create or get review user
       const reviewUserId = "reviewer-jvzoo-wplus";
-      await storage.upsertUser({
+      const reviewUser = await storage.upsertUser({
         id: reviewUserId,
         email: "reviewer@faithfunnelsai.com",
         firstName: "JVZoo",
         lastName: "Reviewer",
         profileImageUrl: null,
       });
-      
+
       // Set up session for reviewer
-      req.login({
-        claims: {
-          sub: reviewUserId,
-          email: "reviewer@faithfunnelsai.com",
-          first_name: "JVZoo",
-          last_name: "Reviewer",
-          exp: Math.floor(Date.now() / 1000) + (7 * 24 * 60 * 60), // 1 week
-        },
-        access_token: "review-access",
-        refresh_token: null,
-        expires_at: Math.floor(Date.now() / 1000) + (7 * 24 * 60 * 60),
-      }, (err: any) => {
+      req.login(reviewUser, (err: any) => {
         if (err) {
           console.error("Review login error:", err);
           return res.status(500).json({ message: "Login failed" });
@@ -216,17 +380,48 @@ export async function registerRoutes(app: Express): Promise<Server> {
         profileImageUrl: null,
       });
 
+      // Generate password setup token for the buyer
+      const setupToken = crypto.randomBytes(32).toString('hex');
+      const setupExpiry = new Date(Date.now() + 7 * 24 * 60 * 60 * 1000); // 7 days
+      await storage.setPasswordResetToken(userId, setupToken, setupExpiry);
+
+      const setupUrl = `https://faithfunnelsai.com/reset-password?token=${setupToken}&setup=1`;
+      console.log(`JVZoo setup URL for ${email}: ${setupUrl}`);
+
+      // Send welcome email with setup link
+      const transporter = getMailTransporter();
+      if (transporter) {
+        try {
+          await transporter.sendMail({
+            from: process.env.SMTP_FROM || process.env.SMTP_USER,
+            to: email,
+            subject: "Welcome to Faith Funnels AI - Set Up Your Account",
+            html: `
+              <h2>Welcome to Faith Funnels AI!</h2>
+              <p>Hi ${firstName || 'there'},</p>
+              <p>Thank you for your purchase of <strong>${productInfo.name}</strong>!</p>
+              <p>Click the link below to set your password and access your dashboard:</p>
+              <p><a href="${setupUrl}" style="display:inline-block;padding:12px 24px;background:#6366f1;color:#fff;text-decoration:none;border-radius:6px;">Set Up Your Account</a></p>
+              <p>This link expires in 7 days.</p>
+              <p>If you have any questions, contact us at support@faithfunnelsai.com</p>
+            `,
+          });
+        } catch (emailError) {
+          console.error("Failed to send JVZoo welcome email:", emailError);
+        }
+      }
+
       // Check if tenant exists for this user, otherwise create one
       const tenantSlug = `jvzoo-${email.replace(/[^a-z0-9]/gi, '-').substring(0, 30)}`;
       let tenant = await storage.getTenantBySlug(tenantSlug);
-      
+
       if (tenant) {
         // Upgrade tier if this purchase has a higher tier
-        const currentPriority = TIER_PRIORITY[tenant.tier] || 1;
+        const currentPriority = TIER_PRIORITY[tenant.tier as TierType] || 1;
         const newPriority = TIER_PRIORITY[purchasedTier] || 1;
         if (newPriority > currentPriority) {
           console.log(`Upgrading tenant ${tenantSlug} from ${tenant.tier} to ${purchasedTier}`);
-          // Note: Would need to add updateTenant method for actual upgrade
+          await storage.updateTenant(tenant.id, { tier: purchasedTier as any });
         }
       } else {
         // Create new tenant
@@ -246,16 +441,16 @@ export async function registerRoutes(app: Express): Promise<Server> {
       }
 
       console.log(`JVZIPN processed: ${email} purchased ${productInfo.name} (${purchasedTier})`);
-      
+
       // Return access instructions for JVZoo to display as "license key"
       const accessUrl = `https://faithfunnelsai.com/jvzoo-thank-you`;
       const adminPin = tenant.adminPin;
-      
+
       // JVZoo displays this as the license/access key to the customer
-      res.json({ 
+      res.json({
         success: true,
         // This text is shown to the buyer in JVZoo
-        license_key: `ACCESS URL: ${accessUrl}\nADMIN PIN: ${adminPin}\nEMAIL: ${email}\n\nLogin with your JVZoo email to access your dashboard.`,
+        license_key: `ACCESS URL: ${accessUrl}\nADMIN PIN: ${adminPin}\nEMAIL: ${email}\n\nCheck your email (${email}) for your login setup link.`,
       });
 
     } catch (error) {
@@ -409,13 +604,44 @@ export async function registerRoutes(app: Express): Promise<Server> {
         profileImageUrl: null,
       });
 
+      // Generate password setup token for the buyer
+      const setupToken = crypto.randomBytes(32).toString('hex');
+      const setupExpiry = new Date(Date.now() + 7 * 24 * 60 * 60 * 1000); // 7 days
+      await storage.setPasswordResetToken(userId, setupToken, setupExpiry);
+
+      const setupUrl = `https://faithfunnelsai.com/reset-password?token=${setupToken}&setup=1`;
+      console.log(`Explodely setup URL for ${customerEmail}: ${setupUrl}`);
+
+      // Send welcome email with setup link
+      const transporter = getMailTransporter();
+      if (transporter) {
+        try {
+          await transporter.sendMail({
+            from: process.env.SMTP_FROM || process.env.SMTP_USER,
+            to: customerEmail,
+            subject: "Welcome to Faith Funnels AI - Set Up Your Account",
+            html: `
+              <h2>Welcome to Faith Funnels AI!</h2>
+              <p>Hi ${firstName || 'there'},</p>
+              <p>Thank you for your purchase of <strong>${productInfo.name}</strong>!</p>
+              <p>Click the link below to set your password and access your dashboard:</p>
+              <p><a href="${setupUrl}" style="display:inline-block;padding:12px 24px;background:#6366f1;color:#fff;text-decoration:none;border-radius:6px;">Set Up Your Account</a></p>
+              <p>This link expires in 7 days.</p>
+              <p>If you have any questions, contact us at support@faithfunnelsai.com</p>
+            `,
+          });
+        } catch (emailError) {
+          console.error("Failed to send Explodely welcome email:", emailError);
+        }
+      }
+
       // Check if tenant exists for this user, otherwise create one
       const tenantSlug = `explodely-${customerEmail.replace(/[^a-z0-9]/gi, '-').substring(0, 30)}`;
       let tenant = await storage.getTenantBySlug(tenantSlug);
-      
+
       if (tenant) {
         // Upgrade tier if this purchase has a higher tier
-        const currentPriority = TIER_PRIORITY[tenant.tier] || 1;
+        const currentPriority = TIER_PRIORITY[tenant.tier as TierType] || 1;
         const newPriority = TIER_PRIORITY[purchasedTier] || 1;
         if (newPriority > currentPriority) {
           console.log(`Upgrading Explodely tenant ${tenantSlug} from ${tenant.tier} to ${purchasedTier}`);

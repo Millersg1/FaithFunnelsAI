@@ -12,6 +12,8 @@ import { Button } from "@/components/ui/button";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { LogOut, User } from "lucide-react";
 import NotFound from "@/pages/not-found";
+import Login from "@/pages/login";
+import ResetPassword from "@/pages/reset-password";
 import Landing from "@/pages/landing";
 import DownloadPage from "@/pages/download";
 import DemoPage from "@/pages/demo";
@@ -181,6 +183,8 @@ function App() {
         <TenantProvider>
           <Switch>
             <Route path="/" component={Landing} />
+            <Route path="/login" component={Login} />
+            <Route path="/reset-password" component={ResetPassword} />
             <Route path="/download" component={DownloadPage} />
             <Route path="/demo" component={DemoPage} />
             <Route path="/support" component={SupportPage} />

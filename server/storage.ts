@@ -80,6 +80,10 @@ export interface IStorage {
   
   getUser(id: string): Promise<User | undefined>;
   upsertUser(user: UpsertUser): Promise<User>;
+  getUserByEmail(email: string): Promise<User | undefined>;
+  setPasswordResetToken(userId: string, token: string, expiry: Date): Promise<void>;
+  getUserByResetToken(token: string): Promise<User | undefined>;
+  updateUserPassword(userId: string, hashedPassword: string): Promise<void>;
   
   getTemplates(tier?: string): Promise<Template[]>;
   getTemplate(id: string): Promise<Template | undefined>;
@@ -276,6 +280,32 @@ export class PgStorage implements IStorage {
       })
       .returning();
     return user;
+  }
+
+  async getUserByEmail(email: string): Promise<User | undefined> {
+    const [user] = await db.select().from(users).where(eq(users.email, email));
+    return user;
+  }
+
+  async setPasswordResetToken(userId: string, token: string, expiry: Date): Promise<void> {
+    await db.update(users).set({
+      passwordResetToken: token,
+      passwordResetExpiry: expiry,
+    }).where(eq(users.id, userId));
+  }
+
+  async getUserByResetToken(token: string): Promise<User | undefined> {
+    const [user] = await db.select().from(users).where(eq(users.passwordResetToken, token));
+    return user;
+  }
+
+  async updateUserPassword(userId: string, hashedPassword: string): Promise<void> {
+    await db.update(users).set({
+      password: hashedPassword,
+      passwordResetToken: null,
+      passwordResetExpiry: null,
+      updatedAt: new Date(),
+    }).where(eq(users.id, userId));
   }
 
   async getTemplates(tier?: string): Promise<Template[]> {
