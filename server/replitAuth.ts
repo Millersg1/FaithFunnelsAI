@@ -82,7 +82,7 @@ export async function setupAuth(app: Express) {
 
   app.get("/api/logout", (req, res) => {
     req.logout(() => {
-      res.redirect("/");
+      res.redirect("/login");
     });
   });
 
